@@ -1,0 +1,1063 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gameList>
+  <provider>
+    <System>Daphne</System>
+    <software>Skraper</software>
+    <database>ScreenScraper.fr</database>
+    <web>http://www.screenscraper.fr</web>
+  </provider>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./astron.zip</path>
+    <name>astron</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+    <thumbnail>./media/box3d/astronp.png</thumbnail>
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./astronp.zip</path>
+    <name>astronp</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+    <thumbnail>./media/box3d/astronp.png</thumbnail>
+    <hidden>true</hidden>
+  </game>
+  <game id="51161" source="ScreenScraper.fr">
+    <path>./badlandh.zip</path>
+    <name>Badlands</name>
+    <desc>A Western/Gun shooting game where you play a character named Buck, whose wife and children were killed by a group of bad guys. Revenge is the only thing on your mind. You head for town, equipped only with your gun, searching for the people who ruined your life.</desc>
+    <rating>0.8</rating>
+    <releasedate>19840101T000000</releasedate>
+    <developer>Konami</developer>
+    <publisher>Konami</publisher>
+    <genre>Shooter</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/badlandh.png</image>
+    <thumbnail>./media/box3d/badlandh.png</thumbnail>
+  </game>
+  <game id="51161" source="ScreenScraper.fr">
+    <path>./badlands.zip</path>
+    <name>Badlands</name>
+    <desc>A Western/Gun shooting game where you play a character named Buck, whose wife and children were killed by a group of bad guys. Revenge is the only thing on your mind. You head for town, equipped only with your gun, searching for the people who ruined your life.</desc>
+    <rating>0.8</rating>
+    <releasedate>19840101T000000</releasedate>
+    <developer>Konami</developer>
+    <publisher>Konami</publisher>
+    <genre>Shooter</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/badlandh.png</image>
+    <thumbnail>./media/box3d/badlandh.png</thumbnail>
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./begarev1.zip</path>
+    <name>begarev1</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="51162" source="ScreenScraper.fr">
+    <path>./bega.zip</path>
+    <name>Bega's Battle</name>
+    <desc>In Bega's Battle, You play a character named Bega. You must face the alien Varga who is trying to take over the earth. You must defeat Varga to save the earth from destruction. Other goals are to rescue your friends Luna, Jobe, and Sony. Once rescued, Luna gave you extra firepower, Jobe gave you the shield, and Sony gave you teleportation ability.</desc>
+    <rating>0.7</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Data East</developer>
+    <publisher>Data East</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/bega.png</image>
+    <thumbnail>./media/box3d/bega.png</thumbnail>
+  </game>
+  <game id="51163" source="ScreenScraper.fr">
+    <path>./cliff.zip</path>
+    <name>Cliff Hanger</name>
+    <desc>Cliff is on a mission to save Clarissa from being forced to marry the evil Count Draco. Cliff Hanger is an interactive cartoon movie. The game consists of animated scenes, during which the player has to press direction buttons or the sword button in the right moment to trigger the next segment of the movie. The anime video used in the game are scenes from the Lupin III anime movies, mainly scenes from The Castle of Cagliostro and the Mystery of Mamo animated movies. Cliff in the game is Arsène Lupin III in the original anime.</desc>
+    <rating>0.9</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Stern Electronics, Inc.</developer>
+    <publisher>Stern Electronics</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1-2</players>
+    <hash />
+    <image>./media/images/cliffalt.png</image>
+    <thumbnail>./media/box3d/cliffalt.png</thumbnail>
+  </game>
+  <game id="51163" source="ScreenScraper.fr">
+    <path>./cliffalt.zip</path>
+    <name>Cliff Hanger</name>
+    <desc>Cliff is on a mission to save Clarissa from being forced to marry the evil Count Draco. Cliff Hanger is an interactive cartoon movie. The game consists of animated scenes, during which the player has to press direction buttons or the sword button in the right moment to trigger the next segment of the movie. The anime video used in the game are scenes from the Lupin III anime movies, mainly scenes from The Castle of Cagliostro and the Mystery of Mamo animated movies. Cliff in the game is Arsène Lupin III in the original anime.</desc>
+    <rating>0.9</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Stern Electronics, Inc.</developer>
+    <publisher>Stern Electronics</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1-2</players>
+    <hash />
+    <image>./media/images/cliffalt.png</image>
+    <thumbnail>./media/box3d/cliffalt.png</thumbnail>
+  </game>
+  <game id="150948" source="ScreenScraper.fr">
+    <path>./cobra.zip</path>
+    <name>Cobra Command (Data East LD, set 1)</name>
+    <desc>Mission... You have been ordered to get rid of a terrorist group which is committing crimes all over the world. Piloting your ultra-modern Jet Helicopter you have to confront your enemies. Carry out your mission!
+
+You command a fully armed helicopter and must take on enemy helicopters, planes, tanks, and ships in order to destroy their stronghold on an area. Your missions take you though the forest, in the canyons, through the desert ruins, out to the pacific ocean, and right though New York City.</desc>
+    <rating>0.75</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Data East</developer>
+    <publisher>Data East</publisher>
+    <genre>Shooter</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/cobraconv.png</image>
+    <thumbnail>./media/box3d/cobram3.png</thumbnail>
+  </game>
+  <game id="40679" source="ScreenScraper.fr">
+    <path>./cops.zip</path>
+    <name>Cops (USA)</name>
+    <desc>Undercover Cops is an arcade game developed by Irem in 1992.
+WIP</desc>
+    <rating>0</rating>
+    <releasedate>19940101T000000</releasedate>
+    <publisher>Atari</publisher>
+    <genre>Shooter-Lightgun Shooter</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/cops.png</image>
+    <thumbnail>./media/box3d/cops.png</thumbnail>
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cp_1.20.zip</path>
+    <name>cp_1.20</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cp_1.40.zip</path>
+    <name>cp_1.40</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cp_1.51.zip</path>
+    <name>cp_1.51</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cputest.zip</path>
+    <name>cputest</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_1_spp.zip</path>
+    <name>cs_1_spp</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_11_sps.zip</path>
+    <name>cs_11_sps</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_11_sps2.zip</path>
+    <name>cs_11_sps2</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_11_ssgp.zip</path>
+    <name>cs_11_ssgp</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_2_sps.zip</path>
+    <name>cs_2_sps</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_3_qps.zip</path>
+    <name>cs_3_qps</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_5_spp.zip</path>
+    <name>cs_5_spp</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_5_ssgp.zip</path>
+    <name>cs_5_ssgp</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_6_ssgp.zip</path>
+    <name>cs_6_ssgp</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_8_sps.zip</path>
+    <name>cs_8_sps</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_8_ssgp.zip</path>
+    <name>cs_8_ssgp</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_9_qps.zip</path>
+    <name>cs_9_qps</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_pe_qps.zip</path>
+    <name>cs_pe_qps</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./cs_vvd1_qps.zip</path>
+    <name>cs_vvd1_qps</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="191902" source="ScreenScraper.fr">
+    <path>./cq.zip</path>
+    <name>Cube Quest</name>
+    <desc>In Cube Quest, you must maneuver your space ship through a series of corridors in the Cube. You start off with a radar display of the cube, deciding which of the 54 corridors you want to start in. Each corridor has several enemy fighters that are determined to defeat you. Once you defeat the enemies you zoom back to the radar display of the Cubic World to chose another corridor to travel in. Once you complete all the corridors, you are rewarded with the Treasure of Mytha, Master of the Cube Quest.</desc>
+    <rating>0.7</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Simutrek</developer>
+    <publisher>Simutrek</publisher>
+    <genre>Shooter-Shooter / Plane</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/cq.png</image>
+    <thumbnail>./media/box3d/cq.png</thumbnail>
+  </game>
+  <game id="51166" source="ScreenScraper.fr">
+    <path>./lair2.zip</path>
+    <name>Dragon's Lair II: Time Warp (US v3.19)</name>
+    <desc>Princess Daphne has been spirited away to a wrinkle in time by the Evil Wizard Mordroc who plans to force her into marriage. Only you, Dirk the Daring, can save her. Transported by a bumbling old time machine, you begin the rescue mission. But you must hurry, for once the Casket of Doom has opened, Mordroc will place the Death Ring upon Daphne's finger in marriage and she will be lost forever in the Time Warp!</desc>
+    <rating>0.9</rating>
+    <releasedate>19910616T000000</releasedate>
+    <developer>Sullivan Bluth Interactive</developer>
+    <publisher>Leland Corporation</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/lair2_211.png</image>
+    <thumbnail>./media/box3d/lair2_211.png</thumbnail>
+  </game>
+  <game id="51166" source="ScreenScraper.fr">
+    <path>./lair2_315.zip</path>
+    <name>Dragon's Lair II: Time Warp</name>
+    <desc>Princess Daphne has been spirited away to a wrinkle in time by the Evil Wizard Mordroc who plans to force her into marriage. Only you, Dirk the Daring, can save her. Transported by a bumbling old time machine, you begin the rescue mission. But you must hurry, for once the Casket of Doom has opened, Mordroc will place the Death Ring upon Daphne's finger in marriage and she will be lost forever in the Time Warp!</desc>
+    <rating>0.9</rating>
+    <releasedate>19910616T000000</releasedate>
+    <developer>Sullivan Bluth Interactive</developer>
+    <publisher>Leland Corporation</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/lair2_211.png</image>
+    <thumbnail>./media/box3d/lair2_211.png</thumbnail>
+  </game>
+  <game id="51165" source="ScreenScraper.fr">
+    <path>./dle11.zip</path>
+    <name>Dragon's Lair</name>
+    <desc>Originally released in the arcades as a laserdisc game, Dragon's Lair is an interactive cartoon movie. Players control Dirk the Daring as he struggles his way through a dungeon to fight Singe, the Dragon, and rescue the beautiful Princess Daphne. The game consists of animated scenes, during which the player has to press direction buttons or the sword button in the right moment to trigger the next segment of the movie.</desc>
+    <rating>0.8</rating>
+    <releasedate>19830601T000000</releasedate>
+    <developer>Sullivan Bluth Interactive</developer>
+    <publisher>Cinematronics</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1-2</players>
+    <hash />
+    <image>./media/images/dle11.png</image>
+    <thumbnail>./media/box3d/dle11.png</thumbnail>
+  </game>
+  <game id="51165" source="ScreenScraper.fr">
+    <path>./dle20.zip</path>
+    <name>Dragon's Lair</name>
+    <desc>Originally released in the arcades as a laserdisc game, Dragon's Lair is an interactive cartoon movie. Players control Dirk the Daring as he struggles his way through a dungeon to fight Singe, the Dragon, and rescue the beautiful Princess Daphne. The game consists of animated scenes, during which the player has to press direction buttons or the sword button in the right moment to trigger the next segment of the movie.</desc>
+    <rating>0.8</rating>
+    <releasedate>19830601T000000</releasedate>
+    <developer>Sullivan Bluth Interactive</developer>
+    <publisher>Cinematronics</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1-2</players>
+    <hash />
+    <image>./media/images/dle11.png</image>
+    <thumbnail>./media/box3d/dle11.png</thumbnail>
+  </game>
+  <game id="51165" source="ScreenScraper.fr">
+    <path>./dle21.zip</path>
+    <name>Dragon's Lair</name>
+    <desc>Originally released in the arcades as a laserdisc game, Dragon's Lair is an interactive cartoon movie. Players control Dirk the Daring as he struggles his way through a dungeon to fight Singe, the Dragon, and rescue the beautiful Princess Daphne. The game consists of animated scenes, during which the player has to press direction buttons or the sword button in the right moment to trigger the next segment of the movie.</desc>
+    <rating>0.8</rating>
+    <releasedate>19830601T000000</releasedate>
+    <developer>Sullivan Bluth Interactive</developer>
+    <publisher>Cinematronics</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1-2</players>
+    <hash />
+    <image>./media/images/dle11.png</image>
+    <thumbnail>./media/box3d/dle11.png</thumbnail>
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lair.zip</path>
+    <name>lair</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+    <thumbnail>./media/box3d/dle21.png</thumbnail>
+  </game>
+  <game id="51165" source="ScreenScraper.fr">
+    <path>./laireuro.zip</path>
+    <name>Dragon's Lair</name>
+    <desc>Originally released in the arcades as a laserdisc game, Dragon's Lair is an interactive cartoon movie. Players control Dirk the Daring as he struggles his way through a dungeon to fight Singe, the Dragon, and rescue the beautiful Princess Daphne. The game consists of animated scenes, during which the player has to press direction buttons or the sword button in the right moment to trigger the next segment of the movie.</desc>
+    <rating>0.8</rating>
+    <releasedate>19830601T000000</releasedate>
+    <developer>Sullivan Bluth Interactive</developer>
+    <publisher>Cinematronics</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1-2</players>
+    <hash />
+    <image>./media/images/dle11.png</image>
+    <thumbnail>./media/box3d/dle11.png</thumbnail>
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./dw_1.10.zip</path>
+    <name>dw_1.10</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./dw_1.30.zip</path>
+    <name>dw_1.30</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./eshalt1.zip</path>
+    <name>eshalt1</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="51167" source="ScreenScraper.fr">
+    <path>./esh.zip</path>
+    <name>Esh's Aurunmilla (set 1)</name>
+    <desc>In Esh's Aurunmilla, you are the hero Don Davis. Emperor Esh, who is trying to take over the Universe Orion, has kidnapped princess Sindy. It is your job to rescue Princess Sindy from the evil Emperor Esh. Armed with only a sword, you must fight your way through the obstacles to rescue the princess and save the universe!</desc>
+    <rating>0.7</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Funai</developer>
+    <publisher>Funai/Gakken</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/esh.png</image>
+    <thumbnail>./media/box3d/esh.png</thumbnail>
+  </game>
+  <game id="51167" source="ScreenScraper.fr">
+    <path>./eshalt2.zip</path>
+    <name>Esh's Aurunmilla</name>
+    <desc>In Esh's Aurunmilla, you are the hero Don Davis. Emperor Esh, who is trying to take over the Universe Orion, has kidnapped princess Sindy. It is your job to rescue Princess Sindy from the evil Emperor Esh. Armed with only a sword, you must fight your way through the obstacles to rescue the princess and save the universe!</desc>
+    <rating>0.7</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Funai</developer>
+    <publisher>Funai/Gakken</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/esh.png</image>
+    <thumbnail>./media/box3d/esh.png</thumbnail>
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./fd_1.30.zip</path>
+    <name>fd_1.30</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./fd_1.31.zip</path>
+    <name>fd_1.31</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./firefox.zip</path>
+    <name>firefox</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+    <thumbnail>./media/box3d/firefox.png</thumbnail>
+  </game>
+  <game id="150950" source="ScreenScraper.fr">
+    <path>./firefoxa.zip</path>
+    <name>Firefox (set 2)</name>
+    <desc>In FireFox, you pilot the fastest, most sophisticated plane on the face of the earth that has just been stolen from Russia. You fly through different areas shooting enemy MIGS and other FireFox prototypes. You must avoid Russian infra-red radar tracking and find the refueling points to make it further into the game. High altitude flying would use less fuel but would make FireFox more vulnerable to detection. Flying at a low altitude would use more fuel but would give you better cover from the MIGS.</desc>
+    <rating>0.55</rating>
+    <releasedate>19840101T000000</releasedate>
+    <developer>Atari</developer>
+    <publisher>Atari</publisher>
+    <genre>Shooter-Shooter / Plane, 1st person</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/firefoxa.png</image>
+    <thumbnail>./media/box3d/firefoxa.png</thumbnail>
+    <hidden>true</hidden>
+  </game>
+  <game id="150949" source="ScreenScraper.fr">
+    <path>./ffr_conv.zip</path>
+    <name>Freedom Fighter</name>
+    <desc>Freedom Fighter was released by a division of Malibu Grand Prix named Millennium Game Products in 1987.  It was Millennium Game Products' only game before the division shut down.  Freedom Fighter used Japanese animation from the movies Galaxy Express 999 and Adieu, Galaxy Express.
+In Freedom Fighter you are a renegade freedom fighter whose mission is to stow aboard Train 999 en route to the enemy's home base in space and destroy the evil Robot Guardian.  While trying to get to the Train, you must fight a colorful variety of robots from soldiers and snipers to baseball players and hover-vehicles.  If the player loses a life, the game resets to its previous decision point and offers the player the chance to choose a different one.</desc>
+    <rating>0.9</rating>
+    <releasedate>19870101T000000</releasedate>
+    <developer>Millennium Game Products</developer>
+    <publisher>Millennium Game</publisher>
+    <genre>Platform</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/ffr_ded_R17.png</image>
+    <thumbnail>./media/box3d/ffr_ded_R17.png</thumbnail>
+  </game>
+  <game id="150949" source="ScreenScraper.fr">
+    <path>./ffr_ded.zip</path>
+    <name>Freedom Fighter</name>
+    <desc>Freedom Fighter was released by a division of Malibu Grand Prix named Millennium Game Products in 1987.  It was Millennium Game Products' only game before the division shut down.  Freedom Fighter used Japanese animation from the movies Galaxy Express 999 and Adieu, Galaxy Express.
+In Freedom Fighter you are a renegade freedom fighter whose mission is to stow aboard Train 999 en route to the enemy's home base in space and destroy the evil Robot Guardian.  While trying to get to the Train, you must fight a colorful variety of robots from soldiers and snipers to baseball players and hover-vehicles.  If the player loses a life, the game resets to its previous decision point and offers the player the chance to choose a different one.</desc>
+    <rating>0.9</rating>
+    <releasedate>19870101T000000</releasedate>
+    <developer>Millennium Game Products</developer>
+    <publisher>Millennium Game</publisher>
+    <genre>Platform</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/ffr_ded_R17.png</image>
+    <thumbnail>./media/box3d/ffr_ded_R17.png</thumbnail>
+  </game>
+  <game id="150949" source="ScreenScraper.fr">
+    <path>./ffr_ded_R17.zip</path>
+    <name>Freedom Fighter</name>
+    <desc>Freedom Fighter was released by a division of Malibu Grand Prix named Millennium Game Products in 1987.  It was Millennium Game Products' only game before the division shut down.  Freedom Fighter used Japanese animation from the movies Galaxy Express 999 and Adieu, Galaxy Express.
+In Freedom Fighter you are a renegade freedom fighter whose mission is to stow aboard Train 999 en route to the enemy's home base in space and destroy the evil Robot Guardian.  While trying to get to the Train, you must fight a colorful variety of robots from soldiers and snipers to baseball players and hover-vehicles.  If the player loses a life, the game resets to its previous decision point and offers the player the chance to choose a different one.</desc>
+    <rating>0.9</rating>
+    <releasedate>19870101T000000</releasedate>
+    <developer>Millennium Game Products</developer>
+    <publisher>Millennium Game</publisher>
+    <genre>Platform</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/ffr_ded_R17.png</image>
+    <thumbnail>./media/box3d/ffr_ded_R17.png</thumbnail>
+  </game>
+  <game id="51168" source="ScreenScraper.fr">
+    <path>./galaxy.zip</path>
+    <name>Galaxy Ranger</name>
+    <desc>Fly through the universe battling alien ships to make your way to fight the main Alien Battle Cruiser. Along the way, you fly across alien deserts, through tunnels, over alien cities, and get involved in a few "astro-dogfights" with enemy space fighters.</desc>
+    <rating>0.5</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Sega</developer>
+    <publisher>Sega</publisher>
+    <genre>Shooter-Shooter / Plane, 1st person</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/galaxyp.png</image>
+    <thumbnail>./media/box3d/galaxyp.png</thumbnail>
+  </game>
+  <game id="51168" source="ScreenScraper.fr">
+    <path>./galaxyp.zip</path>
+    <name>Galaxy Ranger</name>
+    <desc>Fly through the universe battling alien ships to make your way to fight the main Alien Battle Cruiser. Along the way, you fly across alien deserts, through tunnels, over alien cities, and get involved in a few "astro-dogfights" with enemy space fighters.</desc>
+    <rating>0.5</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Sega</developer>
+    <publisher>Sega</publisher>
+    <genre>Shooter-Shooter / Plane, 1st person</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/galaxyp.png</image>
+    <thumbnail>./media/box3d/galaxyp.png</thumbnail>
+    <hidden>true</hidden>
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./gg_2.10.zip</path>
+    <name>gg_2.10</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./gg_2.20.zip</path>
+    <name>gg_2.20</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="41549" source="ScreenScraper.fr">
+    <path>./gtg.zip</path>
+    <name>Golden Tee Golf (Joystick, v3.1)</name>
+    <desc>Golden Tee Golf is an arcade game which has been extremely popular across bars and pubs. Players use a trackball to hit the golf ball over a wide range of challenging courses. The game also has online leaderboards and tournaments.</desc>
+    <rating>0.5</rating>
+    <releasedate>19900101T000000</releasedate>
+    <developer>Strata</developer>
+    <publisher>Strata/Incredible Technologies</publisher>
+    <genre>Sports-Sports / Golf</genre>
+    <players>1-4</players>
+    <hash />
+    <image>./media/images/gtg.png</image>
+    <thumbnail>./media/box3d/gtg.png</thumbnail>
+  </game>
+  <game id="51169" source="ScreenScraper.fr">
+    <path>./gpworld.zip</path>
+    <name>GP World</name>
+    <desc>GP World was produced by Sega in 1984. In this laserdisc racing game, you have the choice between one of the three circuits proposed to compete with computer-controlled racing cars.
+It is a rather average game in the realization where it is difficult to feel the feeling of speed despite the projection of the real circuits filmed as scenery.
+But it is moving away from the traditional laserdisc spirit, interactive cartoons and shoot'em up, which changes a bit.</desc>
+    <rating>0.4</rating>
+    <releasedate>19840101T000000</releasedate>
+    <developer>Sega</developer>
+    <publisher>Sega</publisher>
+    <genre>Race, Driving-Race 1st Pers. view</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/gpworld.png</image>
+    <thumbnail>./media/box3d/gpworld.png</thumbnail>
+  </game>
+  <game id="51170" source="ScreenScraper.fr">
+    <path>./interstellar.zip</path>
+    <name>Interstellar Laser Fantasy</name>
+    <desc>In Interstellar Laser Fantasy, your mission is to fly to distant worlds battling alien spaceships and destroying alien bases. Armed with lasers and bombs, you travel across alien deserts, through space caverns, and into bizarre wire framed cities to find and destroy the Delta UFO.</desc>
+    <rating>0.5</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Funai</developer>
+    <publisher>Funai/Gakken</publisher>
+    <genre>Race 1st Pers. view-Shooter-Race, Driving</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/interstellar.png</image>
+    <thumbnail>./media/box3d/interstellar.png</thumbnail>
+  </game>
+  <game id="51166" source="ScreenScraper.fr">
+    <path>./lair2_211.zip</path>
+    <name>Dragon's Lair II: Time Warp (US v2.11)</name>
+    <desc>Princess Daphne has been spirited away to a wrinkle in time by the Evil Wizard Mordroc who plans to force her into marriage. Only you, Dirk the Daring, can save her. Transported by a bumbling old time machine, you begin the rescue mission. But you must hurry, for once the Casket of Doom has opened, Mordroc will place the Death Ring upon Daphne's finger in marriage and she will be lost forever in the Time Warp!</desc>
+    <rating>0.9</rating>
+    <releasedate>19910616T000000</releasedate>
+    <developer>Sullivan Bluth Interactive</developer>
+    <publisher>Leland Corporation</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/lair2_211.png</image>
+    <thumbnail>./media/box3d/lair2_211.png</thumbnail>
+  </game>
+  <game id="51166" source="ScreenScraper.fr">
+    <path>./lair2_300.zip</path>
+    <name>Dragon's Lair II: Time Warp (US v3.00)</name>
+    <desc>Princess Daphne has been spirited away to a wrinkle in time by the Evil Wizard Mordroc who plans to force her into marriage. Only you, Dirk the Daring, can save her. Transported by a bumbling old time machine, you begin the rescue mission. But you must hurry, for once the Casket of Doom has opened, Mordroc will place the Death Ring upon Daphne's finger in marriage and she will be lost forever in the Time Warp!</desc>
+    <rating>0.9</rating>
+    <releasedate>19910616T000000</releasedate>
+    <developer>Sullivan Bluth Interactive</developer>
+    <publisher>Leland Corporation</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/lair2_211.png</image>
+    <thumbnail>./media/box3d/lair2_211.png</thumbnail>
+  </game>
+  <game id="51166" source="ScreenScraper.fr">
+    <path>./lair2_314.zip</path>
+    <name>Dragon's Lair II: Time Warp (US v3.14)</name>
+    <desc>Princess Daphne has been spirited away to a wrinkle in time by the Evil Wizard Mordroc who plans to force her into marriage. Only you, Dirk the Daring, can save her. Transported by a bumbling old time machine, you begin the rescue mission. But you must hurry, for once the Casket of Doom has opened, Mordroc will place the Death Ring upon Daphne's finger in marriage and she will be lost forever in the Time Warp!</desc>
+    <rating>0.9</rating>
+    <releasedate>19910616T000000</releasedate>
+    <developer>Sullivan Bluth Interactive</developer>
+    <publisher>Leland Corporation</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/lair2_211.png</image>
+    <thumbnail>./media/box3d/lair2_211.png</thumbnail>
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lair2_316e.zip</path>
+    <name>lair2_316e</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lair2_317.zip</path>
+    <name>lair2_317</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="51166" source="ScreenScraper.fr">
+    <path>./lair2_318.zip</path>
+    <name>Dragon's Lair II: Time Warp (US v3.18)</name>
+    <desc>Princess Daphne has been spirited away to a wrinkle in time by the Evil Wizard Mordroc who plans to force her into marriage. Only you, Dirk the Daring, can save her. Transported by a bumbling old time machine, you begin the rescue mission. But you must hurry, for once the Casket of Doom has opened, Mordroc will place the Death Ring upon Daphne's finger in marriage and she will be lost forever in the Time Warp!</desc>
+    <rating>0.9</rating>
+    <releasedate>19910616T000000</releasedate>
+    <developer>Sullivan Bluth Interactive</developer>
+    <publisher>Leland Corporation</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/lair2_211.png</image>
+    <thumbnail>./media/box3d/lair2_211.png</thumbnail>
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lair2_319e.zip</path>
+    <name>lair2_319e</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lair2_319es.zip</path>
+    <name>lair2_319es</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lairreva.zip</path>
+    <name>lairreva</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lairrevb.zip</path>
+    <name>lairrevb</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lairrevc.zip</path>
+    <name>lairrevc</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lairrevd.zip</path>
+    <name>lairrevd</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lairreve.zip</path>
+    <name>lairreve</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lairrevf.zip</path>
+    <name>lairrevf</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="42138" source="ScreenScraper.fr">
+    <path>./lgp.zip</path>
+    <name>Laser Grand Prix</name>
+    <desc>You must first qualify in the 400 meter preliminary Drag Race. Once qualified, you move on to the 'GP Race', the 'Spark Race', and then the final 'Fantastic Race'. You have 70 seconds to reach the finish line by navigating through the course while avoiding collisions with the walls and other cars on the track.</desc>
+    <rating>0</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Taito</developer>
+    <publisher>Taito</publisher>
+    <genre>Race 3rd Pers. view-Race, Driving</genre>
+    <hash />
+    <image>./media/images/lgp.png</image>
+    <thumbnail>./media/box3d/lgp.png</thumbnail>
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lbh_0.06.zip</path>
+    <name>lbh_0.06</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./lbh_1.01.zip</path>
+    <name>lbh_1.01</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./mach3.zip</path>
+    <name>mach3</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+    <thumbnail>./media/box3d/mach3.png</thumbnail>
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./md_1c.zip</path>
+    <name>md_1c</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./md_2.02.zip</path>
+    <name>md_2.02</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./md_2.03.zip</path>
+    <name>md_2.03</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./md2_1.00.zip</path>
+    <name>md2_1.00</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./md2_1.10.zip</path>
+    <name>md2_1.10</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./md2_2.02.zip</path>
+    <name>md2_2.02</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./md2_2.04.zip</path>
+    <name>md2_2.04</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./multicputest.zip</path>
+    <name>multicputest</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="0" source="ScreenScraper.fr">
+    <path>./nfl_audio.zip</path>
+    <name>nfl_audio</name>
+    <desc />
+    <rating>0</rating>
+    <releasedate />
+    <developer />
+    <publisher />
+    <genre />
+    <players />
+  </game>
+  <game id="150948" source="ScreenScraper.fr">
+    <path>./cobraab.zip</path>
+    <name>Thunder Storm</name>
+    <desc>Mission... You have been ordered to get rid of a terrorist group which is committing crimes all over the world. Piloting your ultra-modern Jet Helicopter you have to confront your enemies. Carry out your mission!
+
+You command a fully armed helicopter and must take on enemy helicopters, planes, tanks, and ships in order to destroy their stronghold on an area. Your missions take you though the forest, in the canyons, through the desert ruins, out to the pacific ocean, and right though New York City.</desc>
+    <rating>0.75</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Data East</developer>
+    <publisher>Data East</publisher>
+    <genre>Shooter</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/cobraconv.png</image>
+    <thumbnail>./media/box3d/cobram3.png</thumbnail>
+  </game>
+  <game id="150948" source="ScreenScraper.fr">
+    <path>./cobraconv.zip</path>
+    <name>Thunder Storm</name>
+    <desc>Mission... You have been ordered to get rid of a terrorist group which is committing crimes all over the world. Piloting your ultra-modern Jet Helicopter you have to confront your enemies. Carry out your mission!
+
+You command a fully armed helicopter and must take on enemy helicopters, planes, tanks, and ships in order to destroy their stronghold on an area. Your missions take you though the forest, in the canyons, through the desert ruins, out to the pacific ocean, and right though New York City.</desc>
+    <rating>0.75</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Data East</developer>
+    <publisher>Data East</publisher>
+    <genre>Shooter</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/cobraconv.png</image>
+    <thumbnail>./media/box3d/cobram3.png</thumbnail>
+  </game>
+  <game id="150948" source="ScreenScraper.fr">
+    <path>./cobram3.zip</path>
+    <name>Thunder Storm</name>
+    <desc>Mission... You have been ordered to get rid of a terrorist group which is committing crimes all over the world. Piloting your ultra-modern Jet Helicopter you have to confront your enemies. Carry out your mission!
+
+You command a fully armed helicopter and must take on enemy helicopters, planes, tanks, and ships in order to destroy their stronghold on an area. Your missions take you though the forest, in the canyons, through the desert ruins, out to the pacific ocean, and right though New York City.</desc>
+    <rating>0.75</rating>
+    <releasedate>19830101T000000</releasedate>
+    <developer>Data East</developer>
+    <publisher>Data East</publisher>
+    <genre>Shooter</genre>
+    <players>1</players>
+    <hash />
+    <image>./media/images/cobram3.png</image>
+    <thumbnail>./media/box3d/cobram3.png</thumbnail>
+  </game>
+</gameList>

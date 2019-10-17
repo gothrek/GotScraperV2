@@ -39,15 +39,20 @@ Public Class Form1
                 Next i
                 Count = FS.Read(Buffer, 0, ReadSize)
             Loop
+
+            FS.Dispose()
+
             Return Hex(Not (CRC32Result))
+
         Catch ex As Exception
             Return ""
         End Try
+
     End Function
 
     Public Function CercaArcadeDatabase(ByVal sFileName As String) As String
-        Dim strReq As String = "" 'Testo della richiesta/query
-        Dim strData As String = "" 'Testo recuperato dalla richiesta
+        Dim strReq As String ' = "" 'Testo della richiesta/query
+        Dim strData As String ' = "" 'Testo recuperato dalla richiesta
         Dim dataStream As Stream
         Dim reader As StreamReader
         Dim request As WebRequest
@@ -66,7 +71,7 @@ Public Class Form1
         'request.UseDefaultCredentials = True
 
         Dim proxy As WebProxy = New WebProxy() '= request.Proxy
-        Dim proxyAddress As String = "proxy01.cef-farma.lan:3128"
+        'Dim proxyAddress As String = "proxy01.cef-farma.lan:3128"
 
         Try
             response = request.GetResponse()
@@ -79,14 +84,20 @@ Public Class Form1
             'proxy.UseDefaultCredentials = True
 
             'request.Proxy = proxy
-            'MsgBox("La connessione richiede l'uso di un proxy!!")
-            'response = request.GetResponse()
+            MsgBox("La connessione richiede l'uso di un proxy!!")
+            response = request.GetResponse()
         End Try
 
         dataStream = response.GetResponseStream()
         reader = New StreamReader(dataStream)
         strData = reader.ReadToEnd()
-        CercaArcadeDatabase = strData
+
+        If strData.Length > 25 Then 'TODO sostituire con un controllo di result null
+            CercaArcadeDatabase = strData
+        Else
+            CercaArcadeDatabase = ""
+        End If
+
         reader.Close()
         response.Close()
     End Function
@@ -96,7 +107,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim cartella As String = ""
+        Dim cartella As String ' = ""
 
         FolderBrowserDialog1.ShowDialog()
         cartella = FolderBrowserDialog1.SelectedPath
@@ -104,24 +115,35 @@ Public Class Form1
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim FILE_NAME As String = "log.txt"
-        Dim sw As StreamWriter
-        Dim fs As FileStream = Nothing
+        Dim fileName As String = "log.txt"
+        Dim fileNameFalliti As String = "logFalliti.txt"
+        Dim swFile As StreamWriter
+        Dim swFileFalliti As StreamWriter
+        Dim fs As FileStream ' = Nothing
+        Dim fsFalliti As FileStream ' = Nothing
 
-        Dim game As String = ""
-        Dim info As String = ""
+        Dim game As String ' = ""
+        Dim info As String ' = ""
 
-        Dim crc32 As String = ""
+        Dim crc32 As String ' = ""
         Dim contatore As Integer = 0
         Dim contatoreScartati As Integer = 0
 
-        If File.Exists(FILE_NAME) = True Then 'se esite un file di log lo cancelliamo
-            File.Delete(FILE_NAME)
+        If File.Exists(fileName) = True Then 'se esite un file di log lo cancelliamo
+            File.Delete(fileName)
         End If
 
-        fs = File.Create(FILE_NAME)
+        If File.Exists(fileNameFalliti) = True Then 'se esite un file di log lo cancelliamo
+            File.Delete(fileNameFalliti)
+        End If
+
+        fs = File.Create(fileName)
         fs.Close()
-        sw = File.AppendText(FILE_NAME)
+        swFile = File.AppendText(fileName)
+
+        fsFalliti = File.Create(fileNameFalliti)
+        fsFalliti.Close()
+        swFileFalliti = File.AppendText(fileNameFalliti)
 
         Dim inizio As DateTime = Now
 
@@ -131,40 +153,53 @@ Public Class Form1
             Label2.Text = game
 
             info = CercaArcadeDatabase(game)
-            If info.Chars(11) <> "]" Then
-                crc32 = GetCRC32(file)
+            Try
+                If info <> "" Then 'info.Chars(11) <> "]" Then
+                    crc32 = GetCRC32(file)
 
-                sw.WriteLine(game & " - " & crc32 & " - " & info)
-                contatore += 1
-            Else
-                game = file.Substring(Label1.Text.Length + 1, file.Length - Label1.Text.Length - 1)
-                sw.WriteLine(game & " - Fallito")
-                contatoreScartati += 1
-            End If
+                    swFile.WriteLine(game & " - " & crc32 & " - " & info)
+                    contatore += 1
+                Else
+                    game = file.Substring(Label1.Text.Length + 1, file.Length - Label1.Text.Length - 1)
+                    swFileFalliti.WriteLine(game & " - Fallito")
+                    contatoreScartati += 1
+                End If
+            Catch ex As Exception
+                'TODO non un file game
+            End Try
+
         Next
-        Dim fine As DateTime = Now
-        sw.Close()
 
-        MsgBox("Scansione terminata! Elementi individuati:" & contatore & " in " & fine.Subtract(inizio).Seconds)
+        Dim fine As DateTime = Now
+
+        swFile.Close()
+        swFileFalliti.Close()
+
+        MsgBox("Scansione terminata! Elementi individuati:" & contatore & " in " & fine.Subtract(inizio).Seconds & " secondi.")
 
     End Sub
 
     Dim filePath As String = "Demo.xml"
 
-    Private Sub CreFileDemoXML(ByVal filePaths As String)
+    Private Sub CreaFileDemoXML(ByVal filePaths As String)
         Dim Scrivi As New XmlTextWriter(filePaths, System.Text.Encoding.UTF8)
+
         Scrivi.WriteStartDocument(True)
         Scrivi.Formatting = Formatting.Indented
         Scrivi.Indentation = 2
-        Scrivi.WriteStartElement("Articoli_Table")
-        createNodo(1, "172-32-1176", "TOSHIBA", "e-STUDIO456SE", "Multifunzione TOSHIBA a e-STUDIO456SE", True, Scrivi)
-        createNodo(2, "172-32-1174", "TOSHIBA", "e-STUDIO356SE", "Multifunzione TOSHIBA a e-STUDIO356SE", False, Scrivi)
+        Scrivi.WriteStartElement("gameList")
+        CreateNodo(1, "172-32-1176", "TOSHIBA", "e-STUDIO456SE", "Multifunzione TOSHIBA a e-STUDIO456SE", True, Scrivi)
+        CreateNodo(2, "172-32-1174", "TOSHIBA", "e-STUDIO356SE", "Multifunzione TOSHIBA a e-STUDIO356SE", False, Scrivi)
         Scrivi.WriteEndElement()
         Scrivi.WriteEndDocument()
         Scrivi.Close()
     End Sub
 
-    Private Sub createNodo(ByVal pId As String, ByVal pCode As String, ByVal pMarca As String,
+    Private Sub CreaNodo()
+
+    End Sub
+
+    Private Sub CreateNodo(ByVal pId As String, ByVal pCode As String, ByVal pMarca As String,
                               ByVal pModello As String, ByVal pDescrizione As String,
                               ByVal pOfferta As Boolean, ByVal scrivi As XmlTextWriter)
         scrivi.WriteStartElement("articolo")
@@ -191,6 +226,6 @@ Public Class Form1
 
     Private Sub ReadFileXML_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         'Creo il file XML Demo.xml che contiene i valori
-        CreFileDemoXML(filePath)
+        CreaFileDemoXML(filePath)
     End Sub
 End Class
