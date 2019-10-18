@@ -3,6 +3,9 @@ Imports System.Net
 Imports System.Xml
 
 Public Class Form1
+    ReadOnly filePath As String = "gamelist.xml"
+    ReadOnly percorsoMedia As String = "media\images\"
+    ReadOnly dt As DataTable = New DataTable("Elenco")
 
     Public Function GetCRC32(ByVal sFileName As String) As String
         Try
@@ -103,7 +106,7 @@ Public Class Form1
     End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+        CreaFileDemoXML(filePath)
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -157,11 +160,12 @@ Public Class Form1
                 If info <> "" Then 'info.Chars(11) <> "]" Then
                     crc32 = GetCRC32(file)
 
-                    swFile.WriteLine(game & " - " & crc32 & " - " & info)
+                    swFile.WriteLine(info)
                     contatore += 1
                 Else
                     game = file.Substring(Label1.Text.Length + 1, file.Length - Label1.Text.Length - 1)
-                    swFileFalliti.WriteLine(game & " - Fallito")
+                    crc32 = GetCRC32(file)
+                    swFileFalliti.WriteLine(game & crc32 & " - Fallito")
                     contatoreScartati += 1
                 End If
             Catch ex As Exception
@@ -179,53 +183,400 @@ Public Class Form1
 
     End Sub
 
-    Dim filePath As String = "Demo.xml"
+    Private Sub InserisciDati(ByVal valori As Dictionary(Of String, String), ByVal sito As String)
+
+        Dim riga As Integer
+
+        dt.Rows.Add()
+
+        riga = dt.Rows.Count - 1
+
+        Try 'ID - identificativo del game dello scraper utilizzato
+            dt.Rows(riga).Item("ID") = valori("ID")
+        Catch ex As Exception
+            dt.Rows(riga).Item("ID") = 0
+        End Try
+
+        Try 'URL - pagina web specifica del game
+            dt.Rows(riga).Item("URL") = valori("url")
+        Catch ex As Exception
+            dt.Rows(riga).Item("URL") = ""
+        End Try
+
+        Try 'game_name - nome del file game
+            dt.Rows(riga).Item("Game") = valori("game_name")
+        Catch ex As Exception
+            dt.Rows(riga).Item("Game") = ""
+        End Try
+
+        Try 'source - sito utilizzato per lo scraper
+            dt.Rows(riga).Item("Source") = sito
+        Catch ex As Exception
+            dt.Rows(riga).Item("Source") = ""
+        End Try
+
+        Try 'path - posizione del file .\game_name
+            dt.Rows(riga).Item("Path") = ".\" & valori("game_name") & ".zip" 'TODO sostituire la stringa .zip con quella specifica del sistema
+        Catch ex As Exception
+            dt.Rows(riga).Item("path") = ""
+        End Try
+
+        Try 'name - titolo del game
+            dt.Rows(riga).Item("Name") = valori("title")
+        Catch ex As Exception
+            dt.Rows(riga).Item("Name") = ""
+        End Try
+
+        Try 'CloneOf - nome del gioco parent
+            dt.Rows(riga).Item("CloneOf") = valori("cloneof")
+        Catch ex As Exception
+            dt.Rows(riga).Item("CloneOf") = ""
+        End Try
+
+        Try 'Desc - descrizione del game
+            dt.Rows(riga).Item("Desc") = valori("history")
+        Catch ex As Exception
+            dt.Rows(riga).Item("Desc") = ""
+        End Try
+
+        Try 'Rating - voto
+            dt.Rows(riga).Item("Rating") = valori("rate")
+        Catch ex As Exception
+            dt.Rows(riga).Item("Rating") = 0
+        End Try
+
+        Try 'ReleaseDate - anno/data di rilascio
+            dt.Rows(riga).Item("ReleaseDate") = valori("year")
+        Catch ex As Exception
+            dt.Rows(riga).Item("ReleaseDate") = ""
+        End Try
+
+        Try 'Developer - sviluppatore (prima parte del campo manufactured)
+            dt.Rows(riga).Item("Developer") = valori("manufacturer").Substring(0, valori("manufacturer").IndexOf("/"))
+        Catch ex As Exception
+            dt.Rows(riga).Item("Developer") = ""
+        End Try
+
+        Try 'Publisher - distributore (seconda parte del campo manufacturer)
+            dt.Rows(riga).Item("Publisher") = valori("manufacturer").Substring(valori("manufacturer").IndexOf("/") + 1)
+        Catch ex As Exception
+            dt.Rows(riga).Item("Publisher") = ""
+        End Try
+
+        Try 'Genre - genere
+            dt.Rows(riga).Item("Genre") = valori("genre")
+        Catch ex As Exception
+            dt.Rows(riga).Item("Genre") = ""
+        End Try
+
+        Try 'Players - numero di giocatori
+            dt.Rows(riga).Item("Players") = valori("players")
+        Catch ex As Exception
+            dt.Rows(riga).Item("Players") = 0
+        End Try
+
+        Try 'Region - regione del game
+            dt.Rows(riga).Item("Region") = valori("region")
+        Catch ex As Exception
+            dt.Rows(riga).Item("Region") = ""
+        End Try
+
+        Try 'Hash - hash del game
+            dt.Rows(riga).Item("Hash") = valori("hash")
+        Catch ex As Exception
+            dt.Rows(riga).Item("Hash") = ""
+        End Try
+
+        Try 'Image - posizione del file immagine .\media\images\game_name.png
+            dt.Rows(riga).Item("Image") = ".\" & percorsoMedia & valori("game_name") & ".png"
+        Catch ex As Exception
+            dt.Rows(riga).Item("Image") = ""
+        End Try
+
+        Try 'Thumbnail - immagine del box del game
+            dt.Rows(riga).Item("Thumbnail") = valori("thumbnail")
+        Catch ex As Exception
+            dt.Rows(riga).Item("thumbnail") = ""
+        End Try
+
+        Try 'URLImageInGame - URL dell'immagine durante il game
+            dt.Rows(riga).Item("URLImageInGame") = valori("url_image_ingame")
+        Catch ex As Exception
+            dt.Rows(riga).Item("URLImageInGame") = ""
+        End Try
+
+        Try 'URLImageTitle - URL dell'immagine del titolo del game
+            dt.Rows(riga).Item("URLImageTitle") = valori("url_image_title")
+        Catch ex As Exception
+            dt.Rows(riga).Item("URLImageTitle") = ""
+        End Try
+
+        Try 'URLImageMarquee - URL dell'immagine del marquee (barra sopra il bartop) del game
+            dt.Rows(riga).Item("URLImageMarquee") = valori("url_image_marquee")
+        Catch ex As Exception
+            dt.Rows(riga).Item("URLImageMarquee") = ""
+        End Try
+
+        Try 'URLImageCabinet - URL dell'immagine del cabinato del game
+            dt.Rows(riga).Item("URLImageCabinet") = valori("url_image_cabinet")
+        Catch ex As Exception
+            dt.Rows(riga).Item("URLImageCabinet") = ""
+        End Try
+
+        Try 'URLImageFlyer - URL dell'immagine del volantino del game
+            dt.Rows(riga).Item("URLImageFlyer") = valori("url_image_flyer")
+        Catch ex As Exception
+            dt.Rows(riga).Item("URLImageFlyer") = ""
+        End Try
+
+        Try 'Status - stato di emulazione del game
+            dt.Rows(riga).Item("Status") = valori("status")
+        Catch ex As Exception
+            dt.Rows(riga).Item("Status") = ""
+        End Try
+
+        Try 'HistoryCopyrightLong - copyright long version
+            dt.Rows(riga).Item("HistoryCopyrightLong") = valori("history_copyright_long")
+        Catch ex As Exception
+            dt.Rows(riga).Item("HistoryCopyrightLong") = ""
+        End Try
+
+        Try 'HistoryCopyrightShort - copyright short version
+            dt.Rows(riga).Item("HistoryCopyrightShort") = valori("history_copyright_short")
+        Catch ex As Exception
+            dt.Rows(riga).Item("HistoryCopyrightShort") = ""
+        End Try
+
+        Try 'YoutubeVideoID - ID di youtube del video del game
+            dt.Rows(riga).Item("YoutubeVideoID") = valori("youtube_video_id")
+        Catch ex As Exception
+            dt.Rows(riga).Item("YoutubeVideoID") = ""
+        End Try
+
+        Try 'URLVideoShortplay - url del video del game short version
+            dt.Rows(riga).Item("URLVideoShortplay") = valori("url_video_shortplay")
+        Catch ex As Exception
+            dt.Rows(riga).Item("URLVideoShortplay") = ""
+        End Try
+
+        Try 'URLVideoShortplayHD - url del video del game short version in HD
+            dt.Rows(riga).Item("URLVideoShortplayHD") = valori("url_video_shortplay_hd")
+        Catch ex As Exception
+            dt.Rows(riga).Item("URLVideoShortplayHD") = ""
+        End Try
+
+        Try 'EmulatorID - ID dell'emulatore del game
+            dt.Rows(riga).Item("EmulatorID") = valori("emulator_id")
+        Catch ex As Exception
+            dt.Rows(riga).Item("EmulatorID") = 0
+        End Try
+
+        Try 'EmulatorName - nome dell'emulatore del game
+            dt.Rows(riga).Item("EmulatorName") = valori("emulator_name")
+        Catch ex As Exception
+            dt.Rows(riga).Item("EmulatorName") = ""
+        End Try
+
+        Try 'Languages - lingue del game
+            dt.Rows(riga).Item("Languages") = valori("languages")
+        Catch ex As Exception
+            dt.Rows(riga).Item("Languages") = ""
+        End Try
+
+
+    End Sub
 
     Private Sub CreaFileDemoXML(ByVal filePaths As String)
+        Dim fileReader As System.IO.StreamReader = My.Computer.FileSystem.OpenTextFileReader("log.txt")
+        Dim stringReader As String
+        Dim jss As New Web.Script.Serialization.JavaScriptSerializer()
+        Dim valori As Dictionary(Of String, String)
+        Dim inizioStringa As Integer
+        Dim fineStringa As Integer
+
         Dim Scrivi As New XmlTextWriter(filePaths, System.Text.Encoding.UTF8)
+
+        dt.Columns.Add("ID", Type.GetType("System.Int16")) 'id riconosciuto dal sito di scraper
+        dt.Columns.Add("URL", Type.GetType("System.String")) 'url
+        dt.Columns.Add("Game", Type.GetType("System.String")) 'game_name
+        dt.Columns.Add("Source", Type.GetType("System.String")) 'sito di scraper
+        dt.Columns.Add("Path", Type.GetType("System.String")) 'posizione del file .\game_name
+        dt.Columns.Add("Name", Type.GetType("System.String")) 'title
+        dt.Columns.Add("CloneOf", Type.GetType("System.String")) 'cloneof
+        dt.Columns.Add("Desc", Type.GetType("System.String")) 'history
+        dt.Columns.Add("Rating", Type.GetType("System.Double")) 'rate
+        dt.Columns.Add("ReleaseDate", Type.GetType("System.String")) 'year
+        dt.Columns.Add("Developer", Type.GetType("System.String")) 'manufacturer (prima parte)
+        dt.Columns.Add("Publisher", Type.GetType("System.String")) 'manufacturer (seconda parte)
+        dt.Columns.Add("Genre", Type.GetType("System.String")) 'genre
+        dt.Columns.Add("Players", Type.GetType("System.Int16")) 'players
+        dt.Columns.Add("Region", Type.GetType("System.String"))
+        dt.Columns.Add("Hash", Type.GetType("System.String"))
+        dt.Columns.Add("Image", Type.GetType("System.String")) 'posizione del file immagine .\media\image
+        dt.Columns.Add("Thumbnail", Type.GetType("System.String"))
+        dt.Columns.Add("URLImageInGame", Type.GetType("System.String")) 'url_image_ingame
+        dt.Columns.Add("URLImageTitle", Type.GetType("System.String")) 'url_image_title
+        dt.Columns.Add("URLImageMarquee", Type.GetType("System.String")) 'url_image_marquee
+        dt.Columns.Add("URLImageCabinet", Type.GetType("System.String")) 'url_image_cabinet
+        dt.Columns.Add("URLImageFlyer", Type.GetType("System.String")) 'url_image_flyer
+        dt.Columns.Add("Status", Type.GetType("System.String")) 'status
+        dt.Columns.Add("HistoryCopyrightLong", Type.GetType("System.String")) 'history_copyright_long
+        dt.Columns.Add("HistoryCopyrightShort", Type.GetType("System.String")) 'history_copyright_short
+        dt.Columns.Add("YoutubeVideoID", Type.GetType("System.String")) 'youtube_video_id
+        dt.Columns.Add("URLVideoShortplay", Type.GetType("System.String")) 'url_video_shortplay
+        dt.Columns.Add("URLVideoShortplayHD", Type.GetType("System.String")) 'url_video_shortplay_hd
+        dt.Columns.Add("EmulatorID", Type.GetType("System.Int16")) 'emulator_id
+        dt.Columns.Add("EmulatorName", Type.GetType("System.String")) 'emulator_name
+        dt.Columns.Add("Languages", Type.GetType("System.String")) 'languages
+
+        stringReader = fileReader.ReadLine()
+        inizioStringa = stringReader.IndexOf("[")
+        fineStringa = stringReader.IndexOf("]")
+        stringReader = stringReader.Substring(inizioStringa + 1, fineStringa - inizioStringa - 1)
+
+        'stringReader = stringReader.Substring(stringReader.IndexOf("[{") + 2)
+        'stringReader = stringReader.Replace("," & Chr(34), Chr(244))
+
+        Do While Not stringReader Is Nothing
+
+            valori = jss.Deserialize(Of Dictionary(Of String, String))(stringReader)
+            InserisciDati(valori, "arcadeitalia.net")
+
+            'valori = stringReader.Split(Chr(244))
+
+            stringReader = fileReader.ReadLine()
+
+            Try
+                inizioStringa = stringReader.IndexOf("[")
+                fineStringa = stringReader.IndexOf("]")
+                stringReader = stringReader.Substring(inizioStringa + 1, fineStringa - inizioStringa - 1)
+
+                'stringReader = stringReader.Replace("""", "")
+            Catch ex As Exception
+                '
+            End Try
+
+        Loop
+
+        fileReader.Close()
 
         Scrivi.WriteStartDocument(True)
         Scrivi.Formatting = Formatting.Indented
         Scrivi.Indentation = 2
         Scrivi.WriteStartElement("gameList")
-        CreateNodo(1, "172-32-1176", "TOSHIBA", "e-STUDIO456SE", "Multifunzione TOSHIBA a e-STUDIO456SE", True, Scrivi)
-        CreateNodo(2, "172-32-1174", "TOSHIBA", "e-STUDIO356SE", "Multifunzione TOSHIBA a e-STUDIO356SE", False, Scrivi)
+
+        'CreateNodo(1, "172-32-1176", "TOSHIBA", "e-STUDIO456SE", "Multifunzione TOSHIBA a e-STUDIO456SE", True, Scrivi)
+        'CreateNodo(2, "172-32-1174", "TOSHIBA", "e-STUDIO356SE", "Multifunzione TOSHIBA a e-STUDIO356SE", False, Scrivi)
+        For riga As Integer = 0 To dt.Rows.Count - 1
+            CreaNodo(riga, Scrivi)
+        Next
+
         Scrivi.WriteEndElement()
         Scrivi.WriteEndDocument()
         Scrivi.Close()
+
+        dt.Dispose()
+
     End Sub
 
-    Private Sub CreaNodo()
+    Private Sub CreaNodo(ByVal riga As Integer, ByVal scrivi As XmlTextWriter)
 
+        scrivi.WriteStartElement("game")
+        scrivi.WriteAttributeString("id", dt.Rows(riga).Item("ID"))
+        scrivi.WriteAttributeString("source", "arcadeitalia.net")
+
+        scrivi.WriteStartElement("path")
+        scrivi.WriteString(dt.Rows(riga).Item("Path"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("name")
+        scrivi.WriteString(dt.Rows(riga).Item("Name"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("desc")
+        scrivi.WriteString(dt.Rows(riga).Item("Desc"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("rating")
+        scrivi.WriteString(dt.Rows(riga).Item("Rating"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("releasedate")
+        scrivi.WriteString(dt.Rows(riga).Item("ReleaseDate"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("developer")
+        scrivi.WriteString(dt.Rows(riga).Item("Developer"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("publisher")
+        scrivi.WriteString(dt.Rows(riga).Item("Publisher"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("genre")
+        scrivi.WriteString(dt.Rows(riga).Item("Genre"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("players")
+        scrivi.WriteString(dt.Rows(riga).Item("Players"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("region")
+        scrivi.WriteString(dt.Rows(riga).Item("Region"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("hash")
+        scrivi.WriteString(dt.Rows(riga).Item("Hash"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("image")
+        scrivi.WriteString(dt.Rows(riga).Item("Image"))
+        scrivi.WriteEndElement()
+
+        scrivi.WriteStartElement("thumbnail")
+        scrivi.WriteString(dt.Rows(riga).Item("Thumbnail"))
+        scrivi.WriteEndElement()
+
+        'scrivi.WriteStartElement("hidden")
+        'scrivi.WriteString("hidden")
+        'scrivi.WriteEndElement()
+
+        'scrivi.WriteStartElement("nplay")
+        'scrivi.WriteString("nplay")
+        'scrivi.WriteEndElement()
+
+        scrivi.WriteEndElement() 'chiude nodo game
     End Sub
 
-    Private Sub CreateNodo(ByVal pId As String, ByVal pCode As String, ByVal pMarca As String,
-                              ByVal pModello As String, ByVal pDescrizione As String,
-                              ByVal pOfferta As Boolean, ByVal scrivi As XmlTextWriter)
-        scrivi.WriteStartElement("articolo")
-        scrivi.WriteStartElement("Id")
-        scrivi.WriteString(pId)
-        scrivi.WriteEndElement()
-        scrivi.WriteStartElement("Codice")
-        scrivi.WriteString(pCode)
-        scrivi.WriteEndElement()
-        scrivi.WriteStartElement("Marca")
-        scrivi.WriteString(pMarca)
-        scrivi.WriteEndElement()
-        scrivi.WriteStartElement("Modello")
-        scrivi.WriteString(pModello)
-        scrivi.WriteEndElement()
-        scrivi.WriteStartElement("Descrizione")
-        scrivi.WriteString(pDescrizione)
-        scrivi.WriteEndElement()
-        scrivi.WriteStartElement("Offerta")
-        scrivi.WriteString(pOfferta)
-        scrivi.WriteEndElement()
-        scrivi.WriteEndElement()
+    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        dt.Dispose()
     End Sub
 
-    Private Sub ReadFileXML_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'Creo il file XML Demo.xml che contiene i valori
-        CreaFileDemoXML(filePath)
-    End Sub
+    'Private Sub CreateNodo(ByVal pId As String, ByVal pCode As String, ByVal pMarca As String,
+    '                          ByVal pModello As String, ByVal pDescrizione As String,
+    '                          ByVal pOfferta As Boolean, ByVal scrivi As XmlTextWriter)
+    '    scrivi.WriteStartElement("articolo")
+    '    scrivi.WriteAttributeString("id", 123)
+    '    scrivi.WriteAttributeString("source", "test")
+    '    scrivi.WriteStartElement("Id")
+    '    scrivi.WriteString(pId)
+    '    scrivi.WriteEndElement()
+    '    scrivi.WriteStartElement("Codice")
+    '    scrivi.WriteString(pCode)
+    '    scrivi.WriteEndElement()
+    '    scrivi.WriteStartElement("Marca")
+    '    scrivi.WriteString(pMarca)
+    '    scrivi.WriteEndElement()
+    '    scrivi.WriteStartElement("Modello")
+    '    scrivi.WriteString(pModello)
+    '    scrivi.WriteEndElement()
+    '    scrivi.WriteStartElement("Descrizione")
+    '    scrivi.WriteString(pDescrizione)
+    '    scrivi.WriteEndElement()
+    '    scrivi.WriteStartElement("Offerta")
+    '    scrivi.WriteString(pOfferta)
+    '    scrivi.WriteEndElement()
+    '    scrivi.WriteEndElement()
+    'End Sub
+
 End Class
