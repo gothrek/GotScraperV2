@@ -3,9 +3,16 @@ Imports System.Net
 Imports System.Xml
 
 Public Class Form1
-    ReadOnly filePath As String = "gamelist.xml"
-    ReadOnly percorsoMedia As String = "media\images\"
-    ReadOnly dt As DataTable = New DataTable("Elenco")
+    Dim fileGamelist As String = "gamelist.xml"
+    Dim percorsoServerMedia As String = "D:\Personale\ROMS\media\" 'eventuale server locale di tutti i media
+    Dim percorsoMediaImages As String = "\media\images\"
+    Dim percorsoMediaVideos As String = "\media\videos\"
+    Dim percorsoMediaTitles As String = "\media\titles\"
+    Dim percorsoMediaMarquees As String = "\media\marquees\"
+    Dim percorsoMediaCabinets As String = "\media\cabinets\"
+    Dim percorsoMediaFlyers As String = "\media\flyers\"
+
+    Private ReadOnly dt As DataTable = New DataTable("Elenco")
 
     Public Function GetCRC32(ByVal sFileName As String) As String
         Try
@@ -105,8 +112,13 @@ Public Class Form1
         response.Close()
     End Function
 
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        CreaFileDemoXML(filePath)
+        CreaFileDemoXML(fileGamelist)
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -115,11 +127,86 @@ Public Class Form1
         FolderBrowserDialog1.ShowDialog()
         cartella = FolderBrowserDialog1.SelectedPath
         Label1.Text = cartella
+
+        fileGamelist = cartella & "\" & fileGamelist
+
+        If Directory.Exists(cartella & percorsoMediaImages) Then
+            'TODO dalle opzioni decidere cosa fare di una cartella preesistente
+        Else
+
+            Try
+                System.IO.Directory.CreateDirectory(cartella & percorsoMediaImages)
+            Catch ex As Exception
+                'la cartella già esiste
+            End Try
+
+        End If
+
+        If Directory.Exists(cartella & percorsoMediaVideos) Then
+            'TODO dalle opzioni decidere cosa fare di una cartella preesistente
+        Else
+
+            Try
+                System.IO.Directory.CreateDirectory(cartella & percorsoMediaVideos)
+            Catch ex As Exception
+                'la cartella già esiste
+            End Try
+
+        End If
+
+        If Directory.Exists(cartella & percorsoMediaTitles) Then
+            'TODO dalle opzioni decidere cosa fare di una cartella preesistente
+        Else
+
+            Try
+                System.IO.Directory.CreateDirectory(cartella & percorsoMediaTitles)
+            Catch ex As Exception
+                'la cartella già esiste
+            End Try
+
+        End If
+
+        If Directory.Exists(cartella & percorsoMediaMarquees) Then
+            'TODO dalle opzioni decidere cosa fare di una cartella preesistente
+        Else
+
+            Try
+                System.IO.Directory.CreateDirectory(cartella & percorsoMediaMarquees)
+            Catch ex As Exception
+                'la cartella già esiste
+            End Try
+
+        End If
+
+        If Directory.Exists(cartella & percorsoMediaCabinets) Then
+            'TODO dalle opzioni decidere cosa fare di una cartella preesistente
+        Else
+
+            Try
+                System.IO.Directory.CreateDirectory(cartella & percorsoMediaCabinets)
+            Catch ex As Exception
+                'la cartella già esiste
+            End Try
+
+        End If
+
+        If Directory.Exists(cartella & percorsoMediaFlyers) Then
+            'TODO dalle opzioni decidere cosa fare di una cartella preesistente
+        Else
+
+            Try
+                System.IO.Directory.CreateDirectory(cartella & percorsoMediaFlyers)
+            Catch ex As Exception
+                'la cartella già esiste
+            End Try
+
+        End If
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Dim fileName As String = "log.txt"
         Dim fileNameFalliti As String = "logFalliti.txt"
+
         Dim swFile As StreamWriter
         Dim swFileFalliti As StreamWriter
         Dim fs As FileStream ' = Nothing
@@ -179,11 +266,13 @@ Public Class Form1
         swFile.Close()
         swFileFalliti.Close()
 
-        MsgBox("Scansione terminata! Elementi individuati:" & contatore & " in " & fine.Subtract(inizio).Seconds & " secondi.")
+        MsgBox("Scansione terminata! Elementi individuati:" & contatore & " in " & fine.Subtract(inizio).Hours & " ore " & fine.Subtract(inizio).Minutes & " minuti " & fine.Subtract(inizio).Seconds & " secondi.")
 
     End Sub
 
     Private Sub InserisciDati(ByVal valori As Dictionary(Of String, String), ByVal sito As String)
+
+        Dim client As New WebClient
 
         Dim riga As Integer
 
@@ -288,7 +377,7 @@ Public Class Form1
         End Try
 
         Try 'Image - posizione del file immagine .\media\images\game_name.png
-            dt.Rows(riga).Item("Image") = ".\" & percorsoMedia & valori("game_name") & ".png"
+            dt.Rows(riga).Item("Image") = "." & percorsoMediaImages & valori("game_name") & ".png"
         Catch ex As Exception
             dt.Rows(riga).Item("Image") = ""
         End Try
@@ -301,30 +390,35 @@ Public Class Form1
 
         Try 'URLImageInGame - URL dell'immagine durante il game
             dt.Rows(riga).Item("URLImageInGame") = valori("url_image_ingame")
+            client.DownloadFile(valori("url_image_ingame") & "/" & valori("game_name") & ".png", Label1.Text & percorsoMediaImages & valori("game_name") & ".png")
         Catch ex As Exception
             dt.Rows(riga).Item("URLImageInGame") = ""
         End Try
 
         Try 'URLImageTitle - URL dell'immagine del titolo del game
             dt.Rows(riga).Item("URLImageTitle") = valori("url_image_title")
+            client.DownloadFile(valori("url_image_title") & "/" & valori("game_name") & ".png", Label1.Text & percorsoMediaTitles & valori("game_name") & ".png")
         Catch ex As Exception
             dt.Rows(riga).Item("URLImageTitle") = ""
         End Try
 
         Try 'URLImageMarquee - URL dell'immagine del marquee (barra sopra il bartop) del game
             dt.Rows(riga).Item("URLImageMarquee") = valori("url_image_marquee")
+            client.DownloadFile(valori("url_image_marquee") & "/" & valori("game_name") & ".png", Label1.Text & percorsoMediaMarquees & valori("game_name") & ".png")
         Catch ex As Exception
             dt.Rows(riga).Item("URLImageMarquee") = ""
         End Try
 
         Try 'URLImageCabinet - URL dell'immagine del cabinato del game
             dt.Rows(riga).Item("URLImageCabinet") = valori("url_image_cabinet")
+            client.DownloadFile(valori("url_image_cabinet") & "/" & valori("game_name") & ".png", Label1.Text & percorsoMediaCabinets & valori("game_name") & ".png")
         Catch ex As Exception
             dt.Rows(riga).Item("URLImageCabinet") = ""
         End Try
 
         Try 'URLImageFlyer - URL dell'immagine del volantino del game
             dt.Rows(riga).Item("URLImageFlyer") = valori("url_image_flyer")
+            client.DownloadFile(valori("url_image_flyer") & "/" & valori("game_name") & ".png", Label1.Text & percorsoMediaFlyers & valori("game_name") & ".png")
         Catch ex As Exception
             dt.Rows(riga).Item("URLImageFlyer") = ""
         End Try
@@ -361,6 +455,7 @@ Public Class Form1
 
         Try 'URLVideoShortplayHD - url del video del game short version in HD
             dt.Rows(riga).Item("URLVideoShortplayHD") = valori("url_video_shortplay_hd")
+            client.DownloadFile(valori("url_video_shortplay_hd"), Label1.Text & percorsoMediaVideos & valori("game_name") & valori("url_video_shortplay_hd").Substring(valori("url_video_shortplay_hd").Length - 4)) 'recupera l'estensione dalle ultime 3 lettere
         Catch ex As Exception
             dt.Rows(riga).Item("URLVideoShortplayHD") = ""
         End Try
@@ -383,7 +478,7 @@ Public Class Form1
             dt.Rows(riga).Item("Languages") = ""
         End Try
 
-
+        client.Dispose()
     End Sub
 
     Private Sub CreaFileDemoXML(ByVal filePaths As String)
@@ -434,24 +529,18 @@ Public Class Form1
         fineStringa = stringReader.IndexOf("]")
         stringReader = stringReader.Substring(inizioStringa + 1, fineStringa - inizioStringa - 1)
 
-        'stringReader = stringReader.Substring(stringReader.IndexOf("[{") + 2)
-        'stringReader = stringReader.Replace("," & Chr(34), Chr(244))
-
         Do While Not stringReader Is Nothing
 
             valori = jss.Deserialize(Of Dictionary(Of String, String))(stringReader)
             InserisciDati(valori, "arcadeitalia.net")
 
-            'valori = stringReader.Split(Chr(244))
-
             stringReader = fileReader.ReadLine()
 
             Try
-                inizioStringa = stringReader.IndexOf("[")
-                fineStringa = stringReader.IndexOf("]")
-                stringReader = stringReader.Substring(inizioStringa + 1, fineStringa - inizioStringa - 1)
+                inizioStringa = stringReader.IndexOf("[{")
+                fineStringa = stringReader.IndexOf("}]")
+                stringReader = stringReader.Substring(inizioStringa + 1, fineStringa - inizioStringa)
 
-                'stringReader = stringReader.Replace("""", "")
             Catch ex As Exception
                 '
             End Try
@@ -465,8 +554,6 @@ Public Class Form1
         Scrivi.Indentation = 2
         Scrivi.WriteStartElement("gameList")
 
-        'CreateNodo(1, "172-32-1176", "TOSHIBA", "e-STUDIO456SE", "Multifunzione TOSHIBA a e-STUDIO456SE", True, Scrivi)
-        'CreateNodo(2, "172-32-1174", "TOSHIBA", "e-STUDIO356SE", "Multifunzione TOSHIBA a e-STUDIO356SE", False, Scrivi)
         For riga As Integer = 0 To dt.Rows.Count - 1
             CreaNodo(riga, Scrivi)
         Next
@@ -551,32 +638,5 @@ Public Class Form1
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         dt.Dispose()
     End Sub
-
-    'Private Sub CreateNodo(ByVal pId As String, ByVal pCode As String, ByVal pMarca As String,
-    '                          ByVal pModello As String, ByVal pDescrizione As String,
-    '                          ByVal pOfferta As Boolean, ByVal scrivi As XmlTextWriter)
-    '    scrivi.WriteStartElement("articolo")
-    '    scrivi.WriteAttributeString("id", 123)
-    '    scrivi.WriteAttributeString("source", "test")
-    '    scrivi.WriteStartElement("Id")
-    '    scrivi.WriteString(pId)
-    '    scrivi.WriteEndElement()
-    '    scrivi.WriteStartElement("Codice")
-    '    scrivi.WriteString(pCode)
-    '    scrivi.WriteEndElement()
-    '    scrivi.WriteStartElement("Marca")
-    '    scrivi.WriteString(pMarca)
-    '    scrivi.WriteEndElement()
-    '    scrivi.WriteStartElement("Modello")
-    '    scrivi.WriteString(pModello)
-    '    scrivi.WriteEndElement()
-    '    scrivi.WriteStartElement("Descrizione")
-    '    scrivi.WriteString(pDescrizione)
-    '    scrivi.WriteEndElement()
-    '    scrivi.WriteStartElement("Offerta")
-    '    scrivi.WriteString(pOfferta)
-    '    scrivi.WriteEndElement()
-    '    scrivi.WriteEndElement()
-    'End Sub
 
 End Class
