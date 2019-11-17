@@ -23,33 +23,32 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ButtonOption = New System.Windows.Forms.Button()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ButtonUtility = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Button1
+        'OpenFileDialog1
         '
-        Me.Button1.Location = New System.Drawing.Point(240, 123)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Test"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
         'Panel1
         '
         Me.Panel1.BackgroundImage = Global.GotScraper.My.Resources.Resources.BarTop
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Controls.Add(Me.ButtonUtility)
+        Me.Panel1.Controls.Add(Me.ButtonOption)
         Me.Panel1.Controls.Add(Me.RadioButton2)
         Me.Panel1.Controls.Add(Me.RadioButton1)
         Me.Panel1.Controls.Add(Me.Label2)
@@ -62,6 +61,18 @@ Partial Class Form1
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(503, 426)
         Me.Panel1.TabIndex = 1
+        '
+        'ButtonOption
+        '
+        Me.ButtonOption.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonOption.BackgroundImage = Global.GotScraper.My.Resources.Resources._228462_configure_256x256
+        Me.ButtonOption.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonOption.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonOption.Location = New System.Drawing.Point(468, 3)
+        Me.ButtonOption.Name = "ButtonOption"
+        Me.ButtonOption.Size = New System.Drawing.Size(32, 32)
+        Me.ButtonOption.TabIndex = 7
+        Me.ButtonOption.UseVisualStyleBackColor = False
         '
         'RadioButton2
         '
@@ -121,9 +132,23 @@ Partial Class Form1
         Me.Button2.Text = "Directory"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'OpenFileDialog1
+        'Button1
         '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        Me.Button1.Location = New System.Drawing.Point(240, 123)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "Test"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'ButtonUtility
+        '
+        Me.ButtonUtility.Location = New System.Drawing.Point(387, 8)
+        Me.ButtonUtility.Name = "ButtonUtility"
+        Me.ButtonUtility.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonUtility.TabIndex = 8
+        Me.ButtonUtility.Text = "Utility"
+        Me.ButtonUtility.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -150,4 +175,6 @@ Partial Class Form1
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents ButtonOption As Button
+    Friend WithEvents ButtonUtility As Button
 End Class

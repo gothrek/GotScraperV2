@@ -3,14 +3,14 @@ Imports System.Net
 Imports System.Xml
 
 Public Class Form1
-    Dim fileGamelist As String = "gamelist.xml"
-    Dim percorsoServerMedia As String = "D:\Personale\ROMS\media\" 'eventuale server locale di tutti i media
-    Dim percorsoMediaImages As String = "\media\images\"
-    Dim percorsoMediaVideos As String = "\media\videos\"
-    Dim percorsoMediaTitles As String = "\media\titles\"
-    Dim percorsoMediaMarquees As String = "\media\marquees\"
-    Dim percorsoMediaCabinets As String = "\media\cabinets\"
-    Dim percorsoMediaFlyers As String = "\media\flyers\"
+    Public fileGamelist As String = "gamelist.xml"
+    Public percorsoServerMedia As String = "D:\Personale\ROMS\media\" 'eventuale server locale di tutti i media
+    Public percorsoMediaImages As String = "\media\images\"
+    Public percorsoMediaVideos As String = "\media\videos\"
+    Public percorsoMediaTitles As String = "\media\titles\"
+    Public percorsoMediaMarquees As String = "\media\marquees\"
+    Public percorsoMediaCabinets As String = "\media\cabinets\"
+    Public percorsoMediaFlyers As String = "\media\flyers\"
 
     Private ReadOnly dt As DataTable = New DataTable("Elenco")
 
@@ -639,4 +639,21 @@ Public Class Form1
         dt.Dispose()
     End Sub
 
+    Private Sub ButtonOption_Click(sender As Object, e As EventArgs) Handles ButtonOption.Click
+        'TODO caricare/salvare configurazione programma tramite finestra
+        FormOptions.Show()
+    End Sub
+
+    Private Sub ButtonUtility_Click(sender As Object, e As EventArgs) Handles ButtonUtility.Click
+        'TODO utility
+        FormUtility.Show()
+    End Sub
+
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+
+    End Sub
+
+    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
+
+    End Sub
 End Class
