@@ -27,6 +27,7 @@ Partial Class Form1
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ButtonUtility = New System.Windows.Forms.Button()
         Me.ButtonOption = New System.Windows.Forms.Button()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
@@ -35,7 +36,7 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.ButtonUtility = New System.Windows.Forms.Button()
+        Me.ButtonFeelLayoutManager = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -47,6 +48,7 @@ Partial Class Form1
         '
         Me.Panel1.BackgroundImage = Global.GotScraper.My.Resources.Resources.BarTop
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Controls.Add(Me.ButtonFeelLayoutManager)
         Me.Panel1.Controls.Add(Me.ButtonUtility)
         Me.Panel1.Controls.Add(Me.ButtonOption)
         Me.Panel1.Controls.Add(Me.RadioButton2)
@@ -61,6 +63,15 @@ Partial Class Form1
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(503, 426)
         Me.Panel1.TabIndex = 1
+        '
+        'ButtonUtility
+        '
+        Me.ButtonUtility.Location = New System.Drawing.Point(387, 8)
+        Me.ButtonUtility.Name = "ButtonUtility"
+        Me.ButtonUtility.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonUtility.TabIndex = 8
+        Me.ButtonUtility.Text = "Utility"
+        Me.ButtonUtility.UseVisualStyleBackColor = True
         '
         'ButtonOption
         '
@@ -141,14 +152,14 @@ Partial Class Form1
         Me.Button1.Text = "Test"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'ButtonUtility
+        'ButtonFeelLayoutManager
         '
-        Me.ButtonUtility.Location = New System.Drawing.Point(387, 8)
-        Me.ButtonUtility.Name = "ButtonUtility"
-        Me.ButtonUtility.Size = New System.Drawing.Size(75, 23)
-        Me.ButtonUtility.TabIndex = 8
-        Me.ButtonUtility.Text = "Utility"
-        Me.ButtonUtility.UseVisualStyleBackColor = True
+        Me.ButtonFeelLayoutManager.Location = New System.Drawing.Point(306, 8)
+        Me.ButtonFeelLayoutManager.Name = "ButtonFeelLayoutManager"
+        Me.ButtonFeelLayoutManager.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonFeelLayoutManager.TabIndex = 9
+        Me.ButtonFeelLayoutManager.Text = "F.L.M."
+        Me.ButtonFeelLayoutManager.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -177,4 +188,5 @@ Partial Class Form1
     Friend WithEvents Timer1 As Timer
     Friend WithEvents ButtonOption As Button
     Friend WithEvents ButtonUtility As Button
+    Friend WithEvents ButtonFeelLayoutManager As Button
 End Class
