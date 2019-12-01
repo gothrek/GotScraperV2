@@ -600,11 +600,10 @@ Public Class Form1
     End Sub
 
     Private Sub ButtonUtility_Click(sender As Object, e As EventArgs) Handles ButtonUtility.Click
-        'TODO utility
         FormUtility.Show()
     End Sub
 
     Private Sub ButtonFeelLayoutManager_Click(sender As Object, e As EventArgs) Handles ButtonFeelLayoutManager.Click
-
+        FormFLM.Show()
     End Sub
 End Class
