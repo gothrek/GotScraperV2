@@ -22,6 +22,7 @@ Partial Class FormFLM
     'Non modificarla mediante l'editor del codice.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GroupBoxProprietà = New System.Windows.Forms.GroupBox()
         Me.TabControlProprietà = New System.Windows.Forms.TabControl()
         Me.TabPageProprietà = New System.Windows.Forms.TabPage()
@@ -85,12 +86,12 @@ Partial Class FormFLM
         Me.LabelRomlist_height = New System.Windows.Forms.Label()
         Me.TextBoxRomlist_width = New System.Windows.Forms.TextBox()
         Me.LabelRomlist_width = New System.Windows.Forms.Label()
-        Me.ButtonPannelloRomlistReset = New System.Windows.Forms.Button()
+        Me.ButtonRomlistReset = New System.Windows.Forms.Button()
         Me.TextBoxRomlist_y_pos = New System.Windows.Forms.TextBox()
         Me.LabelRomlist_y_pos = New System.Windows.Forms.Label()
         Me.TextBoxRomlist_x_pos = New System.Windows.Forms.TextBox()
         Me.LabelRomlist_x_pos = New System.Windows.Forms.Label()
-        Me.CheckBoxPanelRomlistVisibile = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxRomlistVisibile = New System.Windows.Forms.CheckBox()
         Me.TabPageBackground = New System.Windows.Forms.TabPage()
         Me.TextBoxBackground_y_pos = New System.Windows.Forms.TextBox()
         Me.LabelBackground_y_pos = New System.Windows.Forms.Label()
@@ -474,12 +475,12 @@ Partial Class FormFLM
         Me.ButtonPannelloMainReset = New System.Windows.Forms.Button()
         Me.LabelScreenRisoluzione = New System.Windows.Forms.Label()
         Me.PanelMain = New System.Windows.Forms.Panel()
-        Me.PanelRomcategory = New System.Windows.Forms.Panel()
-        Me.PanelRomstatus = New System.Windows.Forms.Panel()
         Me.PanelRominputcontrol = New System.Windows.Forms.Panel()
+        Me.PanelRomcategory = New System.Windows.Forms.Panel()
         Me.PanelRommanufacturer = New System.Windows.Forms.Panel()
         Me.PanelMarquee = New System.Windows.Forms.Panel()
         Me.PanelCabinet = New System.Windows.Forms.Panel()
+        Me.PanelRomstatus = New System.Windows.Forms.Panel()
         Me.PanelMenu = New System.Windows.Forms.Panel()
         Me.PanelRomdescription = New System.Windows.Forms.Panel()
         Me.PanelRomname = New System.Windows.Forms.Panel()
@@ -488,11 +489,12 @@ Partial Class FormFLM
         Me.PanelGamelistname = New System.Windows.Forms.Panel()
         Me.PanelPlatformname = New System.Windows.Forms.Panel()
         Me.PanelRomcounter = New System.Windows.Forms.Panel()
-        Me.PanelSnapshot = New System.Windows.Forms.Panel()
         Me.PanelRomlist = New System.Windows.Forms.Panel()
+        Me.PanelSnapshot = New System.Windows.Forms.Panel()
         Me.PanelBackground = New System.Windows.Forms.Panel()
         Me.PanelMainMaster = New System.Windows.Forms.Panel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -962,12 +964,12 @@ Partial Class FormFLM
         Me.TabPageRomlist.Controls.Add(Me.LabelRomlist_height)
         Me.TabPageRomlist.Controls.Add(Me.TextBoxRomlist_width)
         Me.TabPageRomlist.Controls.Add(Me.LabelRomlist_width)
-        Me.TabPageRomlist.Controls.Add(Me.ButtonPannelloRomlistReset)
+        Me.TabPageRomlist.Controls.Add(Me.ButtonRomlistReset)
         Me.TabPageRomlist.Controls.Add(Me.TextBoxRomlist_y_pos)
         Me.TabPageRomlist.Controls.Add(Me.LabelRomlist_y_pos)
         Me.TabPageRomlist.Controls.Add(Me.TextBoxRomlist_x_pos)
         Me.TabPageRomlist.Controls.Add(Me.LabelRomlist_x_pos)
-        Me.TabPageRomlist.Controls.Add(Me.CheckBoxPanelRomlistVisibile)
+        Me.TabPageRomlist.Controls.Add(Me.CheckBoxRomlistVisibile)
         Me.TabPageRomlist.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomlist.Name = "TabPageRomlist"
         Me.TabPageRomlist.Size = New System.Drawing.Size(209, 435)
@@ -1216,18 +1218,18 @@ Partial Class FormFLM
         Me.LabelRomlist_width.TabIndex = 34
         Me.LabelRomlist_width.Text = "Romlist_width"
         '
-        'ButtonPannelloRomlistReset
+        'ButtonRomlistReset
         '
-        Me.ButtonPannelloRomlistReset.Location = New System.Drawing.Point(153, 3)
-        Me.ButtonPannelloRomlistReset.Name = "ButtonPannelloRomlistReset"
-        Me.ButtonPannelloRomlistReset.Size = New System.Drawing.Size(53, 23)
-        Me.ButtonPannelloRomlistReset.TabIndex = 33
-        Me.ButtonPannelloRomlistReset.Text = "Reset"
-        Me.ButtonPannelloRomlistReset.UseVisualStyleBackColor = True
+        Me.ButtonRomlistReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonRomlistReset.Name = "ButtonRomlistReset"
+        Me.ButtonRomlistReset.Size = New System.Drawing.Size(53, 23)
+        Me.ButtonRomlistReset.TabIndex = 33
+        Me.ButtonRomlistReset.Text = "Reset"
+        Me.ButtonRomlistReset.UseVisualStyleBackColor = True
         '
         'TextBoxRomlist_y_pos
         '
-        Me.TextBoxRomlist_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomlist_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomlist_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxRomlist_y_pos.Name = "TextBoxRomlist_y_pos"
         Me.TextBoxRomlist_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -1246,7 +1248,7 @@ Partial Class FormFLM
         '
         'TextBoxRomlist_x_pos
         '
-        Me.TextBoxRomlist_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomlist_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomlist_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxRomlist_x_pos.Name = "TextBoxRomlist_x_pos"
         Me.TextBoxRomlist_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -1263,17 +1265,17 @@ Partial Class FormFLM
         Me.LabelRomlist_x_pos.TabIndex = 24
         Me.LabelRomlist_x_pos.Text = "Romlist_x_pos"
         '
-        'CheckBoxPanelRomlistVisibile
+        'CheckBoxRomlistVisibile
         '
-        Me.CheckBoxPanelRomlistVisibile.AutoSize = True
-        Me.CheckBoxPanelRomlistVisibile.Checked = True
-        Me.CheckBoxPanelRomlistVisibile.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBoxPanelRomlistVisibile.Location = New System.Drawing.Point(3, 7)
-        Me.CheckBoxPanelRomlistVisibile.Name = "CheckBoxPanelRomlistVisibile"
-        Me.CheckBoxPanelRomlistVisibile.Size = New System.Drawing.Size(60, 17)
-        Me.CheckBoxPanelRomlistVisibile.TabIndex = 0
-        Me.CheckBoxPanelRomlistVisibile.Text = "Romlist"
-        Me.CheckBoxPanelRomlistVisibile.UseVisualStyleBackColor = True
+        Me.CheckBoxRomlistVisibile.AutoSize = True
+        Me.CheckBoxRomlistVisibile.Checked = True
+        Me.CheckBoxRomlistVisibile.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxRomlistVisibile.Location = New System.Drawing.Point(3, 7)
+        Me.CheckBoxRomlistVisibile.Name = "CheckBoxRomlistVisibile"
+        Me.CheckBoxRomlistVisibile.Size = New System.Drawing.Size(60, 17)
+        Me.CheckBoxRomlistVisibile.TabIndex = 0
+        Me.CheckBoxRomlistVisibile.Text = "Romlist"
+        Me.CheckBoxRomlistVisibile.UseVisualStyleBackColor = True
         '
         'TabPageBackground
         '
@@ -1305,7 +1307,7 @@ Partial Class FormFLM
         '
         'TextBoxBackground_y_pos
         '
-        Me.TextBoxBackground_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxBackground_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxBackground_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxBackground_y_pos.Name = "TextBoxBackground_y_pos"
         Me.TextBoxBackground_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -1324,7 +1326,7 @@ Partial Class FormFLM
         '
         'TextBoxBackground_x_pos
         '
-        Me.TextBoxBackground_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxBackground_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxBackground_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxBackground_x_pos.Name = "TextBoxBackground_x_pos"
         Me.TextBoxBackground_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -1343,6 +1345,7 @@ Partial Class FormFLM
         '
         'ButtonBackgroundReset
         '
+        Me.ButtonBackgroundReset.Enabled = False
         Me.ButtonBackgroundReset.Location = New System.Drawing.Point(153, 3)
         Me.ButtonBackgroundReset.Name = "ButtonBackgroundReset"
         Me.ButtonBackgroundReset.Size = New System.Drawing.Size(53, 23)
@@ -1578,7 +1581,7 @@ Partial Class FormFLM
         '
         'TextBoxSnapshot_y_pos
         '
-        Me.TextBoxSnapshot_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxSnapshot_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxSnapshot_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxSnapshot_y_pos.Name = "TextBoxSnapshot_y_pos"
         Me.TextBoxSnapshot_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -1597,7 +1600,7 @@ Partial Class FormFLM
         '
         'TextBoxSnapshot_x_pos
         '
-        Me.TextBoxSnapshot_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxSnapshot_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxSnapshot_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxSnapshot_x_pos.Name = "TextBoxSnapshot_x_pos"
         Me.TextBoxSnapshot_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -1619,7 +1622,6 @@ Partial Class FormFLM
         Me.CheckBoxSnapshot.AutoSize = True
         Me.CheckBoxSnapshot.Checked = True
         Me.CheckBoxSnapshot.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBoxSnapshot.Enabled = False
         Me.CheckBoxSnapshot.Location = New System.Drawing.Point(3, 7)
         Me.CheckBoxSnapshot.Name = "CheckBoxSnapshot"
         Me.CheckBoxSnapshot.Size = New System.Drawing.Size(71, 17)
@@ -1721,7 +1723,7 @@ Partial Class FormFLM
         '
         'TextBoxCabinet_y_pos
         '
-        Me.TextBoxCabinet_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxCabinet_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxCabinet_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxCabinet_y_pos.Name = "TextBoxCabinet_y_pos"
         Me.TextBoxCabinet_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -1740,7 +1742,7 @@ Partial Class FormFLM
         '
         'TextBoxCabinet_x_pos
         '
-        Me.TextBoxCabinet_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxCabinet_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxCabinet_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxCabinet_x_pos.Name = "TextBoxCabinet_x_pos"
         Me.TextBoxCabinet_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -1861,7 +1863,7 @@ Partial Class FormFLM
         '
         'TextBoxMarquee_y_pos
         '
-        Me.TextBoxMarquee_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxMarquee_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxMarquee_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxMarquee_y_pos.Name = "TextBoxMarquee_y_pos"
         Me.TextBoxMarquee_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -1880,7 +1882,7 @@ Partial Class FormFLM
         '
         'TextBoxMarquee_x_pos
         '
-        Me.TextBoxMarquee_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxMarquee_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxMarquee_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxMarquee_x_pos.Name = "TextBoxMarquee_x_pos"
         Me.TextBoxMarquee_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -2119,7 +2121,7 @@ Partial Class FormFLM
         '
         'TextBoxRomcounter_y_pos
         '
-        Me.TextBoxRomcounter_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomcounter_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomcounter_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxRomcounter_y_pos.Name = "TextBoxRomcounter_y_pos"
         Me.TextBoxRomcounter_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -2138,7 +2140,7 @@ Partial Class FormFLM
         '
         'TextBoxRomcounter_x_pos
         '
-        Me.TextBoxRomcounter_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomcounter_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomcounter_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxRomcounter_x_pos.Name = "TextBoxRomcounter_x_pos"
         Me.TextBoxRomcounter_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -2379,7 +2381,7 @@ Partial Class FormFLM
         '
         'TextBoxPlatformname_y_pos
         '
-        Me.TextBoxPlatformname_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxPlatformname_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxPlatformname_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxPlatformname_y_pos.Name = "TextBoxPlatformname_y_pos"
         Me.TextBoxPlatformname_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -2398,7 +2400,7 @@ Partial Class FormFLM
         '
         'TextBoxPlatformname_x_pos
         '
-        Me.TextBoxPlatformname_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxPlatformname_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxPlatformname_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxPlatformname_x_pos.Name = "TextBoxPlatformname_x_pos"
         Me.TextBoxPlatformname_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -2539,7 +2541,7 @@ Partial Class FormFLM
         Me.TextBoxEmulatorname_font_style.Name = "TextBoxEmulatorname_font_style"
         Me.TextBoxEmulatorname_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxEmulatorname_font_style.TabIndex = 133
-        Me.TextBoxEmulatorname_font_style.Text = "0"
+        Me.TextBoxEmulatorname_font_style.Text = "2"
         Me.TextBoxEmulatorname_font_style.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'LabelEmulatorname_font_style
@@ -2639,7 +2641,7 @@ Partial Class FormFLM
         '
         'TextBoxEmulatorname_y_pos
         '
-        Me.TextBoxEmulatorname_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxEmulatorname_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxEmulatorname_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxEmulatorname_y_pos.Name = "TextBoxEmulatorname_y_pos"
         Me.TextBoxEmulatorname_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -2658,7 +2660,7 @@ Partial Class FormFLM
         '
         'TextBoxEmulatorname_x_pos
         '
-        Me.TextBoxEmulatorname_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxEmulatorname_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxEmulatorname_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxEmulatorname_x_pos.Name = "TextBoxEmulatorname_x_pos"
         Me.TextBoxEmulatorname_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -2899,7 +2901,7 @@ Partial Class FormFLM
         '
         'TextBoxGamelistname_y_pos
         '
-        Me.TextBoxGamelistname_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxGamelistname_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxGamelistname_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxGamelistname_y_pos.Name = "TextBoxGamelistname_y_pos"
         Me.TextBoxGamelistname_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -2918,7 +2920,7 @@ Partial Class FormFLM
         '
         'TextBoxGamelistname_x_pos
         '
-        Me.TextBoxGamelistname_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxGamelistname_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxGamelistname_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxGamelistname_x_pos.Name = "TextBoxGamelistname_x_pos"
         Me.TextBoxGamelistname_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -3158,7 +3160,7 @@ Partial Class FormFLM
         '
         'TextBoxRomname_y_pos
         '
-        Me.TextBoxRomname_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomname_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomname_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxRomname_y_pos.Name = "TextBoxRomname_y_pos"
         Me.TextBoxRomname_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -3177,7 +3179,7 @@ Partial Class FormFLM
         '
         'TextBoxRomname_x_pos
         '
-        Me.TextBoxRomname_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomname_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomname_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxRomname_x_pos.Name = "TextBoxRomname_x_pos"
         Me.TextBoxRomname_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -3418,7 +3420,7 @@ Partial Class FormFLM
         '
         'TextBoxRomdescription_y_pos
         '
-        Me.TextBoxRomdescription_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomdescription_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomdescription_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxRomdescription_y_pos.Name = "TextBoxRomdescription_y_pos"
         Me.TextBoxRomdescription_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -3437,7 +3439,7 @@ Partial Class FormFLM
         '
         'TextBoxRomdescription_x_pos
         '
-        Me.TextBoxRomdescription_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomdescription_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomdescription_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxRomdescription_x_pos.Name = "TextBoxRomdescription_x_pos"
         Me.TextBoxRomdescription_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -3677,7 +3679,7 @@ Partial Class FormFLM
         '
         'TextBoxRommanufacturer_y_pos
         '
-        Me.TextBoxRommanufacturer_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRommanufacturer_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRommanufacturer_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxRommanufacturer_y_pos.Name = "TextBoxRommanufacturer_y_pos"
         Me.TextBoxRommanufacturer_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -3696,7 +3698,7 @@ Partial Class FormFLM
         '
         'TextBoxRommanufacturer_x_pos
         '
-        Me.TextBoxRommanufacturer_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRommanufacturer_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRommanufacturer_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxRommanufacturer_x_pos.Name = "TextBoxRommanufacturer_x_pos"
         Me.TextBoxRommanufacturer_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -3936,7 +3938,7 @@ Partial Class FormFLM
         '
         'TextBoxRomdisplaytype_y_pos
         '
-        Me.TextBoxRomdisplaytype_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomdisplaytype_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomdisplaytype_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxRomdisplaytype_y_pos.Name = "TextBoxRomdisplaytype_y_pos"
         Me.TextBoxRomdisplaytype_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -3955,7 +3957,7 @@ Partial Class FormFLM
         '
         'TextBoxRomdisplaytype_x_pos
         '
-        Me.TextBoxRomdisplaytype_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomdisplaytype_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomdisplaytype_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxRomdisplaytype_x_pos.Name = "TextBoxRomdisplaytype_x_pos"
         Me.TextBoxRomdisplaytype_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -4194,7 +4196,7 @@ Partial Class FormFLM
         '
         'TextBoxRominputcontrol_y_pos
         '
-        Me.TextBoxRominputcontrol_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRominputcontrol_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRominputcontrol_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxRominputcontrol_y_pos.Name = "TextBoxRominputcontrol_y_pos"
         Me.TextBoxRominputcontrol_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -4213,7 +4215,7 @@ Partial Class FormFLM
         '
         'TextBoxRominputcontrol_x_pos
         '
-        Me.TextBoxRominputcontrol_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRominputcontrol_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRominputcontrol_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxRominputcontrol_x_pos.Name = "TextBoxRominputcontrol_x_pos"
         Me.TextBoxRominputcontrol_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -4453,7 +4455,7 @@ Partial Class FormFLM
         '
         'TextBoxRomstatus_y_pos
         '
-        Me.TextBoxRomstatus_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomstatus_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomstatus_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxRomstatus_y_pos.Name = "TextBoxRomstatus_y_pos"
         Me.TextBoxRomstatus_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -4472,7 +4474,7 @@ Partial Class FormFLM
         '
         'TextBoxRomstatus_x_pos
         '
-        Me.TextBoxRomstatus_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomstatus_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomstatus_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxRomstatus_x_pos.Name = "TextBoxRomstatus_x_pos"
         Me.TextBoxRomstatus_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -4710,7 +4712,7 @@ Partial Class FormFLM
         '
         'TextBoxRomcategory_y_pos
         '
-        Me.TextBoxRomcategory_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomcategory_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomcategory_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxRomcategory_y_pos.Name = "TextBoxRomcategory_y_pos"
         Me.TextBoxRomcategory_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -4729,7 +4731,7 @@ Partial Class FormFLM
         '
         'TextBoxRomcategory_x_pos
         '
-        Me.TextBoxRomcategory_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxRomcategory_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxRomcategory_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxRomcategory_x_pos.Name = "TextBoxRomcategory_x_pos"
         Me.TextBoxRomcategory_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -4818,7 +4820,7 @@ Partial Class FormFLM
         '
         'TextBoxMenu_y_pos
         '
-        Me.TextBoxMenu_y_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxMenu_y_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxMenu_y_pos.Location = New System.Drawing.Point(134, 58)
         Me.TextBoxMenu_y_pos.Name = "TextBoxMenu_y_pos"
         Me.TextBoxMenu_y_pos.Size = New System.Drawing.Size(72, 20)
@@ -4837,7 +4839,7 @@ Partial Class FormFLM
         '
         'TextBoxMenu_x_pos
         '
-        Me.TextBoxMenu_x_pos.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxMenu_x_pos.BackColor = System.Drawing.Color.Green
         Me.TextBoxMenu_x_pos.Location = New System.Drawing.Point(134, 32)
         Me.TextBoxMenu_x_pos.Name = "TextBoxMenu_x_pos"
         Me.TextBoxMenu_x_pos.Size = New System.Drawing.Size(72, 20)
@@ -4979,7 +4981,7 @@ Partial Class FormFLM
         Me.LabelMenuFontDescription.Name = "LabelMenuFontDescription"
         Me.LabelMenuFontDescription.Size = New System.Drawing.Size(67, 13)
         Me.LabelMenuFontDescription.TabIndex = 70
-        Me.LabelMenuFontDescription.Text = "Regular"
+        Me.LabelMenuFontDescription.Text = "Bold"
         '
         'TextBoxMenu_item_height
         '
@@ -5080,12 +5082,14 @@ Partial Class FormFLM
         '
         'ButtonMenuReset
         '
+        Me.ButtonMenuReset.Enabled = False
         Me.ButtonMenuReset.Location = New System.Drawing.Point(153, 3)
         Me.ButtonMenuReset.Name = "ButtonMenuReset"
         Me.ButtonMenuReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonMenuReset.TabIndex = 59
         Me.ButtonMenuReset.Text = "Reset"
         Me.ButtonMenuReset.UseVisualStyleBackColor = True
+        Me.ButtonMenuReset.Visible = False
         '
         'CheckBoxMenu
         '
@@ -5354,12 +5358,12 @@ Partial Class FormFLM
         'PanelMain
         '
         Me.PanelMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.PanelMain.Controls.Add(Me.PanelRomcategory)
-        Me.PanelMain.Controls.Add(Me.PanelRomstatus)
         Me.PanelMain.Controls.Add(Me.PanelRominputcontrol)
+        Me.PanelMain.Controls.Add(Me.PanelRomcategory)
         Me.PanelMain.Controls.Add(Me.PanelRommanufacturer)
         Me.PanelMain.Controls.Add(Me.PanelMarquee)
         Me.PanelMain.Controls.Add(Me.PanelCabinet)
+        Me.PanelMain.Controls.Add(Me.PanelRomstatus)
         Me.PanelMain.Controls.Add(Me.PanelMenu)
         Me.PanelMain.Controls.Add(Me.PanelRomdescription)
         Me.PanelMain.Controls.Add(Me.PanelRomname)
@@ -5368,30 +5372,13 @@ Partial Class FormFLM
         Me.PanelMain.Controls.Add(Me.PanelGamelistname)
         Me.PanelMain.Controls.Add(Me.PanelPlatformname)
         Me.PanelMain.Controls.Add(Me.PanelRomcounter)
-        Me.PanelMain.Controls.Add(Me.PanelSnapshot)
         Me.PanelMain.Controls.Add(Me.PanelRomlist)
+        Me.PanelMain.Controls.Add(Me.PanelSnapshot)
         Me.PanelMain.Controls.Add(Me.PanelBackground)
         Me.PanelMain.Location = New System.Drawing.Point(0, 0)
         Me.PanelMain.Name = "PanelMain"
         Me.PanelMain.Size = New System.Drawing.Size(640, 480)
         Me.PanelMain.TabIndex = 31
-        '
-        'PanelRomcategory
-        '
-        Me.PanelRomcategory.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
-        Me.PanelRomcategory.Location = New System.Drawing.Point(360, 423)
-        Me.PanelRomcategory.Name = "PanelRomcategory"
-        Me.PanelRomcategory.Size = New System.Drawing.Size(145, 17)
-        Me.PanelRomcategory.TabIndex = 14
-        '
-        'PanelRomstatus
-        '
-        Me.PanelRomstatus.BackColor = System.Drawing.Color.YellowGreen
-        Me.PanelRomstatus.Location = New System.Drawing.Point(0, 40)
-        Me.PanelRomstatus.Name = "PanelRomstatus"
-        Me.PanelRomstatus.Size = New System.Drawing.Size(50, 50)
-        Me.PanelRomstatus.TabIndex = 13
-        Me.PanelRomstatus.Visible = False
         '
         'PanelRominputcontrol
         '
@@ -5400,6 +5387,14 @@ Partial Class FormFLM
         Me.PanelRominputcontrol.Name = "PanelRominputcontrol"
         Me.PanelRominputcontrol.Size = New System.Drawing.Size(72, 17)
         Me.PanelRominputcontrol.TabIndex = 12
+        '
+        'PanelRomcategory
+        '
+        Me.PanelRomcategory.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
+        Me.PanelRomcategory.Location = New System.Drawing.Point(360, 423)
+        Me.PanelRomcategory.Name = "PanelRomcategory"
+        Me.PanelRomcategory.Size = New System.Drawing.Size(145, 17)
+        Me.PanelRomcategory.TabIndex = 14
         '
         'PanelRommanufacturer
         '
@@ -5412,7 +5407,7 @@ Partial Class FormFLM
         'PanelMarquee
         '
         Me.PanelMarquee.BackColor = System.Drawing.Color.ForestGreen
-        Me.PanelMarquee.Location = New System.Drawing.Point(500, 313)
+        Me.PanelMarquee.Location = New System.Drawing.Point(499, 313)
         Me.PanelMarquee.Name = "PanelMarquee"
         Me.PanelMarquee.Size = New System.Drawing.Size(136, 164)
         Me.PanelMarquee.TabIndex = 3
@@ -5421,10 +5416,19 @@ Partial Class FormFLM
         'PanelCabinet
         '
         Me.PanelCabinet.BackColor = System.Drawing.Color.Black
-        Me.PanelCabinet.Location = New System.Drawing.Point(499, 314)
+        Me.PanelCabinet.Location = New System.Drawing.Point(500, 314)
         Me.PanelCabinet.Name = "PanelCabinet"
         Me.PanelCabinet.Size = New System.Drawing.Size(136, 164)
         Me.PanelCabinet.TabIndex = 2
+        '
+        'PanelRomstatus
+        '
+        Me.PanelRomstatus.BackColor = System.Drawing.Color.YellowGreen
+        Me.PanelRomstatus.Location = New System.Drawing.Point(0, 40)
+        Me.PanelRomstatus.Name = "PanelRomstatus"
+        Me.PanelRomstatus.Size = New System.Drawing.Size(50, 50)
+        Me.PanelRomstatus.TabIndex = 13
+        Me.PanelRomstatus.Visible = False
         '
         'PanelMenu
         '
@@ -5491,14 +5495,6 @@ Partial Class FormFLM
         Me.PanelRomcounter.Size = New System.Drawing.Size(102, 18)
         Me.PanelRomcounter.TabIndex = 4
         '
-        'PanelSnapshot
-        '
-        Me.PanelSnapshot.BackColor = System.Drawing.Color.Yellow
-        Me.PanelSnapshot.Location = New System.Drawing.Point(361, 196)
-        Me.PanelSnapshot.Name = "PanelSnapshot"
-        Me.PanelSnapshot.Size = New System.Drawing.Size(228, 171)
-        Me.PanelSnapshot.TabIndex = 1
-        '
         'PanelRomlist
         '
         Me.PanelRomlist.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
@@ -5506,6 +5502,14 @@ Partial Class FormFLM
         Me.PanelRomlist.Name = "PanelRomlist"
         Me.PanelRomlist.Size = New System.Drawing.Size(274, 275)
         Me.PanelRomlist.TabIndex = 0
+        '
+        'PanelSnapshot
+        '
+        Me.PanelSnapshot.BackColor = System.Drawing.Color.Yellow
+        Me.PanelSnapshot.Location = New System.Drawing.Point(361, 196)
+        Me.PanelSnapshot.Name = "PanelSnapshot"
+        Me.PanelSnapshot.Size = New System.Drawing.Size(228, 171)
+        Me.PanelSnapshot.TabIndex = 1
         '
         'PanelBackground
         '
@@ -5524,6 +5528,13 @@ Partial Class FormFLM
         Me.PanelMainMaster.Size = New System.Drawing.Size(640, 480)
         Me.PanelMainMaster.TabIndex = 32
         '
+        'ToolTip1
+        '
+        Me.ToolTip1.AutomaticDelay = 50
+        Me.ToolTip1.AutoPopDelay = 5000
+        Me.ToolTip1.InitialDelay = 50
+        Me.ToolTip1.ReshowDelay = 10
+        '
         'FormFLM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -5540,7 +5551,7 @@ Partial Class FormFLM
         Me.Controls.Add(Me.ButtonPubblica)
         Me.Controls.Add(Me.GroupBoxProprietà)
         Me.Name = "FormFLM"
-        Me.Text = "FLM - F.E.E.L. Layout Manager - Alpha1 by Gothrek"
+        Me.Text = "FLM - F.E.E.L. Layout Manager - Alpha 2 by Gothrek"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.GroupBoxProprietà.ResumeLayout(False)
         Me.TabControlProprietà.ResumeLayout(False)
@@ -5677,13 +5688,13 @@ Partial Class FormFLM
     Friend WithEvents LabelScreenRisoluzione As Label
     Friend WithEvents PanelMain As Panel
     Friend WithEvents PanelMainMaster As Panel
-    Friend WithEvents CheckBoxPanelRomlistVisibile As CheckBox
+    Friend WithEvents CheckBoxRomlistVisibile As CheckBox
     Friend WithEvents PanelRomlist As Panel
     Friend WithEvents TextBoxRomlist_y_pos As TextBox
     Friend WithEvents LabelRomlist_y_pos As Label
     Friend WithEvents TextBoxRomlist_x_pos As TextBox
     Friend WithEvents LabelRomlist_x_pos As Label
-    Friend WithEvents ButtonPannelloRomlistReset As Button
+    Friend WithEvents ButtonRomlistReset As Button
     Friend WithEvents TextBoxRomlist_height As TextBox
     Friend WithEvents LabelRomlist_height As Label
     Friend WithEvents TextBoxRomlist_width As TextBox
@@ -6072,4 +6083,5 @@ Partial Class FormFLM
     Friend WithEvents LabelBackground_y_pos As Label
     Friend WithEvents TextBoxBackground_x_pos As TextBox
     Friend WithEvents LabelBackground_x_pos As Label
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

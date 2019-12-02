@@ -123,6 +123,7 @@
         dtOptionsLayout.Columns.Add("screen_saver_backcolor", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("screen_saver_font_color", Type.GetType("System.String"))
 
+        'dtOptionsLayout.Columns.Add("romlist_visible", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("romlist_x_pos", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("romlist_y_pos", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("romlist_width", Type.GetType("System.String"))
@@ -138,12 +139,16 @@
         dtOptionsLayout.Columns.Add("romlist_text_align", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("romlist_disable_stars", Type.GetType("System.String"))
 
+        'dtOptionsLayout.Columns.Add("background__visible", Type.GetType("System.String"))
+        'dtOptionsLayout.Columns.Add("background_x_pos", Type.GetType("System.String"))
+        'dtOptionsLayout.Columns.Add("background_y_pos", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("background_width", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("background_height", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("background_ontop", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("background_frame_duration_ms", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("background_repeat_delay_ms", Type.GetType("System.String"))
 
+        'dtOptionsLayout.Columns.Add("snapshot_visible", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("snapshot_x_pos", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("snapshot_y_pos", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("snapshot_width", Type.GetType("System.String"))
@@ -303,7 +308,7 @@
         'dtOptionsLayout.Columns.Add("menu_x_pos", Type.GetType("System.String"))
         'dtOptionsLayout.Columns.Add("menu_y_pos", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("menu_width", Type.GetType("System.String"))
-        'dtOptionsLayout.Columns.Add("menu_height", Type.GetType("System.String"))
+        ' dtOptionsLayout.Columns.Add("menu_height", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("menu_item_height", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("menu_font_name", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("menu_font_size", Type.GetType("System.String"))
@@ -1824,6 +1829,29 @@
 
     End Sub
 
+    Private Sub TabControlProprietà_Selected(sender As Object, e As TabControlEventArgs) Handles TabControlProprietà.Selected
+        Dim usoOggetto As String = sender.selectedtab.name.ToString.Substring(7)
+        Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
+
+        If usoOggetto <> "Background" Then 'per il background non vogliamo che nasconda tutti gli altri oggetti
+            Try
+                For Each pannello As Control In PanelMain.Controls
+                    pannello.BackColor = Color.FromArgb(50, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
+                Next
+
+                oggettoPanel.BackColor = Color.FromArgb(255, oggettoPanel.BackColor.R, oggettoPanel.BackColor.G, oggettoPanel.BackColor.B)
+            Catch ex As Exception
+                For Each pannello As Control In PanelMain.Controls
+                    pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
+                Next
+            End Try
+        Else
+            For Each pannello As Control In PanelMain.Controls
+                pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
+            Next
+        End If
+    End Sub
+
     Private Sub ListBoxObj_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxObj.SelectedIndexChanged
         TabControlProprietà.SelectedIndex = ListBoxObj.SelectedIndex + 1
     End Sub
@@ -1836,7 +1864,6 @@
         PanelMain.Size = New Size(Int(Val(TextBoxScreen_res_x.Text) * sender.value / 100), Int(Val(TextBoxScreen_res_y.Text) * sender.value / 100))
         For Each controllo As Object In PanelMain.Controls
             Dim usoTab As String = controllo.name.ToString.Substring(5)
-            'Dim usoOggetto As String = controllo.name.ToString.Substring(7, controllo.name.ToString.LastIndexOf("_") - 7)
 
             Dim oggettoTextBox_size_width As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_width")
             Dim oggettoTextBox_size_height As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_height")
@@ -1850,8 +1877,7 @@
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Oggetti - funzionalità comuni a tutti gli oggetti dello stesso tipo
-    Private Sub Panel_Paint(sender As Object, e As PaintEventArgs) Handles PanelMain.Paint,
-                                                                            PanelSnapshot.Paint,
+    Private Sub Panel_Paint(sender As Object, e As PaintEventArgs) Handles PanelSnapshot.Paint,
                                                                             PanelRomlist.Paint,
                                                                             PanelMarquee.Paint,
                                                                             PanelCabinet.Paint,
@@ -1866,22 +1892,66 @@
                                                                             PanelRominputcontrol.Paint,
                                                                             PanelRomstatus.Paint,
                                                                             PanelRomcategory.Paint,
-                                                                            PanelMenu.Paint, PanelBackground.Paint
+                                                                            PanelMenu.Paint ', PanelBackground.Paint, PanelMain.Paint,
 
         Dim nCaratteri As Integer = sender.name.ToString.Length - 5
         Dim larghezza As Integer = sender.size.width
-        Dim grandezzaCaratteri As Integer = Int(larghezza / nCaratteri / 2) * 2
+        Dim altezza As Integer = sender.size.height
+        Dim grandezzaCaratteri As Integer = Int(larghezza / nCaratteri)
+        Dim posizione As Integer = Int((sender.size.height - grandezzaCaratteri) / 2) - 1
+        Dim nomepannello As String = sender.name
 
+        'Dim bmp As New Bitmap(larghezza, altezza)
+        'Dim gr As Graphics = Graphics.FromImage(bmp)
         Try
-            e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Bold), Brushes.Red, 0, Int(sender.size.height / 2))
+            'sender.controls("PictureBox" & nomepannello).BackColor = Color.Transparent
+
+            If grandezzaCaratteri >= sender.size.height Then
+                grandezzaCaratteri = sender.size.height
+                posizione = -1
+            End If
+
+            Try
+                'gr.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, 0, posizione)
+                If sender.backcolor.a = 50 Then
+                    e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), New SolidBrush(Color.FromArgb(50, 255, 0, 0)), 0, posizione)
+                Else
+                    e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, 0, posizione)
+                End If
+
+            Catch ex As Exception
+
+            End Try
+
+            'sender.controls("PictureBox" & nomepannello).Image = bmp
+            'bmp.Dispose()
+            'gr.Dispose()
         Catch ex As Exception
 
         End Try
-
     End Sub
 
-    Private Sub Panel_MouseEnter(sender As Object, e As EventArgs) Handles PanelMain.MouseEnter,
-                                                                            PanelSnapshot.MouseEnter,
+    Private Sub Panel_MouseHover(sender As Object, e As EventArgs) Handles PanelSnapshot.MouseHover,
+                                                                            PanelRomstatus.MouseHover,
+                                                                            PanelRomname.MouseHover,
+                                                                            PanelRommanufacturer.MouseHover,
+                                                                            PanelRomlist.MouseHover,
+                                                                            PanelRominputcontrol.MouseHover,
+                                                                            PanelRomdisplaytype.MouseHover,
+                                                                            PanelRomdescription.MouseHover,
+                                                                            PanelRomcounter.MouseHover,
+                                                                            PanelRomcategory.MouseHover,
+                                                                            PanelPlatformname.MouseHover,
+                                                                            PanelMenu.MouseHover,
+                                                                            PanelMarquee.MouseHover,
+                                                                            PanelGamelistname.MouseHover,
+                                                                            PanelEmulatorname.MouseHover,
+                                                                            PanelCabinet.MouseHover 'PanelBackground.MouseHover, PanelMain.MouseHover,
+
+        ToolTip1.Show(sender.name, sender)
+    End Sub
+
+    Private Sub Panel_MouseEnter(sender As Object, e As EventArgs) Handles PanelSnapshot.MouseEnter,
                                                                             PanelRomlist.MouseEnter,
                                                                             PanelCabinet.MouseEnter,
                                                                             PanelMarquee.MouseEnter,
@@ -1896,13 +1966,12 @@
                                                                             PanelRominputcontrol.MouseEnter,
                                                                             PanelRomstatus.MouseEnter,
                                                                             PanelRomcategory.MouseEnter,
-                                                                            PanelMenu.MouseEnter, PanelBackground.MouseEnter
+                                                                            PanelMenu.MouseEnter ', PanelBackground.MouseEnter, PanelMain.MouseEnter,
 
         Me.Cursor = Cursors.Hand
     End Sub
 
-    Private Sub Panel_MouseLeave(sender As Object, e As EventArgs) Handles PanelMain.MouseLeave,
-                                                                            PanelSnapshot.MouseLeave,
+    Private Sub Panel_MouseLeave(sender As Object, e As EventArgs) Handles PanelSnapshot.MouseLeave,
                                                                             PanelRomlist.MouseLeave,
                                                                             PanelCabinet.MouseLeave,
                                                                             PanelMarquee.MouseLeave,
@@ -1917,13 +1986,13 @@
                                                                             PanelRominputcontrol.MouseLeave,
                                                                             PanelRomstatus.MouseLeave,
                                                                             PanelRomcategory.MouseLeave,
-                                                                            PanelMenu.MouseLeave, PanelBackground.MouseLeave
+                                                                            PanelMenu.MouseLeave ', PanelBackground.MouseLeave, PanelMain.MouseLeave,
 
         Me.Cursor = Cursors.Default
+        ToolTip1.Hide(sender)
     End Sub
 
-    Private Sub Panel_MouseDown(sender As Object, e As MouseEventArgs) Handles PanelMain.MouseDown,
-                                                                                PanelSnapshot.MouseDown,
+    Private Sub Panel_MouseDown(sender As Object, e As MouseEventArgs) Handles PanelSnapshot.MouseDown,
                                                                                 PanelRomlist.MouseDown,
                                                                                 PanelCabinet.MouseDown,
                                                                                 PanelMarquee.MouseDown,
@@ -1938,14 +2007,13 @@
                                                                                 PanelRominputcontrol.MouseDown,
                                                                                 PanelRomstatus.MouseDown,
                                                                                 PanelRomcategory.MouseDown,
-                                                                                PanelMenu.MouseDown, PanelBackground.MouseDown
+                                                                                PanelMenu.MouseDown ', PanelBackground.MouseDown, PanelMain.MouseDown,
 
         pannelloLocation = sender.Location
         mouseCoordinate = MousePosition
     End Sub
 
-    Private Sub Panel_MouseUp(sender As Object, e As MouseEventArgs) Handles PanelBackground.MouseUp,
-                                                                                PanelSnapshot.MouseUp,
+    Private Sub Panel_MouseUp(sender As Object, e As MouseEventArgs) Handles PanelSnapshot.MouseUp,
                                                                                 PanelCabinet.MouseUp,
                                                                                 PanelMarquee.MouseUp,
                                                                                 PanelRomcounter.MouseUp,
@@ -1959,7 +2027,8 @@
                                                                                 PanelRominputcontrol.MouseUp,
                                                                                 PanelRomstatus.MouseUp,
                                                                                 PanelRomcategory.MouseUp,
-                                                                                PanelMenu.MouseUp
+                                                                                PanelMenu.MouseUp,
+                                                                                PanelRomlist.MouseUp ',PanelBackground.MouseUp, PanelMain.Mouseup,
 
         pannelloLocation = New Point(sender.Location.X + (MousePosition.X - mouseCoordinate.X), sender.Location.Y + (MousePosition.Y) - mouseCoordinate.Y)
 
@@ -1982,7 +2051,6 @@
 
         End Try
 
-        'TODO selezionare la giusta TAB
     End Sub
 
     Private Sub CheckBoxPanelVisibile_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxCabinet_visible.CheckedChanged,
@@ -1998,7 +2066,9 @@
                                                                                                 CheckBoxRominputcontrol_visible.CheckedChanged,
                                                                                                 CheckBoxRomstatus_visible.CheckedChanged,
                                                                                                 CheckBoxRomcategory_visible.CheckedChanged,
-                                                                                                CheckBoxMenu.CheckedChanged
+                                                                                                CheckBoxMenu.CheckedChanged,
+                                                                                                CheckBoxRomlistVisibile.CheckedChanged,
+                                                                                                CheckBoxSnapshot.CheckedChanged
 
         Try
             Dim usoOggetto As String = sender.name.ToString.Substring(8, sender.name.ToString.Length - 16)
@@ -2032,7 +2102,9 @@
                                                                         TextBoxRomcategory_y_pos.Enter, TextBoxRomcategory_x_pos.Enter, TextBoxRomcategory_width.Enter, TextBoxRomcategory_height.Enter, TextBoxMenu_width.Enter,
                                                                         TextBoxMenu_item_height.Enter, TextBoxMenu_y_pos.Enter, TextBoxMenu_x_pos.Enter, TextBoxMenu_height.Enter,
                                                                         TextBoxActors_repeat_delay_ms.Enter, TextBoxActors_frame_duration_ms.Enter,
-                                                                        TextBoxBezel_repeat_delay_ms.Enter, TextBoxBezel_frame_duration_ms.Enter, TextBoxRomlist_y_pos.Enter, TextBoxRomlist_x_pos.Enter, TextBoxBackground_y_pos.Enter, TextBoxBackground_x_pos.Enter
+                                                                        TextBoxBezel_repeat_delay_ms.Enter, TextBoxBezel_frame_duration_ms.Enter,
+                                                                        TextBoxRomlist_y_pos.Enter, TextBoxRomlist_x_pos.Enter,
+                                                                        TextBoxBackground_y_pos.Enter, TextBoxBackground_x_pos.Enter
 
 
         valorePrecedente = sender.Text
@@ -2066,7 +2138,9 @@
                                                                                     TextBoxRominputcontrol_x_pos.TextChanged,
                                                                                     TextBoxRomstatus_x_pos.TextChanged,
                                                                                     TextBoxRomcategory_x_pos.TextChanged,
-                                                                                    TextBoxMenu_x_pos.TextChanged, TextBoxRomlist_x_pos.TextChanged, TextBoxBackground_x_pos.TextChanged
+                                                                                    TextBoxMenu_x_pos.TextChanged,
+                                                                                    TextBoxRomlist_x_pos.TextChanged,
+                                                                                    TextBoxBackground_x_pos.TextChanged
 
         Try
             Int(sender.Text)
@@ -2080,7 +2154,15 @@
             Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
 
             oggettoPanel.Location = New Point(Int(sender.Text), oggettoPanel.Location.Y)
+
+            If oggettoPanel.location.x > PanelMain.Location.X + PanelMain.Size.Width Then
+                sender.backcolor = Color.Red
+            Else
+                sender.BackColor = Color.Green
+            End If
+
             oggettoPanel.Refresh()
+
         Catch ex As Exception
 
         End Try
@@ -2101,10 +2183,13 @@
                                                                                     TextBoxRominputcontrol_y_pos.TextChanged,
                                                                                     TextBoxRomstatus_y_pos.TextChanged,
                                                                                     TextBoxRomcategory_y_pos.TextChanged,
-                                                                                    TextBoxMenu_y_pos.TextChanged, TextBoxRomlist_y_pos.TextChanged, TextBoxBackground_y_pos.TextChanged
+                                                                                    TextBoxMenu_y_pos.TextChanged,
+                                                                                    TextBoxRomlist_y_pos.TextChanged,
+                                                                                    TextBoxBackground_y_pos.TextChanged
 
         Try
             Int(sender.Text)
+
         Catch ex As Exception
             sender.Text = valorePrecedente
             sender.Refresh()
@@ -2115,6 +2200,13 @@
             Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
 
             oggettoPanel.Location = New Point(oggettoPanel.Location.X, Int(sender.Text))
+
+            If oggettoPanel.location.y > PanelMain.Location.Y + PanelMain.Size.Height Then
+                sender.backcolor = Color.Red
+            Else
+                sender.BackColor = Color.Green
+            End If
+
             oggettoPanel.Refresh()
         Catch ex As Exception
 
@@ -2137,7 +2229,8 @@
                                                                                     TextBoxRominputcontrol_width.TextChanged,
                                                                                     TextBoxRomstatus_width.TextChanged,
                                                                                     TextBoxRomcategory_width.TextChanged,
-                                                                                    TextBoxMenu_width.TextChanged, TextBoxBackground_width.TextChanged
+                                                                                    TextBoxMenu_width.TextChanged,
+                                                                                    TextBoxBackground_width.TextChanged
 
         Try
             Int(sender.Text)
@@ -2173,7 +2266,8 @@
                                                                                         TextBoxRominputcontrol_height.TextChanged,
                                                                                         TextBoxRomstatus_height.TextChanged,
                                                                                         TextBoxRomcategory_height.TextChanged,
-                                                                                        TextBoxMenu_height.TextChanged, TextBoxBackground_height.TextChanged
+                                                                                        TextBoxMenu_height.TextChanged,
+                                                                                        TextBoxBackground_height.TextChanged
 
         Try
             Int(sender.Text)
@@ -2238,6 +2332,59 @@
         carattere = oggettoLabel.font
         oggettoLabel.Font = New Font(carattere, FontDialog1.Font.Style)
         oggettoLabel.Refresh()
+
+    End Sub
+
+    Private Sub TextBox_font_name_TextChanged(sender As Object, e As EventArgs) Handles TextBoxRomlist_font_name.TextChanged, TextBoxRomlist_font_style.TextChanged, TextBoxRomlist_font_size.TextChanged,
+                                                                                        TextBoxRomstatus_font_style.TextChanged, TextBoxRomstatus_font_size.TextChanged, TextBoxRomstatus_font_name.TextChanged,
+                                                                                        TextBoxRomname_font_style.TextChanged, TextBoxRomname_font_size.TextChanged, TextBoxRomname_font_name.TextChanged,
+                                                                                        TextBoxRommanufacturer_font_style.TextChanged, TextBoxRommanufacturer_font_size.TextChanged, TextBoxRommanufacturer_font_name.TextChanged,
+                                                                                        TextBoxRominputcontrol_font_style.TextChanged, TextBoxRominputcontrol_font_size.TextChanged, TextBoxRominputcontrol_font_name.TextChanged,
+                                                                                        TextBoxRomdisplaytype_font_style.TextChanged, TextBoxRomdisplaytype_font_size.TextChanged, TextBoxRomdisplaytype_font_name.TextChanged,
+                                                                                        TextBoxRomdescription_font_style.TextChanged, TextBoxRomdescription_font_size.TextChanged, TextBoxRomdescription_font_name.TextChanged,
+                                                                                        TextBoxRomcounter_font_style.TextChanged, TextBoxRomcounter_font_size.TextChanged, TextBoxRomcounter_font_name.TextChanged,
+                                                                                        TextBoxRomcategory_font_style.TextChanged, TextBoxRomcategory_font_size.TextChanged, TextBoxRomcategory_font_name.TextChanged,
+                                                                                        TextBoxPlatformname_font_style.TextChanged, TextBoxPlatformname_font_size.TextChanged, TextBoxPlatformname_font_name.TextChanged,
+                                                                                        TextBoxMenu_font_style.TextChanged, TextBoxMenu_font_size.TextChanged, TextBoxMenu_font_name.TextChanged,
+                                                                                        TextBoxGamelistname_font_style.TextChanged, TextBoxGamelistname_font_size.TextChanged, TextBoxGamelistname_font_name.TextChanged,
+                                                                                        TextBoxEmulatorname_font_style.TextChanged, TextBoxEmulatorname_font_size.TextChanged, TextBoxEmulatorname_font_name.TextChanged
+
+        Dim size As Single = 8
+        Dim carattere As Font
+        Dim carattereFamiglia As FontFamily
+        Dim carattereStile As FontStyle
+
+        Try
+            Dim usoTab As String = sender.name.ToString.Substring(7, sender.name.ToString.IndexOf("_") - 7)
+            Dim usoOggetto As String = sender.name.ToString.Substring(7, sender.name.ToString.LastIndexOf("_") - 7)
+
+            Dim oggettoTextBox As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_name")
+            Dim oggettoLabel As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("Label" & usoTab & "FontDescription")
+
+            carattereFamiglia = New FontFamily(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_font_name").ToString)
+
+            carattereStile = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_font_style")
+
+            carattere = New Font(carattereFamiglia, size, carattereStile)
+
+            oggettoTextBox.Font = carattere
+            oggettoTextBox.Refresh()
+
+            oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_size")
+            oggettoTextBox.Font = carattere
+            oggettoTextBox.Refresh()
+
+            oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_style")
+            oggettoTextBox.Font = carattere
+            oggettoTextBox.Refresh()
+
+            oggettoLabel.Text = carattere.Style.ToString
+            carattere = oggettoLabel.font
+            oggettoLabel.Font = New Font(carattere, carattereStile)
+            oggettoLabel.Refresh()
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 
@@ -2407,6 +2554,63 @@
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub ButtonPannelloReset_Click(sender As Object, e As EventArgs) Handles ButtonRomlistReset.Click,
+                                                                                    ButtonSnapshotReset.Click,
+                                                                                    ButtonRomstatusReset.Click,
+                                                                                    ButtonRomnameReset.Click,
+                                                                                    ButtonRommanufacturerReset.Click,
+                                                                                    ButtonRominputcontrolReset.Click,
+                                                                                    ButtonRomdisplaytypeReset.Click,
+                                                                                    ButtonRomdescriptionReset.Click,
+                                                                                    ButtonRomcounterReset.Click,
+                                                                                    ButtonRomcategoryReset.Click,
+                                                                                    ButtonPlatformnameReset.Click,
+                                                                                    ButtonMenuReset.Click,
+                                                                                    ButtonMarqueeReset.Click,
+                                                                                    ButtonGamelistnameReset.Click,
+                                                                                    ButtonEmulatornameReset.Click,
+                                                                                    ButtonCabinetReset.Click,
+                                                                                    ButtonBackgroundReset.Click
+
+        Dim usoOggetto As String = sender.name.ToString.Substring(6, sender.name.ToString.Length - 11)
+        Dim usoTab As String = usoOggetto 'sender.name.ToString.Substring(7, sender.name.ToString.IndexOf("_") - 7)
+
+        Dim oggettoTextBox As Object
+
+        Try
+            oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_x_pos")
+            oggettoTextBox.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(usoOggetto & "_x_pos")
+        Catch ex As Exception
+            'oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_x_pos")
+            'oggettoTextBox.Text = dtOptionsLayout.Rows(0).Item(usoOggetto & "_x_pos")
+        End Try
+
+        Try
+            oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_y_pos")
+            oggettoTextBox.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(usoOggetto & "_y_pos")
+        Catch ex As Exception
+            'oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_y_pos")
+            'oggettoTextBox.Text = dtOptionsLayout.Rows(0).Item(usoOggetto & "_y_pos")
+        End Try
+
+        Try
+            oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_width")
+            oggettoTextBox.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(usoOggetto & "_width")
+        Catch ex As Exception
+            'oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_width")
+            'oggettoTextBox.Text = dtOptionsLayout.Rows(0).Item(usoOggetto & "_width")
+        End Try
+
+        Try
+            oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_height")
+            oggettoTextBox.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(usoOggetto & "_height")
+        Catch ex As Exception
+            'oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_height")
+            'oggettoTextBox.Text = dtOptionsLayout.Rows(0).Item(usoOggetto & "_height")
+        End Try
+
     End Sub
 
     '----------------------------------------------------------------------------------------------
@@ -2658,42 +2862,6 @@
 
     '----------------------------------------------------------------------------------------------
     'Proprietà RomList
-    Private Sub CheckBoxPanelRomlistVisibile_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxPanelRomlistVisibile.CheckedChanged
-        PanelRomlist.Visible = CheckBoxPanelRomlistVisibile.Checked
-        PanelRomlist.Refresh()
-    End Sub
-
-    Private Sub ButtonPannelloRomlistReset_Click(sender As Object, e As EventArgs) Handles ButtonPannelloRomlistReset.Click
-        'TODO sostituire con i valori della dt table
-        PanelRomlist.Location = New Point(27, 142)
-        PanelRomlist.Size = New Size(274, 275)
-        '--------------------------------------------
-        PanelRomlist.Refresh()
-
-        TextBoxRomlist_x_pos.Text = PanelRomlist.Location.X
-        TextBoxRomlist_x_pos.Refresh()
-        TextBoxRomlist_y_pos.Text = PanelRomlist.Location.Y
-        TextBoxRomlist_y_pos.Refresh()
-
-        TextBoxRomlist_width.Text = PanelRomlist.Size.Width
-        TextBoxRomlist_width.Refresh()
-        TextBoxRomlist_height.Text = PanelRomlist.Size.Height
-        TextBoxRomlist_height.Refresh()
-    End Sub
-
-    Private Sub PanelRomlist_MouseUp(sender As Object, e As MouseEventArgs) Handles PanelRomlist.MouseUp
-        pannelloRomlistLocation = New Point(PanelRomlist.Location.X + (MousePosition.X - mouseCoordinate.X), PanelRomlist.Location.Y + (MousePosition.Y) - mouseCoordinate.Y)
-
-        PanelRomlist.Location = pannelloRomlistLocation
-        PanelRomlist.Refresh()
-
-        TextBoxRomlist_x_pos.Text = PanelRomlist.Location.X
-        TextBoxRomlist_x_pos.Refresh()
-        TextBoxRomlist_y_pos.Text = PanelRomlist.Location.Y
-        TextBoxRomlist_y_pos.Refresh()
-
-        TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPageRomlist")
-    End Sub
 
     Private Sub TextBoxRomlist_selected_backcolor_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxRomlist_selected_backcolor.DoubleClick, TextBoxRomlist_selected_backcolor.Click
         If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
@@ -2712,17 +2880,19 @@
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Background
-    Private Sub ButtonBackgroundReset_Click(sender As Object, e As EventArgs) Handles ButtonBackgroundReset.Click
 
+    Private Sub PanelBackground_MouseUp(sender As Object, e As MouseEventArgs) Handles PanelBackground.MouseUp
+        TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPageBackground")
     End Sub
 
     Private Sub ButtonBackgroundPath_Click(sender As Object, e As EventArgs) Handles ButtonBackgroundPath.Click
         Dim cartella As String ' = ""
 
-        FolderBrowserDialog1.ShowDialog()
-        cartella = FolderBrowserDialog1.SelectedPath
-        LabelBackgroundPath2.Text = cartella
-        LabelBackgroundPath2.Refresh()
+        If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
+            cartella = FolderBrowserDialog1.SelectedPath
+            LabelBackgroundPath2.Text = cartella
+            LabelBackgroundPath2.Refresh()
+        End If
     End Sub
 
     Private Sub ButtonBackgroundAnimator_Click(sender As Object, e As EventArgs) Handles ButtonBackgroundAnimator.Click
@@ -2737,93 +2907,48 @@
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Snapshot
-    Private Sub ButtonSnapshotReset_Click(sender As Object, e As EventArgs) Handles ButtonSnapshotReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Cabinet
-    Private Sub ButtonCabinetReset_Click(sender As Object, e As EventArgs) Handles ButtonCabinetReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Marquee
-    Private Sub ButtonMarqueeReset_Click(sender As Object, e As EventArgs) Handles ButtonMarqueeReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Romcounter
-    Private Sub ButtonRomcounterReset_Click(sender As Object, e As EventArgs) Handles ButtonRomcounterReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Platformname
-    Private Sub ButtonPlatformnameReset_Click(sender As Object, e As EventArgs) Handles ButtonPlatformnameReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Emulatorname
-    Private Sub ButtonEmulatornameReset_Click(sender As Object, e As EventArgs) Handles ButtonEmulatornameReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Gamelistname
-    Private Sub ButtonGamelistnameReset_Click(sender As Object, e As EventArgs) Handles ButtonGamelistnameReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Romname
-    Private Sub ButtonRomnameReset_Click(sender As Object, e As EventArgs) Handles ButtonRomnameReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Romdescription
-    Private Sub ButtonRomdescriptionReset_Click(sender As Object, e As EventArgs) Handles ButtonRomdescriptionReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Romdescription
-    Private Sub ButtonRommanufacturerReset_Click(sender As Object, e As EventArgs) Handles ButtonRommanufacturerReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Romdisplaytype
-    Private Sub ButtonRomdisplaytypeReset_Click(sender As Object, e As EventArgs) Handles ButtonRomdisplaytypeReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Rominputcontrol
-    Private Sub ButtonRominputcontrolReset_Click(sender As Object, e As EventArgs) Handles ButtonRominputcontrolReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Romstatus
-    Private Sub ButtonRomstatusReset_Click(sender As Object, e As EventArgs) Handles ButtonRomstatusReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Romcategory
-    Private Sub ButtonRomcategoryReset_Click(sender As Object, e As EventArgs) Handles ButtonRomcategoryReset.Click
-
-    End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Menu
-    Private Sub ButtonMenuReset_Click(sender As Object, e As EventArgs) Handles ButtonMenuReset.Click
-
-    End Sub
 
     Private Sub TextBoxMenu_selected_backcolor_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxMenu_selected_backcolor.DoubleClick, TextBoxMenu_selected_backcolor.Click
         If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
