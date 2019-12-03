@@ -19,6 +19,48 @@
     Dim pannelloRomlistSize As Size
 
     Private Sub FormFLM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        '------ test imagebackground dinamica -----
+
+        'Dim immagineTopH As Integer = Int(Me.Height * 10 / 100)
+        'Dim immagineTopW As Integer
+        'Dim immagineBottomH As Integer = Int(Me.Height * 15 / 100)
+        'Dim immagineBottomW As Integer
+        'Dim immagineCenterH As Integer = Int(Me.Height / 2)
+        'Dim immagineCenterW As Integer
+        'Dim immagineTop As Image = New Bitmap(Me.Width, immagineTopH)
+        'Dim immagineCenter As Image '= New Bitmap(Me.Width, 100)
+        'Dim immagineBottom As Image = New Bitmap(Me.Width, immagineBottomH)
+        'Dim immagineFinale As Image = New Bitmap(Me.Width, Me.Height)
+
+        'Dim gr As Graphics = Graphics.FromImage(immagineFinale)
+
+        'immagineTop = Image.FromFile("img\top.jpg")
+        'immagineCenter = Image.FromFile("img\center.png")
+        'immagineBottom = Image.FromFile("img\bottom.jpg")
+        'immagineTopW = Int((Me.Width - immagineTop.Width) / 2)
+        'immagineCenterW = Int((Me.Width - immagineCenter.Width) / 2)
+        'immagineBottomW = Int((Me.Width - immagineBottom.Width) / 2)
+
+        'Dim posizioneCenter As Integer = 0 'Int(Me.Width * 20 / 100)
+
+        'For i As Integer = 0 To Int(Me.Height / 100)
+        '    gr.DrawImage(immagineCenter, immagineCenterW, posizioneCenter, immagineCenter.Width, immagineCenter.Height)
+        '    posizioneCenter += 100
+        'Next
+
+        'gr.DrawImage(immagineTop, immagineTopW, 0, immagineTop.Width, immagineTopH)
+        'gr.DrawImage(immagineBottom, immagineBottomW, Me.Height - immagineBottomH, immagineBottom.Width, immagineBottomH)
+
+        'Try
+        '    immagineFinale.Save("test" & immagineFinale.Width & "-" & immagineFinale.Height & ".bmp")
+        'Catch ex As Exception
+
+        'End Try
+
+        'Me.BackgroundImage = ClassUtility.ChangeOpacity(immagineFinale, 0.5)
+        'Me.Refresh()
+
+        '------ fine test imagebackground dinamica -----
         Me.BackgroundImage = ClassUtility.ChangeOpacity(Me.BackgroundImage, 0.5)
 
         formDimensioni = Me.Size
@@ -334,6 +376,47 @@
     End Sub
 
     Private Sub FormFLM_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        '------ test imagebackground dinamica -----
+        'Dim immagineTopH As Integer = Int(Me.Height * 10 / 100)
+        'Dim immagineTopW As Integer
+        'Dim immagineBottomH As Integer = Int(Me.Height * 15 / 100)
+        'Dim immagineBottomW As Integer
+        'Dim immagineCenterH As Integer = Int(Me.Height / 2)
+        'Dim immagineCenterW As Integer
+        'Dim immagineTop As Image = New Bitmap(Me.Width, immagineTopH)
+        'Dim immagineCenter As Image '= New Bitmap(Me.Width, 100)
+        'Dim immagineBottom As Image = New Bitmap(Me.Width, immagineBottomH)
+        'Dim immagineFinale As Image = New Bitmap(Me.Width, Me.Height)
+
+        'Dim gr As Graphics = Graphics.FromImage(immagineFinale)
+
+        'immagineTop = Image.FromFile("img\top.jpg")
+        'immagineCenter = Image.FromFile("img\center.png")
+        'immagineBottom = Image.FromFile("img\bottom.jpg")
+        'immagineTopW = Int((Me.Width - immagineTop.Width) / 2)
+        'immagineCenterW = Int((Me.Width - immagineCenter.Width) / 2)
+        'immagineBottomW = Int((Me.Width - immagineBottom.Width) / 2)
+
+        'Dim posizioneCenter As Integer = 0 'Int(Me.Width * 20 / 100)
+
+        'For i As Integer = 0 To Int(Me.Height / 100)
+        '    gr.DrawImage(immagineCenter, immagineCenterW, posizioneCenter, immagineCenter.Width, immagineCenter.Height)
+        '    posizioneCenter += 100
+        'Next
+
+        'gr.DrawImage(immagineTop, immagineTopW, 0, immagineTop.Width, immagineTopH)
+        'gr.DrawImage(immagineBottom, immagineBottomW, Me.Height - immagineBottomH, immagineBottom.Width, immagineBottomH)
+
+        'Try
+        '    immagineFinale.Save("test" & immagineFinale.Width & "-" & immagineFinale.Height & ".bmp")
+        'Catch ex As Exception
+
+        'End Try
+
+        'Me.BackgroundImage = ClassUtility.ChangeOpacity(immagineFinale, 0.5)
+        'Me.Refresh()
+
+        '------ fine test imagebackground dinamica -----
 
         If Me.Size.Width < 1030 Then
             Me.Size = New Size(1030, Me.Size.Height)

@@ -536,6 +536,7 @@ Partial Class FormFLM
         Me.GroupBoxProprietà.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GroupBoxProprietà.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBoxProprietà.Controls.Add(Me.TabControlProprietà)
+        Me.GroupBoxProprietà.ForeColor = System.Drawing.SystemColors.ControlText
         Me.GroupBoxProprietà.Location = New System.Drawing.Point(12, 28)
         Me.GroupBoxProprietà.Name = "GroupBoxProprietà"
         Me.GroupBoxProprietà.Size = New System.Drawing.Size(223, 480)
@@ -5256,8 +5257,8 @@ Partial Class FormFLM
         'LabelZoomTesto
         '
         Me.LabelZoomTesto.AutoSize = True
-        Me.LabelZoomTesto.BackColor = System.Drawing.SystemColors.Control
-        Me.LabelZoomTesto.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.LabelZoomTesto.BackColor = System.Drawing.Color.Transparent
+        Me.LabelZoomTesto.ForeColor = System.Drawing.Color.Chartreuse
         Me.LabelZoomTesto.Location = New System.Drawing.Point(23, 407)
         Me.LabelZoomTesto.Name = "LabelZoomTesto"
         Me.LabelZoomTesto.Size = New System.Drawing.Size(34, 13)
@@ -5267,7 +5268,9 @@ Partial Class FormFLM
         'LabelPercorso
         '
         Me.LabelPercorso.AutoSize = True
-        Me.LabelPercorso.Location = New System.Drawing.Point(131, 0)
+        Me.LabelPercorso.BackColor = System.Drawing.Color.Transparent
+        Me.LabelPercorso.ForeColor = System.Drawing.Color.Chartreuse
+        Me.LabelPercorso.Location = New System.Drawing.Point(305, 2)
         Me.LabelPercorso.Name = "LabelPercorso"
         Me.LabelPercorso.Size = New System.Drawing.Size(49, 13)
         Me.LabelPercorso.TabIndex = 6
@@ -5275,18 +5278,20 @@ Partial Class FormFLM
         '
         'ButtonCarica
         '
+        Me.ButtonCarica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonCarica.Location = New System.Drawing.Point(12, 2)
         Me.ButtonCarica.Name = "ButtonCarica"
-        Me.ButtonCarica.Size = New System.Drawing.Size(48, 23)
+        Me.ButtonCarica.Size = New System.Drawing.Size(58, 23)
         Me.ButtonCarica.TabIndex = 5
         Me.ButtonCarica.Text = "Carica"
         Me.ButtonCarica.UseVisualStyleBackColor = True
         '
         'ButtonPubblica
         '
-        Me.ButtonPubblica.Location = New System.Drawing.Point(66, 2)
+        Me.ButtonPubblica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonPubblica.Location = New System.Drawing.Point(76, 2)
         Me.ButtonPubblica.Name = "ButtonPubblica"
-        Me.ButtonPubblica.Size = New System.Drawing.Size(59, 23)
+        Me.ButtonPubblica.Size = New System.Drawing.Size(63, 23)
         Me.ButtonPubblica.TabIndex = 4
         Me.ButtonPubblica.Text = "Pubblica"
         Me.ButtonPubblica.UseVisualStyleBackColor = True
@@ -5294,6 +5299,7 @@ Partial Class FormFLM
         'ButtonAnteprima
         '
         Me.ButtonAnteprima.Enabled = False
+        Me.ButtonAnteprima.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonAnteprima.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ButtonAnteprima.Location = New System.Drawing.Point(20, 439)
         Me.ButtonAnteprima.Name = "ButtonAnteprima"
@@ -5304,8 +5310,8 @@ Partial Class FormFLM
         '
         'LabelZoom
         '
-        Me.LabelZoom.BackColor = System.Drawing.SystemColors.Control
-        Me.LabelZoom.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.LabelZoom.BackColor = System.Drawing.Color.Transparent
+        Me.LabelZoom.ForeColor = System.Drawing.Color.Chartreuse
         Me.LabelZoom.Location = New System.Drawing.Point(80, 407)
         Me.LabelZoom.Name = "LabelZoom"
         Me.LabelZoom.Size = New System.Drawing.Size(33, 13)
@@ -5342,9 +5348,12 @@ Partial Class FormFLM
         '
         'TextBoxZoom
         '
-        Me.TextBoxZoom.Location = New System.Drawing.Point(63, 404)
+        Me.TextBoxZoom.BackColor = System.Drawing.Color.Black
+        Me.TextBoxZoom.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBoxZoom.ForeColor = System.Drawing.Color.Chartreuse
+        Me.TextBoxZoom.Location = New System.Drawing.Point(63, 406)
         Me.TextBoxZoom.Name = "TextBoxZoom"
-        Me.TextBoxZoom.Size = New System.Drawing.Size(38, 20)
+        Me.TextBoxZoom.Size = New System.Drawing.Size(38, 13)
         Me.TextBoxZoom.TabIndex = 8
         Me.TextBoxZoom.Text = "100"
         Me.TextBoxZoom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -5369,7 +5378,7 @@ Partial Class FormFLM
         Me.LabelPannelloMainX.AutoSize = True
         Me.LabelPannelloMainX.BackColor = System.Drawing.Color.Transparent
         Me.LabelPannelloMainX.ForeColor = System.Drawing.Color.Chartreuse
-        Me.LabelPannelloMainX.Location = New System.Drawing.Point(478, 7)
+        Me.LabelPannelloMainX.Location = New System.Drawing.Point(516, 7)
         Me.LabelPannelloMainX.Name = "LabelPannelloMainX"
         Me.LabelPannelloMainX.Size = New System.Drawing.Size(95, 13)
         Me.LabelPannelloMainX.TabIndex = 28
@@ -5398,6 +5407,8 @@ Partial Class FormFLM
         'LabelScreenRisoluzione
         '
         Me.LabelScreenRisoluzione.AutoSize = True
+        Me.LabelScreenRisoluzione.BackColor = System.Drawing.Color.Transparent
+        Me.LabelScreenRisoluzione.ForeColor = System.Drawing.Color.Chartreuse
         Me.LabelScreenRisoluzione.Location = New System.Drawing.Point(238, 12)
         Me.LabelScreenRisoluzione.Name = "LabelScreenRisoluzione"
         Me.LabelScreenRisoluzione.Size = New System.Drawing.Size(30, 13)
