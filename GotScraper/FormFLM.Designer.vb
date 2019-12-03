@@ -93,6 +93,8 @@ Partial Class FormFLM
         Me.LabelRomlist_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxRomlistVisibile = New System.Windows.Forms.CheckBox()
         Me.TabPageBackground = New System.Windows.Forms.TabPage()
+        Me.TrackBarPanelBackgroundImage = New System.Windows.Forms.TrackBar()
+        Me.CheckBoxBackgroundImage = New System.Windows.Forms.CheckBox()
         Me.TextBoxBackground_y_pos = New System.Windows.Forms.TextBox()
         Me.LabelBackground_y_pos = New System.Windows.Forms.Label()
         Me.TextBoxBackground_x_pos = New System.Windows.Forms.TextBox()
@@ -466,6 +468,7 @@ Partial Class FormFLM
         Me.LabelZoom = New System.Windows.Forms.Label()
         Me.TrackBarZoom = New System.Windows.Forms.TrackBar()
         Me.GroupBoxObj = New System.Windows.Forms.GroupBox()
+        Me.TextBoxZoom = New System.Windows.Forms.TextBox()
         Me.ListBoxObj = New System.Windows.Forms.ListBox()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
@@ -503,6 +506,7 @@ Partial Class FormFLM
         Me.TabPageScreen.SuspendLayout()
         Me.TabPageRomlist.SuspendLayout()
         Me.TabPageBackground.SuspendLayout()
+        CType(Me.TrackBarPanelBackgroundImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageSnapshot.SuspendLayout()
         Me.TabPageCabinet.SuspendLayout()
         Me.TabPageMarquee.SuspendLayout()
@@ -530,6 +534,7 @@ Partial Class FormFLM
         'GroupBoxProprietà
         '
         Me.GroupBoxProprietà.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GroupBoxProprietà.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBoxProprietà.Controls.Add(Me.TabControlProprietà)
         Me.GroupBoxProprietà.Location = New System.Drawing.Point(12, 28)
         Me.GroupBoxProprietà.Name = "GroupBoxProprietà"
@@ -1279,6 +1284,9 @@ Partial Class FormFLM
         '
         'TabPageBackground
         '
+        Me.TabPageBackground.BackColor = System.Drawing.Color.White
+        Me.TabPageBackground.Controls.Add(Me.TrackBarPanelBackgroundImage)
+        Me.TabPageBackground.Controls.Add(Me.CheckBoxBackgroundImage)
         Me.TabPageBackground.Controls.Add(Me.TextBoxBackground_y_pos)
         Me.TabPageBackground.Controls.Add(Me.LabelBackground_y_pos)
         Me.TabPageBackground.Controls.Add(Me.TextBoxBackground_x_pos)
@@ -1303,7 +1311,27 @@ Partial Class FormFLM
         Me.TabPageBackground.Size = New System.Drawing.Size(209, 435)
         Me.TabPageBackground.TabIndex = 4
         Me.TabPageBackground.Text = "Background"
-        Me.TabPageBackground.UseVisualStyleBackColor = True
+        '
+        'TrackBarPanelBackgroundImage
+        '
+        Me.TrackBarPanelBackgroundImage.Location = New System.Drawing.Point(50, 253)
+        Me.TrackBarPanelBackgroundImage.Maximum = 100
+        Me.TrackBarPanelBackgroundImage.Name = "TrackBarPanelBackgroundImage"
+        Me.TrackBarPanelBackgroundImage.Size = New System.Drawing.Size(109, 45)
+        Me.TrackBarPanelBackgroundImage.TabIndex = 57
+        Me.TrackBarPanelBackgroundImage.Value = 30
+        '
+        'CheckBoxBackgroundImage
+        '
+        Me.CheckBoxBackgroundImage.AutoSize = True
+        Me.CheckBoxBackgroundImage.Checked = True
+        Me.CheckBoxBackgroundImage.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxBackgroundImage.Location = New System.Drawing.Point(3, 230)
+        Me.CheckBoxBackgroundImage.Name = "CheckBoxBackgroundImage"
+        Me.CheckBoxBackgroundImage.Size = New System.Drawing.Size(113, 17)
+        Me.CheckBoxBackgroundImage.TabIndex = 56
+        Me.CheckBoxBackgroundImage.Text = "BackgroundImage"
+        Me.CheckBoxBackgroundImage.UseVisualStyleBackColor = True
         '
         'TextBoxBackground_y_pos
         '
@@ -1355,7 +1383,7 @@ Partial Class FormFLM
         '
         'ButtonBackgroundPath
         '
-        Me.ButtonBackgroundPath.Location = New System.Drawing.Point(96, 322)
+        Me.ButtonBackgroundPath.Location = New System.Drawing.Point(96, 389)
         Me.ButtonBackgroundPath.Name = "ButtonBackgroundPath"
         Me.ButtonBackgroundPath.Size = New System.Drawing.Size(110, 23)
         Me.ButtonBackgroundPath.TabIndex = 50
@@ -1365,7 +1393,7 @@ Partial Class FormFLM
         'LabelBackgroundPath2
         '
         Me.LabelBackgroundPath2.AutoSize = True
-        Me.LabelBackgroundPath2.Location = New System.Drawing.Point(3, 353)
+        Me.LabelBackgroundPath2.Location = New System.Drawing.Point(3, 420)
         Me.LabelBackgroundPath2.Name = "LabelBackgroundPath2"
         Me.LabelBackgroundPath2.Size = New System.Drawing.Size(45, 13)
         Me.LabelBackgroundPath2.TabIndex = 49
@@ -1374,7 +1402,7 @@ Partial Class FormFLM
         'LabelBackgroundPath
         '
         Me.LabelBackgroundPath.AutoSize = True
-        Me.LabelBackgroundPath.Location = New System.Drawing.Point(3, 327)
+        Me.LabelBackgroundPath.Location = New System.Drawing.Point(3, 394)
         Me.LabelBackgroundPath.Name = "LabelBackgroundPath"
         Me.LabelBackgroundPath.Size = New System.Drawing.Size(87, 13)
         Me.LabelBackgroundPath.TabIndex = 48
@@ -1382,7 +1410,7 @@ Partial Class FormFLM
         '
         'ButtonBackgroundAnimator
         '
-        Me.ButtonBackgroundAnimator.Location = New System.Drawing.Point(6, 263)
+        Me.ButtonBackgroundAnimator.Location = New System.Drawing.Point(41, 330)
         Me.ButtonBackgroundAnimator.Name = "ButtonBackgroundAnimator"
         Me.ButtonBackgroundAnimator.Size = New System.Drawing.Size(117, 53)
         Me.ButtonBackgroundAnimator.TabIndex = 33
@@ -5228,6 +5256,8 @@ Partial Class FormFLM
         'LabelZoomTesto
         '
         Me.LabelZoomTesto.AutoSize = True
+        Me.LabelZoomTesto.BackColor = System.Drawing.SystemColors.Control
+        Me.LabelZoomTesto.ForeColor = System.Drawing.SystemColors.ControlText
         Me.LabelZoomTesto.Location = New System.Drawing.Point(23, 407)
         Me.LabelZoomTesto.Name = "LabelZoomTesto"
         Me.LabelZoomTesto.Size = New System.Drawing.Size(34, 13)
@@ -5264,25 +5294,28 @@ Partial Class FormFLM
         'ButtonAnteprima
         '
         Me.ButtonAnteprima.Enabled = False
-        Me.ButtonAnteprima.Location = New System.Drawing.Point(26, 439)
+        Me.ButtonAnteprima.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.ButtonAnteprima.Location = New System.Drawing.Point(20, 439)
         Me.ButtonAnteprima.Name = "ButtonAnteprima"
-        Me.ButtonAnteprima.Size = New System.Drawing.Size(75, 48)
+        Me.ButtonAnteprima.Size = New System.Drawing.Size(80, 48)
         Me.ButtonAnteprima.TabIndex = 3
         Me.ButtonAnteprima.Text = "Anteprima"
         Me.ButtonAnteprima.UseVisualStyleBackColor = True
         '
         'LabelZoom
         '
-        Me.LabelZoom.AutoSize = True
-        Me.LabelZoom.Location = New System.Drawing.Point(63, 407)
+        Me.LabelZoom.BackColor = System.Drawing.SystemColors.Control
+        Me.LabelZoom.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.LabelZoom.Location = New System.Drawing.Point(80, 407)
         Me.LabelZoom.Name = "LabelZoom"
         Me.LabelZoom.Size = New System.Drawing.Size(33, 13)
         Me.LabelZoom.TabIndex = 2
         Me.LabelZoom.Text = "100%"
+        Me.LabelZoom.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TrackBarZoom
         '
-        Me.TrackBarZoom.Location = New System.Drawing.Point(10, 359)
+        Me.TrackBarZoom.Location = New System.Drawing.Point(6, 359)
         Me.TrackBarZoom.Maximum = 200
         Me.TrackBarZoom.Name = "TrackBarZoom"
         Me.TrackBarZoom.Size = New System.Drawing.Size(104, 45)
@@ -5292,17 +5325,29 @@ Partial Class FormFLM
         'GroupBoxObj
         '
         Me.GroupBoxObj.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GroupBoxObj.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBoxObj.Controls.Add(Me.TextBoxZoom)
         Me.GroupBoxObj.Controls.Add(Me.LabelZoomTesto)
         Me.GroupBoxObj.Controls.Add(Me.ListBoxObj)
         Me.GroupBoxObj.Controls.Add(Me.TrackBarZoom)
         Me.GroupBoxObj.Controls.Add(Me.LabelZoom)
         Me.GroupBoxObj.Controls.Add(Me.ButtonAnteprima)
+        Me.GroupBoxObj.ForeColor = System.Drawing.Color.Chartreuse
         Me.GroupBoxObj.Location = New System.Drawing.Point(887, 12)
         Me.GroupBoxObj.Name = "GroupBoxObj"
         Me.GroupBoxObj.Size = New System.Drawing.Size(120, 496)
         Me.GroupBoxObj.TabIndex = 1
         Me.GroupBoxObj.TabStop = False
         Me.GroupBoxObj.Text = "Obj/Media"
+        '
+        'TextBoxZoom
+        '
+        Me.TextBoxZoom.Location = New System.Drawing.Point(63, 404)
+        Me.TextBoxZoom.Name = "TextBoxZoom"
+        Me.TextBoxZoom.Size = New System.Drawing.Size(38, 20)
+        Me.TextBoxZoom.TabIndex = 8
+        Me.TextBoxZoom.Text = "100"
+        Me.TextBoxZoom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'ListBoxObj
         '
@@ -5322,7 +5367,9 @@ Partial Class FormFLM
         'LabelPannelloMainX
         '
         Me.LabelPannelloMainX.AutoSize = True
-        Me.LabelPannelloMainX.Location = New System.Drawing.Point(546, 7)
+        Me.LabelPannelloMainX.BackColor = System.Drawing.Color.Transparent
+        Me.LabelPannelloMainX.ForeColor = System.Drawing.Color.Chartreuse
+        Me.LabelPannelloMainX.Location = New System.Drawing.Point(478, 7)
         Me.LabelPannelloMainX.Name = "LabelPannelloMainX"
         Me.LabelPannelloMainX.Size = New System.Drawing.Size(95, 13)
         Me.LabelPannelloMainX.TabIndex = 28
@@ -5331,7 +5378,9 @@ Partial Class FormFLM
         'LabelPannelloMainY
         '
         Me.LabelPannelloMainY.AutoSize = True
-        Me.LabelPannelloMainY.Location = New System.Drawing.Point(685, 7)
+        Me.LabelPannelloMainY.BackColor = System.Drawing.Color.Transparent
+        Me.LabelPannelloMainY.ForeColor = System.Drawing.Color.Chartreuse
+        Me.LabelPannelloMainY.Location = New System.Drawing.Point(617, 7)
         Me.LabelPannelloMainY.Name = "LabelPannelloMainY"
         Me.LabelPannelloMainY.Size = New System.Drawing.Size(95, 13)
         Me.LabelPannelloMainY.TabIndex = 29
@@ -5514,6 +5563,7 @@ Partial Class FormFLM
         'PanelBackground
         '
         Me.PanelBackground.BackColor = System.Drawing.Color.White
+        Me.PanelBackground.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PanelBackground.Location = New System.Drawing.Point(0, 0)
         Me.PanelBackground.Name = "PanelBackground"
         Me.PanelBackground.Size = New System.Drawing.Size(640, 480)
@@ -5539,6 +5589,8 @@ Partial Class FormFLM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.BarTop
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1014, 511)
         Me.Controls.Add(Me.PanelMainMaster)
         Me.Controls.Add(Me.ButtonPannelloMainReset)
@@ -5551,7 +5603,7 @@ Partial Class FormFLM
         Me.Controls.Add(Me.ButtonPubblica)
         Me.Controls.Add(Me.GroupBoxProprietà)
         Me.Name = "FormFLM"
-        Me.Text = "FLM - F.E.E.L. Layout Manager - Alpha 2 by Gothrek"
+        Me.Text = "FLM - F.E.E.L. Layout Manager - Alpha 3 by Gothrek"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.GroupBoxProprietà.ResumeLayout(False)
         Me.TabControlProprietà.ResumeLayout(False)
@@ -5566,6 +5618,7 @@ Partial Class FormFLM
         Me.TabPageRomlist.PerformLayout()
         Me.TabPageBackground.ResumeLayout(False)
         Me.TabPageBackground.PerformLayout()
+        CType(Me.TrackBarPanelBackgroundImage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageSnapshot.ResumeLayout(False)
         Me.TabPageSnapshot.PerformLayout()
         Me.TabPageCabinet.ResumeLayout(False)
@@ -6084,4 +6137,7 @@ Partial Class FormFLM
     Friend WithEvents TextBoxBackground_x_pos As TextBox
     Friend WithEvents LabelBackground_x_pos As Label
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents TextBoxZoom As TextBox
+    Friend WithEvents CheckBoxBackgroundImage As CheckBox
+    Friend WithEvents TrackBarPanelBackgroundImage As TrackBar
 End Class

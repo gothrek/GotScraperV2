@@ -1,5 +1,6 @@
 ﻿Imports System.Security.Cryptography
 Imports System.Text
+Imports System.Drawing.Imaging
 
 Public Class ClassUtility
     Public Function GetCRC32(ByVal fileName As String) As String
@@ -71,6 +72,22 @@ Public Class ClassUtility
 
         Return sBuilder.ToString
 
+    End Function
+
+    Public Shared Function ChangeOpacity(ByVal img As Image, ByVal opacityvalue As Single) As Bitmap
+        Dim bmp As New Bitmap(img.Width, img.Height)
+        Dim graphics__1 As Graphics = Graphics.FromImage(bmp)
+        Dim colormatrix As New ColorMatrix
+
+        colormatrix.Matrix33 = opacityvalue
+
+        Dim imgAttribute As New ImageAttributes
+
+        imgAttribute.SetColorMatrix(colormatrix, ColorMatrixFlag.[Default], ColorAdjustType.Bitmap)
+        graphics__1.DrawImage(img, New Rectangle(0, 0, bmp.Width, bmp.Height), 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, imgAttribute)
+        graphics__1.Dispose()
+
+        Return bmp
     End Function
 
 End Class

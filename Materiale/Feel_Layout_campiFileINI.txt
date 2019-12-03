@@ -30,10 +30,10 @@ romlist_disable_stars                   0
 
 background_width                        640
 background_height                       480
-background_ontop   
+background_ontop   						0
 background_frame_duration_ms            100
 background_repeat_delay_ms              100  
-                  0
+
 snapshot_x_pos                          47
 snapshot_y_pos                          43
 snapshot_width                          280
@@ -200,10 +200,10 @@ menu_selected_font_color                255, 255, 0, 255
 menu_selected_backcolor                 11, 86, 162, 200
 menu_show_sidebar                       1
 
-bezel_frame_duration_ms                 100
-bezel_repeat_delay_ms                   10000
-
 actors_frame_duration_ms                150
 actors_repeat_delay_ms                  100
+
+bezel_frame_duration_ms                 100
+bezel_repeat_delay_ms                   10000
 
 show_extended_messages                  0

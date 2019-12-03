@@ -19,6 +19,8 @@
     Dim pannelloRomlistSize As Size
 
     Private Sub FormFLM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.BackgroundImage = ClassUtility.ChangeOpacity(Me.BackgroundImage, 0.5)
+
         formDimensioni = Me.Size
 
         LabelPercorso.Text = feelPath
@@ -386,8 +388,6 @@
 
             dtOptionsLayout.Rows.Add()
 
-
-
             file = My.Computer.FileSystem.OpenTextFileReader(cartella & "\" & "layout.ini")
 
             While Not file.EndOfStream
@@ -402,7 +402,6 @@
                 End Try
             End While
 
-            'TODO gestire modifiche font dopo il caricamento
             Try
                 TextBoxSound_fx_list.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_list")
             Catch ex As Exception
@@ -433,7 +432,6 @@
 
             Try
                 TextBoxSound_fx_volume.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_volume")
-
             Catch ex As Exception
 
             End Try
@@ -446,7 +444,6 @@
 
             Try
                 TextBoxMusic_volume.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("music_volume")
-
             Catch ex As Exception
 
             End Try
@@ -556,7 +553,6 @@
 
             Try
                 CheckBoxRomlist_disable_stars.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_disable_stars"))
-
             Catch ex As Exception
 
             End Try
@@ -587,7 +583,17 @@
 
             Try
                 TextBoxBackground_repeat_delay_ms.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("background_repeat_delay_ms")
+            Catch ex As Exception
 
+            End Try
+
+            Try
+                Dim bm As Bitmap
+
+                bm = ClassUtility.ChangeOpacity(Image.FromFile(LabelPercorso.Text & "\main.png"), TrackBarPanelBackgroundImage.Value / 100)
+
+                PanelBackground.BackgroundImage = bm
+                PanelBackground.Refresh()
             Catch ex As Exception
 
             End Try
@@ -624,7 +630,6 @@
 
             Try
                 CheckBoxSnapshot_blackbackground.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("snapshot_blackbackground"))
-
             Catch ex As Exception
 
             End Try
@@ -667,7 +672,6 @@
 
             Try
                 CheckBoxCabinet_blackbackground.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("cabinet_blackbackground"))
-
             Catch ex As Exception
 
             End Try
@@ -777,7 +781,6 @@
 
             Try
                 TextBoxRomcounter_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_text_align")
-
             Catch ex As Exception
 
                 End Try
@@ -844,7 +847,6 @@
 
             Try
                 TextBoxPlatformname_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_text_align")
-
             Catch ex As Exception
 
                 End Try
@@ -911,7 +913,6 @@
 
             Try
                 TextBoxEmulatorname_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_text_align")
-
             Catch ex As Exception
 
                 End Try
@@ -978,7 +979,6 @@
 
             Try
                 TextBoxGamelistname_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_text_align")
-
             Catch ex As Exception
 
                 End Try
@@ -1045,7 +1045,6 @@
 
             Try
                 TextBoxRomname_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_text_align")
-
             Catch ex As Exception
 
             End Try
@@ -1112,7 +1111,6 @@
 
             Try
                 TextBoxRomdescription_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_text_align")
-
             Catch ex As Exception
 
             End Try
@@ -1179,7 +1177,6 @@
 
             Try
                 TextBoxRommanufacturer_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_text_align")
-
             Catch ex As Exception
 
             End Try
@@ -1246,7 +1243,6 @@
 
             Try
                 TextBoxRomdisplaytype_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_text_align")
-
             Catch ex As Exception
 
             End Try
@@ -1313,7 +1309,6 @@
 
             Try
                 TextBoxRominputcontrol_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_text_align")
-
             Catch ex As Exception
 
             End Try
@@ -1380,7 +1375,6 @@
 
             Try
                 TextBoxRomstatus_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_text_align")
-
             Catch ex As Exception
 
             End Try
@@ -1447,7 +1441,6 @@
 
             Try
                 TextBoxRomcategory_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_text_align")
-
             Catch ex As Exception
 
             End Try
@@ -1508,7 +1501,6 @@
 
             Try
                 CheckBoxMenu_show_sidebar.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("menu_show_sidebar"))
-
             Catch ex As Exception
 
             End Try
@@ -1521,7 +1513,6 @@
 
             Try
                 TextBoxActors_repeat_delay_ms.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("actors_repeat_delay_ms")
-
             Catch ex As Exception
 
             End Try
@@ -1534,7 +1525,6 @@
 
             Try
                 TextBoxBezel_repeat_delay_ms.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("bezel_repeat_delay_ms")
-
             Catch ex As Exception
 
             End Try
@@ -1860,6 +1850,8 @@
 
         LabelZoom.Text = sender.value & "%"
         LabelZoom.Refresh()
+        TextBoxZoom.Text = sender.value
+        TextBoxZoom.Refresh()
 
         PanelMain.Size = New Size(Int(Val(TextBoxScreen_res_x.Text) * sender.value / 100), Int(Val(TextBoxScreen_res_y.Text) * sender.value / 100))
         For Each controllo As Object In PanelMain.Controls
@@ -1873,6 +1865,20 @@
         Next
         PanelMain.Refresh()
 
+    End Sub
+
+    Private Sub TextBoxZoom_TextChanged(sender As Object, e As EventArgs) Handles TextBoxZoom.TextChanged
+        Try
+            TrackBarZoom.Value = Int(sender.text)
+            TrackBarZoom.Refresh()
+
+            LabelZoom.Text = TrackBarZoom.Value & "%"
+            LabelZoom.Refresh()
+
+            'sender.text &= "%"
+        Catch ex As Exception
+            sender.text = "100"
+        End Try
     End Sub
 
     '----------------------------------------------------------------------------------------------
@@ -2885,6 +2891,45 @@
         TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPageBackground")
     End Sub
 
+    Private Sub CheckBoxBackgroundImage_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxBackgroundImage.CheckedChanged
+        If CheckBoxBackgroundImage.Checked Then
+            Try
+                Dim bm As Bitmap
+
+                bm = ClassUtility.ChangeOpacity(Image.FromFile(LabelPercorso.Text & "\main.png"), 0.3)
+
+                PanelBackground.BackgroundImage = bm
+                PanelBackground.Refresh()
+
+            Catch ex As Exception
+
+            End Try
+        Else
+            PanelBackground.BackgroundImage = Nothing
+            PanelBackground.Refresh()
+        End If
+
+    End Sub
+
+    Private Sub TrackBarPanelBackgroundImage_Scroll(sender As Object, e As EventArgs) Handles TrackBarPanelBackgroundImage.Scroll
+        If CheckBoxBackgroundImage.Checked Then
+            Try
+                Dim bm As Bitmap
+
+                bm = ClassUtility.ChangeOpacity(Image.FromFile(LabelPercorso.Text & "\main.png"), sender.value / 100)
+
+                PanelBackground.BackgroundImage = bm
+                PanelBackground.Refresh()
+
+            Catch ex As Exception
+
+            End Try
+        Else
+            PanelBackground.BackgroundImage = Nothing
+            PanelBackground.Refresh()
+        End If
+    End Sub
+
     Private Sub ButtonBackgroundPath_Click(sender As Object, e As EventArgs) Handles ButtonBackgroundPath.Click
         Dim cartella As String ' = ""
 
@@ -2964,6 +3009,8 @@
             TextBoxMenu_selected_backcolor.Refresh()
         End If
     End Sub
+
+
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Actors
