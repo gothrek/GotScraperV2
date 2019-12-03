@@ -498,6 +498,7 @@ Partial Class FormFLM
         Me.PanelMainMaster = New System.Windows.Forms.Panel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.PanelZoom = New System.Windows.Forms.Panel()
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -529,17 +530,19 @@ Partial Class FormFLM
         Me.GroupBoxObj.SuspendLayout()
         Me.PanelMain.SuspendLayout()
         Me.PanelMainMaster.SuspendLayout()
+        Me.PanelZoom.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBoxProprietà
         '
         Me.GroupBoxProprietà.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.GroupBoxProprietà.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBoxProprietà.BackColor = System.Drawing.Color.Transparent
         Me.GroupBoxProprietà.Controls.Add(Me.TabControlProprietà)
-        Me.GroupBoxProprietà.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.GroupBoxProprietà.Location = New System.Drawing.Point(12, 28)
+        Me.GroupBoxProprietà.ForeColor = System.Drawing.Color.Red
+        Me.GroupBoxProprietà.Location = New System.Drawing.Point(12, 41)
         Me.GroupBoxProprietà.Name = "GroupBoxProprietà"
-        Me.GroupBoxProprietà.Size = New System.Drawing.Size(223, 480)
+        Me.GroupBoxProprietà.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.GroupBoxProprietà.Size = New System.Drawing.Size(256, 708)
         Me.GroupBoxProprietà.TabIndex = 0
         Me.GroupBoxProprietà.TabStop = False
         Me.GroupBoxProprietà.Text = "Proprietà"
@@ -574,27 +577,31 @@ Partial Class FormFLM
         Me.TabControlProprietà.Location = New System.Drawing.Point(3, 16)
         Me.TabControlProprietà.Name = "TabControlProprietà"
         Me.TabControlProprietà.SelectedIndex = 0
-        Me.TabControlProprietà.Size = New System.Drawing.Size(217, 461)
+        Me.TabControlProprietà.Size = New System.Drawing.Size(250, 689)
         Me.TabControlProprietà.TabIndex = 0
         '
         'TabPageProprietà
         '
         Me.TabPageProprietà.Controls.Add(Me.LabelProprietà)
+        Me.TabPageProprietà.ForeColor = System.Drawing.Color.Black
         Me.TabPageProprietà.Location = New System.Drawing.Point(4, 22)
         Me.TabPageProprietà.Name = "TabPageProprietà"
-        Me.TabPageProprietà.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageProprietà.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageProprietà.Size = New System.Drawing.Size(242, 663)
         Me.TabPageProprietà.TabIndex = 23
         Me.TabPageProprietà.Text = "Proprietà"
         Me.TabPageProprietà.UseVisualStyleBackColor = True
         '
         'LabelProprietà
         '
+        Me.LabelProprietà.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelProprietà.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelProprietà.Location = New System.Drawing.Point(20, 105)
+        Me.LabelProprietà.Location = New System.Drawing.Point(0, 0)
         Me.LabelProprietà.Name = "LabelProprietà"
-        Me.LabelProprietà.Size = New System.Drawing.Size(143, 184)
+        Me.LabelProprietà.Size = New System.Drawing.Size(242, 663)
         Me.LabelProprietà.TabIndex = 0
         Me.LabelProprietà.Text = "Seleziona un oggetto sulla dx"
+        Me.LabelProprietà.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TabPageSound
         '
@@ -613,10 +620,12 @@ Partial Class FormFLM
         Me.TabPageSound.Controls.Add(Me.LabelSound_fx_menu)
         Me.TabPageSound.Controls.Add(Me.TextBoxSound_fx_list)
         Me.TabPageSound.Controls.Add(Me.LabelSound_fx_list)
+        Me.TabPageSound.ForeColor = System.Drawing.Color.Black
         Me.TabPageSound.Location = New System.Drawing.Point(4, 22)
         Me.TabPageSound.Name = "TabPageSound"
         Me.TabPageSound.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageSound.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageSound.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageSound.Size = New System.Drawing.Size(242, 663)
         Me.TabPageSound.TabIndex = 0
         Me.TabPageSound.Text = "Sound"
         Me.TabPageSound.UseVisualStyleBackColor = True
@@ -625,7 +634,7 @@ Partial Class FormFLM
         '
         Me.ButtonSoundPath.Location = New System.Drawing.Point(96, 322)
         Me.ButtonSoundPath.Name = "ButtonSoundPath"
-        Me.ButtonSoundPath.Size = New System.Drawing.Size(110, 23)
+        Me.ButtonSoundPath.Size = New System.Drawing.Size(140, 23)
         Me.ButtonSoundPath.TabIndex = 14
         Me.ButtonSoundPath.Text = "Sound path"
         Me.ButtonSoundPath.UseVisualStyleBackColor = True
@@ -650,7 +659,7 @@ Partial Class FormFLM
         '
         'TextBoxSound_fx_volume
         '
-        Me.TextBoxSound_fx_volume.Location = New System.Drawing.Point(134, 201)
+        Me.TextBoxSound_fx_volume.Location = New System.Drawing.Point(164, 201)
         Me.TextBoxSound_fx_volume.Name = "TextBoxSound_fx_volume"
         Me.TextBoxSound_fx_volume.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxSound_fx_volume.TabIndex = 11
@@ -671,7 +680,7 @@ Partial Class FormFLM
         Me.TextBoxSound_fx_startemu.Location = New System.Drawing.Point(6, 175)
         Me.TextBoxSound_fx_startemu.Name = "TextBoxSound_fx_startemu"
         Me.TextBoxSound_fx_startemu.ReadOnly = True
-        Me.TextBoxSound_fx_startemu.Size = New System.Drawing.Size(197, 20)
+        Me.TextBoxSound_fx_startemu.Size = New System.Drawing.Size(230, 20)
         Me.TextBoxSound_fx_startemu.TabIndex = 9
         Me.TextBoxSound_fx_startemu.Text = "goal.wav"
         '
@@ -689,7 +698,7 @@ Partial Class FormFLM
         Me.TextBoxSound_fx_cancel.Location = New System.Drawing.Point(6, 136)
         Me.TextBoxSound_fx_cancel.Name = "TextBoxSound_fx_cancel"
         Me.TextBoxSound_fx_cancel.ReadOnly = True
-        Me.TextBoxSound_fx_cancel.Size = New System.Drawing.Size(197, 20)
+        Me.TextBoxSound_fx_cancel.Size = New System.Drawing.Size(230, 20)
         Me.TextBoxSound_fx_cancel.TabIndex = 7
         Me.TextBoxSound_fx_cancel.Text = "invader_cancel.wav"
         '
@@ -707,7 +716,7 @@ Partial Class FormFLM
         Me.TextBoxSound_fx_confirm.Location = New System.Drawing.Point(6, 97)
         Me.TextBoxSound_fx_confirm.Name = "TextBoxSound_fx_confirm"
         Me.TextBoxSound_fx_confirm.ReadOnly = True
-        Me.TextBoxSound_fx_confirm.Size = New System.Drawing.Size(197, 20)
+        Me.TextBoxSound_fx_confirm.Size = New System.Drawing.Size(230, 20)
         Me.TextBoxSound_fx_confirm.TabIndex = 5
         Me.TextBoxSound_fx_confirm.Text = "invader_confirm.wav"
         '
@@ -725,7 +734,7 @@ Partial Class FormFLM
         Me.TextBoxSound_fx_menu.Location = New System.Drawing.Point(6, 58)
         Me.TextBoxSound_fx_menu.Name = "TextBoxSound_fx_menu"
         Me.TextBoxSound_fx_menu.ReadOnly = True
-        Me.TextBoxSound_fx_menu.Size = New System.Drawing.Size(197, 20)
+        Me.TextBoxSound_fx_menu.Size = New System.Drawing.Size(230, 20)
         Me.TextBoxSound_fx_menu.TabIndex = 3
         Me.TextBoxSound_fx_menu.Text = "invader_menu.wav"
         '
@@ -743,7 +752,7 @@ Partial Class FormFLM
         Me.TextBoxSound_fx_list.Location = New System.Drawing.Point(6, 19)
         Me.TextBoxSound_fx_list.Name = "TextBoxSound_fx_list"
         Me.TextBoxSound_fx_list.ReadOnly = True
-        Me.TextBoxSound_fx_list.Size = New System.Drawing.Size(197, 20)
+        Me.TextBoxSound_fx_list.Size = New System.Drawing.Size(230, 20)
         Me.TextBoxSound_fx_list.TabIndex = 1
         Me.TextBoxSound_fx_list.Text = "invader_list.wav"
         '
@@ -764,10 +773,12 @@ Partial Class FormFLM
         Me.TabPageMusic.Controls.Add(Me.ButtonMusic_path)
         Me.TabPageMusic.Controls.Add(Me.LabelMusicPath)
         Me.TabPageMusic.Controls.Add(Me.LabelMusic_path)
+        Me.TabPageMusic.ForeColor = System.Drawing.Color.Black
         Me.TabPageMusic.Location = New System.Drawing.Point(4, 22)
         Me.TabPageMusic.Name = "TabPageMusic"
         Me.TabPageMusic.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageMusic.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageMusic.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageMusic.Size = New System.Drawing.Size(242, 663)
         Me.TabPageMusic.TabIndex = 1
         Me.TabPageMusic.Text = "Music"
         Me.TabPageMusic.UseVisualStyleBackColor = True
@@ -777,13 +788,13 @@ Partial Class FormFLM
         Me.TextBoxMusic_path.Location = New System.Drawing.Point(66, 32)
         Me.TextBoxMusic_path.Name = "TextBoxMusic_path"
         Me.TextBoxMusic_path.ReadOnly = True
-        Me.TextBoxMusic_path.Size = New System.Drawing.Size(137, 20)
+        Me.TextBoxMusic_path.Size = New System.Drawing.Size(170, 20)
         Me.TextBoxMusic_path.TabIndex = 20
         Me.TextBoxMusic_path.Text = "wizball.mp3"
         '
         'TextBoxMusic_volume
         '
-        Me.TextBoxMusic_volume.Location = New System.Drawing.Point(131, 6)
+        Me.TextBoxMusic_volume.Location = New System.Drawing.Point(164, 6)
         Me.TextBoxMusic_volume.Name = "TextBoxMusic_volume"
         Me.TextBoxMusic_volume.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMusic_volume.TabIndex = 19
@@ -803,7 +814,7 @@ Partial Class FormFLM
         '
         Me.ButtonMusic_path.Location = New System.Drawing.Point(96, 322)
         Me.ButtonMusic_path.Name = "ButtonMusic_path"
-        Me.ButtonMusic_path.Size = New System.Drawing.Size(110, 23)
+        Me.ButtonMusic_path.Size = New System.Drawing.Size(140, 23)
         Me.ButtonMusic_path.TabIndex = 17
         Me.ButtonMusic_path.Text = "Music path"
         Me.ButtonMusic_path.UseVisualStyleBackColor = True
@@ -838,10 +849,12 @@ Partial Class FormFLM
         Me.TabPageScreen.Controls.Add(Me.LabelScreen_res_x)
         Me.TabPageScreen.Controls.Add(Me.LabelRisoluzione)
         Me.TabPageScreen.Controls.Add(Me.ComboBoxRisoluzione)
+        Me.TabPageScreen.ForeColor = System.Drawing.Color.Black
         Me.TabPageScreen.Location = New System.Drawing.Point(4, 22)
         Me.TabPageScreen.Name = "TabPageScreen"
         Me.TabPageScreen.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageScreen.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageScreen.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageScreen.Size = New System.Drawing.Size(242, 663)
         Me.TabPageScreen.TabIndex = 2
         Me.TabPageScreen.Text = "Screen"
         Me.TabPageScreen.UseVisualStyleBackColor = True
@@ -850,7 +863,7 @@ Partial Class FormFLM
         '
         Me.TextBoxScreen_saver_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(96, Byte), Integer), CType(CType(96, Byte), Integer))
         Me.TextBoxScreen_saver_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(159, Byte), Integer))
-        Me.TextBoxScreen_saver_font_color.Location = New System.Drawing.Point(131, 98)
+        Me.TextBoxScreen_saver_font_color.Location = New System.Drawing.Point(164, 98)
         Me.TextBoxScreen_saver_font_color.Name = "TextBoxScreen_saver_font_color"
         Me.TextBoxScreen_saver_font_color.ReadOnly = True
         Me.TextBoxScreen_saver_font_color.Size = New System.Drawing.Size(72, 20)
@@ -872,7 +885,7 @@ Partial Class FormFLM
         '
         Me.TextBoxScreen_saver_backcolor.BackColor = System.Drawing.Color.Black
         Me.TextBoxScreen_saver_backcolor.ForeColor = System.Drawing.Color.White
-        Me.TextBoxScreen_saver_backcolor.Location = New System.Drawing.Point(131, 124)
+        Me.TextBoxScreen_saver_backcolor.Location = New System.Drawing.Point(164, 124)
         Me.TextBoxScreen_saver_backcolor.Name = "TextBoxScreen_saver_backcolor"
         Me.TextBoxScreen_saver_backcolor.ReadOnly = True
         Me.TextBoxScreen_saver_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -892,7 +905,7 @@ Partial Class FormFLM
         'TextBoxScreen_res_y
         '
         Me.TextBoxScreen_res_y.BackColor = System.Drawing.Color.Green
-        Me.TextBoxScreen_res_y.Location = New System.Drawing.Point(131, 72)
+        Me.TextBoxScreen_res_y.Location = New System.Drawing.Point(164, 72)
         Me.TextBoxScreen_res_y.Name = "TextBoxScreen_res_y"
         Me.TextBoxScreen_res_y.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxScreen_res_y.TabIndex = 23
@@ -911,7 +924,7 @@ Partial Class FormFLM
         'TextBoxScreen_res_x
         '
         Me.TextBoxScreen_res_x.BackColor = System.Drawing.Color.Green
-        Me.TextBoxScreen_res_x.Location = New System.Drawing.Point(131, 46)
+        Me.TextBoxScreen_res_x.Location = New System.Drawing.Point(164, 46)
         Me.TextBoxScreen_res_x.Name = "TextBoxScreen_res_x"
         Me.TextBoxScreen_res_x.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxScreen_res_x.TabIndex = 21
@@ -941,7 +954,7 @@ Partial Class FormFLM
         Me.ComboBoxRisoluzione.FormattingEnabled = True
         Me.ComboBoxRisoluzione.Location = New System.Drawing.Point(3, 19)
         Me.ComboBoxRisoluzione.Name = "ComboBoxRisoluzione"
-        Me.ComboBoxRisoluzione.Size = New System.Drawing.Size(126, 21)
+        Me.ComboBoxRisoluzione.Size = New System.Drawing.Size(146, 21)
         Me.ComboBoxRisoluzione.TabIndex = 0
         '
         'TabPageRomlist
@@ -976,9 +989,11 @@ Partial Class FormFLM
         Me.TabPageRomlist.Controls.Add(Me.TextBoxRomlist_x_pos)
         Me.TabPageRomlist.Controls.Add(Me.LabelRomlist_x_pos)
         Me.TabPageRomlist.Controls.Add(Me.CheckBoxRomlistVisibile)
+        Me.TabPageRomlist.ForeColor = System.Drawing.Color.Black
         Me.TabPageRomlist.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomlist.Name = "TabPageRomlist"
-        Me.TabPageRomlist.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageRomlist.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageRomlist.Size = New System.Drawing.Size(242, 663)
         Me.TabPageRomlist.TabIndex = 3
         Me.TabPageRomlist.Text = "Romlist"
         Me.TabPageRomlist.UseVisualStyleBackColor = True
@@ -997,7 +1012,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomlist_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomlist_text_align.Enabled = False
-        Me.TextBoxRomlist_text_align.Location = New System.Drawing.Point(134, 363)
+        Me.TextBoxRomlist_text_align.Location = New System.Drawing.Point(167, 363)
         Me.TextBoxRomlist_text_align.Name = "TextBoxRomlist_text_align"
         Me.TextBoxRomlist_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomlist_text_align.TabIndex = 56
@@ -1017,7 +1032,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomlist_selected_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.TextBoxRomlist_selected_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(59, Byte), Integer))
-        Me.TextBoxRomlist_selected_backcolor.Location = New System.Drawing.Point(134, 337)
+        Me.TextBoxRomlist_selected_backcolor.Location = New System.Drawing.Point(167, 337)
         Me.TextBoxRomlist_selected_backcolor.Name = "TextBoxRomlist_selected_backcolor"
         Me.TextBoxRomlist_selected_backcolor.ReadOnly = True
         Me.TextBoxRomlist_selected_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -1038,7 +1053,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomlist_selected_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.TextBoxRomlist_selected_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(59, Byte), Integer))
-        Me.TextBoxRomlist_selected_font_color.Location = New System.Drawing.Point(134, 311)
+        Me.TextBoxRomlist_selected_font_color.Location = New System.Drawing.Point(167, 311)
         Me.TextBoxRomlist_selected_font_color.Name = "TextBoxRomlist_selected_font_color"
         Me.TextBoxRomlist_selected_font_color.ReadOnly = True
         Me.TextBoxRomlist_selected_font_color.Size = New System.Drawing.Size(72, 20)
@@ -1060,7 +1075,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomlist_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
         Me.TextBoxRomlist_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.TextBoxRomlist_backcolor.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxRomlist_backcolor.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxRomlist_backcolor.Name = "TextBoxRomlist_backcolor"
         Me.TextBoxRomlist_backcolor.ReadOnly = True
         Me.TextBoxRomlist_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -1081,7 +1096,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomlist_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.TextBoxRomlist_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(105, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(205, Byte), Integer))
-        Me.TextBoxRomlist_font_color.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxRomlist_font_color.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxRomlist_font_color.Name = "TextBoxRomlist_font_color"
         Me.TextBoxRomlist_font_color.ReadOnly = True
         Me.TextBoxRomlist_font_color.Size = New System.Drawing.Size(72, 20)
@@ -1102,16 +1117,16 @@ Partial Class FormFLM
         'LabelRomlistFontDescription
         '
         Me.LabelRomlistFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRomlistFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelRomlistFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelRomlistFontDescription.Name = "LabelRomlistFontDescription"
-        Me.LabelRomlistFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelRomlistFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelRomlistFontDescription.TabIndex = 46
         Me.LabelRomlistFontDescription.Text = "Bold"
         '
         'TextBoxRomlist_item_height
         '
         Me.TextBoxRomlist_item_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomlist_item_height.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxRomlist_item_height.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxRomlist_item_height.Name = "TextBoxRomlist_item_height"
         Me.TextBoxRomlist_item_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomlist_item_height.TabIndex = 45
@@ -1131,7 +1146,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomlist_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomlist_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomlist_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxRomlist_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxRomlist_font_style.Name = "TextBoxRomlist_font_style"
         Me.TextBoxRomlist_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomlist_font_style.TabIndex = 43
@@ -1151,7 +1166,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomlist_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomlist_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomlist_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxRomlist_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxRomlist_font_size.Name = "TextBoxRomlist_font_size"
         Me.TextBoxRomlist_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomlist_font_size.TabIndex = 41
@@ -1173,7 +1188,7 @@ Partial Class FormFLM
         Me.TextBoxRomlist_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.TextBoxRomlist_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxRomlist_font_name.Name = "TextBoxRomlist_font_name"
-        Me.TextBoxRomlist_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxRomlist_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxRomlist_font_name.TabIndex = 39
         Me.TextBoxRomlist_font_name.Text = "Arial"
         '
@@ -1189,7 +1204,7 @@ Partial Class FormFLM
         'TextBoxRomlist_height
         '
         Me.TextBoxRomlist_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomlist_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxRomlist_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxRomlist_height.Name = "TextBoxRomlist_height"
         Me.TextBoxRomlist_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomlist_height.TabIndex = 37
@@ -1208,7 +1223,7 @@ Partial Class FormFLM
         'TextBoxRomlist_width
         '
         Me.TextBoxRomlist_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomlist_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxRomlist_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxRomlist_width.Name = "TextBoxRomlist_width"
         Me.TextBoxRomlist_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomlist_width.TabIndex = 35
@@ -1226,7 +1241,7 @@ Partial Class FormFLM
         '
         'ButtonRomlistReset
         '
-        Me.ButtonRomlistReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonRomlistReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonRomlistReset.Name = "ButtonRomlistReset"
         Me.ButtonRomlistReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonRomlistReset.TabIndex = 33
@@ -1236,7 +1251,7 @@ Partial Class FormFLM
         'TextBoxRomlist_y_pos
         '
         Me.TextBoxRomlist_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomlist_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxRomlist_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxRomlist_y_pos.Name = "TextBoxRomlist_y_pos"
         Me.TextBoxRomlist_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomlist_y_pos.TabIndex = 27
@@ -1255,7 +1270,7 @@ Partial Class FormFLM
         'TextBoxRomlist_x_pos
         '
         Me.TextBoxRomlist_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomlist_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxRomlist_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxRomlist_x_pos.Name = "TextBoxRomlist_x_pos"
         Me.TextBoxRomlist_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomlist_x_pos.TabIndex = 25
@@ -1307,15 +1322,17 @@ Partial Class FormFLM
         Me.TabPageBackground.Controls.Add(Me.TextBoxBackground_width)
         Me.TabPageBackground.Controls.Add(Me.LabelBackground_width)
         Me.TabPageBackground.Controls.Add(Me.CheckBoxBackground)
+        Me.TabPageBackground.ForeColor = System.Drawing.Color.Black
         Me.TabPageBackground.Location = New System.Drawing.Point(4, 22)
         Me.TabPageBackground.Name = "TabPageBackground"
-        Me.TabPageBackground.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageBackground.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageBackground.Size = New System.Drawing.Size(242, 663)
         Me.TabPageBackground.TabIndex = 4
         Me.TabPageBackground.Text = "Background"
         '
         'TrackBarPanelBackgroundImage
         '
-        Me.TrackBarPanelBackgroundImage.Location = New System.Drawing.Point(50, 253)
+        Me.TrackBarPanelBackgroundImage.Location = New System.Drawing.Point(71, 253)
         Me.TrackBarPanelBackgroundImage.Maximum = 100
         Me.TrackBarPanelBackgroundImage.Name = "TrackBarPanelBackgroundImage"
         Me.TrackBarPanelBackgroundImage.Size = New System.Drawing.Size(109, 45)
@@ -1337,7 +1354,7 @@ Partial Class FormFLM
         'TextBoxBackground_y_pos
         '
         Me.TextBoxBackground_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxBackground_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxBackground_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxBackground_y_pos.Name = "TextBoxBackground_y_pos"
         Me.TextBoxBackground_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxBackground_y_pos.TabIndex = 55
@@ -1356,7 +1373,7 @@ Partial Class FormFLM
         'TextBoxBackground_x_pos
         '
         Me.TextBoxBackground_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxBackground_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxBackground_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxBackground_x_pos.Name = "TextBoxBackground_x_pos"
         Me.TextBoxBackground_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxBackground_x_pos.TabIndex = 53
@@ -1375,7 +1392,7 @@ Partial Class FormFLM
         'ButtonBackgroundReset
         '
         Me.ButtonBackgroundReset.Enabled = False
-        Me.ButtonBackgroundReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonBackgroundReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonBackgroundReset.Name = "ButtonBackgroundReset"
         Me.ButtonBackgroundReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonBackgroundReset.TabIndex = 51
@@ -1386,7 +1403,7 @@ Partial Class FormFLM
         '
         Me.ButtonBackgroundPath.Location = New System.Drawing.Point(96, 389)
         Me.ButtonBackgroundPath.Name = "ButtonBackgroundPath"
-        Me.ButtonBackgroundPath.Size = New System.Drawing.Size(110, 23)
+        Me.ButtonBackgroundPath.Size = New System.Drawing.Size(143, 23)
         Me.ButtonBackgroundPath.TabIndex = 50
         Me.ButtonBackgroundPath.Text = "Background path"
         Me.ButtonBackgroundPath.UseVisualStyleBackColor = True
@@ -1411,7 +1428,7 @@ Partial Class FormFLM
         '
         'ButtonBackgroundAnimator
         '
-        Me.ButtonBackgroundAnimator.Location = New System.Drawing.Point(41, 330)
+        Me.ButtonBackgroundAnimator.Location = New System.Drawing.Point(71, 330)
         Me.ButtonBackgroundAnimator.Name = "ButtonBackgroundAnimator"
         Me.ButtonBackgroundAnimator.Size = New System.Drawing.Size(117, 53)
         Me.ButtonBackgroundAnimator.TabIndex = 33
@@ -1421,7 +1438,7 @@ Partial Class FormFLM
         'TextBoxBackground_frame_duration_ms
         '
         Me.TextBoxBackground_frame_duration_ms.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxBackground_frame_duration_ms.Location = New System.Drawing.Point(134, 165)
+        Me.TextBoxBackground_frame_duration_ms.Location = New System.Drawing.Point(167, 165)
         Me.TextBoxBackground_frame_duration_ms.Name = "TextBoxBackground_frame_duration_ms"
         Me.TextBoxBackground_frame_duration_ms.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxBackground_frame_duration_ms.TabIndex = 47
@@ -1440,7 +1457,7 @@ Partial Class FormFLM
         'TextBoxBackground_repeat_delay_ms
         '
         Me.TextBoxBackground_repeat_delay_ms.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxBackground_repeat_delay_ms.Location = New System.Drawing.Point(134, 204)
+        Me.TextBoxBackground_repeat_delay_ms.Location = New System.Drawing.Point(167, 204)
         Me.TextBoxBackground_repeat_delay_ms.Name = "TextBoxBackground_repeat_delay_ms"
         Me.TextBoxBackground_repeat_delay_ms.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxBackground_repeat_delay_ms.TabIndex = 45
@@ -1470,7 +1487,7 @@ Partial Class FormFLM
         'TextBoxBackground_height
         '
         Me.TextBoxBackground_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxBackground_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxBackground_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxBackground_height.Name = "TextBoxBackground_height"
         Me.TextBoxBackground_height.ReadOnly = True
         Me.TextBoxBackground_height.Size = New System.Drawing.Size(72, 20)
@@ -1490,7 +1507,7 @@ Partial Class FormFLM
         'TextBoxBackground_width
         '
         Me.TextBoxBackground_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxBackground_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxBackground_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxBackground_width.Name = "TextBoxBackground_width"
         Me.TextBoxBackground_width.ReadOnly = True
         Me.TextBoxBackground_width.Size = New System.Drawing.Size(72, 20)
@@ -1534,9 +1551,11 @@ Partial Class FormFLM
         Me.TabPageSnapshot.Controls.Add(Me.TextBoxSnapshot_x_pos)
         Me.TabPageSnapshot.Controls.Add(Me.LabelSnapshot_x_pos)
         Me.TabPageSnapshot.Controls.Add(Me.CheckBoxSnapshot)
+        Me.TabPageSnapshot.ForeColor = System.Drawing.Color.Black
         Me.TabPageSnapshot.Location = New System.Drawing.Point(4, 22)
         Me.TabPageSnapshot.Name = "TabPageSnapshot"
-        Me.TabPageSnapshot.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageSnapshot.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageSnapshot.Size = New System.Drawing.Size(242, 663)
         Me.TabPageSnapshot.TabIndex = 5
         Me.TabPageSnapshot.Text = "Snapshot"
         Me.TabPageSnapshot.UseVisualStyleBackColor = True
@@ -1564,7 +1583,7 @@ Partial Class FormFLM
         'TextBoxSnapshot_height
         '
         Me.TextBoxSnapshot_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxSnapshot_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxSnapshot_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxSnapshot_height.Name = "TextBoxSnapshot_height"
         Me.TextBoxSnapshot_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxSnapshot_height.TabIndex = 47
@@ -1583,7 +1602,7 @@ Partial Class FormFLM
         'TextBoxSnapshot_width
         '
         Me.TextBoxSnapshot_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxSnapshot_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxSnapshot_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxSnapshot_width.Name = "TextBoxSnapshot_width"
         Me.TextBoxSnapshot_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxSnapshot_width.TabIndex = 45
@@ -1601,7 +1620,7 @@ Partial Class FormFLM
         '
         'ButtonSnapshotReset
         '
-        Me.ButtonSnapshotReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonSnapshotReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonSnapshotReset.Name = "ButtonSnapshotReset"
         Me.ButtonSnapshotReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonSnapshotReset.TabIndex = 43
@@ -1611,7 +1630,7 @@ Partial Class FormFLM
         'TextBoxSnapshot_y_pos
         '
         Me.TextBoxSnapshot_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxSnapshot_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxSnapshot_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxSnapshot_y_pos.Name = "TextBoxSnapshot_y_pos"
         Me.TextBoxSnapshot_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxSnapshot_y_pos.TabIndex = 42
@@ -1630,7 +1649,7 @@ Partial Class FormFLM
         'TextBoxSnapshot_x_pos
         '
         Me.TextBoxSnapshot_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxSnapshot_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxSnapshot_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxSnapshot_x_pos.Name = "TextBoxSnapshot_x_pos"
         Me.TextBoxSnapshot_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxSnapshot_x_pos.TabIndex = 40
@@ -1672,9 +1691,11 @@ Partial Class FormFLM
         Me.TabPageCabinet.Controls.Add(Me.TextBoxCabinet_x_pos)
         Me.TabPageCabinet.Controls.Add(Me.LabelCabinet_x_pos)
         Me.TabPageCabinet.Controls.Add(Me.CheckBoxCabinet_visible)
+        Me.TabPageCabinet.ForeColor = System.Drawing.Color.Black
         Me.TabPageCabinet.Location = New System.Drawing.Point(4, 22)
         Me.TabPageCabinet.Name = "TabPageCabinet"
-        Me.TabPageCabinet.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageCabinet.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageCabinet.Size = New System.Drawing.Size(242, 663)
         Me.TabPageCabinet.TabIndex = 6
         Me.TabPageCabinet.Text = "Cabinet"
         Me.TabPageCabinet.UseVisualStyleBackColor = True
@@ -1706,7 +1727,7 @@ Partial Class FormFLM
         'TextBoxCabinet_height
         '
         Me.TextBoxCabinet_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxCabinet_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxCabinet_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxCabinet_height.Name = "TextBoxCabinet_height"
         Me.TextBoxCabinet_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxCabinet_height.TabIndex = 59
@@ -1725,7 +1746,7 @@ Partial Class FormFLM
         'TextBoxCabinet_width
         '
         Me.TextBoxCabinet_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxCabinet_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxCabinet_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxCabinet_width.Name = "TextBoxCabinet_width"
         Me.TextBoxCabinet_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxCabinet_width.TabIndex = 57
@@ -1743,7 +1764,7 @@ Partial Class FormFLM
         '
         'ButtonCabinetReset
         '
-        Me.ButtonCabinetReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonCabinetReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonCabinetReset.Name = "ButtonCabinetReset"
         Me.ButtonCabinetReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonCabinetReset.TabIndex = 55
@@ -1753,7 +1774,7 @@ Partial Class FormFLM
         'TextBoxCabinet_y_pos
         '
         Me.TextBoxCabinet_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxCabinet_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxCabinet_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxCabinet_y_pos.Name = "TextBoxCabinet_y_pos"
         Me.TextBoxCabinet_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxCabinet_y_pos.TabIndex = 54
@@ -1772,7 +1793,7 @@ Partial Class FormFLM
         'TextBoxCabinet_x_pos
         '
         Me.TextBoxCabinet_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxCabinet_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxCabinet_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxCabinet_x_pos.Name = "TextBoxCabinet_x_pos"
         Me.TextBoxCabinet_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxCabinet_x_pos.TabIndex = 52
@@ -1814,9 +1835,11 @@ Partial Class FormFLM
         Me.TabPageMarquee.Controls.Add(Me.TextBoxMarquee_x_pos)
         Me.TabPageMarquee.Controls.Add(Me.LabelMarquee_x_pos)
         Me.TabPageMarquee.Controls.Add(Me.CheckBoxMarquee_visible)
+        Me.TabPageMarquee.ForeColor = System.Drawing.Color.Black
         Me.TabPageMarquee.Location = New System.Drawing.Point(4, 22)
         Me.TabPageMarquee.Name = "TabPageMarquee"
-        Me.TabPageMarquee.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageMarquee.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageMarquee.Size = New System.Drawing.Size(242, 663)
         Me.TabPageMarquee.TabIndex = 7
         Me.TabPageMarquee.Text = "Marquee"
         Me.TabPageMarquee.UseVisualStyleBackColor = True
@@ -1846,7 +1869,7 @@ Partial Class FormFLM
         'TextBoxMarquee_height
         '
         Me.TextBoxMarquee_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxMarquee_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxMarquee_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxMarquee_height.Name = "TextBoxMarquee_height"
         Me.TextBoxMarquee_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMarquee_height.TabIndex = 71
@@ -1865,7 +1888,7 @@ Partial Class FormFLM
         'TextBoxMarquee_width
         '
         Me.TextBoxMarquee_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxMarquee_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxMarquee_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxMarquee_width.Name = "TextBoxMarquee_width"
         Me.TextBoxMarquee_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMarquee_width.TabIndex = 69
@@ -1883,7 +1906,7 @@ Partial Class FormFLM
         '
         'ButtonMarqueeReset
         '
-        Me.ButtonMarqueeReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonMarqueeReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonMarqueeReset.Name = "ButtonMarqueeReset"
         Me.ButtonMarqueeReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonMarqueeReset.TabIndex = 67
@@ -1893,7 +1916,7 @@ Partial Class FormFLM
         'TextBoxMarquee_y_pos
         '
         Me.TextBoxMarquee_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxMarquee_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxMarquee_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxMarquee_y_pos.Name = "TextBoxMarquee_y_pos"
         Me.TextBoxMarquee_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMarquee_y_pos.TabIndex = 66
@@ -1912,7 +1935,7 @@ Partial Class FormFLM
         'TextBoxMarquee_x_pos
         '
         Me.TextBoxMarquee_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxMarquee_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxMarquee_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxMarquee_x_pos.Name = "TextBoxMarquee_x_pos"
         Me.TextBoxMarquee_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMarquee_x_pos.TabIndex = 64
@@ -1963,9 +1986,11 @@ Partial Class FormFLM
         Me.TabPageRomcounter.Controls.Add(Me.TextBoxRomcounter_x_pos)
         Me.TabPageRomcounter.Controls.Add(Me.LabelRomcounter_x_pos)
         Me.TabPageRomcounter.Controls.Add(Me.CheckBoxRomcounter_visible)
+        Me.TabPageRomcounter.ForeColor = System.Drawing.Color.Black
         Me.TabPageRomcounter.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomcounter.Name = "TabPageRomcounter"
-        Me.TabPageRomcounter.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageRomcounter.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageRomcounter.Size = New System.Drawing.Size(242, 663)
         Me.TabPageRomcounter.TabIndex = 8
         Me.TabPageRomcounter.Text = "Romcounter"
         Me.TabPageRomcounter.UseVisualStyleBackColor = True
@@ -1974,7 +1999,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomcounter_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomcounter_text_align.Enabled = False
-        Me.TextBoxRomcounter_text_align.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxRomcounter_text_align.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxRomcounter_text_align.Name = "TextBoxRomcounter_text_align"
         Me.TextBoxRomcounter_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcounter_text_align.TabIndex = 94
@@ -1994,7 +2019,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomcounter_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
         Me.TextBoxRomcounter_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.TextBoxRomcounter_backcolor.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxRomcounter_backcolor.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxRomcounter_backcolor.Name = "TextBoxRomcounter_backcolor"
         Me.TextBoxRomcounter_backcolor.ReadOnly = True
         Me.TextBoxRomcounter_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -2015,7 +2040,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomcounter_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.TextBoxRomcounter_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.TextBoxRomcounter_font_color.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxRomcounter_font_color.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxRomcounter_font_color.Name = "TextBoxRomcounter_font_color"
         Me.TextBoxRomcounter_font_color.ReadOnly = True
         Me.TextBoxRomcounter_font_color.Size = New System.Drawing.Size(72, 20)
@@ -2036,9 +2061,9 @@ Partial Class FormFLM
         'LabelRomcounterFontDescription
         '
         Me.LabelRomcounterFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRomcounterFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelRomcounterFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelRomcounterFontDescription.Name = "LabelRomcounterFontDescription"
-        Me.LabelRomcounterFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelRomcounterFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelRomcounterFontDescription.TabIndex = 88
         Me.LabelRomcounterFontDescription.Text = "Regular"
         '
@@ -2046,7 +2071,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomcounter_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomcounter_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomcounter_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxRomcounter_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxRomcounter_font_style.Name = "TextBoxRomcounter_font_style"
         Me.TextBoxRomcounter_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcounter_font_style.TabIndex = 87
@@ -2066,7 +2091,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomcounter_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomcounter_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomcounter_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxRomcounter_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxRomcounter_font_size.Name = "TextBoxRomcounter_font_size"
         Me.TextBoxRomcounter_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcounter_font_size.TabIndex = 85
@@ -2088,7 +2113,7 @@ Partial Class FormFLM
         Me.TextBoxRomcounter_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxRomcounter_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxRomcounter_font_name.Name = "TextBoxRomcounter_font_name"
-        Me.TextBoxRomcounter_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxRomcounter_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxRomcounter_font_name.TabIndex = 83
         Me.TextBoxRomcounter_font_name.Text = "Arial"
         '
@@ -2104,7 +2129,7 @@ Partial Class FormFLM
         'TextBoxRomcounter_height
         '
         Me.TextBoxRomcounter_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomcounter_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxRomcounter_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxRomcounter_height.Name = "TextBoxRomcounter_height"
         Me.TextBoxRomcounter_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcounter_height.TabIndex = 81
@@ -2123,7 +2148,7 @@ Partial Class FormFLM
         'TextBoxRomcounter_width
         '
         Me.TextBoxRomcounter_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomcounter_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxRomcounter_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxRomcounter_width.Name = "TextBoxRomcounter_width"
         Me.TextBoxRomcounter_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcounter_width.TabIndex = 79
@@ -2141,7 +2166,7 @@ Partial Class FormFLM
         '
         'ButtonRomcounterReset
         '
-        Me.ButtonRomcounterReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonRomcounterReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonRomcounterReset.Name = "ButtonRomcounterReset"
         Me.ButtonRomcounterReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonRomcounterReset.TabIndex = 77
@@ -2151,7 +2176,7 @@ Partial Class FormFLM
         'TextBoxRomcounter_y_pos
         '
         Me.TextBoxRomcounter_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomcounter_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxRomcounter_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxRomcounter_y_pos.Name = "TextBoxRomcounter_y_pos"
         Me.TextBoxRomcounter_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcounter_y_pos.TabIndex = 76
@@ -2170,7 +2195,7 @@ Partial Class FormFLM
         'TextBoxRomcounter_x_pos
         '
         Me.TextBoxRomcounter_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomcounter_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxRomcounter_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxRomcounter_x_pos.Name = "TextBoxRomcounter_x_pos"
         Me.TextBoxRomcounter_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcounter_x_pos.TabIndex = 74
@@ -2223,9 +2248,11 @@ Partial Class FormFLM
         Me.TabPagePlatformname.Controls.Add(Me.TextBoxPlatformname_x_pos)
         Me.TabPagePlatformname.Controls.Add(Me.LabelPlatformname_x_pos)
         Me.TabPagePlatformname.Controls.Add(Me.CheckBoxPlatformname_visible)
+        Me.TabPagePlatformname.ForeColor = System.Drawing.Color.Black
         Me.TabPagePlatformname.Location = New System.Drawing.Point(4, 22)
         Me.TabPagePlatformname.Name = "TabPagePlatformname"
-        Me.TabPagePlatformname.Size = New System.Drawing.Size(209, 435)
+        Me.TabPagePlatformname.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPagePlatformname.Size = New System.Drawing.Size(242, 663)
         Me.TabPagePlatformname.TabIndex = 9
         Me.TabPagePlatformname.Text = "Platformname"
         Me.TabPagePlatformname.UseVisualStyleBackColor = True
@@ -2234,7 +2261,7 @@ Partial Class FormFLM
         '
         Me.TextBoxPlatformname_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxPlatformname_text_align.Enabled = False
-        Me.TextBoxPlatformname_text_align.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxPlatformname_text_align.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxPlatformname_text_align.Name = "TextBoxPlatformname_text_align"
         Me.TextBoxPlatformname_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxPlatformname_text_align.TabIndex = 117
@@ -2254,7 +2281,7 @@ Partial Class FormFLM
         '
         Me.TextBoxPlatformname_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
         Me.TextBoxPlatformname_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.TextBoxPlatformname_backcolor.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxPlatformname_backcolor.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxPlatformname_backcolor.Name = "TextBoxPlatformname_backcolor"
         Me.TextBoxPlatformname_backcolor.ReadOnly = True
         Me.TextBoxPlatformname_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -2275,7 +2302,7 @@ Partial Class FormFLM
         '
         Me.TextBoxPlatformname_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBoxPlatformname_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(127, Byte), Integer), CType(CType(63, Byte), Integer), CType(CType(63, Byte), Integer))
-        Me.TextBoxPlatformname_font_color.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxPlatformname_font_color.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxPlatformname_font_color.Name = "TextBoxPlatformname_font_color"
         Me.TextBoxPlatformname_font_color.ReadOnly = True
         Me.TextBoxPlatformname_font_color.Size = New System.Drawing.Size(72, 20)
@@ -2296,9 +2323,9 @@ Partial Class FormFLM
         'LabelPlatformnameFontDescription
         '
         Me.LabelPlatformnameFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPlatformnameFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelPlatformnameFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelPlatformnameFontDescription.Name = "LabelPlatformnameFontDescription"
-        Me.LabelPlatformnameFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelPlatformnameFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelPlatformnameFontDescription.TabIndex = 111
         Me.LabelPlatformnameFontDescription.Text = "Regular"
         '
@@ -2306,7 +2333,7 @@ Partial Class FormFLM
         '
         Me.TextBoxPlatformname_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxPlatformname_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxPlatformname_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxPlatformname_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxPlatformname_font_style.Name = "TextBoxPlatformname_font_style"
         Me.TextBoxPlatformname_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxPlatformname_font_style.TabIndex = 110
@@ -2326,7 +2353,7 @@ Partial Class FormFLM
         '
         Me.TextBoxPlatformname_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxPlatformname_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxPlatformname_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxPlatformname_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxPlatformname_font_size.Name = "TextBoxPlatformname_font_size"
         Me.TextBoxPlatformname_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxPlatformname_font_size.TabIndex = 108
@@ -2348,7 +2375,7 @@ Partial Class FormFLM
         Me.TextBoxPlatformname_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxPlatformname_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxPlatformname_font_name.Name = "TextBoxPlatformname_font_name"
-        Me.TextBoxPlatformname_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxPlatformname_font_name.Size = New System.Drawing.Size(239, 20)
         Me.TextBoxPlatformname_font_name.TabIndex = 106
         Me.TextBoxPlatformname_font_name.Text = "Arial"
         '
@@ -2364,7 +2391,7 @@ Partial Class FormFLM
         'TextBoxPlatformname_height
         '
         Me.TextBoxPlatformname_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxPlatformname_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxPlatformname_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxPlatformname_height.Name = "TextBoxPlatformname_height"
         Me.TextBoxPlatformname_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxPlatformname_height.TabIndex = 104
@@ -2383,7 +2410,7 @@ Partial Class FormFLM
         'TextBoxPlatformname_width
         '
         Me.TextBoxPlatformname_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxPlatformname_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxPlatformname_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxPlatformname_width.Name = "TextBoxPlatformname_width"
         Me.TextBoxPlatformname_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxPlatformname_width.TabIndex = 102
@@ -2401,7 +2428,7 @@ Partial Class FormFLM
         '
         'ButtonPlatformnameReset
         '
-        Me.ButtonPlatformnameReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonPlatformnameReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonPlatformnameReset.Name = "ButtonPlatformnameReset"
         Me.ButtonPlatformnameReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonPlatformnameReset.TabIndex = 100
@@ -2411,7 +2438,7 @@ Partial Class FormFLM
         'TextBoxPlatformname_y_pos
         '
         Me.TextBoxPlatformname_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxPlatformname_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxPlatformname_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxPlatformname_y_pos.Name = "TextBoxPlatformname_y_pos"
         Me.TextBoxPlatformname_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxPlatformname_y_pos.TabIndex = 99
@@ -2430,7 +2457,7 @@ Partial Class FormFLM
         'TextBoxPlatformname_x_pos
         '
         Me.TextBoxPlatformname_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxPlatformname_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxPlatformname_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxPlatformname_x_pos.Name = "TextBoxPlatformname_x_pos"
         Me.TextBoxPlatformname_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxPlatformname_x_pos.TabIndex = 97
@@ -2483,9 +2510,11 @@ Partial Class FormFLM
         Me.TabPageEmulatorname.Controls.Add(Me.TextBoxEmulatorname_x_pos)
         Me.TabPageEmulatorname.Controls.Add(Me.LabelEmulatorname_x_pos)
         Me.TabPageEmulatorname.Controls.Add(Me.CheckBoxEmulatorname_visible)
+        Me.TabPageEmulatorname.ForeColor = System.Drawing.Color.Black
         Me.TabPageEmulatorname.Location = New System.Drawing.Point(4, 22)
         Me.TabPageEmulatorname.Name = "TabPageEmulatorname"
-        Me.TabPageEmulatorname.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageEmulatorname.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageEmulatorname.Size = New System.Drawing.Size(242, 663)
         Me.TabPageEmulatorname.TabIndex = 10
         Me.TabPageEmulatorname.Text = "Emulatorname"
         Me.TabPageEmulatorname.UseVisualStyleBackColor = True
@@ -2494,7 +2523,7 @@ Partial Class FormFLM
         '
         Me.TextBoxEmulatorname_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxEmulatorname_text_align.Enabled = False
-        Me.TextBoxEmulatorname_text_align.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxEmulatorname_text_align.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxEmulatorname_text_align.Name = "TextBoxEmulatorname_text_align"
         Me.TextBoxEmulatorname_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxEmulatorname_text_align.TabIndex = 140
@@ -2514,7 +2543,7 @@ Partial Class FormFLM
         '
         Me.TextBoxEmulatorname_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
         Me.TextBoxEmulatorname_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.TextBoxEmulatorname_backcolor.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxEmulatorname_backcolor.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxEmulatorname_backcolor.Name = "TextBoxEmulatorname_backcolor"
         Me.TextBoxEmulatorname_backcolor.ReadOnly = True
         Me.TextBoxEmulatorname_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -2535,7 +2564,7 @@ Partial Class FormFLM
         '
         Me.TextBoxEmulatorname_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.TextBoxEmulatorname_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.TextBoxEmulatorname_font_color.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxEmulatorname_font_color.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxEmulatorname_font_color.Name = "TextBoxEmulatorname_font_color"
         Me.TextBoxEmulatorname_font_color.ReadOnly = True
         Me.TextBoxEmulatorname_font_color.Size = New System.Drawing.Size(72, 20)
@@ -2556,9 +2585,9 @@ Partial Class FormFLM
         'LabelEmulatornameFontDescription
         '
         Me.LabelEmulatornameFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEmulatornameFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelEmulatornameFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelEmulatornameFontDescription.Name = "LabelEmulatornameFontDescription"
-        Me.LabelEmulatornameFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelEmulatornameFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelEmulatornameFontDescription.TabIndex = 134
         Me.LabelEmulatornameFontDescription.Text = "Italic"
         '
@@ -2566,7 +2595,7 @@ Partial Class FormFLM
         '
         Me.TextBoxEmulatorname_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxEmulatorname_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxEmulatorname_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxEmulatorname_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxEmulatorname_font_style.Name = "TextBoxEmulatorname_font_style"
         Me.TextBoxEmulatorname_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxEmulatorname_font_style.TabIndex = 133
@@ -2586,7 +2615,7 @@ Partial Class FormFLM
         '
         Me.TextBoxEmulatorname_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxEmulatorname_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxEmulatorname_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxEmulatorname_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxEmulatorname_font_size.Name = "TextBoxEmulatorname_font_size"
         Me.TextBoxEmulatorname_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxEmulatorname_font_size.TabIndex = 131
@@ -2608,7 +2637,7 @@ Partial Class FormFLM
         Me.TextBoxEmulatorname_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxEmulatorname_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxEmulatorname_font_name.Name = "TextBoxEmulatorname_font_name"
-        Me.TextBoxEmulatorname_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxEmulatorname_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxEmulatorname_font_name.TabIndex = 129
         Me.TextBoxEmulatorname_font_name.Text = "Arial"
         '
@@ -2624,7 +2653,7 @@ Partial Class FormFLM
         'TextBoxEmulatorname_height
         '
         Me.TextBoxEmulatorname_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxEmulatorname_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxEmulatorname_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxEmulatorname_height.Name = "TextBoxEmulatorname_height"
         Me.TextBoxEmulatorname_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxEmulatorname_height.TabIndex = 127
@@ -2643,7 +2672,7 @@ Partial Class FormFLM
         'TextBoxEmulatorname_width
         '
         Me.TextBoxEmulatorname_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxEmulatorname_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxEmulatorname_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxEmulatorname_width.Name = "TextBoxEmulatorname_width"
         Me.TextBoxEmulatorname_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxEmulatorname_width.TabIndex = 125
@@ -2661,7 +2690,7 @@ Partial Class FormFLM
         '
         'ButtonEmulatornameReset
         '
-        Me.ButtonEmulatornameReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonEmulatornameReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonEmulatornameReset.Name = "ButtonEmulatornameReset"
         Me.ButtonEmulatornameReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonEmulatornameReset.TabIndex = 123
@@ -2671,7 +2700,7 @@ Partial Class FormFLM
         'TextBoxEmulatorname_y_pos
         '
         Me.TextBoxEmulatorname_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxEmulatorname_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxEmulatorname_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxEmulatorname_y_pos.Name = "TextBoxEmulatorname_y_pos"
         Me.TextBoxEmulatorname_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxEmulatorname_y_pos.TabIndex = 122
@@ -2690,7 +2719,7 @@ Partial Class FormFLM
         'TextBoxEmulatorname_x_pos
         '
         Me.TextBoxEmulatorname_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxEmulatorname_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxEmulatorname_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxEmulatorname_x_pos.Name = "TextBoxEmulatorname_x_pos"
         Me.TextBoxEmulatorname_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxEmulatorname_x_pos.TabIndex = 120
@@ -2743,9 +2772,11 @@ Partial Class FormFLM
         Me.TabPageGamelistname.Controls.Add(Me.TextBoxGamelistname_x_pos)
         Me.TabPageGamelistname.Controls.Add(Me.LabelGamelistname_x_pos)
         Me.TabPageGamelistname.Controls.Add(Me.CheckBoxGamelistname_visible)
+        Me.TabPageGamelistname.ForeColor = System.Drawing.Color.Black
         Me.TabPageGamelistname.Location = New System.Drawing.Point(4, 22)
         Me.TabPageGamelistname.Name = "TabPageGamelistname"
-        Me.TabPageGamelistname.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageGamelistname.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageGamelistname.Size = New System.Drawing.Size(242, 663)
         Me.TabPageGamelistname.TabIndex = 11
         Me.TabPageGamelistname.Text = "Gamelistname"
         Me.TabPageGamelistname.UseVisualStyleBackColor = True
@@ -2754,7 +2785,7 @@ Partial Class FormFLM
         '
         Me.TextBoxGamelistname_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxGamelistname_text_align.Enabled = False
-        Me.TextBoxGamelistname_text_align.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxGamelistname_text_align.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxGamelistname_text_align.Name = "TextBoxGamelistname_text_align"
         Me.TextBoxGamelistname_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxGamelistname_text_align.TabIndex = 163
@@ -2774,7 +2805,7 @@ Partial Class FormFLM
         '
         Me.TextBoxGamelistname_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
         Me.TextBoxGamelistname_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.TextBoxGamelistname_backcolor.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxGamelistname_backcolor.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxGamelistname_backcolor.Name = "TextBoxGamelistname_backcolor"
         Me.TextBoxGamelistname_backcolor.ReadOnly = True
         Me.TextBoxGamelistname_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -2795,7 +2826,7 @@ Partial Class FormFLM
         '
         Me.TextBoxGamelistname_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBoxGamelistname_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(127, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(63, Byte), Integer))
-        Me.TextBoxGamelistname_font_color.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxGamelistname_font_color.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxGamelistname_font_color.Name = "TextBoxGamelistname_font_color"
         Me.TextBoxGamelistname_font_color.ReadOnly = True
         Me.TextBoxGamelistname_font_color.Size = New System.Drawing.Size(72, 20)
@@ -2816,9 +2847,9 @@ Partial Class FormFLM
         'LabelGamelistnameFontDescription
         '
         Me.LabelGamelistnameFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelGamelistnameFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelGamelistnameFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelGamelistnameFontDescription.Name = "LabelGamelistnameFontDescription"
-        Me.LabelGamelistnameFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelGamelistnameFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelGamelistnameFontDescription.TabIndex = 157
         Me.LabelGamelistnameFontDescription.Text = "Regular"
         '
@@ -2826,7 +2857,7 @@ Partial Class FormFLM
         '
         Me.TextBoxGamelistname_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxGamelistname_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxGamelistname_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxGamelistname_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxGamelistname_font_style.Name = "TextBoxGamelistname_font_style"
         Me.TextBoxGamelistname_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxGamelistname_font_style.TabIndex = 156
@@ -2846,7 +2877,7 @@ Partial Class FormFLM
         '
         Me.TextBoxGamelistname_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxGamelistname_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxGamelistname_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxGamelistname_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxGamelistname_font_size.Name = "TextBoxGamelistname_font_size"
         Me.TextBoxGamelistname_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxGamelistname_font_size.TabIndex = 154
@@ -2868,7 +2899,7 @@ Partial Class FormFLM
         Me.TextBoxGamelistname_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxGamelistname_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxGamelistname_font_name.Name = "TextBoxGamelistname_font_name"
-        Me.TextBoxGamelistname_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxGamelistname_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxGamelistname_font_name.TabIndex = 152
         Me.TextBoxGamelistname_font_name.Text = "Arial"
         '
@@ -2884,7 +2915,7 @@ Partial Class FormFLM
         'TextBoxGamelistname_height
         '
         Me.TextBoxGamelistname_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxGamelistname_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxGamelistname_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxGamelistname_height.Name = "TextBoxGamelistname_height"
         Me.TextBoxGamelistname_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxGamelistname_height.TabIndex = 150
@@ -2903,7 +2934,7 @@ Partial Class FormFLM
         'TextBoxGamelistname_width
         '
         Me.TextBoxGamelistname_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxGamelistname_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxGamelistname_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxGamelistname_width.Name = "TextBoxGamelistname_width"
         Me.TextBoxGamelistname_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxGamelistname_width.TabIndex = 148
@@ -2921,7 +2952,7 @@ Partial Class FormFLM
         '
         'ButtonGamelistnameReset
         '
-        Me.ButtonGamelistnameReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonGamelistnameReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonGamelistnameReset.Name = "ButtonGamelistnameReset"
         Me.ButtonGamelistnameReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonGamelistnameReset.TabIndex = 146
@@ -2931,7 +2962,7 @@ Partial Class FormFLM
         'TextBoxGamelistname_y_pos
         '
         Me.TextBoxGamelistname_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxGamelistname_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxGamelistname_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxGamelistname_y_pos.Name = "TextBoxGamelistname_y_pos"
         Me.TextBoxGamelistname_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxGamelistname_y_pos.TabIndex = 145
@@ -2950,7 +2981,7 @@ Partial Class FormFLM
         'TextBoxGamelistname_x_pos
         '
         Me.TextBoxGamelistname_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxGamelistname_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxGamelistname_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxGamelistname_x_pos.Name = "TextBoxGamelistname_x_pos"
         Me.TextBoxGamelistname_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxGamelistname_x_pos.TabIndex = 143
@@ -3003,9 +3034,11 @@ Partial Class FormFLM
         Me.TabPageRomname.Controls.Add(Me.TextBoxRomname_x_pos)
         Me.TabPageRomname.Controls.Add(Me.LabelRomname_x_pos)
         Me.TabPageRomname.Controls.Add(Me.CheckBoxRomname_visible)
+        Me.TabPageRomname.ForeColor = System.Drawing.Color.Black
         Me.TabPageRomname.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomname.Name = "TabPageRomname"
-        Me.TabPageRomname.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageRomname.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageRomname.Size = New System.Drawing.Size(242, 663)
         Me.TabPageRomname.TabIndex = 12
         Me.TabPageRomname.Text = "Romname"
         Me.TabPageRomname.UseVisualStyleBackColor = True
@@ -3014,7 +3047,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomname_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomname_text_align.Enabled = False
-        Me.TextBoxRomname_text_align.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxRomname_text_align.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxRomname_text_align.Name = "TextBoxRomname_text_align"
         Me.TextBoxRomname_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomname_text_align.TabIndex = 117
@@ -3033,7 +3066,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomname_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
         Me.TextBoxRomname_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.TextBoxRomname_backcolor.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxRomname_backcolor.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxRomname_backcolor.Name = "TextBoxRomname_backcolor"
         Me.TextBoxRomname_backcolor.ReadOnly = True
         Me.TextBoxRomname_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -3054,7 +3087,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomname_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.TextBoxRomname_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(127, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.TextBoxRomname_font_color.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxRomname_font_color.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxRomname_font_color.Name = "TextBoxRomname_font_color"
         Me.TextBoxRomname_font_color.ReadOnly = True
         Me.TextBoxRomname_font_color.Size = New System.Drawing.Size(72, 20)
@@ -3075,9 +3108,9 @@ Partial Class FormFLM
         'LabelRomnameFontDescription
         '
         Me.LabelRomnameFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRomnameFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelRomnameFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelRomnameFontDescription.Name = "LabelRomnameFontDescription"
-        Me.LabelRomnameFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelRomnameFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelRomnameFontDescription.TabIndex = 111
         Me.LabelRomnameFontDescription.Text = "Regular"
         '
@@ -3085,7 +3118,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomname_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomname_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomname_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxRomname_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxRomname_font_style.Name = "TextBoxRomname_font_style"
         Me.TextBoxRomname_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomname_font_style.TabIndex = 110
@@ -3105,7 +3138,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomname_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomname_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomname_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxRomname_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxRomname_font_size.Name = "TextBoxRomname_font_size"
         Me.TextBoxRomname_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomname_font_size.TabIndex = 108
@@ -3127,7 +3160,7 @@ Partial Class FormFLM
         Me.TextBoxRomname_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxRomname_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxRomname_font_name.Name = "TextBoxRomname_font_name"
-        Me.TextBoxRomname_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxRomname_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxRomname_font_name.TabIndex = 106
         Me.TextBoxRomname_font_name.Text = "Arial"
         '
@@ -3143,7 +3176,7 @@ Partial Class FormFLM
         'TextBoxRomname_height
         '
         Me.TextBoxRomname_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomname_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxRomname_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxRomname_height.Name = "TextBoxRomname_height"
         Me.TextBoxRomname_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomname_height.TabIndex = 104
@@ -3162,7 +3195,7 @@ Partial Class FormFLM
         'TextBoxRomname_width
         '
         Me.TextBoxRomname_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomname_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxRomname_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxRomname_width.Name = "TextBoxRomname_width"
         Me.TextBoxRomname_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomname_width.TabIndex = 102
@@ -3180,7 +3213,7 @@ Partial Class FormFLM
         '
         'ButtonRomnameReset
         '
-        Me.ButtonRomnameReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonRomnameReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonRomnameReset.Name = "ButtonRomnameReset"
         Me.ButtonRomnameReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonRomnameReset.TabIndex = 100
@@ -3190,7 +3223,7 @@ Partial Class FormFLM
         'TextBoxRomname_y_pos
         '
         Me.TextBoxRomname_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomname_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxRomname_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxRomname_y_pos.Name = "TextBoxRomname_y_pos"
         Me.TextBoxRomname_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomname_y_pos.TabIndex = 99
@@ -3209,7 +3242,7 @@ Partial Class FormFLM
         'TextBoxRomname_x_pos
         '
         Me.TextBoxRomname_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomname_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxRomname_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxRomname_x_pos.Name = "TextBoxRomname_x_pos"
         Me.TextBoxRomname_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomname_x_pos.TabIndex = 97
@@ -3262,9 +3295,11 @@ Partial Class FormFLM
         Me.TabPageRomdescription.Controls.Add(Me.TextBoxRomdescription_x_pos)
         Me.TabPageRomdescription.Controls.Add(Me.LabelRomdescription_x_pos)
         Me.TabPageRomdescription.Controls.Add(Me.CheckBoxRomdescription_visible)
+        Me.TabPageRomdescription.ForeColor = System.Drawing.Color.Black
         Me.TabPageRomdescription.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomdescription.Name = "TabPageRomdescription"
-        Me.TabPageRomdescription.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageRomdescription.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageRomdescription.Size = New System.Drawing.Size(242, 663)
         Me.TabPageRomdescription.TabIndex = 13
         Me.TabPageRomdescription.Text = "Romdescription"
         Me.TabPageRomdescription.UseVisualStyleBackColor = True
@@ -3273,7 +3308,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomdescription_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomdescription_text_align.Enabled = False
-        Me.TextBoxRomdescription_text_align.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxRomdescription_text_align.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxRomdescription_text_align.Name = "TextBoxRomdescription_text_align"
         Me.TextBoxRomdescription_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdescription_text_align.TabIndex = 140
@@ -3293,7 +3328,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomdescription_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
         Me.TextBoxRomdescription_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.TextBoxRomdescription_backcolor.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxRomdescription_backcolor.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxRomdescription_backcolor.Name = "TextBoxRomdescription_backcolor"
         Me.TextBoxRomdescription_backcolor.ReadOnly = True
         Me.TextBoxRomdescription_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -3314,7 +3349,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomdescription_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.TextBoxRomdescription_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.TextBoxRomdescription_font_color.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxRomdescription_font_color.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxRomdescription_font_color.Name = "TextBoxRomdescription_font_color"
         Me.TextBoxRomdescription_font_color.ReadOnly = True
         Me.TextBoxRomdescription_font_color.Size = New System.Drawing.Size(72, 20)
@@ -3335,9 +3370,9 @@ Partial Class FormFLM
         'LabelRomdescriptionFontDescription
         '
         Me.LabelRomdescriptionFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRomdescriptionFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelRomdescriptionFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelRomdescriptionFontDescription.Name = "LabelRomdescriptionFontDescription"
-        Me.LabelRomdescriptionFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelRomdescriptionFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelRomdescriptionFontDescription.TabIndex = 134
         Me.LabelRomdescriptionFontDescription.Text = "Regular"
         '
@@ -3345,7 +3380,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomdescription_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomdescription_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomdescription_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxRomdescription_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxRomdescription_font_style.Name = "TextBoxRomdescription_font_style"
         Me.TextBoxRomdescription_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdescription_font_style.TabIndex = 133
@@ -3365,7 +3400,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomdescription_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomdescription_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomdescription_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxRomdescription_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxRomdescription_font_size.Name = "TextBoxRomdescription_font_size"
         Me.TextBoxRomdescription_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdescription_font_size.TabIndex = 131
@@ -3387,7 +3422,7 @@ Partial Class FormFLM
         Me.TextBoxRomdescription_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxRomdescription_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxRomdescription_font_name.Name = "TextBoxRomdescription_font_name"
-        Me.TextBoxRomdescription_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxRomdescription_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxRomdescription_font_name.TabIndex = 129
         Me.TextBoxRomdescription_font_name.Text = "Arial"
         '
@@ -3403,7 +3438,7 @@ Partial Class FormFLM
         'TextBoxRomdescription_height
         '
         Me.TextBoxRomdescription_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomdescription_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxRomdescription_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxRomdescription_height.Name = "TextBoxRomdescription_height"
         Me.TextBoxRomdescription_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdescription_height.TabIndex = 127
@@ -3422,7 +3457,7 @@ Partial Class FormFLM
         'TextBoxRomdescription_width
         '
         Me.TextBoxRomdescription_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomdescription_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxRomdescription_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxRomdescription_width.Name = "TextBoxRomdescription_width"
         Me.TextBoxRomdescription_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdescription_width.TabIndex = 125
@@ -3440,7 +3475,7 @@ Partial Class FormFLM
         '
         'ButtonRomdescriptionReset
         '
-        Me.ButtonRomdescriptionReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonRomdescriptionReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonRomdescriptionReset.Name = "ButtonRomdescriptionReset"
         Me.ButtonRomdescriptionReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonRomdescriptionReset.TabIndex = 123
@@ -3450,7 +3485,7 @@ Partial Class FormFLM
         'TextBoxRomdescription_y_pos
         '
         Me.TextBoxRomdescription_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomdescription_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxRomdescription_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxRomdescription_y_pos.Name = "TextBoxRomdescription_y_pos"
         Me.TextBoxRomdescription_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdescription_y_pos.TabIndex = 122
@@ -3469,7 +3504,7 @@ Partial Class FormFLM
         'TextBoxRomdescription_x_pos
         '
         Me.TextBoxRomdescription_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomdescription_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxRomdescription_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxRomdescription_x_pos.Name = "TextBoxRomdescription_x_pos"
         Me.TextBoxRomdescription_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdescription_x_pos.TabIndex = 120
@@ -3522,9 +3557,11 @@ Partial Class FormFLM
         Me.TabPageRommanufacturer.Controls.Add(Me.TextBoxRommanufacturer_x_pos)
         Me.TabPageRommanufacturer.Controls.Add(Me.LabelRommanufacturer_x_pos)
         Me.TabPageRommanufacturer.Controls.Add(Me.CheckBoxRommanufacturer_visible)
+        Me.TabPageRommanufacturer.ForeColor = System.Drawing.Color.Black
         Me.TabPageRommanufacturer.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRommanufacturer.Name = "TabPageRommanufacturer"
-        Me.TabPageRommanufacturer.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageRommanufacturer.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageRommanufacturer.Size = New System.Drawing.Size(242, 663)
         Me.TabPageRommanufacturer.TabIndex = 14
         Me.TabPageRommanufacturer.Text = "Rommanufacturer"
         Me.TabPageRommanufacturer.UseVisualStyleBackColor = True
@@ -3533,7 +3570,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRommanufacturer_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRommanufacturer_text_align.Enabled = False
-        Me.TextBoxRommanufacturer_text_align.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxRommanufacturer_text_align.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxRommanufacturer_text_align.Name = "TextBoxRommanufacturer_text_align"
         Me.TextBoxRommanufacturer_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRommanufacturer_text_align.TabIndex = 140
@@ -3552,7 +3589,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRommanufacturer_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.TextBoxRommanufacturer_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(191, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(127, Byte), Integer))
-        Me.TextBoxRommanufacturer_backcolor.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxRommanufacturer_backcolor.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxRommanufacturer_backcolor.Name = "TextBoxRommanufacturer_backcolor"
         Me.TextBoxRommanufacturer_backcolor.ReadOnly = True
         Me.TextBoxRommanufacturer_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -3573,7 +3610,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRommanufacturer_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
         Me.TextBoxRommanufacturer_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.TextBoxRommanufacturer_font_color.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxRommanufacturer_font_color.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxRommanufacturer_font_color.Name = "TextBoxRommanufacturer_font_color"
         Me.TextBoxRommanufacturer_font_color.ReadOnly = True
         Me.TextBoxRommanufacturer_font_color.Size = New System.Drawing.Size(72, 20)
@@ -3594,9 +3631,9 @@ Partial Class FormFLM
         'LabelRommanufacturerFontDescription
         '
         Me.LabelRommanufacturerFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRommanufacturerFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelRommanufacturerFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelRommanufacturerFontDescription.Name = "LabelRommanufacturerFontDescription"
-        Me.LabelRommanufacturerFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelRommanufacturerFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelRommanufacturerFontDescription.TabIndex = 134
         Me.LabelRommanufacturerFontDescription.Text = "Regular"
         '
@@ -3604,7 +3641,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRommanufacturer_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRommanufacturer_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRommanufacturer_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxRommanufacturer_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxRommanufacturer_font_style.Name = "TextBoxRommanufacturer_font_style"
         Me.TextBoxRommanufacturer_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRommanufacturer_font_style.TabIndex = 133
@@ -3624,7 +3661,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRommanufacturer_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRommanufacturer_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRommanufacturer_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxRommanufacturer_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxRommanufacturer_font_size.Name = "TextBoxRommanufacturer_font_size"
         Me.TextBoxRommanufacturer_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRommanufacturer_font_size.TabIndex = 131
@@ -3646,7 +3683,7 @@ Partial Class FormFLM
         Me.TextBoxRommanufacturer_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxRommanufacturer_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxRommanufacturer_font_name.Name = "TextBoxRommanufacturer_font_name"
-        Me.TextBoxRommanufacturer_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxRommanufacturer_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxRommanufacturer_font_name.TabIndex = 129
         Me.TextBoxRommanufacturer_font_name.Text = "Arial"
         '
@@ -3662,7 +3699,7 @@ Partial Class FormFLM
         'TextBoxRommanufacturer_height
         '
         Me.TextBoxRommanufacturer_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRommanufacturer_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxRommanufacturer_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxRommanufacturer_height.Name = "TextBoxRommanufacturer_height"
         Me.TextBoxRommanufacturer_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRommanufacturer_height.TabIndex = 127
@@ -3681,7 +3718,7 @@ Partial Class FormFLM
         'TextBoxRommanufacturer_width
         '
         Me.TextBoxRommanufacturer_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRommanufacturer_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxRommanufacturer_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxRommanufacturer_width.Name = "TextBoxRommanufacturer_width"
         Me.TextBoxRommanufacturer_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRommanufacturer_width.TabIndex = 125
@@ -3699,7 +3736,7 @@ Partial Class FormFLM
         '
         'ButtonRommanufacturerReset
         '
-        Me.ButtonRommanufacturerReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonRommanufacturerReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonRommanufacturerReset.Name = "ButtonRommanufacturerReset"
         Me.ButtonRommanufacturerReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonRommanufacturerReset.TabIndex = 123
@@ -3709,7 +3746,7 @@ Partial Class FormFLM
         'TextBoxRommanufacturer_y_pos
         '
         Me.TextBoxRommanufacturer_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRommanufacturer_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxRommanufacturer_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxRommanufacturer_y_pos.Name = "TextBoxRommanufacturer_y_pos"
         Me.TextBoxRommanufacturer_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRommanufacturer_y_pos.TabIndex = 122
@@ -3728,7 +3765,7 @@ Partial Class FormFLM
         'TextBoxRommanufacturer_x_pos
         '
         Me.TextBoxRommanufacturer_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRommanufacturer_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxRommanufacturer_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxRommanufacturer_x_pos.Name = "TextBoxRommanufacturer_x_pos"
         Me.TextBoxRommanufacturer_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRommanufacturer_x_pos.TabIndex = 120
@@ -3781,9 +3818,11 @@ Partial Class FormFLM
         Me.TabPageRomdisplaytype.Controls.Add(Me.TextBoxRomdisplaytype_x_pos)
         Me.TabPageRomdisplaytype.Controls.Add(Me.LabelRomdisplaytype_x_pos)
         Me.TabPageRomdisplaytype.Controls.Add(Me.CheckBoxRomdisplaytype_visible)
+        Me.TabPageRomdisplaytype.ForeColor = System.Drawing.Color.Black
         Me.TabPageRomdisplaytype.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomdisplaytype.Name = "TabPageRomdisplaytype"
-        Me.TabPageRomdisplaytype.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageRomdisplaytype.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageRomdisplaytype.Size = New System.Drawing.Size(242, 663)
         Me.TabPageRomdisplaytype.TabIndex = 15
         Me.TabPageRomdisplaytype.Text = "Romdisplaytype"
         Me.TabPageRomdisplaytype.UseVisualStyleBackColor = True
@@ -3792,7 +3831,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomdisplaytype_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomdisplaytype_text_align.Enabled = False
-        Me.TextBoxRomdisplaytype_text_align.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxRomdisplaytype_text_align.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxRomdisplaytype_text_align.Name = "TextBoxRomdisplaytype_text_align"
         Me.TextBoxRomdisplaytype_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdisplaytype_text_align.TabIndex = 140
@@ -3811,7 +3850,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomdisplaytype_backcolor.BackColor = System.Drawing.Color.White
         Me.TextBoxRomdisplaytype_backcolor.ForeColor = System.Drawing.Color.Black
-        Me.TextBoxRomdisplaytype_backcolor.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxRomdisplaytype_backcolor.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxRomdisplaytype_backcolor.Name = "TextBoxRomdisplaytype_backcolor"
         Me.TextBoxRomdisplaytype_backcolor.ReadOnly = True
         Me.TextBoxRomdisplaytype_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -3832,7 +3871,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomdisplaytype_font_color.BackColor = System.Drawing.Color.Black
         Me.TextBoxRomdisplaytype_font_color.ForeColor = System.Drawing.Color.White
-        Me.TextBoxRomdisplaytype_font_color.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxRomdisplaytype_font_color.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxRomdisplaytype_font_color.Name = "TextBoxRomdisplaytype_font_color"
         Me.TextBoxRomdisplaytype_font_color.ReadOnly = True
         Me.TextBoxRomdisplaytype_font_color.Size = New System.Drawing.Size(72, 20)
@@ -3853,9 +3892,9 @@ Partial Class FormFLM
         'LabelRomdisplaytypeFontDescription
         '
         Me.LabelRomdisplaytypeFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRomdisplaytypeFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelRomdisplaytypeFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelRomdisplaytypeFontDescription.Name = "LabelRomdisplaytypeFontDescription"
-        Me.LabelRomdisplaytypeFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelRomdisplaytypeFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelRomdisplaytypeFontDescription.TabIndex = 134
         Me.LabelRomdisplaytypeFontDescription.Text = "Regular"
         '
@@ -3863,7 +3902,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomdisplaytype_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomdisplaytype_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomdisplaytype_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxRomdisplaytype_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxRomdisplaytype_font_style.Name = "TextBoxRomdisplaytype_font_style"
         Me.TextBoxRomdisplaytype_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdisplaytype_font_style.TabIndex = 133
@@ -3883,7 +3922,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomdisplaytype_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomdisplaytype_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomdisplaytype_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxRomdisplaytype_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxRomdisplaytype_font_size.Name = "TextBoxRomdisplaytype_font_size"
         Me.TextBoxRomdisplaytype_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdisplaytype_font_size.TabIndex = 131
@@ -3905,7 +3944,7 @@ Partial Class FormFLM
         Me.TextBoxRomdisplaytype_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxRomdisplaytype_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxRomdisplaytype_font_name.Name = "TextBoxRomdisplaytype_font_name"
-        Me.TextBoxRomdisplaytype_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxRomdisplaytype_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxRomdisplaytype_font_name.TabIndex = 129
         Me.TextBoxRomdisplaytype_font_name.Text = "Arial"
         '
@@ -3921,7 +3960,7 @@ Partial Class FormFLM
         'TextBoxRomdisplaytype_height
         '
         Me.TextBoxRomdisplaytype_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomdisplaytype_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxRomdisplaytype_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxRomdisplaytype_height.Name = "TextBoxRomdisplaytype_height"
         Me.TextBoxRomdisplaytype_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdisplaytype_height.TabIndex = 127
@@ -3940,7 +3979,7 @@ Partial Class FormFLM
         'TextBoxRomdisplaytype_width
         '
         Me.TextBoxRomdisplaytype_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomdisplaytype_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxRomdisplaytype_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxRomdisplaytype_width.Name = "TextBoxRomdisplaytype_width"
         Me.TextBoxRomdisplaytype_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdisplaytype_width.TabIndex = 125
@@ -3958,7 +3997,7 @@ Partial Class FormFLM
         '
         'ButtonRomdisplaytypeReset
         '
-        Me.ButtonRomdisplaytypeReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonRomdisplaytypeReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonRomdisplaytypeReset.Name = "ButtonRomdisplaytypeReset"
         Me.ButtonRomdisplaytypeReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonRomdisplaytypeReset.TabIndex = 123
@@ -3968,7 +4007,7 @@ Partial Class FormFLM
         'TextBoxRomdisplaytype_y_pos
         '
         Me.TextBoxRomdisplaytype_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomdisplaytype_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxRomdisplaytype_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxRomdisplaytype_y_pos.Name = "TextBoxRomdisplaytype_y_pos"
         Me.TextBoxRomdisplaytype_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdisplaytype_y_pos.TabIndex = 122
@@ -3987,7 +4026,7 @@ Partial Class FormFLM
         'TextBoxRomdisplaytype_x_pos
         '
         Me.TextBoxRomdisplaytype_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomdisplaytype_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxRomdisplaytype_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxRomdisplaytype_x_pos.Name = "TextBoxRomdisplaytype_x_pos"
         Me.TextBoxRomdisplaytype_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdisplaytype_x_pos.TabIndex = 120
@@ -4038,9 +4077,11 @@ Partial Class FormFLM
         Me.TabPageRominputcontrol.Controls.Add(Me.TextBoxRominputcontrol_x_pos)
         Me.TabPageRominputcontrol.Controls.Add(Me.LabelRominputcontrol_x_pos)
         Me.TabPageRominputcontrol.Controls.Add(Me.CheckBoxRominputcontrol_visible)
+        Me.TabPageRominputcontrol.ForeColor = System.Drawing.Color.Black
         Me.TabPageRominputcontrol.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRominputcontrol.Name = "TabPageRominputcontrol"
-        Me.TabPageRominputcontrol.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageRominputcontrol.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageRominputcontrol.Size = New System.Drawing.Size(242, 663)
         Me.TabPageRominputcontrol.TabIndex = 16
         Me.TabPageRominputcontrol.Text = "Rominputcontrol"
         Me.TabPageRominputcontrol.UseVisualStyleBackColor = True
@@ -4049,7 +4090,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRominputcontrol_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRominputcontrol_text_align.Enabled = False
-        Me.TextBoxRominputcontrol_text_align.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxRominputcontrol_text_align.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxRominputcontrol_text_align.Name = "TextBoxRominputcontrol_text_align"
         Me.TextBoxRominputcontrol_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRominputcontrol_text_align.TabIndex = 140
@@ -4069,7 +4110,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRominputcontrol_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
         Me.TextBoxRominputcontrol_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.TextBoxRominputcontrol_backcolor.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxRominputcontrol_backcolor.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxRominputcontrol_backcolor.Name = "TextBoxRominputcontrol_backcolor"
         Me.TextBoxRominputcontrol_backcolor.ReadOnly = True
         Me.TextBoxRominputcontrol_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -4090,7 +4131,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRominputcontrol_font_color.BackColor = System.Drawing.Color.Olive
         Me.TextBoxRominputcontrol_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(127, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.TextBoxRominputcontrol_font_color.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxRominputcontrol_font_color.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxRominputcontrol_font_color.Name = "TextBoxRominputcontrol_font_color"
         Me.TextBoxRominputcontrol_font_color.ReadOnly = True
         Me.TextBoxRominputcontrol_font_color.Size = New System.Drawing.Size(72, 20)
@@ -4111,9 +4152,9 @@ Partial Class FormFLM
         'LabelRominputcontrolFontDescription
         '
         Me.LabelRominputcontrolFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRominputcontrolFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelRominputcontrolFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelRominputcontrolFontDescription.Name = "LabelRominputcontrolFontDescription"
-        Me.LabelRominputcontrolFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelRominputcontrolFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelRominputcontrolFontDescription.TabIndex = 134
         Me.LabelRominputcontrolFontDescription.Text = "Regular"
         '
@@ -4121,7 +4162,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRominputcontrol_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRominputcontrol_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRominputcontrol_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxRominputcontrol_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxRominputcontrol_font_style.Name = "TextBoxRominputcontrol_font_style"
         Me.TextBoxRominputcontrol_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRominputcontrol_font_style.TabIndex = 133
@@ -4141,7 +4182,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRominputcontrol_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRominputcontrol_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRominputcontrol_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxRominputcontrol_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxRominputcontrol_font_size.Name = "TextBoxRominputcontrol_font_size"
         Me.TextBoxRominputcontrol_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRominputcontrol_font_size.TabIndex = 131
@@ -4163,7 +4204,7 @@ Partial Class FormFLM
         Me.TextBoxRominputcontrol_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxRominputcontrol_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxRominputcontrol_font_name.Name = "TextBoxRominputcontrol_font_name"
-        Me.TextBoxRominputcontrol_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxRominputcontrol_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxRominputcontrol_font_name.TabIndex = 129
         Me.TextBoxRominputcontrol_font_name.Text = "Arial"
         '
@@ -4179,7 +4220,7 @@ Partial Class FormFLM
         'TextBoxRominputcontrol_height
         '
         Me.TextBoxRominputcontrol_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRominputcontrol_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxRominputcontrol_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxRominputcontrol_height.Name = "TextBoxRominputcontrol_height"
         Me.TextBoxRominputcontrol_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRominputcontrol_height.TabIndex = 127
@@ -4198,7 +4239,7 @@ Partial Class FormFLM
         'TextBoxRominputcontrol_width
         '
         Me.TextBoxRominputcontrol_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRominputcontrol_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxRominputcontrol_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxRominputcontrol_width.Name = "TextBoxRominputcontrol_width"
         Me.TextBoxRominputcontrol_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRominputcontrol_width.TabIndex = 125
@@ -4216,7 +4257,7 @@ Partial Class FormFLM
         '
         'ButtonRominputcontrolReset
         '
-        Me.ButtonRominputcontrolReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonRominputcontrolReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonRominputcontrolReset.Name = "ButtonRominputcontrolReset"
         Me.ButtonRominputcontrolReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonRominputcontrolReset.TabIndex = 123
@@ -4226,7 +4267,7 @@ Partial Class FormFLM
         'TextBoxRominputcontrol_y_pos
         '
         Me.TextBoxRominputcontrol_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRominputcontrol_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxRominputcontrol_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxRominputcontrol_y_pos.Name = "TextBoxRominputcontrol_y_pos"
         Me.TextBoxRominputcontrol_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRominputcontrol_y_pos.TabIndex = 122
@@ -4245,7 +4286,7 @@ Partial Class FormFLM
         'TextBoxRominputcontrol_x_pos
         '
         Me.TextBoxRominputcontrol_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRominputcontrol_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxRominputcontrol_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxRominputcontrol_x_pos.Name = "TextBoxRominputcontrol_x_pos"
         Me.TextBoxRominputcontrol_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRominputcontrol_x_pos.TabIndex = 120
@@ -4298,9 +4339,11 @@ Partial Class FormFLM
         Me.TabPageRomstatus.Controls.Add(Me.TextBoxRomstatus_x_pos)
         Me.TabPageRomstatus.Controls.Add(Me.LabelRomstatus_x_pos)
         Me.TabPageRomstatus.Controls.Add(Me.CheckBoxRomstatus_visible)
+        Me.TabPageRomstatus.ForeColor = System.Drawing.Color.Black
         Me.TabPageRomstatus.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomstatus.Name = "TabPageRomstatus"
-        Me.TabPageRomstatus.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageRomstatus.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageRomstatus.Size = New System.Drawing.Size(242, 663)
         Me.TabPageRomstatus.TabIndex = 17
         Me.TabPageRomstatus.Text = "Romstatus"
         Me.TabPageRomstatus.UseVisualStyleBackColor = True
@@ -4309,7 +4352,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomstatus_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomstatus_text_align.Enabled = False
-        Me.TextBoxRomstatus_text_align.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxRomstatus_text_align.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxRomstatus_text_align.Name = "TextBoxRomstatus_text_align"
         Me.TextBoxRomstatus_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomstatus_text_align.TabIndex = 140
@@ -4328,7 +4371,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomstatus_backcolor.BackColor = System.Drawing.Color.White
         Me.TextBoxRomstatus_backcolor.ForeColor = System.Drawing.Color.Black
-        Me.TextBoxRomstatus_backcolor.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxRomstatus_backcolor.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxRomstatus_backcolor.Name = "TextBoxRomstatus_backcolor"
         Me.TextBoxRomstatus_backcolor.ReadOnly = True
         Me.TextBoxRomstatus_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -4349,7 +4392,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomstatus_font_color.BackColor = System.Drawing.Color.Black
         Me.TextBoxRomstatus_font_color.ForeColor = System.Drawing.Color.White
-        Me.TextBoxRomstatus_font_color.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxRomstatus_font_color.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxRomstatus_font_color.Name = "TextBoxRomstatus_font_color"
         Me.TextBoxRomstatus_font_color.ReadOnly = True
         Me.TextBoxRomstatus_font_color.Size = New System.Drawing.Size(72, 20)
@@ -4370,9 +4413,9 @@ Partial Class FormFLM
         'LabelRomstatusFontDescription
         '
         Me.LabelRomstatusFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRomstatusFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelRomstatusFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelRomstatusFontDescription.Name = "LabelRomstatusFontDescription"
-        Me.LabelRomstatusFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelRomstatusFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelRomstatusFontDescription.TabIndex = 134
         Me.LabelRomstatusFontDescription.Text = "Regular"
         '
@@ -4380,7 +4423,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomstatus_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomstatus_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomstatus_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxRomstatus_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxRomstatus_font_style.Name = "TextBoxRomstatus_font_style"
         Me.TextBoxRomstatus_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomstatus_font_style.TabIndex = 133
@@ -4400,7 +4443,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomstatus_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomstatus_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomstatus_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxRomstatus_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxRomstatus_font_size.Name = "TextBoxRomstatus_font_size"
         Me.TextBoxRomstatus_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomstatus_font_size.TabIndex = 131
@@ -4422,7 +4465,7 @@ Partial Class FormFLM
         Me.TextBoxRomstatus_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxRomstatus_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxRomstatus_font_name.Name = "TextBoxRomstatus_font_name"
-        Me.TextBoxRomstatus_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxRomstatus_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxRomstatus_font_name.TabIndex = 129
         Me.TextBoxRomstatus_font_name.Text = "Arial"
         '
@@ -4438,7 +4481,7 @@ Partial Class FormFLM
         'TextBoxRomstatus_height
         '
         Me.TextBoxRomstatus_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomstatus_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxRomstatus_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxRomstatus_height.Name = "TextBoxRomstatus_height"
         Me.TextBoxRomstatus_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomstatus_height.TabIndex = 127
@@ -4457,7 +4500,7 @@ Partial Class FormFLM
         'TextBoxRomstatus_width
         '
         Me.TextBoxRomstatus_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomstatus_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxRomstatus_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxRomstatus_width.Name = "TextBoxRomstatus_width"
         Me.TextBoxRomstatus_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomstatus_width.TabIndex = 125
@@ -4475,7 +4518,7 @@ Partial Class FormFLM
         '
         'ButtonRomstatusReset
         '
-        Me.ButtonRomstatusReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonRomstatusReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonRomstatusReset.Name = "ButtonRomstatusReset"
         Me.ButtonRomstatusReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonRomstatusReset.TabIndex = 123
@@ -4485,7 +4528,7 @@ Partial Class FormFLM
         'TextBoxRomstatus_y_pos
         '
         Me.TextBoxRomstatus_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomstatus_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxRomstatus_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxRomstatus_y_pos.Name = "TextBoxRomstatus_y_pos"
         Me.TextBoxRomstatus_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomstatus_y_pos.TabIndex = 122
@@ -4504,7 +4547,7 @@ Partial Class FormFLM
         'TextBoxRomstatus_x_pos
         '
         Me.TextBoxRomstatus_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomstatus_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxRomstatus_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxRomstatus_x_pos.Name = "TextBoxRomstatus_x_pos"
         Me.TextBoxRomstatus_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomstatus_x_pos.TabIndex = 120
@@ -4555,9 +4598,11 @@ Partial Class FormFLM
         Me.TabPageRomcategory.Controls.Add(Me.TextBoxRomcategory_x_pos)
         Me.TabPageRomcategory.Controls.Add(Me.LabelRomcategory_x_pos)
         Me.TabPageRomcategory.Controls.Add(Me.CheckBoxRomcategory_visible)
+        Me.TabPageRomcategory.ForeColor = System.Drawing.Color.Black
         Me.TabPageRomcategory.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomcategory.Name = "TabPageRomcategory"
-        Me.TabPageRomcategory.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageRomcategory.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageRomcategory.Size = New System.Drawing.Size(242, 663)
         Me.TabPageRomcategory.TabIndex = 18
         Me.TabPageRomcategory.Text = "Romcategory"
         Me.TabPageRomcategory.UseVisualStyleBackColor = True
@@ -4566,7 +4611,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomcategory_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomcategory_text_align.Enabled = False
-        Me.TextBoxRomcategory_text_align.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxRomcategory_text_align.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxRomcategory_text_align.Name = "TextBoxRomcategory_text_align"
         Me.TextBoxRomcategory_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcategory_text_align.TabIndex = 140
@@ -4585,7 +4630,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomcategory_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(7, Byte), Integer), CType(CType(27, Byte), Integer))
         Me.TextBoxRomcategory_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(228, Byte), Integer))
-        Me.TextBoxRomcategory_backcolor.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxRomcategory_backcolor.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxRomcategory_backcolor.Name = "TextBoxRomcategory_backcolor"
         Me.TextBoxRomcategory_backcolor.ReadOnly = True
         Me.TextBoxRomcategory_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -4606,7 +4651,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomcategory_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(96, Byte), Integer), CType(CType(96, Byte), Integer))
         Me.TextBoxRomcategory_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(159, Byte), Integer))
-        Me.TextBoxRomcategory_font_color.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxRomcategory_font_color.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxRomcategory_font_color.Name = "TextBoxRomcategory_font_color"
         Me.TextBoxRomcategory_font_color.ReadOnly = True
         Me.TextBoxRomcategory_font_color.Size = New System.Drawing.Size(72, 20)
@@ -4627,9 +4672,9 @@ Partial Class FormFLM
         'LabelRomcategoryFontDescription
         '
         Me.LabelRomcategoryFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRomcategoryFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelRomcategoryFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelRomcategoryFontDescription.Name = "LabelRomcategoryFontDescription"
-        Me.LabelRomcategoryFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelRomcategoryFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelRomcategoryFontDescription.TabIndex = 134
         Me.LabelRomcategoryFontDescription.Text = "Regular"
         '
@@ -4637,7 +4682,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomcategory_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomcategory_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomcategory_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxRomcategory_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxRomcategory_font_style.Name = "TextBoxRomcategory_font_style"
         Me.TextBoxRomcategory_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcategory_font_style.TabIndex = 133
@@ -4657,7 +4702,7 @@ Partial Class FormFLM
         '
         Me.TextBoxRomcategory_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxRomcategory_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxRomcategory_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxRomcategory_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxRomcategory_font_size.Name = "TextBoxRomcategory_font_size"
         Me.TextBoxRomcategory_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcategory_font_size.TabIndex = 131
@@ -4679,7 +4724,7 @@ Partial Class FormFLM
         Me.TextBoxRomcategory_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxRomcategory_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxRomcategory_font_name.Name = "TextBoxRomcategory_font_name"
-        Me.TextBoxRomcategory_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxRomcategory_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxRomcategory_font_name.TabIndex = 129
         Me.TextBoxRomcategory_font_name.Text = "Arial"
         '
@@ -4695,7 +4740,7 @@ Partial Class FormFLM
         'TextBoxRomcategory_height
         '
         Me.TextBoxRomcategory_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomcategory_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxRomcategory_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxRomcategory_height.Name = "TextBoxRomcategory_height"
         Me.TextBoxRomcategory_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcategory_height.TabIndex = 127
@@ -4714,7 +4759,7 @@ Partial Class FormFLM
         'TextBoxRomcategory_width
         '
         Me.TextBoxRomcategory_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxRomcategory_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxRomcategory_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxRomcategory_width.Name = "TextBoxRomcategory_width"
         Me.TextBoxRomcategory_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcategory_width.TabIndex = 125
@@ -4732,7 +4777,7 @@ Partial Class FormFLM
         '
         'ButtonRomcategoryReset
         '
-        Me.ButtonRomcategoryReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonRomcategoryReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonRomcategoryReset.Name = "ButtonRomcategoryReset"
         Me.ButtonRomcategoryReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonRomcategoryReset.TabIndex = 123
@@ -4742,7 +4787,7 @@ Partial Class FormFLM
         'TextBoxRomcategory_y_pos
         '
         Me.TextBoxRomcategory_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomcategory_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxRomcategory_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxRomcategory_y_pos.Name = "TextBoxRomcategory_y_pos"
         Me.TextBoxRomcategory_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcategory_y_pos.TabIndex = 122
@@ -4761,7 +4806,7 @@ Partial Class FormFLM
         'TextBoxRomcategory_x_pos
         '
         Me.TextBoxRomcategory_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxRomcategory_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxRomcategory_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxRomcategory_x_pos.Name = "TextBoxRomcategory_x_pos"
         Me.TextBoxRomcategory_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcategory_x_pos.TabIndex = 120
@@ -4821,9 +4866,11 @@ Partial Class FormFLM
         Me.TabPageMenu.Controls.Add(Me.LabelMenu_width)
         Me.TabPageMenu.Controls.Add(Me.ButtonMenuReset)
         Me.TabPageMenu.Controls.Add(Me.CheckBoxMenu)
+        Me.TabPageMenu.ForeColor = System.Drawing.Color.Black
         Me.TabPageMenu.Location = New System.Drawing.Point(4, 22)
         Me.TabPageMenu.Name = "TabPageMenu"
-        Me.TabPageMenu.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageMenu.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageMenu.Size = New System.Drawing.Size(242, 663)
         Me.TabPageMenu.TabIndex = 19
         Me.TabPageMenu.Text = "Menu"
         Me.TabPageMenu.UseVisualStyleBackColor = True
@@ -4831,7 +4878,7 @@ Partial Class FormFLM
         'TextBoxMenu_height
         '
         Me.TextBoxMenu_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxMenu_height.Location = New System.Drawing.Point(134, 110)
+        Me.TextBoxMenu_height.Location = New System.Drawing.Point(167, 110)
         Me.TextBoxMenu_height.Name = "TextBoxMenu_height"
         Me.TextBoxMenu_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMenu_height.TabIndex = 133
@@ -4850,7 +4897,7 @@ Partial Class FormFLM
         'TextBoxMenu_y_pos
         '
         Me.TextBoxMenu_y_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxMenu_y_pos.Location = New System.Drawing.Point(134, 58)
+        Me.TextBoxMenu_y_pos.Location = New System.Drawing.Point(167, 58)
         Me.TextBoxMenu_y_pos.Name = "TextBoxMenu_y_pos"
         Me.TextBoxMenu_y_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMenu_y_pos.TabIndex = 131
@@ -4869,7 +4916,7 @@ Partial Class FormFLM
         'TextBoxMenu_x_pos
         '
         Me.TextBoxMenu_x_pos.BackColor = System.Drawing.Color.Green
-        Me.TextBoxMenu_x_pos.Location = New System.Drawing.Point(134, 32)
+        Me.TextBoxMenu_x_pos.Location = New System.Drawing.Point(167, 32)
         Me.TextBoxMenu_x_pos.Name = "TextBoxMenu_x_pos"
         Me.TextBoxMenu_x_pos.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMenu_x_pos.TabIndex = 129
@@ -4901,7 +4948,7 @@ Partial Class FormFLM
         '
         Me.TextBoxMenu_text_align.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxMenu_text_align.Enabled = False
-        Me.TextBoxMenu_text_align.Location = New System.Drawing.Point(134, 363)
+        Me.TextBoxMenu_text_align.Location = New System.Drawing.Point(167, 363)
         Me.TextBoxMenu_text_align.Name = "TextBoxMenu_text_align"
         Me.TextBoxMenu_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMenu_text_align.TabIndex = 80
@@ -4921,7 +4968,7 @@ Partial Class FormFLM
         '
         Me.TextBoxMenu_selected_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.TextBoxMenu_selected_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(59, Byte), Integer))
-        Me.TextBoxMenu_selected_backcolor.Location = New System.Drawing.Point(134, 337)
+        Me.TextBoxMenu_selected_backcolor.Location = New System.Drawing.Point(167, 337)
         Me.TextBoxMenu_selected_backcolor.Name = "TextBoxMenu_selected_backcolor"
         Me.TextBoxMenu_selected_backcolor.ReadOnly = True
         Me.TextBoxMenu_selected_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -4942,7 +4989,7 @@ Partial Class FormFLM
         '
         Me.TextBoxMenu_selected_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.TextBoxMenu_selected_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(59, Byte), Integer))
-        Me.TextBoxMenu_selected_font_color.Location = New System.Drawing.Point(134, 311)
+        Me.TextBoxMenu_selected_font_color.Location = New System.Drawing.Point(167, 311)
         Me.TextBoxMenu_selected_font_color.Name = "TextBoxMenu_selected_font_color"
         Me.TextBoxMenu_selected_font_color.ReadOnly = True
         Me.TextBoxMenu_selected_font_color.Size = New System.Drawing.Size(72, 20)
@@ -4964,7 +5011,7 @@ Partial Class FormFLM
         '
         Me.TextBoxMenu_backcolor.BackColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(96, Byte), Integer))
         Me.TextBoxMenu_backcolor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(159, Byte), Integer), CType(CType(191, Byte), Integer), CType(CType(159, Byte), Integer))
-        Me.TextBoxMenu_backcolor.Location = New System.Drawing.Point(134, 285)
+        Me.TextBoxMenu_backcolor.Location = New System.Drawing.Point(167, 285)
         Me.TextBoxMenu_backcolor.Name = "TextBoxMenu_backcolor"
         Me.TextBoxMenu_backcolor.ReadOnly = True
         Me.TextBoxMenu_backcolor.Size = New System.Drawing.Size(72, 20)
@@ -4985,7 +5032,7 @@ Partial Class FormFLM
         '
         Me.TextBoxMenu_font_color.BackColor = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.TextBoxMenu_font_color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(155, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(205, Byte), Integer))
-        Me.TextBoxMenu_font_color.Location = New System.Drawing.Point(134, 259)
+        Me.TextBoxMenu_font_color.Location = New System.Drawing.Point(167, 259)
         Me.TextBoxMenu_font_color.Name = "TextBoxMenu_font_color"
         Me.TextBoxMenu_font_color.ReadOnly = True
         Me.TextBoxMenu_font_color.Size = New System.Drawing.Size(72, 20)
@@ -5006,16 +5053,16 @@ Partial Class FormFLM
         'LabelMenuFontDescription
         '
         Me.LabelMenuFontDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelMenuFontDescription.Location = New System.Drawing.Point(131, 139)
+        Me.LabelMenuFontDescription.Location = New System.Drawing.Point(167, 139)
         Me.LabelMenuFontDescription.Name = "LabelMenuFontDescription"
-        Me.LabelMenuFontDescription.Size = New System.Drawing.Size(67, 13)
+        Me.LabelMenuFontDescription.Size = New System.Drawing.Size(72, 13)
         Me.LabelMenuFontDescription.TabIndex = 70
         Me.LabelMenuFontDescription.Text = "Bold"
         '
         'TextBoxMenu_item_height
         '
         Me.TextBoxMenu_item_height.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxMenu_item_height.Location = New System.Drawing.Point(134, 233)
+        Me.TextBoxMenu_item_height.Location = New System.Drawing.Point(167, 233)
         Me.TextBoxMenu_item_height.Name = "TextBoxMenu_item_height"
         Me.TextBoxMenu_item_height.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMenu_item_height.TabIndex = 69
@@ -5035,7 +5082,7 @@ Partial Class FormFLM
         '
         Me.TextBoxMenu_font_style.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxMenu_font_style.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxMenu_font_style.Location = New System.Drawing.Point(134, 207)
+        Me.TextBoxMenu_font_style.Location = New System.Drawing.Point(167, 207)
         Me.TextBoxMenu_font_style.Name = "TextBoxMenu_font_style"
         Me.TextBoxMenu_font_style.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMenu_font_style.TabIndex = 67
@@ -5055,7 +5102,7 @@ Partial Class FormFLM
         '
         Me.TextBoxMenu_font_size.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxMenu_font_size.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxMenu_font_size.Location = New System.Drawing.Point(134, 181)
+        Me.TextBoxMenu_font_size.Location = New System.Drawing.Point(167, 181)
         Me.TextBoxMenu_font_size.Name = "TextBoxMenu_font_size"
         Me.TextBoxMenu_font_size.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMenu_font_size.TabIndex = 65
@@ -5077,7 +5124,7 @@ Partial Class FormFLM
         Me.TextBoxMenu_font_name.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxMenu_font_name.Location = New System.Drawing.Point(3, 155)
         Me.TextBoxMenu_font_name.Name = "TextBoxMenu_font_name"
-        Me.TextBoxMenu_font_name.Size = New System.Drawing.Size(203, 20)
+        Me.TextBoxMenu_font_name.Size = New System.Drawing.Size(236, 20)
         Me.TextBoxMenu_font_name.TabIndex = 63
         Me.TextBoxMenu_font_name.Text = "Arial"
         '
@@ -5093,7 +5140,7 @@ Partial Class FormFLM
         'TextBoxMenu_width
         '
         Me.TextBoxMenu_width.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxMenu_width.Location = New System.Drawing.Point(134, 84)
+        Me.TextBoxMenu_width.Location = New System.Drawing.Point(167, 84)
         Me.TextBoxMenu_width.Name = "TextBoxMenu_width"
         Me.TextBoxMenu_width.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxMenu_width.TabIndex = 61
@@ -5112,7 +5159,7 @@ Partial Class FormFLM
         'ButtonMenuReset
         '
         Me.ButtonMenuReset.Enabled = False
-        Me.ButtonMenuReset.Location = New System.Drawing.Point(153, 3)
+        Me.ButtonMenuReset.Location = New System.Drawing.Point(186, 3)
         Me.ButtonMenuReset.Name = "ButtonMenuReset"
         Me.ButtonMenuReset.Size = New System.Drawing.Size(53, 23)
         Me.ButtonMenuReset.TabIndex = 59
@@ -5138,9 +5185,11 @@ Partial Class FormFLM
         Me.TabPageActors.Controls.Add(Me.LabelActors_frame_duration_ms)
         Me.TabPageActors.Controls.Add(Me.TextBoxActors_repeat_delay_ms)
         Me.TabPageActors.Controls.Add(Me.LabelActors_repeat_delay_ms)
+        Me.TabPageActors.ForeColor = System.Drawing.Color.Black
         Me.TabPageActors.Location = New System.Drawing.Point(4, 22)
         Me.TabPageActors.Name = "TabPageActors"
-        Me.TabPageActors.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageActors.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageActors.Size = New System.Drawing.Size(242, 663)
         Me.TabPageActors.TabIndex = 20
         Me.TabPageActors.Text = "Actors"
         Me.TabPageActors.UseVisualStyleBackColor = True
@@ -5148,7 +5197,7 @@ Partial Class FormFLM
         'TextBoxActors_frame_duration_ms
         '
         Me.TextBoxActors_frame_duration_ms.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxActors_frame_duration_ms.Location = New System.Drawing.Point(134, 196)
+        Me.TextBoxActors_frame_duration_ms.Location = New System.Drawing.Point(167, 177)
         Me.TextBoxActors_frame_duration_ms.Name = "TextBoxActors_frame_duration_ms"
         Me.TextBoxActors_frame_duration_ms.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxActors_frame_duration_ms.TabIndex = 51
@@ -5167,7 +5216,7 @@ Partial Class FormFLM
         'TextBoxActors_repeat_delay_ms
         '
         Me.TextBoxActors_repeat_delay_ms.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxActors_repeat_delay_ms.Location = New System.Drawing.Point(134, 235)
+        Me.TextBoxActors_repeat_delay_ms.Location = New System.Drawing.Point(167, 216)
         Me.TextBoxActors_repeat_delay_ms.Name = "TextBoxActors_repeat_delay_ms"
         Me.TextBoxActors_repeat_delay_ms.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxActors_repeat_delay_ms.TabIndex = 49
@@ -5189,9 +5238,11 @@ Partial Class FormFLM
         Me.TabPageBazil.Controls.Add(Me.LabelBezel_frame_duration_ms)
         Me.TabPageBazil.Controls.Add(Me.TextBoxBezel_repeat_delay_ms)
         Me.TabPageBazil.Controls.Add(Me.LabelBezel_repeat_delay_ms)
+        Me.TabPageBazil.ForeColor = System.Drawing.Color.Black
         Me.TabPageBazil.Location = New System.Drawing.Point(4, 22)
         Me.TabPageBazil.Name = "TabPageBazil"
-        Me.TabPageBazil.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageBazil.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageBazil.Size = New System.Drawing.Size(242, 663)
         Me.TabPageBazil.TabIndex = 21
         Me.TabPageBazil.Text = "Bazil"
         Me.TabPageBazil.UseVisualStyleBackColor = True
@@ -5199,7 +5250,7 @@ Partial Class FormFLM
         'TextBoxBezel_frame_duration_ms
         '
         Me.TextBoxBezel_frame_duration_ms.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxBezel_frame_duration_ms.Location = New System.Drawing.Point(134, 196)
+        Me.TextBoxBezel_frame_duration_ms.Location = New System.Drawing.Point(167, 177)
         Me.TextBoxBezel_frame_duration_ms.Name = "TextBoxBezel_frame_duration_ms"
         Me.TextBoxBezel_frame_duration_ms.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxBezel_frame_duration_ms.TabIndex = 55
@@ -5218,7 +5269,7 @@ Partial Class FormFLM
         'TextBoxBezel_repeat_delay_ms
         '
         Me.TextBoxBezel_repeat_delay_ms.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxBezel_repeat_delay_ms.Location = New System.Drawing.Point(134, 235)
+        Me.TextBoxBezel_repeat_delay_ms.Location = New System.Drawing.Point(167, 216)
         Me.TextBoxBezel_repeat_delay_ms.Name = "TextBoxBezel_repeat_delay_ms"
         Me.TextBoxBezel_repeat_delay_ms.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxBezel_repeat_delay_ms.TabIndex = 53
@@ -5237,9 +5288,11 @@ Partial Class FormFLM
         'TabPageShow
         '
         Me.TabPageShow.Controls.Add(Me.CheckBoxShow_extended_messages)
+        Me.TabPageShow.ForeColor = System.Drawing.Color.Black
         Me.TabPageShow.Location = New System.Drawing.Point(4, 22)
         Me.TabPageShow.Name = "TabPageShow"
-        Me.TabPageShow.Size = New System.Drawing.Size(209, 435)
+        Me.TabPageShow.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageShow.Size = New System.Drawing.Size(242, 663)
         Me.TabPageShow.TabIndex = 22
         Me.TabPageShow.Text = "Show"
         Me.TabPageShow.UseVisualStyleBackColor = True
@@ -5258,8 +5311,8 @@ Partial Class FormFLM
         '
         Me.LabelZoomTesto.AutoSize = True
         Me.LabelZoomTesto.BackColor = System.Drawing.Color.Transparent
-        Me.LabelZoomTesto.ForeColor = System.Drawing.Color.Chartreuse
-        Me.LabelZoomTesto.Location = New System.Drawing.Point(23, 407)
+        Me.LabelZoomTesto.ForeColor = System.Drawing.Color.Red
+        Me.LabelZoomTesto.Location = New System.Drawing.Point(3, 40)
         Me.LabelZoomTesto.Name = "LabelZoomTesto"
         Me.LabelZoomTesto.Size = New System.Drawing.Size(34, 13)
         Me.LabelZoomTesto.TabIndex = 7
@@ -5269,41 +5322,45 @@ Partial Class FormFLM
         '
         Me.LabelPercorso.AutoSize = True
         Me.LabelPercorso.BackColor = System.Drawing.Color.Transparent
-        Me.LabelPercorso.ForeColor = System.Drawing.Color.Chartreuse
-        Me.LabelPercorso.Location = New System.Drawing.Point(305, 2)
+        Me.LabelPercorso.ForeColor = System.Drawing.Color.Red
+        Me.LabelPercorso.Location = New System.Drawing.Point(312, 736)
         Me.LabelPercorso.Name = "LabelPercorso"
-        Me.LabelPercorso.Size = New System.Drawing.Size(49, 13)
+        Me.LabelPercorso.Size = New System.Drawing.Size(208, 13)
         Me.LabelPercorso.TabIndex = 6
-        Me.LabelPercorso.Text = "Percorso"
+        Me.LabelPercorso.Text = "Percorso FEEL (doppio click x configurare)"
         '
         'ButtonCarica
         '
+        Me.ButtonCarica.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonCarica.BackgroundImage = Global.GotScraper.My.Resources.Resources.load
+        Me.ButtonCarica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonCarica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonCarica.Location = New System.Drawing.Point(12, 2)
+        Me.ButtonCarica.Location = New System.Drawing.Point(12, 1)
         Me.ButtonCarica.Name = "ButtonCarica"
-        Me.ButtonCarica.Size = New System.Drawing.Size(58, 23)
+        Me.ButtonCarica.Size = New System.Drawing.Size(82, 39)
         Me.ButtonCarica.TabIndex = 5
-        Me.ButtonCarica.Text = "Carica"
-        Me.ButtonCarica.UseVisualStyleBackColor = True
+        Me.ButtonCarica.UseVisualStyleBackColor = False
         '
         'ButtonPubblica
         '
+        Me.ButtonPubblica.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonPubblica.BackgroundImage = Global.GotScraper.My.Resources.Resources.save
+        Me.ButtonPubblica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonPubblica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonPubblica.Location = New System.Drawing.Point(76, 2)
+        Me.ButtonPubblica.Location = New System.Drawing.Point(186, 1)
         Me.ButtonPubblica.Name = "ButtonPubblica"
-        Me.ButtonPubblica.Size = New System.Drawing.Size(63, 23)
+        Me.ButtonPubblica.Size = New System.Drawing.Size(82, 39)
         Me.ButtonPubblica.TabIndex = 4
-        Me.ButtonPubblica.Text = "Pubblica"
-        Me.ButtonPubblica.UseVisualStyleBackColor = True
+        Me.ButtonPubblica.UseVisualStyleBackColor = False
         '
         'ButtonAnteprima
         '
         Me.ButtonAnteprima.Enabled = False
         Me.ButtonAnteprima.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonAnteprima.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.ButtonAnteprima.Location = New System.Drawing.Point(20, 439)
+        Me.ButtonAnteprima.Location = New System.Drawing.Point(1169, 1)
         Me.ButtonAnteprima.Name = "ButtonAnteprima"
-        Me.ButtonAnteprima.Size = New System.Drawing.Size(80, 48)
+        Me.ButtonAnteprima.Size = New System.Drawing.Size(80, 34)
         Me.ButtonAnteprima.TabIndex = 3
         Me.ButtonAnteprima.Text = "Anteprima"
         Me.ButtonAnteprima.UseVisualStyleBackColor = True
@@ -5311,8 +5368,8 @@ Partial Class FormFLM
         'LabelZoom
         '
         Me.LabelZoom.BackColor = System.Drawing.Color.Transparent
-        Me.LabelZoom.ForeColor = System.Drawing.Color.Chartreuse
-        Me.LabelZoom.Location = New System.Drawing.Point(80, 407)
+        Me.LabelZoom.ForeColor = System.Drawing.Color.Red
+        Me.LabelZoom.Location = New System.Drawing.Point(60, 40)
         Me.LabelZoom.Name = "LabelZoom"
         Me.LabelZoom.Size = New System.Drawing.Size(33, 13)
         Me.LabelZoom.TabIndex = 2
@@ -5321,7 +5378,8 @@ Partial Class FormFLM
         '
         'TrackBarZoom
         '
-        Me.TrackBarZoom.Location = New System.Drawing.Point(6, 359)
+        Me.TrackBarZoom.BackColor = System.Drawing.Color.Black
+        Me.TrackBarZoom.Location = New System.Drawing.Point(3, 3)
         Me.TrackBarZoom.Maximum = 200
         Me.TrackBarZoom.Name = "TrackBarZoom"
         Me.TrackBarZoom.Size = New System.Drawing.Size(104, 45)
@@ -5332,16 +5390,11 @@ Partial Class FormFLM
         '
         Me.GroupBoxObj.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GroupBoxObj.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBoxObj.Controls.Add(Me.TextBoxZoom)
-        Me.GroupBoxObj.Controls.Add(Me.LabelZoomTesto)
         Me.GroupBoxObj.Controls.Add(Me.ListBoxObj)
-        Me.GroupBoxObj.Controls.Add(Me.TrackBarZoom)
-        Me.GroupBoxObj.Controls.Add(Me.LabelZoom)
-        Me.GroupBoxObj.Controls.Add(Me.ButtonAnteprima)
-        Me.GroupBoxObj.ForeColor = System.Drawing.Color.Chartreuse
-        Me.GroupBoxObj.Location = New System.Drawing.Point(887, 12)
+        Me.GroupBoxObj.ForeColor = System.Drawing.Color.Red
+        Me.GroupBoxObj.Location = New System.Drawing.Point(996, 41)
         Me.GroupBoxObj.Name = "GroupBoxObj"
-        Me.GroupBoxObj.Size = New System.Drawing.Size(120, 496)
+        Me.GroupBoxObj.Size = New System.Drawing.Size(256, 708)
         Me.GroupBoxObj.TabIndex = 1
         Me.GroupBoxObj.TabStop = False
         Me.GroupBoxObj.Text = "Obj/Media"
@@ -5350,8 +5403,8 @@ Partial Class FormFLM
         '
         Me.TextBoxZoom.BackColor = System.Drawing.Color.Black
         Me.TextBoxZoom.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBoxZoom.ForeColor = System.Drawing.Color.Chartreuse
-        Me.TextBoxZoom.Location = New System.Drawing.Point(63, 406)
+        Me.TextBoxZoom.ForeColor = System.Drawing.Color.Red
+        Me.TextBoxZoom.Location = New System.Drawing.Point(43, 39)
         Me.TextBoxZoom.Name = "TextBoxZoom"
         Me.TextBoxZoom.Size = New System.Drawing.Size(38, 13)
         Me.TextBoxZoom.TabIndex = 8
@@ -5360,11 +5413,14 @@ Partial Class FormFLM
         '
         'ListBoxObj
         '
+        Me.ListBoxObj.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ListBoxObj.Font = New System.Drawing.Font("SimSun", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListBoxObj.FormattingEnabled = True
+        Me.ListBoxObj.ItemHeight = 27
         Me.ListBoxObj.Items.AddRange(New Object() {"Sound", "Music", "Screen", "Romlist", "Background", "Snapshot", "Cabinet", "Marquee", "Romcounter", "Platformname", "Emulatorname", "Gamelistname", "Romname", "Romdescription", "Rommanufacturer", "Romdisplaytype", "Rominputcontrol", "Romstatus", "Romcategory", "Menu", "Actors", "Bazil", "Show"})
-        Me.ListBoxObj.Location = New System.Drawing.Point(6, 20)
+        Me.ListBoxObj.Location = New System.Drawing.Point(3, 16)
         Me.ListBoxObj.Name = "ListBoxObj"
-        Me.ListBoxObj.Size = New System.Drawing.Size(108, 303)
+        Me.ListBoxObj.Size = New System.Drawing.Size(250, 689)
         Me.ListBoxObj.TabIndex = 2
         '
         'ColorDialog1
@@ -5377,8 +5433,8 @@ Partial Class FormFLM
         '
         Me.LabelPannelloMainX.AutoSize = True
         Me.LabelPannelloMainX.BackColor = System.Drawing.Color.Transparent
-        Me.LabelPannelloMainX.ForeColor = System.Drawing.Color.Chartreuse
-        Me.LabelPannelloMainX.Location = New System.Drawing.Point(516, 7)
+        Me.LabelPannelloMainX.ForeColor = System.Drawing.Color.Red
+        Me.LabelPannelloMainX.Location = New System.Drawing.Point(588, 100)
         Me.LabelPannelloMainX.Name = "LabelPannelloMainX"
         Me.LabelPannelloMainX.Size = New System.Drawing.Size(95, 13)
         Me.LabelPannelloMainX.TabIndex = 28
@@ -5388,8 +5444,8 @@ Partial Class FormFLM
         '
         Me.LabelPannelloMainY.AutoSize = True
         Me.LabelPannelloMainY.BackColor = System.Drawing.Color.Transparent
-        Me.LabelPannelloMainY.ForeColor = System.Drawing.Color.Chartreuse
-        Me.LabelPannelloMainY.Location = New System.Drawing.Point(617, 7)
+        Me.LabelPannelloMainY.ForeColor = System.Drawing.Color.Red
+        Me.LabelPannelloMainY.Location = New System.Drawing.Point(689, 100)
         Me.LabelPannelloMainY.Name = "LabelPannelloMainY"
         Me.LabelPannelloMainY.Size = New System.Drawing.Size(95, 13)
         Me.LabelPannelloMainY.TabIndex = 29
@@ -5397,19 +5453,21 @@ Partial Class FormFLM
         '
         'ButtonPannelloMainReset
         '
-        Me.ButtonPannelloMainReset.Location = New System.Drawing.Point(786, 2)
+        Me.ButtonPannelloMainReset.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonPannelloMainReset.BackgroundImage = Global.GotScraper.My.Resources.Resources.reset
+        Me.ButtonPannelloMainReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonPannelloMainReset.Location = New System.Drawing.Point(857, 71)
         Me.ButtonPannelloMainReset.Name = "ButtonPannelloMainReset"
-        Me.ButtonPannelloMainReset.Size = New System.Drawing.Size(95, 23)
+        Me.ButtonPannelloMainReset.Size = New System.Drawing.Size(95, 39)
         Me.ButtonPannelloMainReset.TabIndex = 30
-        Me.ButtonPannelloMainReset.Text = "Reset posizione"
-        Me.ButtonPannelloMainReset.UseVisualStyleBackColor = True
+        Me.ButtonPannelloMainReset.UseVisualStyleBackColor = False
         '
         'LabelScreenRisoluzione
         '
         Me.LabelScreenRisoluzione.AutoSize = True
         Me.LabelScreenRisoluzione.BackColor = System.Drawing.Color.Transparent
-        Me.LabelScreenRisoluzione.ForeColor = System.Drawing.Color.Chartreuse
-        Me.LabelScreenRisoluzione.Location = New System.Drawing.Point(238, 12)
+        Me.LabelScreenRisoluzione.ForeColor = System.Drawing.Color.Red
+        Me.LabelScreenRisoluzione.Location = New System.Drawing.Point(312, 100)
         Me.LabelScreenRisoluzione.Name = "LabelScreenRisoluzione"
         Me.LabelScreenRisoluzione.Size = New System.Drawing.Size(30, 13)
         Me.LabelScreenRisoluzione.TabIndex = 7
@@ -5584,7 +5642,7 @@ Partial Class FormFLM
         '
         Me.PanelMainMaster.BackColor = System.Drawing.Color.Black
         Me.PanelMainMaster.Controls.Add(Me.PanelMain)
-        Me.PanelMainMaster.Location = New System.Drawing.Point(241, 28)
+        Me.PanelMainMaster.Location = New System.Drawing.Point(312, 116)
         Me.PanelMainMaster.Name = "PanelMainMaster"
         Me.PanelMainMaster.Size = New System.Drawing.Size(640, 480)
         Me.PanelMainMaster.TabIndex = 32
@@ -5596,13 +5654,27 @@ Partial Class FormFLM
         Me.ToolTip1.InitialDelay = 50
         Me.ToolTip1.ReshowDelay = 10
         '
+        'PanelZoom
+        '
+        Me.PanelZoom.BackColor = System.Drawing.Color.Transparent
+        Me.PanelZoom.Controls.Add(Me.TextBoxZoom)
+        Me.PanelZoom.Controls.Add(Me.LabelZoomTesto)
+        Me.PanelZoom.Controls.Add(Me.LabelZoom)
+        Me.PanelZoom.Controls.Add(Me.TrackBarZoom)
+        Me.PanelZoom.Location = New System.Drawing.Point(840, 693)
+        Me.PanelZoom.Name = "PanelZoom"
+        Me.PanelZoom.Size = New System.Drawing.Size(112, 56)
+        Me.PanelZoom.TabIndex = 33
+        '
         'FormFLM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.BarTop
+        Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.bartop1280_800
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1014, 511)
+        Me.ClientSize = New System.Drawing.Size(1264, 761)
+        Me.Controls.Add(Me.PanelZoom)
+        Me.Controls.Add(Me.ButtonAnteprima)
         Me.Controls.Add(Me.PanelMainMaster)
         Me.Controls.Add(Me.ButtonPannelloMainReset)
         Me.Controls.Add(Me.LabelScreenRisoluzione)
@@ -5613,9 +5685,9 @@ Partial Class FormFLM
         Me.Controls.Add(Me.GroupBoxObj)
         Me.Controls.Add(Me.ButtonPubblica)
         Me.Controls.Add(Me.GroupBoxProprietà)
+        Me.DoubleBuffered = True
         Me.Name = "FormFLM"
         Me.Text = "FLM - F.E.E.L. Layout Manager - Alpha 3 by Gothrek"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.GroupBoxProprietà.ResumeLayout(False)
         Me.TabControlProprietà.ResumeLayout(False)
         Me.TabPageProprietà.ResumeLayout(False)
@@ -5668,9 +5740,10 @@ Partial Class FormFLM
         Me.TabPageShow.PerformLayout()
         CType(Me.TrackBarZoom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBoxObj.ResumeLayout(False)
-        Me.GroupBoxObj.PerformLayout()
         Me.PanelMain.ResumeLayout(False)
         Me.PanelMainMaster.ResumeLayout(False)
+        Me.PanelZoom.ResumeLayout(False)
+        Me.PanelZoom.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -6151,4 +6224,5 @@ Partial Class FormFLM
     Friend WithEvents TextBoxZoom As TextBox
     Friend WithEvents CheckBoxBackgroundImage As CheckBox
     Friend WithEvents TrackBarPanelBackgroundImage As TrackBar
+    Friend WithEvents PanelZoom As Panel
 End Class

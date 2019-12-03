@@ -61,7 +61,7 @@
         'Me.Refresh()
 
         '------ fine test imagebackground dinamica -----
-        Me.BackgroundImage = ClassUtility.ChangeOpacity(Me.BackgroundImage, 0.5)
+        Me.BackgroundImage = ClassUtility.ChangeOpacity(Me.BackgroundImage, 1)
 
         formDimensioni = Me.Size
 
@@ -377,35 +377,36 @@
 
     Private Sub FormFLM_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         '------ test imagebackground dinamica -----
-        'Dim immagineTopH As Integer = Int(Me.Height * 10 / 100)
-        'Dim immagineTopW As Integer
-        'Dim immagineBottomH As Integer = Int(Me.Height * 15 / 100)
-        'Dim immagineBottomW As Integer
-        'Dim immagineCenterH As Integer = Int(Me.Height / 2)
-        'Dim immagineCenterW As Integer
-        'Dim immagineTop As Image = New Bitmap(Me.Width, immagineTopH)
-        'Dim immagineCenter As Image '= New Bitmap(Me.Width, 100)
-        'Dim immagineBottom As Image = New Bitmap(Me.Width, immagineBottomH)
-        'Dim immagineFinale As Image = New Bitmap(Me.Width, Me.Height)
+        'Dim immagineTopH As Integer = 144 'Int(Me.Height * 10 / 100)
+        'Dim immagineTopW As Integer = 724
+        'Dim immagineBottomH As Integer = 176 'Int(Me.Height * 15 / 100)
+        'Dim immagineBottomW As Integer = 724
+        ''Dim immagineCenterH As Integer = Int(Me.Height / 2)
+        'Dim immagineCenterW As Integer = -213 '2560
+        'Dim immagineTop As Image = New Bitmap(724, 144) 'New Bitmap(Me.Width, immagineTopH)
+        'Dim immagineCenter As Image = New Bitmap(1706, 66) '= New Bitmap(Me.Width, 100)
+        'Dim immagineBottom As Image = New Bitmap(723, 176) 'New Bitmap(Me.Width, immagineBottomH)
+        'Dim immagineFinale As Image = New Bitmap(1280, 800) 'New Bitmap(Me.Width, Me.Height)
 
         'Dim gr As Graphics = Graphics.FromImage(immagineFinale)
 
         'immagineTop = Image.FromFile("img\top.jpg")
         'immagineCenter = Image.FromFile("img\center.png")
         'immagineBottom = Image.FromFile("img\bottom.jpg")
-        'immagineTopW = Int((Me.Width - immagineTop.Width) / 2)
-        'immagineCenterW = Int((Me.Width - immagineCenter.Width) / 2)
-        'immagineBottomW = Int((Me.Width - immagineBottom.Width) / 2)
+        ''immagineTopW = Int((Me.Width - immagineTop.Width) / 2)
+        ''immagineCenterW = Int((Me.Width - immagineCenter.Width) / 2)
+        ''immagineBottomW = Int((Me.Width - immagineBottom.Width) / 2)
 
         'Dim posizioneCenter As Integer = 0 'Int(Me.Width * 20 / 100)
 
-        'For i As Integer = 0 To Int(Me.Height / 100)
-        '    gr.DrawImage(immagineCenter, immagineCenterW, posizioneCenter, immagineCenter.Width, immagineCenter.Height)
-        '    posizioneCenter += 100
+        'For i As Integer = 0 To Int(Me.Height / 66)
+        '    gr.DrawImage(immagineCenter, immagineCenterW, posizioneCenter, 1706, 66)
+        '    posizioneCenter += 66
         'Next
-
-        'gr.DrawImage(immagineTop, immagineTopW, 0, immagineTop.Width, immagineTopH)
-        'gr.DrawImage(immagineBottom, immagineBottomW, Me.Height - immagineBottomH, immagineBottom.Width, immagineBottomH)
+        'gr.DrawImage(immagineTop, 278, 0, immagineTopW, immagineTopH)
+        'gr.DrawImage(immagineBottom, 279, Me.Height - immagineBottomH, immagineBottomW, immagineBottomH)
+        ''gr.DrawImage(immagineTop, immagineTopW, 0, immagineTop.Width, immagineTopH)
+        ''gr.DrawImage(immagineBottom, immagineBottomW, Me.Height - immagineBottomH, immagineBottom.Width, immagineBottomH)
 
         'Try
         '    immagineFinale.Save("test" & immagineFinale.Width & "-" & immagineFinale.Height & ".bmp")
@@ -418,23 +419,48 @@
 
         '------ fine test imagebackground dinamica -----
 
-        If Me.Size.Width < 1030 Then
-            Me.Size = New Size(1030, Me.Size.Height)
+        If Me.Size.Width < 1280 Then
+            Me.Size = New Size(1280, Me.Size.Height)
         End If
 
-        If Me.Size.Height < 550 Then
-            Me.Size = New Size(Me.Size.Width, 550)
+        If Me.Size.Height < 800 Then
+            Me.Size = New Size(Me.Size.Width, 800)
         End If
 
-        GroupBoxProprietà.Size = New Size(GroupBoxProprietà.Size.Width, Int(Me.Size.Height - 72)) 'TODO personalizzare il valore 72
+        GroupBoxProprietà.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
         GroupBoxProprietà.Refresh()
 
-        GroupBoxObj.Size = New Size(GroupBoxObj.Size.Width, Int(Me.Size.Height - 54)) 'TODO personalizzare il valore 54
-        GroupBoxObj.Location = New Point(Me.Size.Width - 143, GroupBoxObj.Location.Y) 'TODO personalizzare il valore 143
+        GroupBoxObj.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
+        GroupBoxObj.Location = New Point(Me.Size.Width - Int(Me.Size.Width * 20 / 100) - 20, GroupBoxObj.Location.Y) 'TODO personalizzare il valore -20=20% della nuova dimensione a 12+8di bord form
         GroupBoxObj.Refresh()
 
-        PanelMainMaster.Size = New Size(GroupBoxObj.Location.X - PanelMainMaster.Location.X - 6, Me.Size.Height - PanelMainMaster.Location.Y - 42) 'TODO personalizzare il valore 6 e 42
+        PanelMainMaster.Size = New Size(Int(Me.Size.Width * 50 / 100), Int(Me.Size.Height * 60 / 100)) 'Il pannello è il 50%W e il 60%H
+        PanelMainMaster.Location = New Point(Int(Me.Size.Width * 24.683544303797468 / 100) + 8, Int(Me.Size.Height * 14.5 / 100))
         PanelMainMaster.Refresh()
+
+        LabelScreenRisoluzione.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y - 16)
+        LabelScreenRisoluzione.Refresh()
+
+        LabelPannelloMainX.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Size.Width / 2 - LabelPannelloMainX.Size.Width), PanelMainMaster.Location.Y - 16)
+        LabelPannelloMainX.Refresh()
+        LabelPannelloMainY.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Size.Width / 2), PanelMainMaster.Location.Y - 16)
+        LabelPannelloMainY.Refresh()
+
+        ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
+        ButtonPannelloMainReset.Refresh()
+
+        LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 25 - 39)
+        LabelPercorso.Refresh()
+
+        PanelZoom.Location = New Point(ButtonPannelloMainReset.Location.X - 17, Me.Size.Height - 68 - 39)
+        PanelZoom.Refresh()
+
+        ButtonAnteprima.Location = New Point(GroupBoxObj.Location.X + GroupBoxObj.Size.Width - ButtonAnteprima.Size.Width)
+        ButtonAnteprima.Refresh()
+
+        ButtonPubblica.Location = New Point(GroupBoxProprietà.Location.X + GroupBoxProprietà.Size.Width - ButtonPubblica.Width, ButtonPubblica.Location.Y)
+        ButtonPubblica.Refresh()
+
     End Sub
 
     Private Sub ButtonAnteprima_Click(sender As Object, e As EventArgs) Handles ButtonAnteprima.Click

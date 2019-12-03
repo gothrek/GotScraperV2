@@ -199,5 +199,20 @@
   <ItemGroup>
     <None Include="Resources\228462_configure_256x256.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BarTop1280x800.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bartop1280-800.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\load.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
