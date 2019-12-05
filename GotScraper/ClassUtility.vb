@@ -75,6 +75,7 @@ Public Class ClassUtility
     End Function
 
     Public Shared Function ChangeOpacity(ByVal img As Image, ByVal opacityvalue As Single) As Bitmap
+
         Dim bmp As New Bitmap(img.Width, img.Height)
         Dim graphics__1 As Graphics = Graphics.FromImage(bmp)
         Dim colormatrix As New ColorMatrix

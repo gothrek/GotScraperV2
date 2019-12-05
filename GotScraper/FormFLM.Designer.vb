@@ -26,6 +26,7 @@ Partial Class FormFLM
         Me.GroupBoxProprietà = New System.Windows.Forms.GroupBox()
         Me.TabControlProprietà = New System.Windows.Forms.TabControl()
         Me.TabPageProprietà = New System.Windows.Forms.TabPage()
+        Me.LabelIstruzioni = New System.Windows.Forms.Label()
         Me.LabelProprietà = New System.Windows.Forms.Label()
         Me.TabPageSound = New System.Windows.Forms.TabPage()
         Me.ButtonSoundPath = New System.Windows.Forms.Button()
@@ -468,12 +469,12 @@ Partial Class FormFLM
         Me.LabelZoom = New System.Windows.Forms.Label()
         Me.TrackBarZoom = New System.Windows.Forms.TrackBar()
         Me.GroupBoxObj = New System.Windows.Forms.GroupBox()
-        Me.TextBoxZoom = New System.Windows.Forms.TextBox()
         Me.ListBoxObj = New System.Windows.Forms.ListBox()
+        Me.TextBoxZoom = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
-        Me.LabelPannelloMainX = New System.Windows.Forms.Label()
+        Me.LabelPannello = New System.Windows.Forms.Label()
         Me.LabelPannelloMainY = New System.Windows.Forms.Label()
         Me.ButtonPannelloMainReset = New System.Windows.Forms.Button()
         Me.LabelScreenRisoluzione = New System.Windows.Forms.Label()
@@ -499,6 +500,9 @@ Partial Class FormFLM
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.PanelZoom = New System.Windows.Forms.Panel()
+        Me.LabelPosizioneMouse = New System.Windows.Forms.Label()
+        Me.ButtonFLMOptions = New System.Windows.Forms.Button()
+        Me.ButtonPainter = New System.Windows.Forms.Button()
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -538,6 +542,7 @@ Partial Class FormFLM
         Me.GroupBoxProprietà.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GroupBoxProprietà.BackColor = System.Drawing.Color.Transparent
         Me.GroupBoxProprietà.Controls.Add(Me.TabControlProprietà)
+        Me.GroupBoxProprietà.Font = New System.Drawing.Font("SimSun", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxProprietà.ForeColor = System.Drawing.Color.Red
         Me.GroupBoxProprietà.Location = New System.Drawing.Point(12, 41)
         Me.GroupBoxProprietà.Name = "GroupBoxProprietà"
@@ -574,33 +579,45 @@ Partial Class FormFLM
         Me.TabControlProprietà.Controls.Add(Me.TabPageBazil)
         Me.TabControlProprietà.Controls.Add(Me.TabPageShow)
         Me.TabControlProprietà.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControlProprietà.Location = New System.Drawing.Point(3, 16)
+        Me.TabControlProprietà.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TabControlProprietà.Location = New System.Drawing.Point(3, 40)
         Me.TabControlProprietà.Name = "TabControlProprietà"
         Me.TabControlProprietà.SelectedIndex = 0
-        Me.TabControlProprietà.Size = New System.Drawing.Size(250, 689)
+        Me.TabControlProprietà.Size = New System.Drawing.Size(250, 665)
         Me.TabControlProprietà.TabIndex = 0
         '
         'TabPageProprietà
         '
+        Me.TabPageProprietà.Controls.Add(Me.LabelIstruzioni)
         Me.TabPageProprietà.Controls.Add(Me.LabelProprietà)
         Me.TabPageProprietà.ForeColor = System.Drawing.Color.Black
         Me.TabPageProprietà.Location = New System.Drawing.Point(4, 22)
         Me.TabPageProprietà.Name = "TabPageProprietà"
         Me.TabPageProprietà.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageProprietà.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageProprietà.Size = New System.Drawing.Size(242, 639)
         Me.TabPageProprietà.TabIndex = 23
         Me.TabPageProprietà.Text = "Proprietà"
         Me.TabPageProprietà.UseVisualStyleBackColor = True
         '
+        'LabelIstruzioni
+        '
+        Me.LabelIstruzioni.AutoSize = True
+        Me.LabelIstruzioni.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelIstruzioni.Location = New System.Drawing.Point(3, 233)
+        Me.LabelIstruzioni.Name = "LabelIstruzioni"
+        Me.LabelIstruzioni.Size = New System.Drawing.Size(192, 31)
+        Me.LabelIstruzioni.TabIndex = 1
+        Me.LabelIstruzioni.Text = "Istruzioni/Tips:"
+        '
         'LabelProprietà
         '
-        Me.LabelProprietà.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelProprietà.Dock = System.Windows.Forms.DockStyle.Top
         Me.LabelProprietà.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelProprietà.Location = New System.Drawing.Point(0, 0)
         Me.LabelProprietà.Name = "LabelProprietà"
-        Me.LabelProprietà.Size = New System.Drawing.Size(242, 663)
+        Me.LabelProprietà.Size = New System.Drawing.Size(242, 164)
         Me.LabelProprietà.TabIndex = 0
-        Me.LabelProprietà.Text = "Seleziona un oggetto sulla dx"
+        Me.LabelProprietà.Text = "Seleziona un oggetto dal pannello a destra per cominciare"
         Me.LabelProprietà.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TabPageSound
@@ -625,7 +642,7 @@ Partial Class FormFLM
         Me.TabPageSound.Name = "TabPageSound"
         Me.TabPageSound.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPageSound.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageSound.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageSound.Size = New System.Drawing.Size(242, 639)
         Me.TabPageSound.TabIndex = 0
         Me.TabPageSound.Text = "Sound"
         Me.TabPageSound.UseVisualStyleBackColor = True
@@ -642,6 +659,7 @@ Partial Class FormFLM
         'LabelSoundPath2
         '
         Me.LabelSoundPath2.AutoSize = True
+        Me.LabelSoundPath2.ForeColor = System.Drawing.Color.Red
         Me.LabelSoundPath2.Location = New System.Drawing.Point(3, 353)
         Me.LabelSoundPath2.Name = "LabelSoundPath2"
         Me.LabelSoundPath2.Size = New System.Drawing.Size(40, 13)
@@ -651,6 +669,7 @@ Partial Class FormFLM
         'LabelSoundPath
         '
         Me.LabelSoundPath.AutoSize = True
+        Me.LabelSoundPath.ForeColor = System.Drawing.Color.Red
         Me.LabelSoundPath.Location = New System.Drawing.Point(3, 327)
         Me.LabelSoundPath.Name = "LabelSoundPath"
         Me.LabelSoundPath.Size = New System.Drawing.Size(60, 13)
@@ -778,7 +797,7 @@ Partial Class FormFLM
         Me.TabPageMusic.Name = "TabPageMusic"
         Me.TabPageMusic.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPageMusic.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageMusic.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageMusic.Size = New System.Drawing.Size(242, 639)
         Me.TabPageMusic.TabIndex = 1
         Me.TabPageMusic.Text = "Music"
         Me.TabPageMusic.UseVisualStyleBackColor = True
@@ -822,6 +841,7 @@ Partial Class FormFLM
         'LabelMusicPath
         '
         Me.LabelMusicPath.AutoSize = True
+        Me.LabelMusicPath.ForeColor = System.Drawing.Color.Red
         Me.LabelMusicPath.Location = New System.Drawing.Point(3, 353)
         Me.LabelMusicPath.Name = "LabelMusicPath"
         Me.LabelMusicPath.Size = New System.Drawing.Size(40, 13)
@@ -854,7 +874,7 @@ Partial Class FormFLM
         Me.TabPageScreen.Name = "TabPageScreen"
         Me.TabPageScreen.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPageScreen.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageScreen.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageScreen.Size = New System.Drawing.Size(242, 639)
         Me.TabPageScreen.TabIndex = 2
         Me.TabPageScreen.Text = "Screen"
         Me.TabPageScreen.UseVisualStyleBackColor = True
@@ -943,6 +963,7 @@ Partial Class FormFLM
         'LabelRisoluzione
         '
         Me.LabelRisoluzione.AutoSize = True
+        Me.LabelRisoluzione.ForeColor = System.Drawing.Color.Red
         Me.LabelRisoluzione.Location = New System.Drawing.Point(3, 3)
         Me.LabelRisoluzione.Name = "LabelRisoluzione"
         Me.LabelRisoluzione.Size = New System.Drawing.Size(99, 13)
@@ -993,7 +1014,7 @@ Partial Class FormFLM
         Me.TabPageRomlist.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomlist.Name = "TabPageRomlist"
         Me.TabPageRomlist.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageRomlist.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageRomlist.Size = New System.Drawing.Size(242, 639)
         Me.TabPageRomlist.TabIndex = 3
         Me.TabPageRomlist.Text = "Romlist"
         Me.TabPageRomlist.UseVisualStyleBackColor = True
@@ -1291,6 +1312,7 @@ Partial Class FormFLM
         Me.CheckBoxRomlistVisibile.AutoSize = True
         Me.CheckBoxRomlistVisibile.Checked = True
         Me.CheckBoxRomlistVisibile.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxRomlistVisibile.ForeColor = System.Drawing.Color.Red
         Me.CheckBoxRomlistVisibile.Location = New System.Drawing.Point(3, 7)
         Me.CheckBoxRomlistVisibile.Name = "CheckBoxRomlistVisibile"
         Me.CheckBoxRomlistVisibile.Size = New System.Drawing.Size(60, 17)
@@ -1326,7 +1348,7 @@ Partial Class FormFLM
         Me.TabPageBackground.Location = New System.Drawing.Point(4, 22)
         Me.TabPageBackground.Name = "TabPageBackground"
         Me.TabPageBackground.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageBackground.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageBackground.Size = New System.Drawing.Size(242, 639)
         Me.TabPageBackground.TabIndex = 4
         Me.TabPageBackground.Text = "Background"
         '
@@ -1344,6 +1366,7 @@ Partial Class FormFLM
         Me.CheckBoxBackgroundImage.AutoSize = True
         Me.CheckBoxBackgroundImage.Checked = True
         Me.CheckBoxBackgroundImage.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxBackgroundImage.ForeColor = System.Drawing.Color.Red
         Me.CheckBoxBackgroundImage.Location = New System.Drawing.Point(3, 230)
         Me.CheckBoxBackgroundImage.Name = "CheckBoxBackgroundImage"
         Me.CheckBoxBackgroundImage.Size = New System.Drawing.Size(113, 17)
@@ -1364,6 +1387,7 @@ Partial Class FormFLM
         'LabelBackground_y_pos
         '
         Me.LabelBackground_y_pos.AutoSize = True
+        Me.LabelBackground_y_pos.ForeColor = System.Drawing.Color.Red
         Me.LabelBackground_y_pos.Location = New System.Drawing.Point(3, 61)
         Me.LabelBackground_y_pos.Name = "LabelBackground_y_pos"
         Me.LabelBackground_y_pos.Size = New System.Drawing.Size(99, 13)
@@ -1383,6 +1407,7 @@ Partial Class FormFLM
         'LabelBackground_x_pos
         '
         Me.LabelBackground_x_pos.AutoSize = True
+        Me.LabelBackground_x_pos.ForeColor = System.Drawing.Color.Red
         Me.LabelBackground_x_pos.Location = New System.Drawing.Point(3, 35)
         Me.LabelBackground_x_pos.Name = "LabelBackground_x_pos"
         Me.LabelBackground_x_pos.Size = New System.Drawing.Size(99, 13)
@@ -1411,6 +1436,7 @@ Partial Class FormFLM
         'LabelBackgroundPath2
         '
         Me.LabelBackgroundPath2.AutoSize = True
+        Me.LabelBackgroundPath2.ForeColor = System.Drawing.Color.Red
         Me.LabelBackgroundPath2.Location = New System.Drawing.Point(3, 420)
         Me.LabelBackgroundPath2.Name = "LabelBackgroundPath2"
         Me.LabelBackgroundPath2.Size = New System.Drawing.Size(45, 13)
@@ -1420,6 +1446,7 @@ Partial Class FormFLM
         'LabelBackgroundPath
         '
         Me.LabelBackgroundPath.AutoSize = True
+        Me.LabelBackgroundPath.ForeColor = System.Drawing.Color.Red
         Me.LabelBackgroundPath.Location = New System.Drawing.Point(3, 394)
         Me.LabelBackgroundPath.Name = "LabelBackgroundPath"
         Me.LabelBackgroundPath.Size = New System.Drawing.Size(87, 13)
@@ -1555,7 +1582,7 @@ Partial Class FormFLM
         Me.TabPageSnapshot.Location = New System.Drawing.Point(4, 22)
         Me.TabPageSnapshot.Name = "TabPageSnapshot"
         Me.TabPageSnapshot.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageSnapshot.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageSnapshot.Size = New System.Drawing.Size(242, 639)
         Me.TabPageSnapshot.TabIndex = 5
         Me.TabPageSnapshot.Text = "Snapshot"
         Me.TabPageSnapshot.UseVisualStyleBackColor = True
@@ -1670,6 +1697,7 @@ Partial Class FormFLM
         Me.CheckBoxSnapshot.AutoSize = True
         Me.CheckBoxSnapshot.Checked = True
         Me.CheckBoxSnapshot.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxSnapshot.ForeColor = System.Drawing.Color.Red
         Me.CheckBoxSnapshot.Location = New System.Drawing.Point(3, 7)
         Me.CheckBoxSnapshot.Name = "CheckBoxSnapshot"
         Me.CheckBoxSnapshot.Size = New System.Drawing.Size(71, 17)
@@ -1695,7 +1723,7 @@ Partial Class FormFLM
         Me.TabPageCabinet.Location = New System.Drawing.Point(4, 22)
         Me.TabPageCabinet.Name = "TabPageCabinet"
         Me.TabPageCabinet.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageCabinet.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageCabinet.Size = New System.Drawing.Size(242, 639)
         Me.TabPageCabinet.TabIndex = 6
         Me.TabPageCabinet.Text = "Cabinet"
         Me.TabPageCabinet.UseVisualStyleBackColor = True
@@ -1839,7 +1867,7 @@ Partial Class FormFLM
         Me.TabPageMarquee.Location = New System.Drawing.Point(4, 22)
         Me.TabPageMarquee.Name = "TabPageMarquee"
         Me.TabPageMarquee.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageMarquee.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageMarquee.Size = New System.Drawing.Size(242, 639)
         Me.TabPageMarquee.TabIndex = 7
         Me.TabPageMarquee.Text = "Marquee"
         Me.TabPageMarquee.UseVisualStyleBackColor = True
@@ -1990,7 +2018,7 @@ Partial Class FormFLM
         Me.TabPageRomcounter.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomcounter.Name = "TabPageRomcounter"
         Me.TabPageRomcounter.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageRomcounter.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageRomcounter.Size = New System.Drawing.Size(242, 639)
         Me.TabPageRomcounter.TabIndex = 8
         Me.TabPageRomcounter.Text = "Romcounter"
         Me.TabPageRomcounter.UseVisualStyleBackColor = True
@@ -2252,7 +2280,7 @@ Partial Class FormFLM
         Me.TabPagePlatformname.Location = New System.Drawing.Point(4, 22)
         Me.TabPagePlatformname.Name = "TabPagePlatformname"
         Me.TabPagePlatformname.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPagePlatformname.Size = New System.Drawing.Size(242, 663)
+        Me.TabPagePlatformname.Size = New System.Drawing.Size(242, 639)
         Me.TabPagePlatformname.TabIndex = 9
         Me.TabPagePlatformname.Text = "Platformname"
         Me.TabPagePlatformname.UseVisualStyleBackColor = True
@@ -2514,7 +2542,7 @@ Partial Class FormFLM
         Me.TabPageEmulatorname.Location = New System.Drawing.Point(4, 22)
         Me.TabPageEmulatorname.Name = "TabPageEmulatorname"
         Me.TabPageEmulatorname.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageEmulatorname.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageEmulatorname.Size = New System.Drawing.Size(242, 639)
         Me.TabPageEmulatorname.TabIndex = 10
         Me.TabPageEmulatorname.Text = "Emulatorname"
         Me.TabPageEmulatorname.UseVisualStyleBackColor = True
@@ -2776,7 +2804,7 @@ Partial Class FormFLM
         Me.TabPageGamelistname.Location = New System.Drawing.Point(4, 22)
         Me.TabPageGamelistname.Name = "TabPageGamelistname"
         Me.TabPageGamelistname.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageGamelistname.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageGamelistname.Size = New System.Drawing.Size(242, 639)
         Me.TabPageGamelistname.TabIndex = 11
         Me.TabPageGamelistname.Text = "Gamelistname"
         Me.TabPageGamelistname.UseVisualStyleBackColor = True
@@ -3038,7 +3066,7 @@ Partial Class FormFLM
         Me.TabPageRomname.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomname.Name = "TabPageRomname"
         Me.TabPageRomname.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageRomname.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageRomname.Size = New System.Drawing.Size(242, 639)
         Me.TabPageRomname.TabIndex = 12
         Me.TabPageRomname.Text = "Romname"
         Me.TabPageRomname.UseVisualStyleBackColor = True
@@ -3299,7 +3327,7 @@ Partial Class FormFLM
         Me.TabPageRomdescription.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomdescription.Name = "TabPageRomdescription"
         Me.TabPageRomdescription.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageRomdescription.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageRomdescription.Size = New System.Drawing.Size(242, 639)
         Me.TabPageRomdescription.TabIndex = 13
         Me.TabPageRomdescription.Text = "Romdescription"
         Me.TabPageRomdescription.UseVisualStyleBackColor = True
@@ -3561,7 +3589,7 @@ Partial Class FormFLM
         Me.TabPageRommanufacturer.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRommanufacturer.Name = "TabPageRommanufacturer"
         Me.TabPageRommanufacturer.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageRommanufacturer.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageRommanufacturer.Size = New System.Drawing.Size(242, 639)
         Me.TabPageRommanufacturer.TabIndex = 14
         Me.TabPageRommanufacturer.Text = "Rommanufacturer"
         Me.TabPageRommanufacturer.UseVisualStyleBackColor = True
@@ -3822,7 +3850,7 @@ Partial Class FormFLM
         Me.TabPageRomdisplaytype.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomdisplaytype.Name = "TabPageRomdisplaytype"
         Me.TabPageRomdisplaytype.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageRomdisplaytype.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageRomdisplaytype.Size = New System.Drawing.Size(242, 639)
         Me.TabPageRomdisplaytype.TabIndex = 15
         Me.TabPageRomdisplaytype.Text = "Romdisplaytype"
         Me.TabPageRomdisplaytype.UseVisualStyleBackColor = True
@@ -4081,7 +4109,7 @@ Partial Class FormFLM
         Me.TabPageRominputcontrol.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRominputcontrol.Name = "TabPageRominputcontrol"
         Me.TabPageRominputcontrol.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageRominputcontrol.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageRominputcontrol.Size = New System.Drawing.Size(242, 639)
         Me.TabPageRominputcontrol.TabIndex = 16
         Me.TabPageRominputcontrol.Text = "Rominputcontrol"
         Me.TabPageRominputcontrol.UseVisualStyleBackColor = True
@@ -4343,7 +4371,7 @@ Partial Class FormFLM
         Me.TabPageRomstatus.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomstatus.Name = "TabPageRomstatus"
         Me.TabPageRomstatus.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageRomstatus.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageRomstatus.Size = New System.Drawing.Size(242, 639)
         Me.TabPageRomstatus.TabIndex = 17
         Me.TabPageRomstatus.Text = "Romstatus"
         Me.TabPageRomstatus.UseVisualStyleBackColor = True
@@ -4602,7 +4630,7 @@ Partial Class FormFLM
         Me.TabPageRomcategory.Location = New System.Drawing.Point(4, 22)
         Me.TabPageRomcategory.Name = "TabPageRomcategory"
         Me.TabPageRomcategory.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageRomcategory.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageRomcategory.Size = New System.Drawing.Size(242, 639)
         Me.TabPageRomcategory.TabIndex = 18
         Me.TabPageRomcategory.Text = "Romcategory"
         Me.TabPageRomcategory.UseVisualStyleBackColor = True
@@ -4870,7 +4898,7 @@ Partial Class FormFLM
         Me.TabPageMenu.Location = New System.Drawing.Point(4, 22)
         Me.TabPageMenu.Name = "TabPageMenu"
         Me.TabPageMenu.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageMenu.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageMenu.Size = New System.Drawing.Size(242, 639)
         Me.TabPageMenu.TabIndex = 19
         Me.TabPageMenu.Text = "Menu"
         Me.TabPageMenu.UseVisualStyleBackColor = True
@@ -4888,6 +4916,7 @@ Partial Class FormFLM
         'LabelMenu_height
         '
         Me.LabelMenu_height.AutoSize = True
+        Me.LabelMenu_height.ForeColor = System.Drawing.Color.Red
         Me.LabelMenu_height.Location = New System.Drawing.Point(3, 113)
         Me.LabelMenu_height.Name = "LabelMenu_height"
         Me.LabelMenu_height.Size = New System.Drawing.Size(69, 13)
@@ -4907,6 +4936,7 @@ Partial Class FormFLM
         'LabelMenu_y_pos
         '
         Me.LabelMenu_y_pos.AutoSize = True
+        Me.LabelMenu_y_pos.ForeColor = System.Drawing.Color.Red
         Me.LabelMenu_y_pos.Location = New System.Drawing.Point(3, 61)
         Me.LabelMenu_y_pos.Name = "LabelMenu_y_pos"
         Me.LabelMenu_y_pos.Size = New System.Drawing.Size(68, 13)
@@ -4926,6 +4956,7 @@ Partial Class FormFLM
         'LabelMenu_x_pos
         '
         Me.LabelMenu_x_pos.AutoSize = True
+        Me.LabelMenu_x_pos.ForeColor = System.Drawing.Color.Red
         Me.LabelMenu_x_pos.Location = New System.Drawing.Point(3, 35)
         Me.LabelMenu_x_pos.Name = "LabelMenu_x_pos"
         Me.LabelMenu_x_pos.Size = New System.Drawing.Size(68, 13)
@@ -4958,6 +4989,7 @@ Partial Class FormFLM
         'LabelMenu_text_align
         '
         Me.LabelMenu_text_align.AutoSize = True
+        Me.LabelMenu_text_align.ForeColor = System.Drawing.Color.Red
         Me.LabelMenu_text_align.Location = New System.Drawing.Point(3, 366)
         Me.LabelMenu_text_align.Name = "LabelMenu_text_align"
         Me.LabelMenu_text_align.Size = New System.Drawing.Size(85, 13)
@@ -5172,6 +5204,7 @@ Partial Class FormFLM
         Me.CheckBoxMenu.AutoSize = True
         Me.CheckBoxMenu.Checked = True
         Me.CheckBoxMenu.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxMenu.ForeColor = System.Drawing.Color.Red
         Me.CheckBoxMenu.Location = New System.Drawing.Point(3, 7)
         Me.CheckBoxMenu.Name = "CheckBoxMenu"
         Me.CheckBoxMenu.Size = New System.Drawing.Size(53, 17)
@@ -5189,7 +5222,7 @@ Partial Class FormFLM
         Me.TabPageActors.Location = New System.Drawing.Point(4, 22)
         Me.TabPageActors.Name = "TabPageActors"
         Me.TabPageActors.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageActors.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageActors.Size = New System.Drawing.Size(242, 639)
         Me.TabPageActors.TabIndex = 20
         Me.TabPageActors.Text = "Actors"
         Me.TabPageActors.UseVisualStyleBackColor = True
@@ -5242,7 +5275,7 @@ Partial Class FormFLM
         Me.TabPageBazil.Location = New System.Drawing.Point(4, 22)
         Me.TabPageBazil.Name = "TabPageBazil"
         Me.TabPageBazil.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageBazil.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageBazil.Size = New System.Drawing.Size(242, 639)
         Me.TabPageBazil.TabIndex = 21
         Me.TabPageBazil.Text = "Bazil"
         Me.TabPageBazil.UseVisualStyleBackColor = True
@@ -5292,7 +5325,7 @@ Partial Class FormFLM
         Me.TabPageShow.Location = New System.Drawing.Point(4, 22)
         Me.TabPageShow.Name = "TabPageShow"
         Me.TabPageShow.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageShow.Size = New System.Drawing.Size(242, 663)
+        Me.TabPageShow.Size = New System.Drawing.Size(242, 639)
         Me.TabPageShow.TabIndex = 22
         Me.TabPageShow.Text = "Show"
         Me.TabPageShow.UseVisualStyleBackColor = True
@@ -5322,10 +5355,11 @@ Partial Class FormFLM
         '
         Me.LabelPercorso.AutoSize = True
         Me.LabelPercorso.BackColor = System.Drawing.Color.Transparent
+        Me.LabelPercorso.Font = New System.Drawing.Font("SimSun", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelPercorso.ForeColor = System.Drawing.Color.Red
-        Me.LabelPercorso.Location = New System.Drawing.Point(312, 736)
+        Me.LabelPercorso.Location = New System.Drawing.Point(312, 733)
         Me.LabelPercorso.Name = "LabelPercorso"
-        Me.LabelPercorso.Size = New System.Drawing.Size(208, 13)
+        Me.LabelPercorso.Size = New System.Drawing.Size(514, 21)
         Me.LabelPercorso.TabIndex = 6
         Me.LabelPercorso.Text = "Percorso FEEL (doppio click x configurare)"
         '
@@ -5334,6 +5368,7 @@ Partial Class FormFLM
         Me.ButtonCarica.BackColor = System.Drawing.Color.Transparent
         Me.ButtonCarica.BackgroundImage = Global.GotScraper.My.Resources.Resources.load
         Me.ButtonCarica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonCarica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonCarica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonCarica.Location = New System.Drawing.Point(12, 1)
         Me.ButtonCarica.Name = "ButtonCarica"
@@ -5346,6 +5381,7 @@ Partial Class FormFLM
         Me.ButtonPubblica.BackColor = System.Drawing.Color.Transparent
         Me.ButtonPubblica.BackgroundImage = Global.GotScraper.My.Resources.Resources.save
         Me.ButtonPubblica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonPubblica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonPubblica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonPubblica.Location = New System.Drawing.Point(186, 1)
         Me.ButtonPubblica.Name = "ButtonPubblica"
@@ -5364,6 +5400,7 @@ Partial Class FormFLM
         Me.ButtonAnteprima.TabIndex = 3
         Me.ButtonAnteprima.Text = "Anteprima"
         Me.ButtonAnteprima.UseVisualStyleBackColor = True
+        Me.ButtonAnteprima.Visible = False
         '
         'LabelZoom
         '
@@ -5391,6 +5428,7 @@ Partial Class FormFLM
         Me.GroupBoxObj.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GroupBoxObj.BackColor = System.Drawing.Color.Transparent
         Me.GroupBoxObj.Controls.Add(Me.ListBoxObj)
+        Me.GroupBoxObj.Font = New System.Drawing.Font("SimSun", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxObj.ForeColor = System.Drawing.Color.Red
         Me.GroupBoxObj.Location = New System.Drawing.Point(996, 41)
         Me.GroupBoxObj.Name = "GroupBoxObj"
@@ -5398,6 +5436,18 @@ Partial Class FormFLM
         Me.GroupBoxObj.TabIndex = 1
         Me.GroupBoxObj.TabStop = False
         Me.GroupBoxObj.Text = "Obj/Media"
+        '
+        'ListBoxObj
+        '
+        Me.ListBoxObj.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ListBoxObj.Font = New System.Drawing.Font("SimSun", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ListBoxObj.FormattingEnabled = True
+        Me.ListBoxObj.ItemHeight = 27
+        Me.ListBoxObj.Items.AddRange(New Object() {"Sound", "Music", "Screen", "Romlist", "Background", "Snapshot", "Cabinet", "Marquee", "Romcounter", "Platformname", "Emulatorname", "Gamelistname", "Romname", "Romdescription", "Rommanufacturer", "Romdisplaytype", "Rominputcontrol", "Romstatus", "Romcategory", "Menu", "Actors", "Bazil", "Show"})
+        Me.ListBoxObj.Location = New System.Drawing.Point(3, 40)
+        Me.ListBoxObj.Name = "ListBoxObj"
+        Me.ListBoxObj.Size = New System.Drawing.Size(250, 665)
+        Me.ListBoxObj.TabIndex = 2
         '
         'TextBoxZoom
         '
@@ -5411,34 +5461,22 @@ Partial Class FormFLM
         Me.TextBoxZoom.Text = "100"
         Me.TextBoxZoom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'ListBoxObj
-        '
-        Me.ListBoxObj.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ListBoxObj.Font = New System.Drawing.Font("SimSun", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ListBoxObj.FormattingEnabled = True
-        Me.ListBoxObj.ItemHeight = 27
-        Me.ListBoxObj.Items.AddRange(New Object() {"Sound", "Music", "Screen", "Romlist", "Background", "Snapshot", "Cabinet", "Marquee", "Romcounter", "Platformname", "Emulatorname", "Gamelistname", "Romname", "Romdescription", "Rommanufacturer", "Romdisplaytype", "Rominputcontrol", "Romstatus", "Romcategory", "Menu", "Actors", "Bazil", "Show"})
-        Me.ListBoxObj.Location = New System.Drawing.Point(3, 16)
-        Me.ListBoxObj.Name = "ListBoxObj"
-        Me.ListBoxObj.Size = New System.Drawing.Size(250, 689)
-        Me.ListBoxObj.TabIndex = 2
-        '
         'ColorDialog1
         '
         Me.ColorDialog1.AnyColor = True
         Me.ColorDialog1.FullOpen = True
         Me.ColorDialog1.SolidColorOnly = True
         '
-        'LabelPannelloMainX
+        'LabelPannello
         '
-        Me.LabelPannelloMainX.AutoSize = True
-        Me.LabelPannelloMainX.BackColor = System.Drawing.Color.Transparent
-        Me.LabelPannelloMainX.ForeColor = System.Drawing.Color.Red
-        Me.LabelPannelloMainX.Location = New System.Drawing.Point(588, 100)
-        Me.LabelPannelloMainX.Name = "LabelPannelloMainX"
-        Me.LabelPannelloMainX.Size = New System.Drawing.Size(95, 13)
-        Me.LabelPannelloMainX.TabIndex = 28
-        Me.LabelPannelloMainX.Text = "Pannello main X: 0"
+        Me.LabelPannello.AutoSize = True
+        Me.LabelPannello.BackColor = System.Drawing.Color.Transparent
+        Me.LabelPannello.ForeColor = System.Drawing.Color.Red
+        Me.LabelPannello.Location = New System.Drawing.Point(468, 599)
+        Me.LabelPannello.Name = "LabelPannello"
+        Me.LabelPannello.Size = New System.Drawing.Size(66, 13)
+        Me.LabelPannello.TabIndex = 28
+        Me.LabelPannello.Text = "Pannello - , -"
         '
         'LabelPannelloMainY
         '
@@ -5450,12 +5488,14 @@ Partial Class FormFLM
         Me.LabelPannelloMainY.Size = New System.Drawing.Size(95, 13)
         Me.LabelPannelloMainY.TabIndex = 29
         Me.LabelPannelloMainY.Text = "Pannello main Y: 0"
+        Me.LabelPannelloMainY.Visible = False
         '
         'ButtonPannelloMainReset
         '
         Me.ButtonPannelloMainReset.BackColor = System.Drawing.Color.Transparent
         Me.ButtonPannelloMainReset.BackgroundImage = Global.GotScraper.My.Resources.Resources.reset
         Me.ButtonPannelloMainReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonPannelloMainReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonPannelloMainReset.Location = New System.Drawing.Point(857, 71)
         Me.ButtonPannelloMainReset.Name = "ButtonPannelloMainReset"
         Me.ButtonPannelloMainReset.Size = New System.Drawing.Size(95, 39)
@@ -5505,6 +5545,7 @@ Partial Class FormFLM
         Me.PanelRominputcontrol.Name = "PanelRominputcontrol"
         Me.PanelRominputcontrol.Size = New System.Drawing.Size(72, 17)
         Me.PanelRominputcontrol.TabIndex = 12
+        Me.PanelRominputcontrol.Tag = "0"
         '
         'PanelRomcategory
         '
@@ -5513,6 +5554,7 @@ Partial Class FormFLM
         Me.PanelRomcategory.Name = "PanelRomcategory"
         Me.PanelRomcategory.Size = New System.Drawing.Size(145, 17)
         Me.PanelRomcategory.TabIndex = 14
+        Me.PanelRomcategory.Tag = "0"
         '
         'PanelRommanufacturer
         '
@@ -5521,6 +5563,7 @@ Partial Class FormFLM
         Me.PanelRommanufacturer.Name = "PanelRommanufacturer"
         Me.PanelRommanufacturer.Size = New System.Drawing.Size(230, 17)
         Me.PanelRommanufacturer.TabIndex = 10
+        Me.PanelRommanufacturer.Tag = "0"
         '
         'PanelMarquee
         '
@@ -5529,6 +5572,7 @@ Partial Class FormFLM
         Me.PanelMarquee.Name = "PanelMarquee"
         Me.PanelMarquee.Size = New System.Drawing.Size(136, 164)
         Me.PanelMarquee.TabIndex = 3
+        Me.PanelMarquee.Tag = "0"
         Me.PanelMarquee.Visible = False
         '
         'PanelCabinet
@@ -5538,6 +5582,7 @@ Partial Class FormFLM
         Me.PanelCabinet.Name = "PanelCabinet"
         Me.PanelCabinet.Size = New System.Drawing.Size(136, 164)
         Me.PanelCabinet.TabIndex = 2
+        Me.PanelCabinet.Tag = "0"
         '
         'PanelRomstatus
         '
@@ -5546,6 +5591,7 @@ Partial Class FormFLM
         Me.PanelRomstatus.Name = "PanelRomstatus"
         Me.PanelRomstatus.Size = New System.Drawing.Size(50, 50)
         Me.PanelRomstatus.TabIndex = 13
+        Me.PanelRomstatus.Tag = "0"
         Me.PanelRomstatus.Visible = False
         '
         'PanelMenu
@@ -5555,6 +5601,7 @@ Partial Class FormFLM
         Me.PanelMenu.Name = "PanelMenu"
         Me.PanelMenu.Size = New System.Drawing.Size(200, 50)
         Me.PanelMenu.TabIndex = 15
+        Me.PanelMenu.Tag = "0"
         '
         'PanelRomdescription
         '
@@ -5563,6 +5610,7 @@ Partial Class FormFLM
         Me.PanelRomdescription.Name = "PanelRomdescription"
         Me.PanelRomdescription.Size = New System.Drawing.Size(230, 17)
         Me.PanelRomdescription.TabIndex = 9
+        Me.PanelRomdescription.Tag = "0"
         '
         'PanelRomname
         '
@@ -5571,6 +5619,7 @@ Partial Class FormFLM
         Me.PanelRomname.Name = "PanelRomname"
         Me.PanelRomname.Size = New System.Drawing.Size(154, 18)
         Me.PanelRomname.TabIndex = 8
+        Me.PanelRomname.Tag = "0"
         '
         'PanelRomdisplaytype
         '
@@ -5579,6 +5628,7 @@ Partial Class FormFLM
         Me.PanelRomdisplaytype.Name = "PanelRomdisplaytype"
         Me.PanelRomdisplaytype.Size = New System.Drawing.Size(50, 50)
         Me.PanelRomdisplaytype.TabIndex = 11
+        Me.PanelRomdisplaytype.Tag = "0"
         Me.PanelRomdisplaytype.Visible = False
         '
         'PanelEmulatorname
@@ -5588,6 +5638,7 @@ Partial Class FormFLM
         Me.PanelEmulatorname.Name = "PanelEmulatorname"
         Me.PanelEmulatorname.Size = New System.Drawing.Size(196, 25)
         Me.PanelEmulatorname.TabIndex = 6
+        Me.PanelEmulatorname.Tag = "0"
         '
         'PanelGamelistname
         '
@@ -5596,6 +5647,7 @@ Partial Class FormFLM
         Me.PanelGamelistname.Name = "PanelGamelistname"
         Me.PanelGamelistname.Size = New System.Drawing.Size(196, 18)
         Me.PanelGamelistname.TabIndex = 7
+        Me.PanelGamelistname.Tag = "0"
         '
         'PanelPlatformname
         '
@@ -5604,6 +5656,7 @@ Partial Class FormFLM
         Me.PanelPlatformname.Name = "PanelPlatformname"
         Me.PanelPlatformname.Size = New System.Drawing.Size(230, 35)
         Me.PanelPlatformname.TabIndex = 5
+        Me.PanelPlatformname.Tag = "0"
         '
         'PanelRomcounter
         '
@@ -5612,6 +5665,7 @@ Partial Class FormFLM
         Me.PanelRomcounter.Name = "PanelRomcounter"
         Me.PanelRomcounter.Size = New System.Drawing.Size(102, 18)
         Me.PanelRomcounter.TabIndex = 4
+        Me.PanelRomcounter.Tag = "0"
         '
         'PanelRomlist
         '
@@ -5620,6 +5674,7 @@ Partial Class FormFLM
         Me.PanelRomlist.Name = "PanelRomlist"
         Me.PanelRomlist.Size = New System.Drawing.Size(274, 275)
         Me.PanelRomlist.TabIndex = 0
+        Me.PanelRomlist.Tag = "0"
         '
         'PanelSnapshot
         '
@@ -5628,15 +5683,18 @@ Partial Class FormFLM
         Me.PanelSnapshot.Name = "PanelSnapshot"
         Me.PanelSnapshot.Size = New System.Drawing.Size(228, 171)
         Me.PanelSnapshot.TabIndex = 1
+        Me.PanelSnapshot.Tag = "0"
         '
         'PanelBackground
         '
+        Me.PanelBackground.AllowDrop = True
         Me.PanelBackground.BackColor = System.Drawing.Color.White
         Me.PanelBackground.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PanelBackground.Location = New System.Drawing.Point(0, 0)
         Me.PanelBackground.Name = "PanelBackground"
         Me.PanelBackground.Size = New System.Drawing.Size(640, 480)
         Me.PanelBackground.TabIndex = 1
+        Me.PanelBackground.Tag = "0"
         '
         'PanelMainMaster
         '
@@ -5666,13 +5724,56 @@ Partial Class FormFLM
         Me.PanelZoom.Size = New System.Drawing.Size(112, 56)
         Me.PanelZoom.TabIndex = 33
         '
+        'LabelPosizioneMouse
+        '
+        Me.LabelPosizioneMouse.AutoSize = True
+        Me.LabelPosizioneMouse.BackColor = System.Drawing.Color.Transparent
+        Me.LabelPosizioneMouse.ForeColor = System.Drawing.Color.Red
+        Me.LabelPosizioneMouse.Location = New System.Drawing.Point(910, 599)
+        Me.LabelPosizioneMouse.Name = "LabelPosizioneMouse"
+        Me.LabelPosizioneMouse.Size = New System.Drawing.Size(22, 13)
+        Me.LabelPosizioneMouse.TabIndex = 34
+        Me.LabelPosizioneMouse.Text = "- , -"
+        '
+        'ButtonFLMOptions
+        '
+        Me.ButtonFLMOptions.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonFLMOptions.BackgroundImage = Global.GotScraper.My.Resources.Resources._228462_configure_256x256
+        Me.ButtonFLMOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonFLMOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonFLMOptions.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonFLMOptions.ForeColor = System.Drawing.Color.Black
+        Me.ButtonFLMOptions.Location = New System.Drawing.Point(996, 1)
+        Me.ButtonFLMOptions.Name = "ButtonFLMOptions"
+        Me.ButtonFLMOptions.Size = New System.Drawing.Size(44, 34)
+        Me.ButtonFLMOptions.TabIndex = 35
+        Me.ButtonFLMOptions.UseVisualStyleBackColor = False
+        '
+        'ButtonPainter
+        '
+        Me.ButtonPainter.BackColor = System.Drawing.Color.Black
+        Me.ButtonPainter.BackgroundImage = Global.GotScraper.My.Resources.Resources.pencil
+        Me.ButtonPainter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonPainter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonPainter.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonPainter.Location = New System.Drawing.Point(100, 1)
+        Me.ButtonPainter.Name = "ButtonPainter"
+        Me.ButtonPainter.Size = New System.Drawing.Size(80, 39)
+        Me.ButtonPainter.TabIndex = 36
+        Me.ButtonPainter.UseVisualStyleBackColor = False
+        '
         'FormFLM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.Black
         Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.bartop1280_800
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 761)
+        Me.Controls.Add(Me.ButtonPainter)
+        Me.Controls.Add(Me.ButtonFLMOptions)
+        Me.Controls.Add(Me.LabelPosizioneMouse)
+        Me.Controls.Add(Me.LabelPercorso)
         Me.Controls.Add(Me.PanelZoom)
         Me.Controls.Add(Me.ButtonAnteprima)
         Me.Controls.Add(Me.PanelMainMaster)
@@ -5680,17 +5781,17 @@ Partial Class FormFLM
         Me.Controls.Add(Me.LabelScreenRisoluzione)
         Me.Controls.Add(Me.LabelPannelloMainY)
         Me.Controls.Add(Me.ButtonCarica)
-        Me.Controls.Add(Me.LabelPannelloMainX)
-        Me.Controls.Add(Me.LabelPercorso)
+        Me.Controls.Add(Me.LabelPannello)
         Me.Controls.Add(Me.GroupBoxObj)
         Me.Controls.Add(Me.ButtonPubblica)
         Me.Controls.Add(Me.GroupBoxProprietà)
         Me.DoubleBuffered = True
         Me.Name = "FormFLM"
-        Me.Text = "FLM - F.E.E.L. Layout Manager - Alpha 3 by Gothrek"
+        Me.Text = "F.L.M. - F.E.(E.L.) Layout Manager - Alpha 4 by Gothrek"
         Me.GroupBoxProprietà.ResumeLayout(False)
         Me.TabControlProprietà.ResumeLayout(False)
         Me.TabPageProprietà.ResumeLayout(False)
+        Me.TabPageProprietà.PerformLayout()
         Me.TabPageSound.ResumeLayout(False)
         Me.TabPageSound.PerformLayout()
         Me.TabPageMusic.ResumeLayout(False)
@@ -5820,7 +5921,7 @@ Partial Class FormFLM
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents LabelProprietà As Label
     Friend WithEvents LabelPannelloMainY As Label
-    Friend WithEvents LabelPannelloMainX As Label
+    Friend WithEvents LabelPannello As Label
     Friend WithEvents ButtonPannelloMainReset As Button
     Friend WithEvents LabelScreenRisoluzione As Label
     Friend WithEvents PanelMain As Panel
@@ -6225,4 +6326,8 @@ Partial Class FormFLM
     Friend WithEvents CheckBoxBackgroundImage As CheckBox
     Friend WithEvents TrackBarPanelBackgroundImage As TrackBar
     Friend WithEvents PanelZoom As Panel
+    Friend WithEvents LabelIstruzioni As Label
+    Friend WithEvents LabelPosizioneMouse As Label
+    Friend WithEvents ButtonFLMOptions As Button
+    Friend WithEvents ButtonPainter As Button
 End Class

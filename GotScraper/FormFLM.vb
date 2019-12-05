@@ -1,7 +1,15 @@
 ﻿Public Class FormFLM
-    Dim dtOptionsLayout As DataTable = New DataTable("Options")
-    Dim feelPath As String = "G:\Varie\Feel\Feel1.9\Feel"
-    Dim dtRisoluzioni As DataTable = New DataTable("Risoluzioni")
+    Public feelPath As String = "C:\"
+    Public grafxEditorPath As String = "C:\Windows\system32\mspaint.exe" 'percorso di default del Paint di Windows
+
+    Public flmBackgroundImageCheck As Boolean = True
+    Public flmBackgroundImage As Image = My.Resources.bartop1280_800
+
+    Public templateLayoutIni As String = "Default"
+    Public flmLayout As Integer = 1
+
+    Dim dtOptionsLayout As DataTable
+    Dim dtRisoluzioni As DataTable
 
     Dim mouseCoordinate As Point = MousePosition
 
@@ -19,49 +27,76 @@
     Dim pannelloRomlistSize As Size
 
     Private Sub FormFLM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        '------ test imagebackground dinamica -----
 
-        'Dim immagineTopH As Integer = Int(Me.Height * 10 / 100)
-        'Dim immagineTopW As Integer
-        'Dim immagineBottomH As Integer = Int(Me.Height * 15 / 100)
-        'Dim immagineBottomW As Integer
-        'Dim immagineCenterH As Integer = Int(Me.Height / 2)
-        'Dim immagineCenterW As Integer
-        'Dim immagineTop As Image = New Bitmap(Me.Width, immagineTopH)
-        'Dim immagineCenter As Image '= New Bitmap(Me.Width, 100)
-        'Dim immagineBottom As Image = New Bitmap(Me.Width, immagineBottomH)
-        'Dim immagineFinale As Image = New Bitmap(Me.Width, Me.Height)
+        If My.Computer.FileSystem.FileExists("FLM.ini") Then
+            'Il file esiste verrà caricato
+            Dim file As String
+            Dim inizioStringa As Integer = 0
+            Dim fineStringa As Integer = 0
+            Dim usoStringa As String
 
-        'Dim gr As Graphics = Graphics.FromImage(immagineFinale)
+            file = My.Computer.FileSystem.ReadAllText("FLM.ini")
 
-        'immagineTop = Image.FromFile("img\top.jpg")
-        'immagineCenter = Image.FromFile("img\center.png")
-        'immagineBottom = Image.FromFile("img\bottom.jpg")
-        'immagineTopW = Int((Me.Width - immagineTop.Width) / 2)
-        'immagineCenterW = Int((Me.Width - immagineCenter.Width) / 2)
-        'immagineBottomW = Int((Me.Width - immagineBottom.Width) / 2)
+            inizioStringa = file.IndexOf("feelPath=") + 9
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            feelPath = usoStringa.Substring(0, fineStringa)
 
-        'Dim posizioneCenter As Integer = 0 'Int(Me.Width * 20 / 100)
+            inizioStringa = file.IndexOf("grafxEditorPath=") + 16
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            grafxEditorPath = usoStringa.Substring(0, fineStringa)
 
-        'For i As Integer = 0 To Int(Me.Height / 100)
-        '    gr.DrawImage(immagineCenter, immagineCenterW, posizioneCenter, immagineCenter.Width, immagineCenter.Height)
-        '    posizioneCenter += 100
-        'Next
+            inizioStringa = file.IndexOf("templateLayoutIni=") + 18
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            templateLayoutIni = usoStringa.Substring(0, fineStringa)
 
-        'gr.DrawImage(immagineTop, immagineTopW, 0, immagineTop.Width, immagineTopH)
-        'gr.DrawImage(immagineBottom, immagineBottomW, Me.Height - immagineBottomH, immagineBottom.Width, immagineBottomH)
+            inizioStringa = file.IndexOf("flmBackgroundImageCheck=") + 24
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            Try
+                flmBackgroundImageCheck = Convert.ToBoolean(usoStringa.Substring(0, fineStringa))
+            Catch ex As Exception
+                flmBackgroundImageCheck = True
+            End Try
 
-        'Try
-        '    immagineFinale.Save("test" & immagineFinale.Width & "-" & immagineFinale.Height & ".bmp")
-        'Catch ex As Exception
+            inizioStringa = file.IndexOf("flmLayout=") + 10
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            Try
+                flmLayout = Int(usoStringa.Substring(0, fineStringa))
+            Catch ex As Exception
+                flmLayout = 1
+            End Try
 
-        'End Try
+        Else
+            'Il file non esiste verrà creato
+            Dim file As System.IO.StreamWriter
 
-        'Me.BackgroundImage = ClassUtility.ChangeOpacity(immagineFinale, 0.5)
-        'Me.Refresh()
+            file = My.Computer.FileSystem.OpenTextFileWriter("FLM.ini", True)
 
-        '------ fine test imagebackground dinamica -----
-        Me.BackgroundImage = ClassUtility.ChangeOpacity(Me.BackgroundImage, 1)
+            file.WriteLine("File di configurazione del programma FLM F.E.(E.L.) Layout Manager by gothrek")
+            file.WriteLine()
+            file.WriteLine("non editare il file, le sue impostazioni vengono gestite direttamente dal programma.")
+            file.WriteLine()
+            file.WriteLine("feelPath=" & feelPath)
+            file.WriteLine("grafxEditorPath=" & grafxEditorPath)
+            file.WriteLine("templateLayoutIni=" & templateLayoutIni)
+            file.WriteLine("flmBackgroundImageCheck=" & flmBackgroundImageCheck)
+            file.WriteLine("flmLayout=" & flmLayout)
+
+            file.Close()
+        End If
+
+        dtOptionsLayout = New DataTable("Options")
+        dtRisoluzioni = New DataTable("Risoluzioni")
+
+        If flmBackgroundImageCheck Then
+            Me.BackgroundImage = ClassUtility.ChangeOpacity(flmBackgroundImage, 1)
+        Else
+            Me.BackgroundImage = Nothing
+        End If
 
         formDimensioni = Me.Size
 
@@ -103,6 +138,7 @@
             MsgBox("Problemi nella lettura del file delle risoluzioni! Verranno caricati valori di default.")
 
             Dim riga() As String
+
             riga = {" 320x200  16:10", "320", "200", "16:10"}
             dtRisoluzioni.Rows.Add(riga)
             riga = {" 640x480   4:3", "640", "480", "4:3"}
@@ -375,96 +411,91 @@
 
     End Sub
 
-    Private Sub FormFLM_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
-        '------ test imagebackground dinamica -----
-        'Dim immagineTopH As Integer = 144 'Int(Me.Height * 10 / 100)
-        'Dim immagineTopW As Integer = 724
-        'Dim immagineBottomH As Integer = 176 'Int(Me.Height * 15 / 100)
-        'Dim immagineBottomW As Integer = 724
-        ''Dim immagineCenterH As Integer = Int(Me.Height / 2)
-        'Dim immagineCenterW As Integer = -213 '2560
-        'Dim immagineTop As Image = New Bitmap(724, 144) 'New Bitmap(Me.Width, immagineTopH)
-        'Dim immagineCenter As Image = New Bitmap(1706, 66) '= New Bitmap(Me.Width, 100)
-        'Dim immagineBottom As Image = New Bitmap(723, 176) 'New Bitmap(Me.Width, immagineBottomH)
-        'Dim immagineFinale As Image = New Bitmap(1280, 800) 'New Bitmap(Me.Width, Me.Height)
+    Private Sub FormFLM_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize, MyBase.SizeChanged
+        If Me.WindowState <> FormWindowState.Minimized Then
 
-        'Dim gr As Graphics = Graphics.FromImage(immagineFinale)
+            Select Case flmLayout
+                Case 1
 
-        'immagineTop = Image.FromFile("img\top.jpg")
-        'immagineCenter = Image.FromFile("img\center.png")
-        'immagineBottom = Image.FromFile("img\bottom.jpg")
-        ''immagineTopW = Int((Me.Width - immagineTop.Width) / 2)
-        ''immagineCenterW = Int((Me.Width - immagineCenter.Width) / 2)
-        ''immagineBottomW = Int((Me.Width - immagineBottom.Width) / 2)
+                    If Me.Size.Width < 1280 Then
+                        Me.Size = New Size(1280, Me.Size.Height)
+                    End If
 
-        'Dim posizioneCenter As Integer = 0 'Int(Me.Width * 20 / 100)
+                    If Me.Size.Height < 800 Then
+                        Me.Size = New Size(Me.Size.Width, 800)
+                    End If
 
-        'For i As Integer = 0 To Int(Me.Height / 66)
-        '    gr.DrawImage(immagineCenter, immagineCenterW, posizioneCenter, 1706, 66)
-        '    posizioneCenter += 66
-        'Next
-        'gr.DrawImage(immagineTop, 278, 0, immagineTopW, immagineTopH)
-        'gr.DrawImage(immagineBottom, 279, Me.Height - immagineBottomH, immagineBottomW, immagineBottomH)
-        ''gr.DrawImage(immagineTop, immagineTopW, 0, immagineTop.Width, immagineTopH)
-        ''gr.DrawImage(immagineBottom, immagineBottomW, Me.Height - immagineBottomH, immagineBottom.Width, immagineBottomH)
+                    GroupBoxProprietà.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
+                    'GroupBoxProprietà.Refresh()
 
-        'Try
-        '    immagineFinale.Save("test" & immagineFinale.Width & "-" & immagineFinale.Height & ".bmp")
-        'Catch ex As Exception
+                    GroupBoxObj.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
+                    GroupBoxObj.Location = New Point(Me.Size.Width - Int(Me.Size.Width * 20 / 100) - 20, GroupBoxObj.Location.Y) 'TODO personalizzare il valore -20=20% della nuova dimensione a 12+8di bord form
+                    'GroupBoxObj.Refresh()
 
-        'End Try
+                    PanelMainMaster.Size = New Size(Int(Me.Size.Width * 50 / 100), Int(Me.Size.Height * 60 / 100)) 'Il pannello è il 50%W e il 60%H
+                    PanelMainMaster.Location = New Point(Int(Me.Size.Width * 24.683544303797468 / 100) + 8, Int(Me.Size.Height * 14.5 / 100))
+                    'PanelMainMaster.Refresh()
 
-        'Me.BackgroundImage = ClassUtility.ChangeOpacity(immagineFinale, 0.5)
-        'Me.Refresh()
+                    LabelScreenRisoluzione.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y - 16)
+                    'LabelScreenRisoluzione.Refresh()
 
-        '------ fine test imagebackground dinamica -----
+                    LabelPannello.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Location.X * 50 / 100), PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    'LabelPannello.Refresh()
 
-        If Me.Size.Width < 1280 Then
-            Me.Size = New Size(1280, Me.Size.Height)
+                    LabelPannelloMainY.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Size.Width / 2), PanelMainMaster.Location.Y - 16)
+                    'LabelPannelloMainY.Refresh()
+
+                    ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
+                    'ButtonPannelloMainReset.Refresh()
+
+                    LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
+                    'LabelPercorso.Refresh()
+
+                    PanelZoom.Location = New Point(ButtonPannelloMainReset.Location.X - 17, Me.Size.Height - 68 - 39)
+                    'PanelZoom.Refresh()
+
+                    ButtonFLMOptions.Location = New Point(GroupBoxObj.Location.X, ButtonFLMOptions.Location.Y)
+                    'ButtonFLMOptions.Refresh()
+
+                    ButtonAnteprima.Location = New Point(GroupBoxObj.Location.X + GroupBoxObj.Size.Width - ButtonAnteprima.Size.Width, ButtonAnteprima.Location.Y)
+                    'ButtonAnteprima.Refresh()
+
+                    ButtonPubblica.Location = New Point(GroupBoxProprietà.Location.X + GroupBoxProprietà.Size.Width - ButtonPubblica.Width, ButtonPubblica.Location.Y)
+                    'ButtonPubblica.Refresh()
+
+                    LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                'LabelPosizioneMouse.Refresh()
+                Case 2
+
+                Case 3
+
+                Case Else
+
+            End Select
+            'Dim t As New Threading.Thread(AddressOf PanelBackground_MousePosition)
+            't.Start()
         End If
+    End Sub
 
-        If Me.Size.Height < 800 Then
-            Me.Size = New Size(Me.Size.Width, 800)
-        End If
+    Private Sub FormFLM_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        dtOptionsLayout.Dispose()
+        'dtRisoluzioni.Dispose()
+    End Sub
 
-        GroupBoxProprietà.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
-        GroupBoxProprietà.Refresh()
+    Private Sub ButtonPainter_Click(sender As Object, e As EventArgs) Handles ButtonPainter.Click
+        Dim proc As New System.Diagnostics.Process()
 
-        GroupBoxObj.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
-        GroupBoxObj.Location = New Point(Me.Size.Width - Int(Me.Size.Width * 20 / 100) - 20, GroupBoxObj.Location.Y) 'TODO personalizzare il valore -20=20% della nuova dimensione a 12+8di bord form
-        GroupBoxObj.Refresh()
+        proc = Process.Start(grafxEditorPath, "")
+    End Sub
 
-        PanelMainMaster.Size = New Size(Int(Me.Size.Width * 50 / 100), Int(Me.Size.Height * 60 / 100)) 'Il pannello è il 50%W e il 60%H
-        PanelMainMaster.Location = New Point(Int(Me.Size.Width * 24.683544303797468 / 100) + 8, Int(Me.Size.Height * 14.5 / 100))
-        PanelMainMaster.Refresh()
-
-        LabelScreenRisoluzione.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y - 16)
-        LabelScreenRisoluzione.Refresh()
-
-        LabelPannelloMainX.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Size.Width / 2 - LabelPannelloMainX.Size.Width), PanelMainMaster.Location.Y - 16)
-        LabelPannelloMainX.Refresh()
-        LabelPannelloMainY.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Size.Width / 2), PanelMainMaster.Location.Y - 16)
-        LabelPannelloMainY.Refresh()
-
-        ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
-        ButtonPannelloMainReset.Refresh()
-
-        LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 25 - 39)
-        LabelPercorso.Refresh()
-
-        PanelZoom.Location = New Point(ButtonPannelloMainReset.Location.X - 17, Me.Size.Height - 68 - 39)
-        PanelZoom.Refresh()
-
-        ButtonAnteprima.Location = New Point(GroupBoxObj.Location.X + GroupBoxObj.Size.Width - ButtonAnteprima.Size.Width)
-        ButtonAnteprima.Refresh()
-
-        ButtonPubblica.Location = New Point(GroupBoxProprietà.Location.X + GroupBoxProprietà.Size.Width - ButtonPubblica.Width, ButtonPubblica.Location.Y)
-        ButtonPubblica.Refresh()
-
+    Private Sub ButtonFLMOptions_Click(sender As Object, e As EventArgs) Handles ButtonFLMOptions.Click
+        FormFLMoptions.Show()
     End Sub
 
     Private Sub ButtonAnteprima_Click(sender As Object, e As EventArgs) Handles ButtonAnteprima.Click
         'TODO caricare anche le immagini per simulare l'effetto vero
+        'da svolgere in thread diverso
+
     End Sub
 
     Private Sub LabelCarica_DoubleClick(sender As Object, e As EventArgs) Handles LabelPercorso.DoubleClick
@@ -844,13 +875,13 @@
                 TextBoxRomcounter_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_y_pos")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxRomcounter_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_width")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxRomcounter_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_height")
@@ -862,259 +893,259 @@
                 TextBoxRomcounter_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_font_name")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxRomcounter_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_font_size")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxRomcounter_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_font_style")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxRomcounter_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_font_color")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxRomcounter_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_backcolor")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxRomcounter_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_text_align")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 CheckBoxPlatformname_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_visible"))
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxPlatformname_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_x_pos")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxPlatformname_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_y_pos")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxPlatformname_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_width")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxPlatformname_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_height")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxPlatformname_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_font_name")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxPlatformname_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_font_size")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxPlatformname_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_font_style")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxPlatformname_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_font_color")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxPlatformname_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_backcolor")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxPlatformname_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_text_align")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 CheckBoxEmulatorname_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_visible"))
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxEmulatorname_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_x_pos")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxEmulatorname_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_y_pos")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxEmulatorname_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_width")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxEmulatorname_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_height")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxEmulatorname_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_font_name")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxEmulatorname_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_font_size")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxEmulatorname_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_font_style")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxEmulatorname_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_font_color")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxEmulatorname_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_backcolor")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxEmulatorname_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_text_align")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 CheckBoxGamelistname_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_visible"))
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxGamelistname_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_x_pos")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxGamelistname_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_y_pos")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxGamelistname_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_width")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxGamelistname_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_height")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxGamelistname_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_font_name")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxGamelistname_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_font_size")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxGamelistname_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_font_style")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxGamelistname_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_font_color")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxGamelistname_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_backcolor")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxGamelistname_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_text_align")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 CheckBoxRomname_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_visible"))
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxRomname_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_x_pos")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxRomname_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_y_pos")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxRomname_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_width")
             Catch ex As Exception
 
-                End Try
+            End Try
 
             Try
                 TextBoxRomname_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_height")
@@ -1654,8 +1685,15 @@
     Private Sub ButtonPubblica_Click(sender As Object, e As EventArgs) Handles ButtonPubblica.Click
 
         Dim file As System.IO.StreamWriter
-        Dim cartella As String = ""
+        Dim cartella As String
         Dim folder As DirectoryInfo
+
+        Try
+            FolderBrowserDialog1.RootFolder = LabelPercorso.Text
+        Catch ex As Exception
+
+        End Try
+
 
         If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
             cartella = FolderBrowserDialog1.SelectedPath
@@ -1664,40 +1702,77 @@
             LabelPercorso.Refresh()
 
             folder = My.Computer.FileSystem.GetDirectoryInfo(cartella)
-        End If
 
-        Try
-            If My.Computer.FileSystem.FileExists(cartella & "\" & "layout.ini") Then
-                My.Computer.FileSystem.RenameFile(cartella & "\" & "layout.ini", "layout_" & Today.Year.ToString & Today.Month.ToString & Today.Day.ToString & ".ini")
-            End If
-        Catch ex As Exception
+            Try
+                If My.Computer.FileSystem.FileExists(cartella & "\" & "layout.ini") Then
+                    My.Computer.FileSystem.RenameFile(cartella & "\" & "layout.ini", "layout_" & Today.Year.ToString & Today.Month.ToString & Today.Day.ToString & ".ini")
+                End If
+            Catch ex As Exception
 
-        End Try
+            End Try
 
+            file = My.Computer.FileSystem.OpenTextFileWriter(cartella & "\" & "layout.ini", True)
 
-        file = My.Computer.FileSystem.OpenTextFileWriter(cartella & "\" & "layout.ini", True)
+            ValoriInTabella()
 
-        ValoriInTabella()
+            file.WriteLine("####################################################################################################")
+            file.WriteLine("#                                                                                                  #")
+            file.WriteLine("# F.E.(E.L.) ® – FrontEnd (Emulator Launcher) - dR.pRoDiGy – ArcadeItalia.net                      #")
+            file.WriteLine("#                                                                                                  #")
+            file.WriteLine("# FeelEdit development: sincro                                                                     #")
+            file.WriteLine("# layout design: adolfo69                                                                          #")
+            file.WriteLine("# F.L.M. Feel Layout Manager development: Gothrek - gothrek@hotmail.com                            #")
+            file.WriteLine("#                                                                                                  #")
+            file.WriteLine("# homepage: http://www.arcadeitalia.net/viewtopic.php?f=19&t=8062                                  #")
+            file.WriteLine("#                                                                                                  #")
+            file.WriteLine("####################################################################################################")
+            file.WriteLine("")
 
-        file.WriteLine("'----------- Created by FLM - gothrek@hotmail.com ------")
+            For Each dato As DataColumn In dtOptionsLayout.Columns
+                Dim riga As String
+                Dim usoTab As String = dato.ColumnName.Substring(0, dato.ColumnName.IndexOf("_"))
 
-        For Each dato As DataColumn In dtOptionsLayout.Columns
-            Dim riga As String
+                Try
+                    Dim oggettoColoreFont As Color = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("Label" & dato.ColumnName).ForeColor
 
-            riga = dato.ColumnName
+                    riga = dato.ColumnName
+                    If oggettoColoreFont = Color.Green Then
+                        riga = "#" & riga
+                    End If
 
+                    For i As Integer = 1 To 40 - riga.Length
+                        riga &= " "
+                    Next
 
+                    riga &= dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(dato.Caption)
+                    file.WriteLine(riga)
+                Catch ex As Exception
 
-            For i As Integer = 1 To 40 - riga.Length
-                riga &= " "
+                End Try
+
+                Try
+                    Dim oggettoColoreFont As Color = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("CheckBox" & dato.ColumnName).ForeColor
+
+                    riga = dato.ColumnName
+                    If oggettoColoreFont = Color.Green Then
+                        riga = "#" & riga
+                    End If
+
+                    For i As Integer = 1 To 40 - riga.Length
+                        riga &= " "
+                    Next
+
+                    riga &= dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(dato.Caption)
+                    file.WriteLine(riga)
+                Catch ex As Exception
+
+                End Try
+
             Next
 
-            riga &= dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(dato.Caption)
-            file.WriteLine(riga)
-        Next
-
-        file.Close()
-        MsgBox("File layout.ini scritto correttamente!")
+            file.Close()
+            MsgBox("File layout.ini scritto correttamente!")
+        End If
     End Sub
 
     Private Sub ValoriInTabella()
@@ -2034,6 +2109,11 @@
                     e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, 0, posizione)
                 End If
 
+                If sender.tag = 1 Then
+                    e.Graphics.DrawRectangle(New Pen(Color.Red, 2), sender.ClientRectangle)
+                Else
+                    e.Graphics.DrawRectangle(New Pen(Color.Green, 2), sender.ClientRectangle)
+                End If
             Catch ex As Exception
 
             End Try
@@ -2044,6 +2124,44 @@
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub Panel_MouseMove(sender As Object, e As MouseEventArgs) Handles PanelSnapshot.MouseMove,
+                                                                                            PanelRomstatus.MouseMove,
+                                                                                            PanelRomname.MouseMove,
+                                                                                            PanelRommanufacturer.MouseMove,
+                                                                                            PanelRomlist.MouseMove,
+                                                                                            PanelRominputcontrol.MouseMove,
+                                                                                            PanelRomdisplaytype.MouseMove,
+                                                                                            PanelRomdescription.MouseMove,
+                                                                                            PanelRomcounter.MouseMove,
+                                                                                            PanelRomcategory.MouseMove,
+                                                                                            PanelPlatformname.MouseMove,
+                                                                                            PanelMenu.MouseMove,
+                                                                                            PanelMarquee.MouseMove,
+                                                                                            PanelGamelistname.MouseMove,
+                                                                                            PanelEmulatorname.MouseMove,
+                                                                                            PanelBackground.MouseMove,
+                                                                                            PanelCabinet.MouseMove
+
+        Dim x As Integer = MousePosition.X - PanelMainMaster.Location.X - Me.Location.X - 7 '7 è il bordo
+        Dim y As Integer = MousePosition.Y - PanelMainMaster.Location.Y - Me.Location.Y - 30 '30 è l'intestazione della form
+
+        If (x >= 0) And (x <= PanelBackground.Size.Width) And (y >= 0) And (y <= PanelBackground.Size.Height) Then
+            LabelPosizioneMouse.Text = x & " , " & y
+            'LabelPosizioneMouse.Refresh()
+        Else
+            LabelPosizioneMouse.Text = "- , -"
+            'LabelPosizioneMouse.Refresh()
+        End If
+
+        LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+
+        If MouseButtons.HasFlag(MouseButtons.Left) And (sender.tag <> 1) Then
+            sender.location = New Point(sender.Location.X + (MousePosition.X - mouseCoordinate.X), sender.Location.Y + (MousePosition.Y) - mouseCoordinate.Y)
+            LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & sender.location.x & " , " & sender.location.y
+            mouseCoordinate = MousePosition
+        End If
     End Sub
 
     Private Sub Panel_MouseHover(sender As Object, e As EventArgs) Handles PanelSnapshot.MouseHover,
@@ -2124,8 +2242,22 @@
                                                                                 PanelRomcategory.MouseDown,
                                                                                 PanelMenu.MouseDown ', PanelBackground.MouseDown, PanelMain.MouseDown,
 
-        pannelloLocation = sender.Location
-        mouseCoordinate = MousePosition
+        If e.Button = MouseButtons.Right Then
+            Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
+
+            TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
+
+            sender.tag = Math.Abs(Int(sender.tag) - 1)
+            sender.refresh
+        Else
+            Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
+
+            TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
+
+            pannelloLocation = sender.Location
+            mouseCoordinate = MousePosition
+        End If
+
     End Sub
 
     Private Sub Panel_MouseUp(sender As Object, e As MouseEventArgs) Handles PanelSnapshot.MouseUp,
@@ -2144,28 +2276,75 @@
                                                                                 PanelRomcategory.MouseUp,
                                                                                 PanelMenu.MouseUp,
                                                                                 PanelRomlist.MouseUp ',PanelBackground.MouseUp, PanelMain.Mouseup,
+        If e.Button = MouseButtons.Left Then
+            If sender.tag <> 1 Then
+                pannelloLocation = New Point(sender.Location.X + (MousePosition.X - mouseCoordinate.X), sender.Location.Y + (MousePosition.Y) - mouseCoordinate.Y)
 
-        pannelloLocation = New Point(sender.Location.X + (MousePosition.X - mouseCoordinate.X), sender.Location.Y + (MousePosition.Y) - mouseCoordinate.Y)
+                sender.Location = pannelloLocation
+                sender.Refresh()
 
-        sender.Location = pannelloLocation
-        sender.Refresh()
+                Try
+                    Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
+                    Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
+                    Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
 
-        Try
+                    oggettoX.Text = pannelloLocation.X
+                    oggettoX.Refresh()
+
+                    oggettoY.Text = pannelloLocation.Y
+                    oggettoY.Refresh()
+
+                    'TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
+                Catch ex As Exception
+
+                End Try
+            Else
+                'Try
+                '    Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
+
+                '    TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
+                'Catch ex As Exception
+
+                'End Try
+                MsgBox("Il pannello è in lock! Per spostarlo col mouse devi prima sbloccarlo con bottone dx del mouse.")
+            End If
+            LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & sender.location.x & " , " & sender.location.y
+            sender.focus()
+        End If
+
+    End Sub
+
+    Private Sub Panel_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles PanelRomlist.PreviewKeyDown, PanelSnapshot.PreviewKeyDown, PanelRomstatus.PreviewKeyDown, PanelRomname.PreviewKeyDown, PanelRommanufacturer.PreviewKeyDown, PanelRominputcontrol.PreviewKeyDown, PanelRomdisplaytype.PreviewKeyDown, PanelRomdescription.PreviewKeyDown, PanelRomcounter.PreviewKeyDown, PanelRomcategory.PreviewKeyDown, PanelPlatformname.PreviewKeyDown, PanelMenu.PreviewKeyDown, PanelMarquee.PreviewKeyDown, PanelGamelistname.PreviewKeyDown, PanelEmulatorname.PreviewKeyDown, PanelCabinet.PreviewKeyDown
+        If sender.tag <> 1 Then
             Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
-            Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
-            Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
 
-            oggettoX.Text = pannelloLocation.X
-            oggettoX.Refresh()
+            Select Case e.KeyCode
+                Case Keys.Right
+                    Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
 
-            oggettoY.Text = pannelloLocation.Y
-            oggettoY.Refresh()
+                    sender.location = New Point(sender.location.x + 1, sender.location.y)
+                    oggettoX.Text = sender.location.X
+                Case Keys.Left
+                    Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
 
-            TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
-        Catch ex As Exception
+                    sender.location = New Point(sender.location.x - 1, sender.location.y)
+                    oggettoX.Text = sender.location.X
+                Case Keys.Up
+                    Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
 
-        End Try
+                    sender.location = New Point(sender.location.x, sender.location.y - 1)
+                    oggettoY.Text = sender.location.Y
+                Case Keys.Down
+                    Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
 
+                    sender.location = New Point(sender.location.x, sender.location.y + 1)
+                    oggettoY.Text = sender.location.Y
+            End Select
+
+            LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & sender.location.x & " , " & sender.location.y
+        Else
+            MsgBox("Il pannello è in lock! Per spostarlo col mouse devi prima sbloccarlo con bottone dx del mouse.")
+        End If
     End Sub
 
     Private Sub CheckBoxPanelVisibile_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxCabinet_visible.CheckedChanged,
@@ -2224,6 +2403,7 @@
 
         valorePrecedente = sender.Text
     End Sub
+
     Private Sub TextBox_TextChanged(sender As Object, e As EventArgs) Handles TextBoxBackground_frame_duration_ms.TextChanged,
                                                                                 TextBoxBackground_repeat_delay_ms.TextChanged,
                                                                                 TextBoxRomlist_item_height.TextChanged,
@@ -2270,12 +2450,16 @@
 
             oggettoPanel.Location = New Point(Int(sender.Text), oggettoPanel.Location.Y)
 
-            If oggettoPanel.location.x > PanelMain.Location.X + PanelMain.Size.Width Then
+            If oggettoPanel.location.x < (-oggettoPanel.Size.Width) Then
                 sender.backcolor = Color.Red
             Else
-                sender.BackColor = Color.Green
-            End If
+                If oggettoPanel.location.x > PanelMain.Location.X + PanelMain.Size.Width Then
+                    sender.backcolor = Color.Red
 
+                Else
+                    sender.BackColor = Color.Green
+                End If
+            End If
             oggettoPanel.Refresh()
 
         Catch ex As Exception
@@ -2316,12 +2500,15 @@
 
             oggettoPanel.Location = New Point(oggettoPanel.Location.X, Int(sender.Text))
 
-            If oggettoPanel.location.y > PanelMain.Location.Y + PanelMain.Size.Height Then
+            If oggettoPanel.location.y < (-oggettoPanel.Size.Height) Then
                 sender.backcolor = Color.Red
             Else
-                sender.BackColor = Color.Green
+                If oggettoPanel.location.y > PanelMain.Location.Y + PanelMain.Size.Height Then
+                    sender.backcolor = Color.Red
+                Else
+                    sender.BackColor = Color.Green
+                End If
             End If
-
             oggettoPanel.Refresh()
         Catch ex As Exception
 
@@ -2442,11 +2629,14 @@
         oggettoTextBox.Font = carattere
         oggettoTextBox.Text = FontDialog1.Font.Style.GetHashCode
         oggettoTextBox.Refresh()
+        carattere.Dispose()
 
         oggettoLabel.Text = FontDialog1.Font.Style.ToString
         carattere = oggettoLabel.font
-        oggettoLabel.Font = New Font(carattere, FontDialog1.Font.Style)
+        carattere = New Font(carattere, FontDialog1.Font.Style)
+        oggettoLabel.Font = carattere
         oggettoLabel.Refresh()
+        carattere.Dispose()
 
     End Sub
 
@@ -2492,11 +2682,15 @@
             oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_style")
             oggettoTextBox.Font = carattere
             oggettoTextBox.Refresh()
+            carattere.Dispose()
 
             oggettoLabel.Text = carattere.Style.ToString
             carattere = oggettoLabel.font
-            oggettoLabel.Font = New Font(carattere, carattereStile)
+            carattere = New Font(carattere, carattereStile)
+            oggettoLabel.Font = carattere
             oggettoLabel.Refresh()
+            carattere.Dispose()
+
         Catch ex As Exception
 
         End Try
@@ -2728,6 +2922,40 @@
 
     End Sub
 
+    Private Sub Label_MouseDown(sender As Object, e As MouseEventArgs) Handles LabelSound_fx_list.MouseDown, LabelSound_fx_volume.MouseDown, LabelSound_fx_startemu.MouseDown, LabelSound_fx_menu.MouseDown, LabelSound_fx_confirm.MouseDown, LabelSound_fx_cancel.MouseDown,
+                                                                                LabelMusic_volume.MouseDown, LabelMusic_path.MouseDown,
+                                                                                LabelScreen_saver_font_color.MouseDown, LabelScreen_saver_backcolor.MouseDown, LabelScreen_res_y.MouseDown, LabelScreen_res_x.MouseDown,
+                                                                                LabelRomlist_y_pos.MouseDown, LabelRomlist_x_pos.MouseDown, LabelRomlist_width.MouseDown, LabelRomlist_text_align.MouseDown, LabelRomlist_selected_font_color.MouseDown, LabelRomlist_selected_backcolor.MouseDown, LabelRomlist_item_height.MouseDown, LabelRomlist_height.MouseDown, LabelRomlist_font_style.MouseDown, LabelRomlist_font_size.MouseDown, LabelRomlist_font_name.MouseDown, LabelRomlist_font_color.MouseDown, LabelRomlist_backcolor.MouseDown, CheckBoxRomlist_disable_stars.MouseDown,
+                                                                                LabelBackground_width.MouseDown, LabelBackground_repeat_delay_ms.MouseDown, CheckBoxBackground_ontop.MouseDown, LabelBackground_height.MouseDown, LabelBackground_frame_duration_ms.MouseDown,
+                                                                                LabelSnapshot_y_pos.MouseDown, LabelSnapshot_x_pos.MouseDown, LabelSnapshot_width.MouseDown, LabelSnapshot_height.MouseDown, CheckBoxSnapshot_stretch.MouseDown, CheckBoxSnapshot_blackbackground.MouseDown,
+                                                                                CheckBoxRomcounter_visible.MouseDown, LabelRomcounter_y_pos.MouseDown, LabelRomcounter_x_pos.MouseDown, LabelRomcounter_width.MouseDown, LabelRomcounter_text_align.MouseDown, LabelRomcounter_height.MouseDown, LabelRomcounter_font_style.MouseDown, LabelRomcounter_font_size.MouseDown, LabelRomcounter_font_name.MouseDown, LabelRomcounter_font_color.MouseDown, LabelRomcounter_backcolor.MouseDown,
+                                                                                LabelMarquee_y_pos.MouseDown, LabelMarquee_x_pos.MouseDown, LabelMarquee_width.MouseDown, LabelMarquee_height.MouseDown, CheckBoxMarquee_visible.MouseDown, CheckBoxMarquee_stretch.MouseDown, CheckBoxMarquee_blackbackground.MouseDown,
+                                                                                LabelCabinet_y_pos.MouseDown, LabelCabinet_x_pos.MouseDown, LabelCabinet_width.MouseDown, LabelCabinet_height.MouseDown, CheckBoxCabinet_visible.MouseDown, CheckBoxCabinet_stretch.MouseDown, CheckBoxCabinet_blackbackground.MouseDown,
+                                                                                LabelPlatformname_y_pos.MouseDown, LabelPlatformname_x_pos.MouseDown, LabelPlatformname_width.MouseDown, LabelPlatformname_text_align.MouseDown, LabelPlatformname_height.MouseDown, LabelPlatformname_font_style.MouseDown, LabelPlatformname_font_size.MouseDown, LabelPlatformname_font_name.MouseDown, LabelPlatformname_font_color.MouseDown, LabelPlatformname_backcolor.MouseDown, CheckBoxPlatformname_visible.MouseDown,
+                                                                                LabelEmulatorname_y_pos.MouseDown, LabelEmulatorname_x_pos.MouseDown, LabelEmulatorname_width.MouseDown, LabelEmulatorname_text_align.MouseDown, LabelEmulatorname_height.MouseDown, LabelEmulatorname_font_style.MouseDown, LabelEmulatorname_font_size.MouseDown, LabelEmulatorname_font_name.MouseDown, LabelEmulatorname_font_color.MouseDown, LabelEmulatorname_backcolor.MouseDown, CheckBoxEmulatorname_visible.MouseDown,
+                                                                                LabelGamelistname_y_pos.MouseDown, LabelGamelistname_x_pos.MouseDown, LabelGamelistname_width.MouseDown, LabelGamelistname_text_align.MouseDown, LabelGamelistname_height.MouseDown, LabelGamelistname_font_style.MouseDown, LabelGamelistname_font_size.MouseDown, LabelGamelistname_font_name.MouseDown, LabelGamelistname_font_color.MouseDown, LabelGamelistname_backcolor.MouseDown, CheckBoxGamelistname_visible.MouseDown,
+                                                                                LabelRomname_y_pos.MouseDown, LabelRomname_x_pos.MouseDown, LabelRomname_width.MouseDown, LabelRomname_text_align.MouseDown, LabelRomname_height.MouseDown, LabelRomname_font_style.MouseDown, LabelRomname_font_size.MouseDown, LabelRomname_font_name.MouseDown, LabelRomname_font_color.MouseDown, LabelRomname_backcolor.MouseDown, CheckBoxRomname_visible.MouseDown,
+                                                                                LabelRomdescription_y_pos.MouseDown, LabelRomdescription_x_pos.MouseDown, LabelRomdescription_width.MouseDown, LabelRomdescription_text_align.MouseDown, LabelRomdescription_height.MouseDown, LabelRomdescription_font_style.MouseDown, LabelRomdescription_font_size.MouseDown, LabelRomdescription_font_name.MouseDown, LabelRomdescription_font_color.MouseDown, LabelRomdescription_backcolor.MouseDown, CheckBoxRomdescription_visible.MouseDown,
+                                                                                LabelRommanufacturer_y_pos.MouseDown, LabelRommanufacturer_x_pos.MouseDown, LabelRommanufacturer_width.MouseDown, LabelRommanufacturer_text_align.MouseDown, LabelRommanufacturer_height.MouseDown, LabelRommanufacturer_font_style.MouseDown, LabelRommanufacturer_font_size.MouseDown, LabelRommanufacturer_font_name.MouseDown, LabelRommanufacturer_font_color.MouseDown, LabelRommanufacturer_backcolor.MouseDown, CheckBoxRommanufacturer_visible.MouseDown,
+                                                                                LabelRomdisplaytype_y_pos.MouseDown, LabelRomdisplaytype_x_pos.MouseDown, LabelRomdisplaytype_width.MouseDown, LabelRomdisplaytype_text_align.MouseDown, LabelRomdisplaytype_height.MouseDown, LabelRomdisplaytype_font_style.MouseDown, LabelRomdisplaytype_font_size.MouseDown, LabelRomdisplaytype_font_name.MouseDown, LabelRomdisplaytype_font_color.MouseDown, LabelRomdisplaytype_backcolor.MouseDown, CheckBoxRomdisplaytype_visible.MouseDown,
+                                                                                LabelRomstatus_y_pos.MouseDown, LabelRomstatus_x_pos.MouseDown, LabelRomstatus_width.MouseDown, LabelRomstatus_text_align.MouseDown, LabelRomstatus_height.MouseDown, LabelRomstatus_font_style.MouseDown, LabelRomstatus_font_size.MouseDown, LabelRomstatus_font_name.MouseDown, LabelRomstatus_font_color.MouseDown, LabelRomstatus_backcolor.MouseDown, CheckBoxRomstatus_visible.MouseDown,
+                                                                                LabelRominputcontrol_y_pos.MouseDown, LabelRominputcontrol_x_pos.MouseDown, LabelRominputcontrol_width.MouseDown, LabelRominputcontrol_text_align.MouseDown, LabelRominputcontrol_height.MouseDown, LabelRominputcontrol_font_style.MouseDown, LabelRominputcontrol_font_size.MouseDown, LabelRominputcontrol_font_name.MouseDown, LabelRominputcontrol_font_color.MouseDown, LabelRominputcontrol_backcolor.MouseDown, CheckBoxRominputcontrol_visible.MouseDown,
+                                                                                LabelRomcategory_y_pos.MouseDown, LabelRomcategory_x_pos.MouseDown, LabelRomcategory_width.MouseDown, LabelRomcategory_text_align.MouseDown, LabelRomcategory_height.MouseDown, LabelRomcategory_font_style.MouseDown, LabelRomcategory_font_size.MouseDown, LabelRomcategory_font_name.MouseDown, LabelRomcategory_font_color.MouseDown, LabelRomcategory_backcolor.MouseDown, CheckBoxRomcategory_visible.MouseDown,
+                                                                                LabelMenu_width.MouseDown, LabelMenu_selected_font_color.MouseDown, LabelMenu_selected_backcolor.MouseDown, LabelMenu_item_height.MouseDown, LabelMenu_font_style.MouseDown, LabelMenu_font_size.MouseDown, LabelMenu_font_name.MouseDown, LabelMenu_font_color.MouseDown, LabelMenu_backcolor.MouseDown, CheckBoxMenu_show_sidebar.MouseDown,
+                                                                                LabelActors_repeat_delay_ms.MouseDown, LabelActors_frame_duration_ms.MouseDown,
+                                                                                LabelBezel_repeat_delay_ms.MouseDown, LabelBezel_frame_duration_ms.MouseDown,
+                                                                                CheckBoxShow_extended_messages.MouseDown
+
+        If e.Button = MouseButtons.Right Then
+
+            If sender.forecolor = Color.Green Then
+                sender.forecolor = Color.Black
+            Else
+                sender.forecolor = Color.Green
+            End If
+        End If
+    End Sub
+
     '----------------------------------------------------------------------------------------------
     'Proprietà Sound
     Private Sub TextBoxSound_fx_list_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxSound_fx_list.DoubleClick
@@ -2822,8 +3050,8 @@
         PanelMain.Location = pannelloMainLocation
         PanelMain.Refresh()
 
-        LabelPannelloMainX.Text = "Pannello main X: " & pannelloMainLocation.X
-        LabelPannelloMainX.Refresh()
+        LabelPannello.Text = "Pannello main X: " & pannelloMainLocation.X
+        LabelPannello.Refresh()
 
         LabelPannelloMainY.Text = "Pannello main Y: " & pannelloMainLocation.Y
         LabelPannelloMainY.Refresh()
@@ -2833,8 +3061,8 @@
         PanelMain.Location = New Point(0, 0)
         PanelMain.Refresh()
 
-        LabelPannelloMainX.Text = "Pannello main X: " & PanelMain.Location.X
-        LabelPannelloMainX.Refresh()
+        LabelPannello.Text = "Pannello main X: " & PanelMain.Location.X
+        LabelPannello.Refresh()
 
         LabelPannelloMainY.Text = "Pannello main Y: " & PanelMain.Location.Y
         LabelPannelloMainY.Refresh()
@@ -3000,6 +3228,31 @@
         TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPageBackground")
     End Sub
 
+
+    'Private Sub PanelBackground_MousePosition()
+    '    Dim LabelPosizioneMouse As New Label
+
+    '    LabelPosizioneMouse.Location = New Point(933, 599)
+    '    LabelPosizioneMouse.ForeColor = Color.Red
+    '    LabelPosizioneMouse.AutoSize = True
+
+    '    Me.Controls.Add(LabelPosizioneMouse)
+
+    '    Do
+    '        Dim x As Integer = MousePosition.X - PanelBackground.Location.X
+    '        Dim y As Integer = MousePosition.Y - PanelBackground.Location.Y
+    '        If (x >= 0) And (x <= PanelBackground.Size.Width) And (y >= 0) And (y <= PanelBackground.Size.Height) Then
+    '            LabelPosizioneMouse.Text = x & "," & y
+    '            'LabelPosizioneMouse.Refresh()
+    '        Else
+    '            LabelPosizioneMouse.Text = "- , -"
+    '            'LabelPosizioneMouse.Refresh()
+    '        End If
+
+    '    Loop
+
+    'End Sub
+
     Private Sub CheckBoxBackgroundImage_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxBackgroundImage.CheckedChanged
         If CheckBoxBackgroundImage.Checked Then
             Try
@@ -3118,7 +3371,6 @@
             TextBoxMenu_selected_backcolor.Refresh()
         End If
     End Sub
-
 
 
     '----------------------------------------------------------------------------------------------
