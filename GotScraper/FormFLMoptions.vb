@@ -1,7 +1,29 @@
 ﻿Public Class FormFLMoptions
 
-    Private Sub FormFLMoptions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Dim usoLayout As Integer = FormFLM.flmLayout
 
+    Private Sub FormFLMoptions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TextBoxPathFeel.Text = FormFLM.LabelPercorso.Text
+        TextBoxPathFeel.Text = FormFLM.feelPath
+
+        TextBoxPathGraphEditor.Text = FormFLM.grafxEditorPath
+
+        CheckBoxFLMBackgroundImage.Checked = FormFLM.flmBackgroundImageCheck
+
+        Select Case usoLayout
+            Case 1
+                RadioButtonFLMLayout1.Checked = True
+            Case 2
+                RadioButtonFLMLayout2.Checked = True
+            Case 3
+                RadioButtonFLMLayout3.Checked = True
+            Case Else
+                MsgBox("Attenzione, valore di Layout nel file ini errato!! Verificare!")
+        End Select
+
+        PanelFLMLayout1.Enabled = RadioButtonFLMLayout1.Checked
+        PanelFLMLayout2.Enabled = RadioButtonFLMLayout2.Checked
+        PanelFLMLayout3.Enabled = RadioButtonFLMLayout3.Checked
     End Sub
 
     Private Sub TextBoxPathFeel_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxPathFeel.DoubleClick, TextBoxPathFeel.Click
@@ -27,18 +49,21 @@
 
     Private Sub RadioButtonFLMLayout1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonFLMLayout1.CheckedChanged
         FormFLM.flmLayout = 1
+        FormFLM.flmBackgroundImage = My.Resources.Layout1
 
         PanelFLMLayout1.Enabled = RadioButtonFLMLayout1.Checked
     End Sub
 
     Private Sub RadioButtonFLMLayout2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonFLMLayout2.CheckedChanged
         FormFLM.flmLayout = 2
+        FormFLM.flmBackgroundImage = My.Resources.Layout2
 
         PanelFLMLayout2.Enabled = RadioButtonFLMLayout2.Checked
     End Sub
 
     Private Sub RadioButtonFLMLayout3_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonFLMLayout3.CheckedChanged
         FormFLM.flmLayout = 3
+        'FormFLM.flmBackgroundImage = My.Resources.Layout3
 
         PanelFLMLayout3.Enabled = RadioButtonFLMLayout3.Checked
     End Sub
@@ -51,11 +76,10 @@
 
         FormFLM.flmBackgroundImageCheck = CheckBoxFLMBackgroundImage.Checked
 
-        FormFLM.flmLayout = FormFLM.flmLayout
-        'TODO variare il layout del programma
+        'FormFLM.flmLayout = FormFLM.flmLayout
+        FormFLM.FormFLM_Resize()
 
         If My.Computer.FileSystem.FileExists("FLM.ini") Then
-            'TODO aggiornare file impostazioni
             Try
                 System.IO.File.Delete("FLM.ini")
                 Dim file As System.IO.StreamWriter
@@ -77,7 +101,6 @@
                 MsgBox(ex.Message)
             End Try
         Else
-            'TODO creare file impostazioni
             Dim file As System.IO.StreamWriter
 
             file = My.Computer.FileSystem.OpenTextFileWriter("FLM.ini", True)

@@ -63,6 +63,7 @@ Partial Class FormFLM
         Me.LabelRisoluzione = New System.Windows.Forms.Label()
         Me.ComboBoxRisoluzione = New System.Windows.Forms.ComboBox()
         Me.TabPageRomlist = New System.Windows.Forms.TabPage()
+        Me.ComboBoxRomlist_text_align = New System.Windows.Forms.ComboBox()
         Me.CheckBoxRomlist_disable_stars = New System.Windows.Forms.CheckBox()
         Me.TextBoxRomlist_text_align = New System.Windows.Forms.TextBox()
         Me.LabelRomlist_text_align = New System.Windows.Forms.Label()
@@ -155,6 +156,7 @@ Partial Class FormFLM
         Me.LabelMarquee_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxMarquee_visible = New System.Windows.Forms.CheckBox()
         Me.TabPageRomcounter = New System.Windows.Forms.TabPage()
+        Me.ComboBoxRomcounter_text_align = New System.Windows.Forms.ComboBox()
         Me.TextBoxRomcounter_text_align = New System.Windows.Forms.TextBox()
         Me.LabelRomcounter_text_align = New System.Windows.Forms.Label()
         Me.TextBoxRomcounter_backcolor = New System.Windows.Forms.TextBox()
@@ -179,6 +181,7 @@ Partial Class FormFLM
         Me.LabelRomcounter_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxRomcounter_visible = New System.Windows.Forms.CheckBox()
         Me.TabPagePlatformname = New System.Windows.Forms.TabPage()
+        Me.ComboBoxPlatformname_text_align = New System.Windows.Forms.ComboBox()
         Me.TextBoxPlatformname_text_align = New System.Windows.Forms.TextBox()
         Me.LabelPlatformname_text_align = New System.Windows.Forms.Label()
         Me.TextBoxPlatformname_backcolor = New System.Windows.Forms.TextBox()
@@ -203,6 +206,7 @@ Partial Class FormFLM
         Me.LabelPlatformname_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxPlatformname_visible = New System.Windows.Forms.CheckBox()
         Me.TabPageEmulatorname = New System.Windows.Forms.TabPage()
+        Me.ComboBoxEmulatorname_text_align = New System.Windows.Forms.ComboBox()
         Me.TextBoxEmulatorname_text_align = New System.Windows.Forms.TextBox()
         Me.LabelEmulatorname_text_align = New System.Windows.Forms.Label()
         Me.TextBoxEmulatorname_backcolor = New System.Windows.Forms.TextBox()
@@ -227,6 +231,7 @@ Partial Class FormFLM
         Me.LabelEmulatorname_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxEmulatorname_visible = New System.Windows.Forms.CheckBox()
         Me.TabPageGamelistname = New System.Windows.Forms.TabPage()
+        Me.ComboBoxGamelistname_text_align = New System.Windows.Forms.ComboBox()
         Me.TextBoxGamelistname_text_align = New System.Windows.Forms.TextBox()
         Me.LabelGamelistname_text_align = New System.Windows.Forms.Label()
         Me.TextBoxGamelistname_backcolor = New System.Windows.Forms.TextBox()
@@ -251,6 +256,7 @@ Partial Class FormFLM
         Me.LabelGamelistname_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxGamelistname_visible = New System.Windows.Forms.CheckBox()
         Me.TabPageRomname = New System.Windows.Forms.TabPage()
+        Me.ComboBoxRomname_text_align = New System.Windows.Forms.ComboBox()
         Me.TextBoxRomname_text_align = New System.Windows.Forms.TextBox()
         Me.LabelRomname_text_align = New System.Windows.Forms.Label()
         Me.TextBoxRomname_backcolor = New System.Windows.Forms.TextBox()
@@ -275,6 +281,7 @@ Partial Class FormFLM
         Me.LabelRomname_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxRomname_visible = New System.Windows.Forms.CheckBox()
         Me.TabPageRomdescription = New System.Windows.Forms.TabPage()
+        Me.ComboBoxRomdescription_text_align = New System.Windows.Forms.ComboBox()
         Me.TextBoxRomdescription_text_align = New System.Windows.Forms.TextBox()
         Me.LabelRomdescription_text_align = New System.Windows.Forms.Label()
         Me.TextBoxRomdescription_backcolor = New System.Windows.Forms.TextBox()
@@ -299,6 +306,7 @@ Partial Class FormFLM
         Me.LabelRomdescription_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxRomdescription_visible = New System.Windows.Forms.CheckBox()
         Me.TabPageRommanufacturer = New System.Windows.Forms.TabPage()
+        Me.ComboBoxRommanufacturer_text_align = New System.Windows.Forms.ComboBox()
         Me.TextBoxRommanufacturer_text_align = New System.Windows.Forms.TextBox()
         Me.LabelRommanufacturer_text_align = New System.Windows.Forms.Label()
         Me.TextBoxRommanufacturer_backcolor = New System.Windows.Forms.TextBox()
@@ -323,6 +331,7 @@ Partial Class FormFLM
         Me.LabelRommanufacturer_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxRommanufacturer_visible = New System.Windows.Forms.CheckBox()
         Me.TabPageRomdisplaytype = New System.Windows.Forms.TabPage()
+        Me.ComboBoxRomdisplaytype_text_align = New System.Windows.Forms.ComboBox()
         Me.TextBoxRomdisplaytype_text_align = New System.Windows.Forms.TextBox()
         Me.LabelRomdisplaytype_text_align = New System.Windows.Forms.Label()
         Me.TextBoxRomdisplaytype_backcolor = New System.Windows.Forms.TextBox()
@@ -347,6 +356,7 @@ Partial Class FormFLM
         Me.LabelRomdisplaytype_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxRomdisplaytype_visible = New System.Windows.Forms.CheckBox()
         Me.TabPageRominputcontrol = New System.Windows.Forms.TabPage()
+        Me.ComboBoxRominputcontrol_text_align = New System.Windows.Forms.ComboBox()
         Me.TextBoxRominputcontrol_text_align = New System.Windows.Forms.TextBox()
         Me.LabelRominputcontrol_text_align = New System.Windows.Forms.Label()
         Me.TextBoxRominputcontrol_backcolor = New System.Windows.Forms.TextBox()
@@ -371,6 +381,7 @@ Partial Class FormFLM
         Me.LabelRominputcontrol_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxRominputcontrol_visible = New System.Windows.Forms.CheckBox()
         Me.TabPageRomstatus = New System.Windows.Forms.TabPage()
+        Me.ComboBoxRomstatus_text_align = New System.Windows.Forms.ComboBox()
         Me.TextBoxRomstatus_text_align = New System.Windows.Forms.TextBox()
         Me.LabelRomstatus_text_align = New System.Windows.Forms.Label()
         Me.TextBoxRomstatus_backcolor = New System.Windows.Forms.TextBox()
@@ -395,6 +406,7 @@ Partial Class FormFLM
         Me.LabelRomstatus_x_pos = New System.Windows.Forms.Label()
         Me.CheckBoxRomstatus_visible = New System.Windows.Forms.CheckBox()
         Me.TabPageRomcategory = New System.Windows.Forms.TabPage()
+        Me.ComboBoxRomcategory_text_align = New System.Windows.Forms.ComboBox()
         Me.TextBoxRomcategory_text_align = New System.Windows.Forms.TextBox()
         Me.LabelRomcategory_text_align = New System.Windows.Forms.Label()
         Me.TextBoxRomcategory_backcolor = New System.Windows.Forms.TextBox()
@@ -454,7 +466,7 @@ Partial Class FormFLM
         Me.LabelActors_frame_duration_ms = New System.Windows.Forms.Label()
         Me.TextBoxActors_repeat_delay_ms = New System.Windows.Forms.TextBox()
         Me.LabelActors_repeat_delay_ms = New System.Windows.Forms.Label()
-        Me.TabPageBazil = New System.Windows.Forms.TabPage()
+        Me.TabPageBezel = New System.Windows.Forms.TabPage()
         Me.TextBoxBezel_frame_duration_ms = New System.Windows.Forms.TextBox()
         Me.LabelBezel_frame_duration_ms = New System.Windows.Forms.Label()
         Me.TextBoxBezel_repeat_delay_ms = New System.Windows.Forms.TextBox()
@@ -463,8 +475,6 @@ Partial Class FormFLM
         Me.CheckBoxShow_extended_messages = New System.Windows.Forms.CheckBox()
         Me.LabelZoomTesto = New System.Windows.Forms.Label()
         Me.LabelPercorso = New System.Windows.Forms.Label()
-        Me.ButtonCarica = New System.Windows.Forms.Button()
-        Me.ButtonPubblica = New System.Windows.Forms.Button()
         Me.ButtonAnteprima = New System.Windows.Forms.Button()
         Me.LabelZoom = New System.Windows.Forms.Label()
         Me.TrackBarZoom = New System.Windows.Forms.TrackBar()
@@ -476,16 +486,15 @@ Partial Class FormFLM
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.LabelPannello = New System.Windows.Forms.Label()
         Me.LabelPannelloMainY = New System.Windows.Forms.Label()
-        Me.ButtonPannelloMainReset = New System.Windows.Forms.Button()
         Me.LabelScreenRisoluzione = New System.Windows.Forms.Label()
         Me.PanelMain = New System.Windows.Forms.Panel()
+        Me.PanelMenu = New System.Windows.Forms.Panel()
         Me.PanelRominputcontrol = New System.Windows.Forms.Panel()
         Me.PanelRomcategory = New System.Windows.Forms.Panel()
         Me.PanelRommanufacturer = New System.Windows.Forms.Panel()
         Me.PanelMarquee = New System.Windows.Forms.Panel()
         Me.PanelCabinet = New System.Windows.Forms.Panel()
         Me.PanelRomstatus = New System.Windows.Forms.Panel()
-        Me.PanelMenu = New System.Windows.Forms.Panel()
         Me.PanelRomdescription = New System.Windows.Forms.Panel()
         Me.PanelRomname = New System.Windows.Forms.Panel()
         Me.PanelRomdisplaytype = New System.Windows.Forms.Panel()
@@ -501,8 +510,12 @@ Partial Class FormFLM
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.PanelZoom = New System.Windows.Forms.Panel()
         Me.LabelPosizioneMouse = New System.Windows.Forms.Label()
-        Me.ButtonFLMOptions = New System.Windows.Forms.Button()
+        Me.TabControlTemp = New System.Windows.Forms.TabControl()
         Me.ButtonPainter = New System.Windows.Forms.Button()
+        Me.ButtonFLMOptions = New System.Windows.Forms.Button()
+        Me.ButtonPannelloMainReset = New System.Windows.Forms.Button()
+        Me.ButtonCarica = New System.Windows.Forms.Button()
+        Me.ButtonPubblica = New System.Windows.Forms.Button()
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -528,7 +541,7 @@ Partial Class FormFLM
         Me.TabPageRomcategory.SuspendLayout()
         Me.TabPageMenu.SuspendLayout()
         Me.TabPageActors.SuspendLayout()
-        Me.TabPageBazil.SuspendLayout()
+        Me.TabPageBezel.SuspendLayout()
         Me.TabPageShow.SuspendLayout()
         CType(Me.TrackBarZoom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxObj.SuspendLayout()
@@ -576,7 +589,7 @@ Partial Class FormFLM
         Me.TabControlProprietà.Controls.Add(Me.TabPageRomcategory)
         Me.TabControlProprietà.Controls.Add(Me.TabPageMenu)
         Me.TabControlProprietà.Controls.Add(Me.TabPageActors)
-        Me.TabControlProprietà.Controls.Add(Me.TabPageBazil)
+        Me.TabControlProprietà.Controls.Add(Me.TabPageBezel)
         Me.TabControlProprietà.Controls.Add(Me.TabPageShow)
         Me.TabControlProprietà.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControlProprietà.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -980,6 +993,7 @@ Partial Class FormFLM
         '
         'TabPageRomlist
         '
+        Me.TabPageRomlist.Controls.Add(Me.ComboBoxRomlist_text_align)
         Me.TabPageRomlist.Controls.Add(Me.CheckBoxRomlist_disable_stars)
         Me.TabPageRomlist.Controls.Add(Me.TextBoxRomlist_text_align)
         Me.TabPageRomlist.Controls.Add(Me.LabelRomlist_text_align)
@@ -1019,6 +1033,15 @@ Partial Class FormFLM
         Me.TabPageRomlist.Text = "Romlist"
         Me.TabPageRomlist.UseVisualStyleBackColor = True
         '
+        'ComboBoxRomlist_text_align
+        '
+        Me.ComboBoxRomlist_text_align.FormattingEnabled = True
+        Me.ComboBoxRomlist_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxRomlist_text_align.Location = New System.Drawing.Point(167, 363)
+        Me.ComboBoxRomlist_text_align.Name = "ComboBoxRomlist_text_align"
+        Me.ComboBoxRomlist_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxRomlist_text_align.TabIndex = 59
+        '
         'CheckBoxRomlist_disable_stars
         '
         Me.CheckBoxRomlist_disable_stars.AutoSize = True
@@ -1039,6 +1062,7 @@ Partial Class FormFLM
         Me.TextBoxRomlist_text_align.TabIndex = 56
         Me.TextBoxRomlist_text_align.Text = "1"
         Me.TextBoxRomlist_text_align.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TextBoxRomlist_text_align.Visible = False
         '
         'LabelRomlist_text_align
         '
@@ -1991,6 +2015,7 @@ Partial Class FormFLM
         '
         'TabPageRomcounter
         '
+        Me.TabPageRomcounter.Controls.Add(Me.ComboBoxRomcounter_text_align)
         Me.TabPageRomcounter.Controls.Add(Me.TextBoxRomcounter_text_align)
         Me.TabPageRomcounter.Controls.Add(Me.LabelRomcounter_text_align)
         Me.TabPageRomcounter.Controls.Add(Me.TextBoxRomcounter_backcolor)
@@ -2023,6 +2048,15 @@ Partial Class FormFLM
         Me.TabPageRomcounter.Text = "Romcounter"
         Me.TabPageRomcounter.UseVisualStyleBackColor = True
         '
+        'ComboBoxRomcounter_text_align
+        '
+        Me.ComboBoxRomcounter_text_align.FormattingEnabled = True
+        Me.ComboBoxRomcounter_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxRomcounter_text_align.Location = New System.Drawing.Point(167, 285)
+        Me.ComboBoxRomcounter_text_align.Name = "ComboBoxRomcounter_text_align"
+        Me.ComboBoxRomcounter_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxRomcounter_text_align.TabIndex = 95
+        '
         'TextBoxRomcounter_text_align
         '
         Me.TextBoxRomcounter_text_align.BackColor = System.Drawing.SystemColors.Control
@@ -2033,6 +2067,7 @@ Partial Class FormFLM
         Me.TextBoxRomcounter_text_align.TabIndex = 94
         Me.TextBoxRomcounter_text_align.Text = "2"
         Me.TextBoxRomcounter_text_align.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TextBoxRomcounter_text_align.Visible = False
         '
         'LabelRomcounter_text_align
         '
@@ -2253,6 +2288,7 @@ Partial Class FormFLM
         '
         'TabPagePlatformname
         '
+        Me.TabPagePlatformname.Controls.Add(Me.ComboBoxPlatformname_text_align)
         Me.TabPagePlatformname.Controls.Add(Me.TextBoxPlatformname_text_align)
         Me.TabPagePlatformname.Controls.Add(Me.LabelPlatformname_text_align)
         Me.TabPagePlatformname.Controls.Add(Me.TextBoxPlatformname_backcolor)
@@ -2285,6 +2321,15 @@ Partial Class FormFLM
         Me.TabPagePlatformname.Text = "Platformname"
         Me.TabPagePlatformname.UseVisualStyleBackColor = True
         '
+        'ComboBoxPlatformname_text_align
+        '
+        Me.ComboBoxPlatformname_text_align.FormattingEnabled = True
+        Me.ComboBoxPlatformname_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxPlatformname_text_align.Location = New System.Drawing.Point(167, 285)
+        Me.ComboBoxPlatformname_text_align.Name = "ComboBoxPlatformname_text_align"
+        Me.ComboBoxPlatformname_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxPlatformname_text_align.TabIndex = 118
+        '
         'TextBoxPlatformname_text_align
         '
         Me.TextBoxPlatformname_text_align.BackColor = System.Drawing.SystemColors.Control
@@ -2295,6 +2340,7 @@ Partial Class FormFLM
         Me.TextBoxPlatformname_text_align.TabIndex = 117
         Me.TextBoxPlatformname_text_align.Text = "1"
         Me.TextBoxPlatformname_text_align.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TextBoxPlatformname_text_align.Visible = False
         '
         'LabelPlatformname_text_align
         '
@@ -2515,6 +2561,7 @@ Partial Class FormFLM
         '
         'TabPageEmulatorname
         '
+        Me.TabPageEmulatorname.Controls.Add(Me.ComboBoxEmulatorname_text_align)
         Me.TabPageEmulatorname.Controls.Add(Me.TextBoxEmulatorname_text_align)
         Me.TabPageEmulatorname.Controls.Add(Me.LabelEmulatorname_text_align)
         Me.TabPageEmulatorname.Controls.Add(Me.TextBoxEmulatorname_backcolor)
@@ -2547,6 +2594,15 @@ Partial Class FormFLM
         Me.TabPageEmulatorname.Text = "Emulatorname"
         Me.TabPageEmulatorname.UseVisualStyleBackColor = True
         '
+        'ComboBoxEmulatorname_text_align
+        '
+        Me.ComboBoxEmulatorname_text_align.FormattingEnabled = True
+        Me.ComboBoxEmulatorname_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxEmulatorname_text_align.Location = New System.Drawing.Point(167, 285)
+        Me.ComboBoxEmulatorname_text_align.Name = "ComboBoxEmulatorname_text_align"
+        Me.ComboBoxEmulatorname_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxEmulatorname_text_align.TabIndex = 141
+        '
         'TextBoxEmulatorname_text_align
         '
         Me.TextBoxEmulatorname_text_align.BackColor = System.Drawing.SystemColors.Control
@@ -2557,6 +2613,7 @@ Partial Class FormFLM
         Me.TextBoxEmulatorname_text_align.TabIndex = 140
         Me.TextBoxEmulatorname_text_align.Text = "1"
         Me.TextBoxEmulatorname_text_align.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TextBoxEmulatorname_text_align.Visible = False
         '
         'LabelEmulatorname_text_align
         '
@@ -2777,6 +2834,7 @@ Partial Class FormFLM
         '
         'TabPageGamelistname
         '
+        Me.TabPageGamelistname.Controls.Add(Me.ComboBoxGamelistname_text_align)
         Me.TabPageGamelistname.Controls.Add(Me.TextBoxGamelistname_text_align)
         Me.TabPageGamelistname.Controls.Add(Me.LabelGamelistname_text_align)
         Me.TabPageGamelistname.Controls.Add(Me.TextBoxGamelistname_backcolor)
@@ -2809,6 +2867,15 @@ Partial Class FormFLM
         Me.TabPageGamelistname.Text = "Gamelistname"
         Me.TabPageGamelistname.UseVisualStyleBackColor = True
         '
+        'ComboBoxGamelistname_text_align
+        '
+        Me.ComboBoxGamelistname_text_align.FormattingEnabled = True
+        Me.ComboBoxGamelistname_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxGamelistname_text_align.Location = New System.Drawing.Point(167, 285)
+        Me.ComboBoxGamelistname_text_align.Name = "ComboBoxGamelistname_text_align"
+        Me.ComboBoxGamelistname_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxGamelistname_text_align.TabIndex = 164
+        '
         'TextBoxGamelistname_text_align
         '
         Me.TextBoxGamelistname_text_align.BackColor = System.Drawing.SystemColors.Control
@@ -2819,6 +2886,7 @@ Partial Class FormFLM
         Me.TextBoxGamelistname_text_align.TabIndex = 163
         Me.TextBoxGamelistname_text_align.Text = "1"
         Me.TextBoxGamelistname_text_align.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TextBoxGamelistname_text_align.Visible = False
         '
         'LabelGamelistname_text_align
         '
@@ -3039,6 +3107,7 @@ Partial Class FormFLM
         '
         'TabPageRomname
         '
+        Me.TabPageRomname.Controls.Add(Me.ComboBoxRomname_text_align)
         Me.TabPageRomname.Controls.Add(Me.TextBoxRomname_text_align)
         Me.TabPageRomname.Controls.Add(Me.LabelRomname_text_align)
         Me.TabPageRomname.Controls.Add(Me.TextBoxRomname_backcolor)
@@ -3071,6 +3140,15 @@ Partial Class FormFLM
         Me.TabPageRomname.Text = "Romname"
         Me.TabPageRomname.UseVisualStyleBackColor = True
         '
+        'ComboBoxRomname_text_align
+        '
+        Me.ComboBoxRomname_text_align.FormattingEnabled = True
+        Me.ComboBoxRomname_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxRomname_text_align.Location = New System.Drawing.Point(167, 285)
+        Me.ComboBoxRomname_text_align.Name = "ComboBoxRomname_text_align"
+        Me.ComboBoxRomname_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxRomname_text_align.TabIndex = 165
+        '
         'TextBoxRomname_text_align
         '
         Me.TextBoxRomname_text_align.BackColor = System.Drawing.SystemColors.Control
@@ -3080,6 +3158,7 @@ Partial Class FormFLM
         Me.TextBoxRomname_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomname_text_align.TabIndex = 117
         Me.TextBoxRomname_text_align.Text = "0"
+        Me.TextBoxRomname_text_align.Visible = False
         '
         'LabelRomname_text_align
         '
@@ -3300,6 +3379,7 @@ Partial Class FormFLM
         '
         'TabPageRomdescription
         '
+        Me.TabPageRomdescription.Controls.Add(Me.ComboBoxRomdescription_text_align)
         Me.TabPageRomdescription.Controls.Add(Me.TextBoxRomdescription_text_align)
         Me.TabPageRomdescription.Controls.Add(Me.LabelRomdescription_text_align)
         Me.TabPageRomdescription.Controls.Add(Me.TextBoxRomdescription_backcolor)
@@ -3332,6 +3412,15 @@ Partial Class FormFLM
         Me.TabPageRomdescription.Text = "Romdescription"
         Me.TabPageRomdescription.UseVisualStyleBackColor = True
         '
+        'ComboBoxRomdescription_text_align
+        '
+        Me.ComboBoxRomdescription_text_align.FormattingEnabled = True
+        Me.ComboBoxRomdescription_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxRomdescription_text_align.Location = New System.Drawing.Point(167, 285)
+        Me.ComboBoxRomdescription_text_align.Name = "ComboBoxRomdescription_text_align"
+        Me.ComboBoxRomdescription_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxRomdescription_text_align.TabIndex = 166
+        '
         'TextBoxRomdescription_text_align
         '
         Me.TextBoxRomdescription_text_align.BackColor = System.Drawing.SystemColors.Control
@@ -3342,6 +3431,7 @@ Partial Class FormFLM
         Me.TextBoxRomdescription_text_align.TabIndex = 140
         Me.TextBoxRomdescription_text_align.Text = "1"
         Me.TextBoxRomdescription_text_align.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TextBoxRomdescription_text_align.Visible = False
         '
         'LabelRomdescription_text_align
         '
@@ -3562,6 +3652,7 @@ Partial Class FormFLM
         '
         'TabPageRommanufacturer
         '
+        Me.TabPageRommanufacturer.Controls.Add(Me.ComboBoxRommanufacturer_text_align)
         Me.TabPageRommanufacturer.Controls.Add(Me.TextBoxRommanufacturer_text_align)
         Me.TabPageRommanufacturer.Controls.Add(Me.LabelRommanufacturer_text_align)
         Me.TabPageRommanufacturer.Controls.Add(Me.TextBoxRommanufacturer_backcolor)
@@ -3594,6 +3685,15 @@ Partial Class FormFLM
         Me.TabPageRommanufacturer.Text = "Rommanufacturer"
         Me.TabPageRommanufacturer.UseVisualStyleBackColor = True
         '
+        'ComboBoxRommanufacturer_text_align
+        '
+        Me.ComboBoxRommanufacturer_text_align.FormattingEnabled = True
+        Me.ComboBoxRommanufacturer_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxRommanufacturer_text_align.Location = New System.Drawing.Point(167, 285)
+        Me.ComboBoxRommanufacturer_text_align.Name = "ComboBoxRommanufacturer_text_align"
+        Me.ComboBoxRommanufacturer_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxRommanufacturer_text_align.TabIndex = 167
+        '
         'TextBoxRommanufacturer_text_align
         '
         Me.TextBoxRommanufacturer_text_align.BackColor = System.Drawing.SystemColors.Control
@@ -3603,6 +3703,7 @@ Partial Class FormFLM
         Me.TextBoxRommanufacturer_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRommanufacturer_text_align.TabIndex = 140
         Me.TextBoxRommanufacturer_text_align.Text = "0"
+        Me.TextBoxRommanufacturer_text_align.Visible = False
         '
         'LabelRommanufacturer_text_align
         '
@@ -3823,6 +3924,7 @@ Partial Class FormFLM
         '
         'TabPageRomdisplaytype
         '
+        Me.TabPageRomdisplaytype.Controls.Add(Me.ComboBoxRomdisplaytype_text_align)
         Me.TabPageRomdisplaytype.Controls.Add(Me.TextBoxRomdisplaytype_text_align)
         Me.TabPageRomdisplaytype.Controls.Add(Me.LabelRomdisplaytype_text_align)
         Me.TabPageRomdisplaytype.Controls.Add(Me.TextBoxRomdisplaytype_backcolor)
@@ -3855,6 +3957,15 @@ Partial Class FormFLM
         Me.TabPageRomdisplaytype.Text = "Romdisplaytype"
         Me.TabPageRomdisplaytype.UseVisualStyleBackColor = True
         '
+        'ComboBoxRomdisplaytype_text_align
+        '
+        Me.ComboBoxRomdisplaytype_text_align.FormattingEnabled = True
+        Me.ComboBoxRomdisplaytype_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxRomdisplaytype_text_align.Location = New System.Drawing.Point(167, 285)
+        Me.ComboBoxRomdisplaytype_text_align.Name = "ComboBoxRomdisplaytype_text_align"
+        Me.ComboBoxRomdisplaytype_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxRomdisplaytype_text_align.TabIndex = 168
+        '
         'TextBoxRomdisplaytype_text_align
         '
         Me.TextBoxRomdisplaytype_text_align.BackColor = System.Drawing.SystemColors.Control
@@ -3864,6 +3975,7 @@ Partial Class FormFLM
         Me.TextBoxRomdisplaytype_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomdisplaytype_text_align.TabIndex = 140
         Me.TextBoxRomdisplaytype_text_align.Text = "0"
+        Me.TextBoxRomdisplaytype_text_align.Visible = False
         '
         'LabelRomdisplaytype_text_align
         '
@@ -4082,6 +4194,7 @@ Partial Class FormFLM
         '
         'TabPageRominputcontrol
         '
+        Me.TabPageRominputcontrol.Controls.Add(Me.ComboBoxRominputcontrol_text_align)
         Me.TabPageRominputcontrol.Controls.Add(Me.TextBoxRominputcontrol_text_align)
         Me.TabPageRominputcontrol.Controls.Add(Me.LabelRominputcontrol_text_align)
         Me.TabPageRominputcontrol.Controls.Add(Me.TextBoxRominputcontrol_backcolor)
@@ -4114,6 +4227,15 @@ Partial Class FormFLM
         Me.TabPageRominputcontrol.Text = "Rominputcontrol"
         Me.TabPageRominputcontrol.UseVisualStyleBackColor = True
         '
+        'ComboBoxRominputcontrol_text_align
+        '
+        Me.ComboBoxRominputcontrol_text_align.FormattingEnabled = True
+        Me.ComboBoxRominputcontrol_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxRominputcontrol_text_align.Location = New System.Drawing.Point(167, 285)
+        Me.ComboBoxRominputcontrol_text_align.Name = "ComboBoxRominputcontrol_text_align"
+        Me.ComboBoxRominputcontrol_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxRominputcontrol_text_align.TabIndex = 169
+        '
         'TextBoxRominputcontrol_text_align
         '
         Me.TextBoxRominputcontrol_text_align.BackColor = System.Drawing.SystemColors.Control
@@ -4124,6 +4246,7 @@ Partial Class FormFLM
         Me.TextBoxRominputcontrol_text_align.TabIndex = 140
         Me.TextBoxRominputcontrol_text_align.Text = "2"
         Me.TextBoxRominputcontrol_text_align.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TextBoxRominputcontrol_text_align.Visible = False
         '
         'LabelRominputcontrol_text_align
         '
@@ -4344,6 +4467,7 @@ Partial Class FormFLM
         '
         'TabPageRomstatus
         '
+        Me.TabPageRomstatus.Controls.Add(Me.ComboBoxRomstatus_text_align)
         Me.TabPageRomstatus.Controls.Add(Me.TextBoxRomstatus_text_align)
         Me.TabPageRomstatus.Controls.Add(Me.LabelRomstatus_text_align)
         Me.TabPageRomstatus.Controls.Add(Me.TextBoxRomstatus_backcolor)
@@ -4376,6 +4500,15 @@ Partial Class FormFLM
         Me.TabPageRomstatus.Text = "Romstatus"
         Me.TabPageRomstatus.UseVisualStyleBackColor = True
         '
+        'ComboBoxRomstatus_text_align
+        '
+        Me.ComboBoxRomstatus_text_align.FormattingEnabled = True
+        Me.ComboBoxRomstatus_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxRomstatus_text_align.Location = New System.Drawing.Point(167, 285)
+        Me.ComboBoxRomstatus_text_align.Name = "ComboBoxRomstatus_text_align"
+        Me.ComboBoxRomstatus_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxRomstatus_text_align.TabIndex = 169
+        '
         'TextBoxRomstatus_text_align
         '
         Me.TextBoxRomstatus_text_align.BackColor = System.Drawing.SystemColors.Control
@@ -4385,6 +4518,7 @@ Partial Class FormFLM
         Me.TextBoxRomstatus_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomstatus_text_align.TabIndex = 140
         Me.TextBoxRomstatus_text_align.Text = "0"
+        Me.TextBoxRomstatus_text_align.Visible = False
         '
         'LabelRomstatus_text_align
         '
@@ -4603,6 +4737,7 @@ Partial Class FormFLM
         '
         'TabPageRomcategory
         '
+        Me.TabPageRomcategory.Controls.Add(Me.ComboBoxRomcategory_text_align)
         Me.TabPageRomcategory.Controls.Add(Me.TextBoxRomcategory_text_align)
         Me.TabPageRomcategory.Controls.Add(Me.LabelRomcategory_text_align)
         Me.TabPageRomcategory.Controls.Add(Me.TextBoxRomcategory_backcolor)
@@ -4635,6 +4770,15 @@ Partial Class FormFLM
         Me.TabPageRomcategory.Text = "Romcategory"
         Me.TabPageRomcategory.UseVisualStyleBackColor = True
         '
+        'ComboBoxRomcategory_text_align
+        '
+        Me.ComboBoxRomcategory_text_align.FormattingEnabled = True
+        Me.ComboBoxRomcategory_text_align.Items.AddRange(New Object() {"Left = 0", "Center = 2", "Right = 1"})
+        Me.ComboBoxRomcategory_text_align.Location = New System.Drawing.Point(167, 285)
+        Me.ComboBoxRomcategory_text_align.Name = "ComboBoxRomcategory_text_align"
+        Me.ComboBoxRomcategory_text_align.Size = New System.Drawing.Size(72, 21)
+        Me.ComboBoxRomcategory_text_align.TabIndex = 170
+        '
         'TextBoxRomcategory_text_align
         '
         Me.TextBoxRomcategory_text_align.BackColor = System.Drawing.SystemColors.Control
@@ -4644,6 +4788,7 @@ Partial Class FormFLM
         Me.TextBoxRomcategory_text_align.Size = New System.Drawing.Size(72, 20)
         Me.TextBoxRomcategory_text_align.TabIndex = 140
         Me.TextBoxRomcategory_text_align.Text = "0"
+        Me.TextBoxRomcategory_text_align.Visible = False
         '
         'LabelRomcategory_text_align
         '
@@ -5265,20 +5410,20 @@ Partial Class FormFLM
         Me.LabelActors_repeat_delay_ms.TabIndex = 48
         Me.LabelActors_repeat_delay_ms.Text = "Actors_repeat_delay_ms"
         '
-        'TabPageBazil
+        'TabPageBezel
         '
-        Me.TabPageBazil.Controls.Add(Me.TextBoxBezel_frame_duration_ms)
-        Me.TabPageBazil.Controls.Add(Me.LabelBezel_frame_duration_ms)
-        Me.TabPageBazil.Controls.Add(Me.TextBoxBezel_repeat_delay_ms)
-        Me.TabPageBazil.Controls.Add(Me.LabelBezel_repeat_delay_ms)
-        Me.TabPageBazil.ForeColor = System.Drawing.Color.Black
-        Me.TabPageBazil.Location = New System.Drawing.Point(4, 22)
-        Me.TabPageBazil.Name = "TabPageBazil"
-        Me.TabPageBazil.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPageBazil.Size = New System.Drawing.Size(242, 639)
-        Me.TabPageBazil.TabIndex = 21
-        Me.TabPageBazil.Text = "Bazil"
-        Me.TabPageBazil.UseVisualStyleBackColor = True
+        Me.TabPageBezel.Controls.Add(Me.TextBoxBezel_frame_duration_ms)
+        Me.TabPageBezel.Controls.Add(Me.LabelBezel_frame_duration_ms)
+        Me.TabPageBezel.Controls.Add(Me.TextBoxBezel_repeat_delay_ms)
+        Me.TabPageBezel.Controls.Add(Me.LabelBezel_repeat_delay_ms)
+        Me.TabPageBezel.ForeColor = System.Drawing.Color.Black
+        Me.TabPageBezel.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageBezel.Name = "TabPageBezel"
+        Me.TabPageBezel.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabPageBezel.Size = New System.Drawing.Size(242, 639)
+        Me.TabPageBezel.TabIndex = 21
+        Me.TabPageBezel.Text = "Bezel"
+        Me.TabPageBezel.UseVisualStyleBackColor = True
         '
         'TextBoxBezel_frame_duration_ms
         '
@@ -5363,44 +5508,16 @@ Partial Class FormFLM
         Me.LabelPercorso.TabIndex = 6
         Me.LabelPercorso.Text = "Percorso FEEL (doppio click x configurare)"
         '
-        'ButtonCarica
-        '
-        Me.ButtonCarica.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonCarica.BackgroundImage = Global.GotScraper.My.Resources.Resources.load
-        Me.ButtonCarica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ButtonCarica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonCarica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonCarica.Location = New System.Drawing.Point(12, 1)
-        Me.ButtonCarica.Name = "ButtonCarica"
-        Me.ButtonCarica.Size = New System.Drawing.Size(82, 39)
-        Me.ButtonCarica.TabIndex = 5
-        Me.ButtonCarica.UseVisualStyleBackColor = False
-        '
-        'ButtonPubblica
-        '
-        Me.ButtonPubblica.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonPubblica.BackgroundImage = Global.GotScraper.My.Resources.Resources.save
-        Me.ButtonPubblica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ButtonPubblica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPubblica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonPubblica.Location = New System.Drawing.Point(186, 1)
-        Me.ButtonPubblica.Name = "ButtonPubblica"
-        Me.ButtonPubblica.Size = New System.Drawing.Size(82, 39)
-        Me.ButtonPubblica.TabIndex = 4
-        Me.ButtonPubblica.UseVisualStyleBackColor = False
-        '
         'ButtonAnteprima
         '
-        Me.ButtonAnteprima.Enabled = False
         Me.ButtonAnteprima.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonAnteprima.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.ButtonAnteprima.Location = New System.Drawing.Point(1169, 1)
+        Me.ButtonAnteprima.Location = New System.Drawing.Point(1119, 3)
         Me.ButtonAnteprima.Name = "ButtonAnteprima"
         Me.ButtonAnteprima.Size = New System.Drawing.Size(80, 34)
         Me.ButtonAnteprima.TabIndex = 3
         Me.ButtonAnteprima.Text = "Anteprima"
         Me.ButtonAnteprima.UseVisualStyleBackColor = True
-        Me.ButtonAnteprima.Visible = False
         '
         'LabelZoom
         '
@@ -5443,7 +5560,7 @@ Partial Class FormFLM
         Me.ListBoxObj.Font = New System.Drawing.Font("SimSun", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListBoxObj.FormattingEnabled = True
         Me.ListBoxObj.ItemHeight = 27
-        Me.ListBoxObj.Items.AddRange(New Object() {"Sound", "Music", "Screen", "Romlist", "Background", "Snapshot", "Cabinet", "Marquee", "Romcounter", "Platformname", "Emulatorname", "Gamelistname", "Romname", "Romdescription", "Rommanufacturer", "Romdisplaytype", "Rominputcontrol", "Romstatus", "Romcategory", "Menu", "Actors", "Bazil", "Show"})
+        Me.ListBoxObj.Items.AddRange(New Object() {"Sound", "Music", "Screen", "Romlist", "Background", "Snapshot", "Cabinet", "Marquee", "Romcounter", "Platformname", "Emulatorname", "Gamelistname", "Romname", "Romdescription", "Rommanufacturer", "Romdisplaytype", "Rominputcontrol", "Romstatus", "Romcategory", "Menu", "Actors", "Bezel", "Show"})
         Me.ListBoxObj.Location = New System.Drawing.Point(3, 40)
         Me.ListBoxObj.Name = "ListBoxObj"
         Me.ListBoxObj.Size = New System.Drawing.Size(250, 665)
@@ -5490,18 +5607,6 @@ Partial Class FormFLM
         Me.LabelPannelloMainY.Text = "Pannello main Y: 0"
         Me.LabelPannelloMainY.Visible = False
         '
-        'ButtonPannelloMainReset
-        '
-        Me.ButtonPannelloMainReset.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonPannelloMainReset.BackgroundImage = Global.GotScraper.My.Resources.Resources.reset
-        Me.ButtonPannelloMainReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ButtonPannelloMainReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPannelloMainReset.Location = New System.Drawing.Point(857, 71)
-        Me.ButtonPannelloMainReset.Name = "ButtonPannelloMainReset"
-        Me.ButtonPannelloMainReset.Size = New System.Drawing.Size(95, 39)
-        Me.ButtonPannelloMainReset.TabIndex = 30
-        Me.ButtonPannelloMainReset.UseVisualStyleBackColor = False
-        '
         'LabelScreenRisoluzione
         '
         Me.LabelScreenRisoluzione.AutoSize = True
@@ -5516,13 +5621,13 @@ Partial Class FormFLM
         'PanelMain
         '
         Me.PanelMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.PanelMain.Controls.Add(Me.PanelMenu)
         Me.PanelMain.Controls.Add(Me.PanelRominputcontrol)
         Me.PanelMain.Controls.Add(Me.PanelRomcategory)
         Me.PanelMain.Controls.Add(Me.PanelRommanufacturer)
         Me.PanelMain.Controls.Add(Me.PanelMarquee)
         Me.PanelMain.Controls.Add(Me.PanelCabinet)
         Me.PanelMain.Controls.Add(Me.PanelRomstatus)
-        Me.PanelMain.Controls.Add(Me.PanelMenu)
         Me.PanelMain.Controls.Add(Me.PanelRomdescription)
         Me.PanelMain.Controls.Add(Me.PanelRomname)
         Me.PanelMain.Controls.Add(Me.PanelRomdisplaytype)
@@ -5537,6 +5642,15 @@ Partial Class FormFLM
         Me.PanelMain.Name = "PanelMain"
         Me.PanelMain.Size = New System.Drawing.Size(640, 480)
         Me.PanelMain.TabIndex = 31
+        '
+        'PanelMenu
+        '
+        Me.PanelMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(96, Byte), Integer))
+        Me.PanelMenu.Location = New System.Drawing.Point(230, 20)
+        Me.PanelMenu.Name = "PanelMenu"
+        Me.PanelMenu.Size = New System.Drawing.Size(200, 50)
+        Me.PanelMenu.TabIndex = 15
+        Me.PanelMenu.Tag = "0"
         '
         'PanelRominputcontrol
         '
@@ -5593,15 +5707,6 @@ Partial Class FormFLM
         Me.PanelRomstatus.TabIndex = 13
         Me.PanelRomstatus.Tag = "0"
         Me.PanelRomstatus.Visible = False
-        '
-        'PanelMenu
-        '
-        Me.PanelMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(96, Byte), Integer))
-        Me.PanelMenu.Location = New System.Drawing.Point(230, 20)
-        Me.PanelMenu.Name = "PanelMenu"
-        Me.PanelMenu.Size = New System.Drawing.Size(200, 50)
-        Me.PanelMenu.TabIndex = 15
-        Me.PanelMenu.Tag = "0"
         '
         'PanelRomdescription
         '
@@ -5735,19 +5840,13 @@ Partial Class FormFLM
         Me.LabelPosizioneMouse.TabIndex = 34
         Me.LabelPosizioneMouse.Text = "- , -"
         '
-        'ButtonFLMOptions
+        'TabControlTemp
         '
-        Me.ButtonFLMOptions.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonFLMOptions.BackgroundImage = Global.GotScraper.My.Resources.Resources._228462_configure_256x256
-        Me.ButtonFLMOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ButtonFLMOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonFLMOptions.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonFLMOptions.ForeColor = System.Drawing.Color.Black
-        Me.ButtonFLMOptions.Location = New System.Drawing.Point(996, 1)
-        Me.ButtonFLMOptions.Name = "ButtonFLMOptions"
-        Me.ButtonFLMOptions.Size = New System.Drawing.Size(44, 34)
-        Me.ButtonFLMOptions.TabIndex = 35
-        Me.ButtonFLMOptions.UseVisualStyleBackColor = False
+        Me.TabControlTemp.Location = New System.Drawing.Point(42, 12)
+        Me.TabControlTemp.Name = "TabControlTemp"
+        Me.TabControlTemp.SelectedIndex = 0
+        Me.TabControlTemp.Size = New System.Drawing.Size(23, 15)
+        Me.TabControlTemp.TabIndex = 37
         '
         'ButtonPainter
         '
@@ -5762,12 +5861,65 @@ Partial Class FormFLM
         Me.ButtonPainter.TabIndex = 36
         Me.ButtonPainter.UseVisualStyleBackColor = False
         '
+        'ButtonFLMOptions
+        '
+        Me.ButtonFLMOptions.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonFLMOptions.BackgroundImage = Global.GotScraper.My.Resources.Resources._228462_configure_256x256
+        Me.ButtonFLMOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonFLMOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonFLMOptions.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonFLMOptions.ForeColor = System.Drawing.Color.Black
+        Me.ButtonFLMOptions.Location = New System.Drawing.Point(1205, 3)
+        Me.ButtonFLMOptions.Name = "ButtonFLMOptions"
+        Me.ButtonFLMOptions.Size = New System.Drawing.Size(44, 34)
+        Me.ButtonFLMOptions.TabIndex = 35
+        Me.ButtonFLMOptions.UseVisualStyleBackColor = False
+        '
+        'ButtonPannelloMainReset
+        '
+        Me.ButtonPannelloMainReset.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonPannelloMainReset.BackgroundImage = Global.GotScraper.My.Resources.Resources.reset
+        Me.ButtonPannelloMainReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonPannelloMainReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonPannelloMainReset.Location = New System.Drawing.Point(857, 71)
+        Me.ButtonPannelloMainReset.Name = "ButtonPannelloMainReset"
+        Me.ButtonPannelloMainReset.Size = New System.Drawing.Size(95, 39)
+        Me.ButtonPannelloMainReset.TabIndex = 30
+        Me.ButtonPannelloMainReset.UseVisualStyleBackColor = False
+        Me.ButtonPannelloMainReset.Visible = False
+        '
+        'ButtonCarica
+        '
+        Me.ButtonCarica.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonCarica.BackgroundImage = Global.GotScraper.My.Resources.Resources.load
+        Me.ButtonCarica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonCarica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonCarica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonCarica.Location = New System.Drawing.Point(12, 1)
+        Me.ButtonCarica.Name = "ButtonCarica"
+        Me.ButtonCarica.Size = New System.Drawing.Size(82, 39)
+        Me.ButtonCarica.TabIndex = 5
+        Me.ButtonCarica.UseVisualStyleBackColor = False
+        '
+        'ButtonPubblica
+        '
+        Me.ButtonPubblica.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonPubblica.BackgroundImage = Global.GotScraper.My.Resources.Resources.save
+        Me.ButtonPubblica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonPubblica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonPubblica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonPubblica.Location = New System.Drawing.Point(186, 1)
+        Me.ButtonPubblica.Name = "ButtonPubblica"
+        Me.ButtonPubblica.Size = New System.Drawing.Size(82, 39)
+        Me.ButtonPubblica.TabIndex = 4
+        Me.ButtonPubblica.UseVisualStyleBackColor = False
+        '
         'FormFLM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
-        Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.bartop1280_800
+        Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.Layout2
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 761)
         Me.Controls.Add(Me.ButtonPainter)
@@ -5785,9 +5937,10 @@ Partial Class FormFLM
         Me.Controls.Add(Me.GroupBoxObj)
         Me.Controls.Add(Me.ButtonPubblica)
         Me.Controls.Add(Me.GroupBoxProprietà)
+        Me.Controls.Add(Me.TabControlTemp)
         Me.DoubleBuffered = True
         Me.Name = "FormFLM"
-        Me.Text = "F.L.M. - F.E.(E.L.) Layout Manager - Alpha 4 by Gothrek"
+        Me.Text = "F.L.M. - F.E.(E.L.) Layout Manager - Alpha 5 by Gothrek"
         Me.GroupBoxProprietà.ResumeLayout(False)
         Me.TabControlProprietà.ResumeLayout(False)
         Me.TabPageProprietà.ResumeLayout(False)
@@ -5835,8 +5988,8 @@ Partial Class FormFLM
         Me.TabPageMenu.PerformLayout()
         Me.TabPageActors.ResumeLayout(False)
         Me.TabPageActors.PerformLayout()
-        Me.TabPageBazil.ResumeLayout(False)
-        Me.TabPageBazil.PerformLayout()
+        Me.TabPageBezel.ResumeLayout(False)
+        Me.TabPageBezel.PerformLayout()
         Me.TabPageShow.ResumeLayout(False)
         Me.TabPageShow.PerformLayout()
         CType(Me.TrackBarZoom, System.ComponentModel.ISupportInitialize).EndInit()
@@ -5885,7 +6038,7 @@ Partial Class FormFLM
     Friend WithEvents TabPageRomcategory As TabPage
     Friend WithEvents TabPageMenu As TabPage
     Friend WithEvents TabPageActors As TabPage
-    Friend WithEvents TabPageBazil As TabPage
+    Friend WithEvents TabPageBezel As TabPage
     Friend WithEvents TabPageShow As TabPage
     Friend WithEvents ButtonSoundPath As Button
     Friend WithEvents LabelSoundPath2 As Label
@@ -6330,4 +6483,17 @@ Partial Class FormFLM
     Friend WithEvents LabelPosizioneMouse As Label
     Friend WithEvents ButtonFLMOptions As Button
     Friend WithEvents ButtonPainter As Button
+    Friend WithEvents TabControlTemp As TabControl
+    Friend WithEvents ComboBoxRomlist_text_align As ComboBox
+    Friend WithEvents ComboBoxRomcounter_text_align As ComboBox
+    Friend WithEvents ComboBoxPlatformname_text_align As ComboBox
+    Friend WithEvents ComboBoxEmulatorname_text_align As ComboBox
+    Friend WithEvents ComboBoxGamelistname_text_align As ComboBox
+    Friend WithEvents ComboBoxRomname_text_align As ComboBox
+    Friend WithEvents ComboBoxRomdescription_text_align As ComboBox
+    Friend WithEvents ComboBoxRommanufacturer_text_align As ComboBox
+    Friend WithEvents ComboBoxRomdisplaytype_text_align As ComboBox
+    Friend WithEvents ComboBoxRominputcontrol_text_align As ComboBox
+    Friend WithEvents ComboBoxRomstatus_text_align As ComboBox
+    Friend WithEvents ComboBoxRomcategory_text_align As ComboBox
 End Class

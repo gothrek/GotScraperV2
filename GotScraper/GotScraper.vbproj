@@ -116,6 +116,18 @@
     <Compile Include="FormFLM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFLManteprima.Designer.vb">
+      <DependentUpon>FormFLManteprima.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFLManteprima.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFLManteprimaV2.Designer.vb">
+      <DependentUpon>FormFLManteprimaV2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFLManteprimaV2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFLMoptions.Designer.vb">
       <DependentUpon>FormFLMoptions.vb</DependentUpon>
     </Compile>
@@ -126,6 +138,12 @@
       <DependentUpon>FormOptions.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOptions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUsoBackground.Designer.vb">
+      <DependentUpon>FormUsoBackground.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUsoBackground.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormUtility.Designer.vb">
@@ -163,11 +181,20 @@
     <EmbeddedResource Include="FormFLM.resx">
       <DependentUpon>FormFLM.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFLManteprima.resx">
+      <DependentUpon>FormFLManteprima.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFLManteprimaV2.resx">
+      <DependentUpon>FormFLManteprimaV2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFLMoptions.resx">
       <DependentUpon>FormFLMoptions.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOptions.resx">
       <DependentUpon>FormOptions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUsoBackground.resx">
+      <DependentUpon>FormUsoBackground.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUtility.resx">
       <DependentUpon>FormUtility.vb</DependentUpon>
@@ -175,9 +202,9 @@
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.vb</DependentUpon>
@@ -231,6 +258,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pencil.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\test.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Layout1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Layout2.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -39,13 +39,6 @@ Partial Class FormFLMoptions
         Me.LabelLayout2Main = New System.Windows.Forms.Label()
         Me.Panel9 = New System.Windows.Forms.Panel()
         Me.LabelLayout2Prop = New System.Windows.Forms.Label()
-        Me.PanelFLMLayout1 = New System.Windows.Forms.Panel()
-        Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.LabelLayout1Obj = New System.Windows.Forms.Label()
-        Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.LabelLayout1Main = New System.Windows.Forms.Label()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.LabelLayout1Prop = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.RadioButtonFLMLayout3 = New System.Windows.Forms.RadioButton()
         Me.RadioButtonFLMLayout2 = New System.Windows.Forms.RadioButton()
@@ -57,6 +50,13 @@ Partial Class FormFLMoptions
         Me.LabelPathGraphEditor = New System.Windows.Forms.Label()
         Me.TextBoxPathFeel = New System.Windows.Forms.TextBox()
         Me.LabelPathFeel = New System.Windows.Forms.Label()
+        Me.PanelFLMLayout1 = New System.Windows.Forms.Panel()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.LabelLayout1Obj = New System.Windows.Forms.Label()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.LabelLayout1Main = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.LabelLayout1Prop = New System.Windows.Forms.Label()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ButtonCancel = New System.Windows.Forms.Button()
@@ -70,11 +70,11 @@ Partial Class FormFLMoptions
         Me.Panel7.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.Panel9.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.PanelFLMLayout1.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
-        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'LabelImpostazioni
@@ -268,81 +268,6 @@ Partial Class FormFLMoptions
         Me.LabelLayout2Prop.Text = "Proprietà"
         Me.LabelLayout2Prop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'PanelFLMLayout1
-        '
-        Me.PanelFLMLayout1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PanelFLMLayout1.Controls.Add(Me.Panel5)
-        Me.PanelFLMLayout1.Controls.Add(Me.Panel4)
-        Me.PanelFLMLayout1.Controls.Add(Me.Panel3)
-        Me.PanelFLMLayout1.Enabled = False
-        Me.PanelFLMLayout1.Location = New System.Drawing.Point(3, 233)
-        Me.PanelFLMLayout1.Name = "PanelFLMLayout1"
-        Me.PanelFLMLayout1.Size = New System.Drawing.Size(128, 80)
-        Me.PanelFLMLayout1.TabIndex = 8
-        '
-        'Panel5
-        '
-        Me.Panel5.BackColor = System.Drawing.Color.White
-        Me.Panel5.Controls.Add(Me.LabelLayout1Obj)
-        Me.Panel5.Location = New System.Drawing.Point(94, 3)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(30, 73)
-        Me.Panel5.TabIndex = 1
-        '
-        'LabelLayout1Obj
-        '
-        Me.LabelLayout1Obj.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.LabelLayout1Obj.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelLayout1Obj.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelLayout1Obj.Location = New System.Drawing.Point(0, 0)
-        Me.LabelLayout1Obj.Name = "LabelLayout1Obj"
-        Me.LabelLayout1Obj.Size = New System.Drawing.Size(30, 73)
-        Me.LabelLayout1Obj.TabIndex = 1
-        Me.LabelLayout1Obj.Text = "Obj"
-        Me.LabelLayout1Obj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Panel4
-        '
-        Me.Panel4.BackColor = System.Drawing.Color.White
-        Me.Panel4.Controls.Add(Me.LabelLayout1Main)
-        Me.Panel4.Location = New System.Drawing.Point(37, 10)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(53, 55)
-        Me.Panel4.TabIndex = 1
-        '
-        'LabelLayout1Main
-        '
-        Me.LabelLayout1Main.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.LabelLayout1Main.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelLayout1Main.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelLayout1Main.Location = New System.Drawing.Point(0, 0)
-        Me.LabelLayout1Main.Name = "LabelLayout1Main"
-        Me.LabelLayout1Main.Size = New System.Drawing.Size(53, 55)
-        Me.LabelLayout1Main.TabIndex = 0
-        Me.LabelLayout1Main.Text = "Main"
-        Me.LabelLayout1Main.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Panel3
-        '
-        Me.Panel3.BackColor = System.Drawing.Color.White
-        Me.Panel3.Controls.Add(Me.LabelLayout1Prop)
-        Me.Panel3.Location = New System.Drawing.Point(3, 4)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(30, 73)
-        Me.Panel3.TabIndex = 0
-        '
-        'LabelLayout1Prop
-        '
-        Me.LabelLayout1Prop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.LabelLayout1Prop.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelLayout1Prop.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelLayout1Prop.Location = New System.Drawing.Point(0, 0)
-        Me.LabelLayout1Prop.Name = "LabelLayout1Prop"
-        Me.LabelLayout1Prop.Size = New System.Drawing.Size(30, 73)
-        Me.LabelLayout1Prop.TabIndex = 0
-        Me.LabelLayout1Prop.Text = "Proprietà"
-        Me.LabelLayout1Prop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.RadioButtonFLMLayout3)
@@ -356,6 +281,7 @@ Partial Class FormFLMoptions
         'RadioButtonFLMLayout3
         '
         Me.RadioButtonFLMLayout3.AutoSize = True
+        Me.RadioButtonFLMLayout3.Enabled = False
         Me.RadioButtonFLMLayout3.Location = New System.Drawing.Point(341, 4)
         Me.RadioButtonFLMLayout3.Name = "RadioButtonFLMLayout3"
         Me.RadioButtonFLMLayout3.Size = New System.Drawing.Size(87, 17)
@@ -445,6 +371,81 @@ Partial Class FormFLMoptions
         Me.LabelPathFeel.TabIndex = 0
         Me.LabelPathFeel.Text = "Percorso F.E.(E.L.)"
         '
+        'PanelFLMLayout1
+        '
+        Me.PanelFLMLayout1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanelFLMLayout1.Controls.Add(Me.Panel5)
+        Me.PanelFLMLayout1.Controls.Add(Me.Panel4)
+        Me.PanelFLMLayout1.Controls.Add(Me.Panel3)
+        Me.PanelFLMLayout1.Enabled = False
+        Me.PanelFLMLayout1.Location = New System.Drawing.Point(3, 233)
+        Me.PanelFLMLayout1.Name = "PanelFLMLayout1"
+        Me.PanelFLMLayout1.Size = New System.Drawing.Size(128, 80)
+        Me.PanelFLMLayout1.TabIndex = 8
+        '
+        'Panel5
+        '
+        Me.Panel5.BackColor = System.Drawing.Color.White
+        Me.Panel5.Controls.Add(Me.LabelLayout1Obj)
+        Me.Panel5.Location = New System.Drawing.Point(94, 3)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(30, 73)
+        Me.Panel5.TabIndex = 1
+        '
+        'LabelLayout1Obj
+        '
+        Me.LabelLayout1Obj.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.LabelLayout1Obj.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelLayout1Obj.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelLayout1Obj.Location = New System.Drawing.Point(0, 0)
+        Me.LabelLayout1Obj.Name = "LabelLayout1Obj"
+        Me.LabelLayout1Obj.Size = New System.Drawing.Size(30, 73)
+        Me.LabelLayout1Obj.TabIndex = 1
+        Me.LabelLayout1Obj.Text = "Obj"
+        Me.LabelLayout1Obj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel4
+        '
+        Me.Panel4.BackColor = System.Drawing.Color.White
+        Me.Panel4.Controls.Add(Me.LabelLayout1Main)
+        Me.Panel4.Location = New System.Drawing.Point(37, 10)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(53, 55)
+        Me.Panel4.TabIndex = 1
+        '
+        'LabelLayout1Main
+        '
+        Me.LabelLayout1Main.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.LabelLayout1Main.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelLayout1Main.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelLayout1Main.Location = New System.Drawing.Point(0, 0)
+        Me.LabelLayout1Main.Name = "LabelLayout1Main"
+        Me.LabelLayout1Main.Size = New System.Drawing.Size(53, 55)
+        Me.LabelLayout1Main.TabIndex = 0
+        Me.LabelLayout1Main.Text = "Main"
+        Me.LabelLayout1Main.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.White
+        Me.Panel3.Controls.Add(Me.LabelLayout1Prop)
+        Me.Panel3.Location = New System.Drawing.Point(3, 4)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(30, 73)
+        Me.Panel3.TabIndex = 0
+        '
+        'LabelLayout1Prop
+        '
+        Me.LabelLayout1Prop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.LabelLayout1Prop.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelLayout1Prop.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelLayout1Prop.Location = New System.Drawing.Point(0, 0)
+        Me.LabelLayout1Prop.Name = "LabelLayout1Prop"
+        Me.LabelLayout1Prop.Size = New System.Drawing.Size(30, 73)
+        Me.LabelLayout1Prop.TabIndex = 0
+        Me.LabelLayout1Prop.Text = "Proprietà"
+        Me.LabelLayout1Prop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
@@ -491,12 +492,12 @@ Partial Class FormFLMoptions
         Me.Panel7.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         Me.Panel9.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.PanelFLMLayout1.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

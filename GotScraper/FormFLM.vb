@@ -8,12 +8,13 @@
     Public templateLayoutIni As String = "Default"
     Public flmLayout As Integer = 1
 
-    Dim dtOptionsLayout As DataTable
+    Public dtOptionsLayout As DataTable
     Dim dtRisoluzioni As DataTable
 
     Dim mouseCoordinate As Point = MousePosition
 
     Dim valorePrecedente As String
+    Dim tabSelezionata As Integer = 3 '3 corrisponde alla tab Screen
 
     Dim pannelloMainLocation As Point
     Dim pannelloMainSize As Size
@@ -66,6 +67,18 @@
             fineStringa = usoStringa.IndexOf(vbCrLf)
             Try
                 flmLayout = Int(usoStringa.Substring(0, fineStringa))
+                Select Case flmLayout
+                    Case 1
+                        flmBackgroundImage = My.Resources.Layout1
+                    Case 2
+                        flmBackgroundImage = My.Resources.Layout2
+                    Case 3
+                        'flmBackgroundImage = My.Resources.Layout3
+                    Case Else
+                        MsgBox("Attenzione, valore di Layout nel file ini errato!! Verificare!")
+                End Select
+
+                FormFLM_Resize()
             Catch ex As Exception
                 flmLayout = 1
             End Try
@@ -130,7 +143,7 @@
                         Next
 
                     Catch ex As Microsoft.VisualBasic.
-                                FileIO.MalformedLineException
+                        FileIO.MalformedLineException
                     End Try
                 End While
             End Using
@@ -187,6 +200,12 @@
         Catch ex As Exception
 
         End Try
+
+        For i As Integer = 0 To 23
+            TabControlTemp.TabPages.Add(TabControlProprietà.TabPages(0))
+        Next
+        'ListBoxObj.SelectedItem = "Screen"
+        TabControlProprietà.TabPages.Add(TabControlTemp.TabPages(3))
 
         dtOptionsLayout.Columns.Add("sound_fx_list", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("sound_fx_menu", Type.GetType("System.String"))
@@ -411,21 +430,21 @@
 
     End Sub
 
-    Private Sub FormFLM_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize, MyBase.SizeChanged
+    Public Sub FormFLM_Resize() Handles MyBase.Resize, MyBase.SizeChanged 'sender As Object, e As EventArgs
         If Me.WindowState <> FormWindowState.Minimized Then
+
+            If Me.Size.Width < 1280 Then
+                Me.Size = New Size(1280, Me.Size.Height)
+            End If
+
+            If Me.Size.Height < 800 Then
+                Me.Size = New Size(Me.Size.Width, 800)
+            End If
 
             Select Case flmLayout
                 Case 1
-
-                    If Me.Size.Width < 1280 Then
-                        Me.Size = New Size(1280, Me.Size.Height)
-                    End If
-
-                    If Me.Size.Height < 800 Then
-                        Me.Size = New Size(Me.Size.Width, 800)
-                    End If
-
                     GroupBoxProprietà.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
+                    GroupBoxProprietà.Location = New Point(12, 41)
                     'GroupBoxProprietà.Refresh()
 
                     GroupBoxObj.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
@@ -451,24 +470,107 @@
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
                     'LabelPercorso.Refresh()
 
-                    PanelZoom.Location = New Point(ButtonPannelloMainReset.Location.X - 17, Me.Size.Height - 68 - 39)
+                    PanelZoom.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - PanelZoom.Size.Width, Me.Size.Height - 68 - 39)
                     'PanelZoom.Refresh()
 
-                    ButtonFLMOptions.Location = New Point(GroupBoxObj.Location.X, ButtonFLMOptions.Location.Y)
-                    'ButtonFLMOptions.Refresh()
+                    ButtonCarica.Location = New Point(12, 1)
+                    'ButtonCarica.Refresh()
 
-                    ButtonAnteprima.Location = New Point(GroupBoxObj.Location.X + GroupBoxObj.Size.Width - ButtonAnteprima.Size.Width, ButtonAnteprima.Location.Y)
-                    'ButtonAnteprima.Refresh()
+                    ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
+                    'ButtonPainter.Refresh()
 
-                    ButtonPubblica.Location = New Point(GroupBoxProprietà.Location.X + GroupBoxProprietà.Size.Width - ButtonPubblica.Width, ButtonPubblica.Location.Y)
+                    ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
                     'ButtonPubblica.Refresh()
 
+                    ButtonFLMOptions.Location = New Point(Me.Size.Width - ButtonFLMOptions.Size.Width - 12 - 8, ButtonCarica.Location.Y)
+                    'ButtonFLMOptions.Refresh()
+
+                    ButtonAnteprima.Location = New Point(ButtonFLMOptions.Location.X - ButtonAnteprima.Size.Width - 6, ButtonCarica.Location.Y)
+                    'ButtonAnteprima.Refresh()
+
                     LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
-                'LabelPosizioneMouse.Refresh()
+                    'LabelPosizioneMouse.Refresh()
                 Case 2
+                    GroupBoxObj.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
+                    GroupBoxObj.Location = New Point(12, 41) 'TODO personalizzare il valore -20=20% della nuova dimensione a 12+8di bord form
+                    'GroupBoxObj.Refresh()
 
+                    GroupBoxProprietà.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
+                    GroupBoxProprietà.Location = New Point(GroupBoxObj.Location.X + GroupBoxObj.Size.Width + 12, GroupBoxObj.Location.Y)
+                    'GroupBoxProprietà.Refresh()
+
+                    PanelMainMaster.Size = New Size(Int(Me.Size.Width * 50 / 100), Int(Me.Size.Height * 60 / 100)) 'Il pannello è il 50%W e il 60%H
+                    PanelMainMaster.Location = New Point(GroupBoxProprietà.Location.X + GroupBoxProprietà.Size.Width + 53, Int(Me.Size.Height * 14.5 / 100))
+                    'PanelMainMaster.Refresh()
+
+                    LabelScreenRisoluzione.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y - 16)
+                    'LabelScreenRisoluzione.Refresh()
+
+                    LabelPannello.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Location.X * 50 / 100), PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    'LabelPannello.Refresh()
+
+                    LabelPannelloMainY.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Size.Width / 2), PanelMainMaster.Location.Y - 16)
+                    'LabelPannelloMainY.Refresh()
+
+                    ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
+                    'ButtonPannelloMainReset.Refresh()
+
+                    LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
+                    'LabelPercorso.Refresh()
+
+                    PanelZoom.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - PanelZoom.Size.Width, Me.Size.Height - 68 - 39)
+                    'PanelZoom.Refresh()
+
+                    ButtonCarica.Location = New Point(12, 1)
+                    'ButtonCarica.Refresh()
+
+                    ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
+                    'ButtonPainter.Refresh()
+
+                    ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
+                    'ButtonPubblica.Refresh()
+
+                    ButtonFLMOptions.Location = New Point(Me.Size.Width - ButtonFLMOptions.Size.Width - 12 - 8, ButtonCarica.Location.Y)
+                    'ButtonFLMOptions.Refresh()
+
+                    ButtonAnteprima.Location = New Point(ButtonFLMOptions.Location.X - ButtonAnteprima.Size.Width - 6, ButtonCarica.Location.Y)
+                    'ButtonAnteprima.Refresh()
+
+                    LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    'LabelPosizioneMouse.Refresh()
                 Case 3
+                    LabelScreenRisoluzione.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y - 16)
+                    'LabelScreenRisoluzione.Refresh()
 
+                    LabelPannello.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Location.X * 50 / 100), PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    'LabelPannello.Refresh()
+
+                    LabelPannelloMainY.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Size.Width / 2), PanelMainMaster.Location.Y - 16)
+                    'LabelPannelloMainY.Refresh()
+
+                    ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
+                    'ButtonPannelloMainReset.Refresh()
+
+                    LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
+                    'LabelPercorso.Refresh()
+
+                    ButtonCarica.Location = New Point(12, 1)
+                    'ButtonCarica.Refresh()
+
+                    ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
+                    'ButtonPainter.Refresh()
+
+                    ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
+                    'ButtonPubblica.Refresh()
+
+                    ButtonFLMOptions.Location = New Point(Me.Size.Width - ButtonFLMOptions.Size.Width - 12 - 8, ButtonCarica.Location.Y)
+                    'ButtonFLMOptions.Refresh()
+
+                    ButtonAnteprima.Location = New Point(ButtonFLMOptions.Location.X - ButtonAnteprima.Size.Width - 6, ButtonCarica.Location.Y)
+                    'ButtonAnteprima.Refresh()
+
+                    LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    'LabelPosizioneMouse.Refresh()
                 Case Else
 
             End Select
@@ -495,7 +597,75 @@
     Private Sub ButtonAnteprima_Click(sender As Object, e As EventArgs) Handles ButtonAnteprima.Click
         'TODO caricare anche le immagini per simulare l'effetto vero
         'da svolgere in thread diverso
+        'FormUsoBackground.Show()
 
+
+        '--- Metodo1 inizio ---
+        Dim file As System.IO.StreamWriter
+
+        Try
+            If My.Computer.FileSystem.FileExists("layoutAnteprima.ini") Then
+                My.Computer.FileSystem.DeleteFile("layoutAnteprima.ini")
+            End If
+        Catch ex As Exception
+
+        End Try
+
+        file = My.Computer.FileSystem.OpenTextFileWriter("layoutAnteprima.ini", True)
+
+        ValoriInTabella()
+
+        For Each dato As DataColumn In dtOptionsLayout.Columns
+
+            Dim riga As String
+            Dim usoTab As String = dato.ColumnName.Substring(0, dato.ColumnName.IndexOf("_"))
+
+            Try
+                Dim oggettoColoreFont As Color = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("Label" & dato.ColumnName).ForeColor
+
+                riga = dato.ColumnName
+                If oggettoColoreFont = Color.Green Then
+                    riga = "#" & riga
+                End If
+
+                For i As Integer = 1 To 40 - riga.Length
+                    riga &= " "
+                Next
+
+                riga &= dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(dato.Caption)
+                file.WriteLine(riga)
+            Catch ex As Exception
+
+            End Try
+
+            Try
+                Dim oggettoColoreFont As Color = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("CheckBox" & dato.ColumnName).ForeColor
+
+                riga = dato.ColumnName
+                If oggettoColoreFont = Color.Green Then
+                    riga = "#" & riga
+                End If
+
+                For i As Integer = 1 To 40 - riga.Length
+                    riga &= " "
+                Next
+
+                riga &= dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(dato.Caption)
+                file.WriteLine(riga)
+            Catch ex As Exception
+
+            End Try
+
+        Next
+
+        file.Close()
+        '--- Metodo1 fine ---
+
+        '--- Metodo2 inizio ---
+        ValoriInTabella()
+        '--- Metodo2 fine ---
+
+        FormFLManteprima.Show() 'o lanciare programma esterno
     End Sub
 
     Private Sub LabelCarica_DoubleClick(sender As Object, e As EventArgs) Handles LabelPercorso.DoubleClick
@@ -517,7 +687,7 @@
         Dim folder As DirectoryInfo
         Dim file As System.IO.StreamReader
 
-
+        FolderBrowserDialog1.SelectedPath = LabelPercorso.Text & "\layouts\"
         If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
             cartella = FolderBrowserDialog1.SelectedPath
 
@@ -1688,12 +1858,7 @@
         Dim cartella As String
         Dim folder As DirectoryInfo
 
-        Try
-            FolderBrowserDialog1.RootFolder = LabelPercorso.Text
-        Catch ex As Exception
-
-        End Try
-
+        FolderBrowserDialog1.SelectedPath = LabelPercorso.Text
 
         If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
             cartella = FolderBrowserDialog1.SelectedPath
@@ -1728,12 +1893,14 @@
             file.WriteLine("####################################################################################################")
             file.WriteLine("")
 
+            TabControlTemp.TabPages.Insert(tabSelezionata, TabControlProprietà.TabPages(0))
+
             For Each dato As DataColumn In dtOptionsLayout.Columns
                 Dim riga As String
                 Dim usoTab As String = dato.ColumnName.Substring(0, dato.ColumnName.IndexOf("_"))
 
                 Try
-                    Dim oggettoColoreFont As Color = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("Label" & dato.ColumnName).ForeColor
+                    Dim oggettoColoreFont As Color = TabControlTemp.TabPages.Item("TabPage" & usoTab).Controls.Item("Label" & dato.ColumnName).ForeColor
 
                     riga = dato.ColumnName
                     If oggettoColoreFont = Color.Green Then
@@ -1751,7 +1918,7 @@
                 End Try
 
                 Try
-                    Dim oggettoColoreFont As Color = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("CheckBox" & dato.ColumnName).ForeColor
+                    Dim oggettoColoreFont As Color = TabControlTemp.TabPages.Item("TabPage" & usoTab).Controls.Item("CheckBox" & dato.ColumnName).ForeColor
 
                     riga = dato.ColumnName
                     If oggettoColoreFont = Color.Green Then
@@ -1771,6 +1938,8 @@
             Next
 
             file.Close()
+
+            TabControlProprietà.TabPages.Add(TabControlTemp.TabPages(tabSelezionata))
             MsgBox("File layout.ini scritto correttamente!")
         End If
     End Sub
@@ -2000,12 +2169,41 @@
 
         dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("show_extended_messages") = Int(CheckBoxShow_extended_messages.Checked)
 
-
     End Sub
 
     Private Sub TabControlProprietà_Selected(sender As Object, e As TabControlEventArgs) Handles TabControlProprietà.Selected
-        Dim usoOggetto As String = sender.selectedtab.name.ToString.Substring(7)
+        'Dim usoOggetto As String = sender.selectedtab.name.ToString.Substring(7)
+        'Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
+
+        'If usoOggetto <> "Background" Then 'per il background non vogliamo che nasconda tutti gli altri oggetti
+        '    Try
+        '        For Each pannello As Control In PanelMain.Controls
+        '            pannello.BackColor = Color.FromArgb(50, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
+        '        Next
+
+        '        oggettoPanel.BackColor = Color.FromArgb(255, oggettoPanel.BackColor.R, oggettoPanel.BackColor.G, oggettoPanel.BackColor.B)
+        '    Catch ex As Exception
+        '        For Each pannello As Control In PanelMain.Controls
+        '            pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
+        '        Next
+        '    End Try
+        'Else
+        '    For Each pannello As Control In PanelMain.Controls
+        '        pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
+        '    Next
+        'End If
+    End Sub
+
+    Private Sub ListBoxObj_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxObj.SelectedIndexChanged
+        'TabControlProprietà.SelectedIndex = ListBoxObj.SelectedIndex + 1
+        TabControlTemp.TabPages.Insert(tabSelezionata, TabControlProprietà.TabPages(0))
+        tabSelezionata = ListBoxObj.SelectedIndex + 1
+        TabControlProprietà.TabPages.Add(TabControlTemp.TabPages(tabSelezionata))
+
+        Dim usoOggetto As String = ListBoxObj.SelectedItem
         Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
+        Dim usoComboBox As ComboBox = TabControlProprietà.TabPages(0).Controls("ComboBox" & usoOggetto & "_text_align")
+        Dim usoTextBox As TextBox = TabControlProprietà.TabPages(0).Controls("TextBox" & usoOggetto & "_text_align")
 
         If usoOggetto <> "Background" Then 'per il background non vogliamo che nasconda tutti gli altri oggetti
             Try
@@ -2019,15 +2217,25 @@
                     pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
                 Next
             End Try
+            Try
+                Select Case Int(usoTextBox.Text)
+                    Case 0
+                        usoComboBox.SelectedIndex = 0
+                    Case 1
+                        usoComboBox.SelectedIndex = 2
+                    Case 2
+                        usoComboBox.SelectedIndex = 1
+                    Case Else
+                        usoComboBox.SelectedIndex = 0
+                End Select
+            Catch ex As Exception
+
+            End Try
         Else
             For Each pannello As Control In PanelMain.Controls
                 pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
             Next
         End If
-    End Sub
-
-    Private Sub ListBoxObj_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxObj.SelectedIndexChanged
-        TabControlProprietà.SelectedIndex = ListBoxObj.SelectedIndex + 1
     End Sub
 
     Private Sub TrackBarZoom_Scroll(sender As Object, e As EventArgs) Handles TrackBarZoom.Scroll
@@ -2041,12 +2249,21 @@
         For Each controllo As Object In PanelMain.Controls
             Dim usoTab As String = controllo.name.ToString.Substring(5)
 
-            Dim oggettoTextBox_size_width As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_width")
-            Dim oggettoTextBox_size_height As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_height")
+            Try
+                Dim oggettoTextBox_size_width As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_width")
+                Dim oggettoTextBox_size_height As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_height")
 
-            controllo.size = New Size(Int(Val(oggettoTextBox_size_width.text) * sender.value / 100), Int(Val(oggettoTextBox_size_height.text) * sender.value / 100))
+                controllo.size = New Size(Int(Val(oggettoTextBox_size_width.text) * sender.value / 100), Int(Val(oggettoTextBox_size_height.text) * sender.value / 100))
+            Catch ex As Exception
+                Dim oggettoTextBox_size_width As Object = TabControlTemp.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_width")
+                Dim oggettoTextBox_size_height As Object = TabControlTemp.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_height")
+
+                controllo.size = New Size(Int(Val(oggettoTextBox_size_width.text) * sender.value / 100), Int(Val(oggettoTextBox_size_height.text) * sender.value / 100))
+            End Try
+
             controllo.refresh
         Next
+
         PanelMain.Refresh()
 
     End Sub
@@ -2059,7 +2276,6 @@
             LabelZoom.Text = TrackBarZoom.Value & "%"
             LabelZoom.Refresh()
 
-            'sender.text &= "%"
         Catch ex As Exception
             sender.text = "100"
         End Try
@@ -2142,13 +2358,17 @@
                                                                                             PanelGamelistname.MouseMove,
                                                                                             PanelEmulatorname.MouseMove,
                                                                                             PanelBackground.MouseMove,
-                                                                                            PanelCabinet.MouseMove
-
+                                                                                            PanelCabinet.MouseMove ', MyBase.MouseMove '<--uso test
+        ''---uso test---
+        'Dim x As Integer = MousePosition.X - Me.Location.X - 7 '7 è il bordo
+        'Dim y As Integer = MousePosition.Y - Me.Location.Y - 30 '30 è l'intestazione della form
+        'LabelPosizioneMouse.Text = x & " , " & y
+        ''---uso test fine---
         Dim x As Integer = MousePosition.X - PanelMainMaster.Location.X - Me.Location.X - 7 '7 è il bordo
         Dim y As Integer = MousePosition.Y - PanelMainMaster.Location.Y - Me.Location.Y - 30 '30 è l'intestazione della form
 
         If (x >= 0) And (x <= PanelBackground.Size.Width) And (y >= 0) And (y <= PanelBackground.Size.Height) Then
-            LabelPosizioneMouse.Text = x & " , " & y
+            LabelPosizioneMouse.Text = Int(x / TrackBarZoom.Value * 100) & " , " & Int(y / TrackBarZoom.Value * 100)
             'LabelPosizioneMouse.Refresh()
         Else
             LabelPosizioneMouse.Text = "- , -"
@@ -2182,6 +2402,7 @@
                                                                             PanelCabinet.MouseHover 'PanelBackground.MouseHover, PanelMain.MouseHover,
 
         ToolTip1.Show(sender.name, sender)
+
     End Sub
 
     Private Sub Panel_MouseEnter(sender As Object, e As EventArgs) Handles PanelSnapshot.MouseEnter,
@@ -2242,15 +2463,17 @@
                                                                                 PanelRomcategory.MouseDown,
                                                                                 PanelMenu.MouseDown ', PanelBackground.MouseDown, PanelMain.MouseDown,
 
+        Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
+
+        ListBoxObj.SelectedItem = usoOggetto
+
         If e.Button = MouseButtons.Right Then
-            Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
 
             TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
 
             sender.tag = Math.Abs(Int(sender.tag) - 1)
             sender.refresh
         Else
-            Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
 
             TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
 
@@ -2276,15 +2499,19 @@
                                                                                 PanelRomcategory.MouseUp,
                                                                                 PanelMenu.MouseUp,
                                                                                 PanelRomlist.MouseUp ',PanelBackground.MouseUp, PanelMain.Mouseup,
+
+        Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
+
         If e.Button = MouseButtons.Left Then
             If sender.tag <> 1 Then
+                ListBoxObj.SelectedItem = usoOggetto
+
                 pannelloLocation = New Point(sender.Location.X + (MousePosition.X - mouseCoordinate.X), sender.Location.Y + (MousePosition.Y) - mouseCoordinate.Y)
 
                 sender.Location = pannelloLocation
                 sender.Refresh()
 
                 Try
-                    Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
                     Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
                     Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
 
@@ -2293,21 +2520,13 @@
 
                     oggettoY.Text = pannelloLocation.Y
                     oggettoY.Refresh()
-
-                    'TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
                 Catch ex As Exception
 
                 End Try
             Else
-                'Try
-                '    Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
-
-                '    TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
-                'Catch ex As Exception
-
-                'End Try
                 MsgBox("Il pannello è in lock! Per spostarlo col mouse devi prima sbloccarlo con bottone dx del mouse.")
             End If
+
             LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & sender.location.x & " , " & sender.location.y
             sender.focus()
         End If
@@ -2956,6 +3175,25 @@
         End If
     End Sub
 
+    Private Sub ComboBox_KeyDown(sender As Object, e As KeyEventArgs) Handles ComboBoxRisoluzione.KeyDown, ComboBoxRomlist_text_align.KeyDown, ComboBoxRomcounter_text_align.KeyDown, ComboBoxRomstatus_text_align.KeyDown, ComboBoxRomname_text_align.KeyDown, ComboBoxRommanufacturer_text_align.KeyDown, ComboBoxRominputcontrol_text_align.KeyDown, ComboBoxRomdisplaytype_text_align.KeyDown, ComboBoxRomdescription_text_align.KeyDown, ComboBoxRomcategory_text_align.KeyDown, ComboBoxPlatformname_text_align.KeyDown, ComboBoxGamelistname_text_align.KeyDown, ComboBoxEmulatorname_text_align.KeyDown
+        e.SuppressKeyPress = True
+    End Sub
+
+    Private Sub ComboBoxRomText_align_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxRomlist_text_align.SelectedIndexChanged, ComboBoxRomcounter_text_align.SelectedIndexChanged, ComboBoxRomstatus_text_align.SelectedIndexChanged, ComboBoxRomname_text_align.SelectedIndexChanged, ComboBoxRommanufacturer_text_align.SelectedIndexChanged, ComboBoxRominputcontrol_text_align.SelectedIndexChanged, ComboBoxRomdisplaytype_text_align.SelectedIndexChanged, ComboBoxRomdescription_text_align.SelectedIndexChanged, ComboBoxRomcategory_text_align.SelectedIndexChanged, ComboBoxPlatformname_text_align.SelectedIndexChanged, ComboBoxGamelistname_text_align.SelectedIndexChanged, ComboBoxEmulatorname_text_align.SelectedIndexChanged
+        Dim textAlign As Integer = sender.selectedindex
+        Dim usoOggetto As String = sender.name.ToString.Substring(8)
+        Dim oggettoTextBox As Object = TabControlProprietà.TabPages.Item(sender.parent.name).Controls.Item("TextBox" & usoOggetto)
+
+        oggettoTextBox.Text = textAlign
+        Try
+            oggettoTextBox.TextAlign = Int(sender.selecteditem.substring(sender.selecteditem.length - 1, 1))
+        Catch ex As Exception
+            oggettoTextBox.TextAlign = 0
+        End Try
+
+
+    End Sub
+
     '----------------------------------------------------------------------------------------------
     'Proprietà Sound
     Private Sub TextBoxSound_fx_list_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxSound_fx_list.DoubleClick
@@ -3068,9 +3306,6 @@
         LabelPannelloMainY.Refresh()
     End Sub
 
-    Private Sub ComboBoxRisoluzione_KeyDown(sender As Object, e As KeyEventArgs) Handles ComboBoxRisoluzione.KeyDown
-        e.SuppressKeyPress = True
-    End Sub
 
     Private Sub ComboBoxRisoluzione_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxRisoluzione.SelectedIndexChanged
         TextBoxScreen_res_x.Text = ComboBoxRisoluzione.SelectedItem.row.item(1)
@@ -3371,6 +3606,7 @@
             TextBoxMenu_selected_backcolor.Refresh()
         End If
     End Sub
+
 
 
     '----------------------------------------------------------------------------------------------
