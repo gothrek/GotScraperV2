@@ -28,10 +28,12 @@
     Dim pannelliBMP(200) As Bitmap
     Dim pannelliBMPNomi(200) As String
     Dim pannelliBMPIndex As Integer
+    Dim pannelliBMPIndexUltimo As Integer = 0
 
     Dim eventoPaint As Boolean = True
 
     Private Sub FormFLManteprima_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Size = New Size(dt.Rows(dt.Rows.Count - 1).Item("screen_res_x"), dt.Rows(dt.Rows.Count - 1).Item("screen_res_y"))
 
         dt = FormFLM.dtOptionsLayout
         dtRoms = New DataTable
@@ -70,7 +72,9 @@
 
         '----------------------------------------------------------------------------------------------
         '---music----
-        'music_path                              wizball.mp3
+        If dt.Rows(dt.Rows.Count - 1).Item("music_path").ToString.Length > 2 Then
+            My.Computer.Audio.Play(FormFLM.feelPath & "\media\" & dt.Rows(dt.Rows.Count - 1).Item("music_path"), AudioPlayMode.BackgroundLoop)
+        End If
         'music_volume                            5
 
         '----------------------------------------------------------------------------------------------
@@ -174,6 +178,15 @@
 
         'OLD romlist_disable_stars                   0
 
+        Try
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelRomlist.Name)
+        Catch ex As Exception
+            pannelliBMPIndex = pannelliBMPIndexUltimo
+            pannelliBMPIndexUltimo += 1
+        End Try
+
+        PanelRomlist.Visible = False
+
         '----------------------------------------------------------------------------------------------
         '---background----
 
@@ -224,12 +237,33 @@
         End If
 
         Try
-            PanelSnapshot.BackgroundImage = Image.FromFile(".\anteprima\media\images\" & dtRoms.Rows(0).Item("romlist") & ".png")
+
+            PanelSnapshot.BackgroundImage = New Bitmap(Image.FromFile(".\anteprima\media\images\" & dtRoms.Rows(0).Item("romlist") & ".png"), PanelSnapshot.Width, PanelSnapshot.Height)
+
+            Try
+                PanelSnapshot.Visible = dt.Rows(dt.Rows.Count - 1).Item("snapshot_visible")
+            Catch ex As Exception
+                PanelSnapshot.Visible = True
+            End Try
+
+            Try
+                PanelSnapshot.Location = New Point(dt.Rows(dt.Rows.Count - 1).Item("snapshot_x_pos"), dt.Rows(dt.Rows.Count - 1).Item("snapshot_y_pos"))
+            Catch ex As Exception
+                PanelSnapshot.Location = New Point(0, 0)
+            End Try
+
+            Try
+                PanelSnapshot.Size = New Size(dt.Rows(dt.Rows.Count - 1).Item("snapshot_width"), dt.Rows(dt.Rows.Count - 1).Item("snapshot_height"))
+            Catch ex As Exception
+                PanelSnapshot.Visible = False
+            End Try
+
             pannelliBMP(2) = PanelSnapshot.BackgroundImage
             pannelliBMPNomi(2) = PanelSnapshot.Name
         Catch ex As Exception
             PanelSnapshot.BackgroundImage = Nothing
         End Try
+        PanelSnapshot.Visible = False
 
         If Int(dt.Rows(dt.Rows.Count - 1).Item("cabinet_stretch")) = 1 Then
             PanelCabinet.BackgroundImageLayout = ImageLayout.Stretch
@@ -240,12 +274,32 @@
         End If
 
         Try
-            PanelCabinet.BackgroundImage = Image.FromFile(".\anteprima\media\cabinets\" & dtRoms.Rows(0).Item("romlist") & ".png")
+            PanelCabinet.BackgroundImage = New Bitmap(Image.FromFile(".\anteprima\media\cabinets\" & dtRoms.Rows(0).Item("romlist") & ".png"), PanelCabinet.Width, PanelCabinet.Height)
+
+            Try
+                PanelCabinet.Visible = dt.Rows(dt.Rows.Count - 1).Item("cabinet_visible")
+            Catch ex As Exception
+                PanelCabinet.Visible = True
+            End Try
+
+            Try
+                PanelCabinet.Location = New Point(dt.Rows(dt.Rows.Count - 1).Item("cabinet_x_pos"), dt.Rows(dt.Rows.Count - 1).Item("cabinet_y_pos"))
+            Catch ex As Exception
+                PanelCabinet.Location = New Point(0, 0)
+            End Try
+
+            Try
+                PanelCabinet.Size = New Size(dt.Rows(dt.Rows.Count - 1).Item("cabinet_width"), dt.Rows(dt.Rows.Count - 1).Item("cabinet_height"))
+            Catch ex As Exception
+                PanelCabinet.Visible = False
+            End Try
+
             pannelliBMP(3) = PanelCabinet.BackgroundImage
             pannelliBMPNomi(3) = PanelCabinet.Name
         Catch ex As Exception
             PanelCabinet.BackgroundImage = Nothing
         End Try
+        PanelCabinet.Visible = False
 
         If Int(dt.Rows(dt.Rows.Count - 1).Item("marquee_stretch")) = 1 Then
             PanelMarquee.BackgroundImageLayout = ImageLayout.Stretch
@@ -256,20 +310,48 @@
         End If
 
         Try
-            PanelMarquee.BackgroundImage = Image.FromFile(".\anteprima\media\marquees\" & dtRoms.Rows(0).Item("romlist") & ".png")
+            PanelMarquee.BackgroundImage = New Bitmap(Image.FromFile(".\anteprima\media\marquees\" & dtRoms.Rows(0).Item("romlist") & ".png"), PanelMarquee.Width, PanelMarquee.Height)
+
+            Try
+                PanelMarquee.Visible = dt.Rows(dt.Rows.Count - 1).Item("marquee_visible")
+            Catch ex As Exception
+                PanelMarquee.Visible = True
+            End Try
+
+            Try
+                PanelMarquee.Location = New Point(dt.Rows(dt.Rows.Count - 1).Item("marquee_x_pos"), dt.Rows(dt.Rows.Count - 1).Item("marqueet_y_pos"))
+            Catch ex As Exception
+                PanelMarquee.Location = New Point(0, 0)
+            End Try
+
+            Try
+                PanelMarquee.Size = New Size(dt.Rows(dt.Rows.Count - 1).Item("marquee_width"), dt.Rows(dt.Rows.Count - 1).Item("marquee_height"))
+            Catch ex As Exception
+                PanelMarquee.Visible = False
+            End Try
+
             pannelliBMP(4) = PanelMarquee.BackgroundImage
             pannelliBMPNomi(4) = PanelMarquee.Name
         Catch ex As Exception
             PanelMarquee.BackgroundImage = Nothing
         End Try
+        PanelMarquee.Visible = False
+
+        pannelliBMPIndexUltimo = 5
+        pannelliBMPIndex = pannelliBMPIndexUltimo
 
         '----------------------------------------------------------------------------------------------
         '---pannelli----
         Dim usoOggetto As String
 
-        pannelliBMPIndex = 5
         For Each pannello As Panel In Me.Controls
             usoOggetto = pannello.Name.Substring(5)
+            Try
+                pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = pannello.Name)
+            Catch ex As Exception
+                pannelliBMPIndex = pannelliBMPIndexUltimo
+                pannelliBMPIndexUltimo += 1
+            End Try
 
             Try
                 pannello.Visible = dt.Rows(dt.Rows.Count - 1).Item(usoOggetto & "_visible")
@@ -288,6 +370,9 @@
             Catch ex As Exception
                 pannello.Visible = False
             End Try
+            pannello.Visible = False
+
+            AggiornaPannello(pannello)
         Next
 
         '----------------------------------------------------------------------------------------------
@@ -366,7 +451,7 @@
 
         'menu_show_sidebar                       1
 
-        'AggiornaSfondo2()
+        AggiornaSfondo2()
 
         '----------------------------------------------------------------------------------------------
         '---actors----
@@ -396,9 +481,9 @@
             AddHandler panelActors.MouseClick, AddressOf FormFLManteprima_MouseClick
             AddHandler panelActors.PreviewKeyDown, AddressOf RomlistKeyPressed 'Label_PreviewKeyDown
 
-            'Me.Controls.Add(panelActors)
-            'Me.Controls("panelActors").BringToFront()
-            'Me.Controls("PanelMenu").BringToFront()
+            Me.Controls.Add(panelActors)
+            Me.Controls("panelActors").BringToFront()
+            Me.Controls("PanelMenu").BringToFront()
 
             contaImmaginiActors = 1
         Catch ex As Exception
@@ -433,7 +518,7 @@
 
 
         TimerMain.Start()
-        'TimerActors.Start()
+        TimerActors.Start()
     End Sub
 
     Private Sub RomlistKeyPressed(sender As Object, e As PreviewKeyDownEventArgs) Handles PanelSnapshot.PreviewKeyDown, PanelRomstatus.PreviewKeyDown, PanelRomname.PreviewKeyDown, PanelRommanufacturer.PreviewKeyDown, PanelRomlist.PreviewKeyDown, PanelRominputcontrol.PreviewKeyDown, PanelRomdisplaytype.PreviewKeyDown, PanelRomdescription.PreviewKeyDown, PanelRomcounter.PreviewKeyDown, PanelRomcategory.PreviewKeyDown, PanelPlatformname.PreviewKeyDown, PanelMarquee.PreviewKeyDown, PanelGamelistname.PreviewKeyDown, PanelEmulatorname.PreviewKeyDown, PanelCabinet.PreviewKeyDown, PanelBackground.PreviewKeyDown, MyBase.PreviewKeyDown
@@ -475,30 +560,44 @@
             Catch ex As Exception
                 PanelSnapshot.BackgroundImage = Nothing
             End Try
+            pannelliBMP(2) = PanelSnapshot.BackgroundImage
 
             Try
                 PanelCabinet.BackgroundImage = Image.FromFile(".\anteprima\media\cabinets\" & dtRoms.Rows(indiceRom).Item("romlist") & ".png")
             Catch ex As Exception
                 PanelCabinet.BackgroundImage = Nothing
             End Try
+            pannelliBMP(3) = PanelCabinet.BackgroundImage
 
             Try
                 PanelMarquee.BackgroundImage = Image.FromFile(".\anteprima\media\marquees\" & dtRoms.Rows(indiceRom).Item("romlist") & ".png")
             Catch ex As Exception
                 PanelMarquee.BackgroundImage = Nothing
             End Try
+            pannelliBMP(4) = PanelCabinet.BackgroundImage
 
-            PanelRomstatus.Refresh()
-            PanelRomname.Refresh()
-            PanelRommanufacturer.Refresh()
-            PanelRominputcontrol.Refresh()
-            PanelRomdisplaytype.Refresh()
-            PanelRomdescription.Refresh()
-            PanelRomcounter.Refresh()
-            PanelRomcategory.Refresh()
-            PanelPlatformname.Refresh()
-            PanelGamelistname.Refresh()
-            PanelEmulatorname.Refresh()
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelRomstatus.Name)
+            AggiornaPannello(PanelRomstatus)
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelRomname.Name)
+            AggiornaPannello(PanelRomname)
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelRommanufacturer.Name)
+            AggiornaPannello(PanelRommanufacturer)
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelRominputcontrol.Name)
+            AggiornaPannello(PanelRominputcontrol)
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelRomdisplaytype.Name)
+            AggiornaPannello(PanelRomdisplaytype)
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelRomdescription.Name)
+            AggiornaPannello(PanelRomdescription)
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelRomcounter.Name)
+            AggiornaPannello(PanelRomcounter)
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelRomcategory.Name)
+            AggiornaPannello(PanelRomcategory)
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelPlatformname.Name)
+            AggiornaPannello(PanelPlatformname)
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelGamelistname.Name)
+            AggiornaPannello(PanelGamelistname)
+            pannelliBMPIndex = Array.FindIndex(pannelliBMPNomi, Function(s) s = PanelEmulatorname.Name)
+            AggiornaPannello(PanelEmulatorname)
 
             If esci Then
                 Me.Close()
@@ -532,20 +631,90 @@
 
     End Sub
 
-    Private Sub Panel_Paint(sender As Object, e As PaintEventArgs) Handles PanelRomstatus.Paint,
-                                                                            PanelRomname.Paint,
-                                                                            PanelRommanufacturer.Paint,
-                                                                            PanelRominputcontrol.Paint,
-                                                                            PanelRomdisplaytype.Paint,
-                                                                            PanelRomdescription.Paint,
-                                                                            PanelRomcounter.Paint,
-                                                                            PanelRomcategory.Paint,
-                                                                            PanelPlatformname.Paint,
-                                                                            PanelGamelistname.Paint,
-                                                                            PanelEmulatorname.Paint
+    'Private Sub Panel_Paint(sender As Object, e As PaintEventArgs) Handles PanelRomstatus.Paint,
+    '                                                                        PanelRomname.Paint,
+    '                                                                        PanelRommanufacturer.Paint,
+    '                                                                        PanelRominputcontrol.Paint,
+    '                                                                        PanelRomdisplaytype.Paint,
+    '                                                                        PanelRomdescription.Paint,
+    '                                                                        PanelRomcounter.Paint,
+    '                                                                        PanelRomcategory.Paint,
+    '                                                                        PanelPlatformname.Paint,
+    '                                                                        PanelGamelistname.Paint,
+    '                                                                        PanelEmulatorname.Paint
 
 
-        Dim usoOggetto As String = sender.Name.Substring(5)
+    '    Dim usoOggetto As String = sender.Name.Substring(5)
+
+    '        Dim usoFont As String = dt.Rows(dt.Rows.Count - 1).Item(usoOggetto & "_font_name")
+    '        Dim usoSize As Integer = Int(dt.Rows(dt.Rows.Count - 1).Item(usoOggetto & "_font_size"))
+    '        Dim usoStyle As Integer = Int(dt.Rows(dt.Rows.Count - 1).Item(usoOggetto & "_font_style"))
+    '        Dim usoColor As String = dt.Rows(dt.Rows.Count - 1).Item(usoOggetto & "_font_color")
+    '        Dim usoAlign As Integer = Int(dt.Rows(dt.Rows.Count - 1).Item(usoOggetto & "_text_align"))
+
+    '        Dim contaValori() As String = usoColor.Split(",")
+
+    '        Dim posizioneX As Integer
+    '        Dim posizioneY As Integer = Int((sender.size.height - usoSize) / 2)
+
+    '        Dim coloreA As Integer = 255
+    '        Dim coloreR As Integer = Int(contaValori(0))
+    '        Dim coloreG As Integer = Int(contaValori(1))
+    '        Dim coloreB As Integer = Int(contaValori(2))
+
+    '        If contaValori.Length = 4 Then
+    '            coloreA = Int(contaValori(3))
+    '        End If
+
+    '        Select Case usoAlign
+    '            Case 0
+    '                posizioneX = 0
+    '            Case 1
+    '                posizioneX = Int((sender.size.width - dtRoms.Rows(indiceRom).Item(usoOggetto).ToString.Length * usoSize) / 2)
+    '            Case 2
+    '                posizioneX = Int(sender.size.width - dtRoms.Rows(indiceRom).Item(usoOggetto).ToString.Length * usoSize)
+    '        End Select
+
+    '    If sender.Visible Then
+    '        e.Graphics.DrawString(dtRoms.Rows(indiceRom).Item(usoOggetto), New Font(usoFont, usoSize, usoStyle, GraphicsUnit.Point), New SolidBrush(Color.FromArgb(coloreA, coloreR, coloreG, coloreB)), posizioneX, posizioneY)
+
+    '        usoColor = dt.Rows(dt.Rows.Count - 1).Item(usoOggetto & "_backcolor")
+    '        Dim contaValori2() As String = usoColor.Split(",")
+
+    '        coloreR = Int(contaValori2(0))
+    '        coloreG = Int(contaValori2(1))
+    '        coloreB = Int(contaValori2(2))
+    '        If contaValori2.Length = 4 Then
+    '            sender.backcolor = Color.Transparent
+    '        Else
+    '            sender.backcolor = Color.FromArgb(255, coloreR, coloreG, coloreB)
+    '        End If
+    '    End If
+
+    '    '---------------
+    '    'If eventoPaint Then
+
+    '    '    Dim w As Int16 = sender.width
+    '    '    Dim h As Int16 = sender.height
+    '    '    Dim panelBMP As Bitmap = New Bitmap(w, h)
+    '    '    sender.DrawToBitmap(panelBMP, sender.ClientRectangle)
+
+    '    '    pannelliBMP(pannelliBMPIndex) = panelBMP
+    '    '    pannelliBMPNomi(pannelliBMPIndex) = sender.name
+
+    '    '    pannelliBMPIndex += 1
+
+
+    '    '    eventoPaint = False
+    '    'End If
+    '    '---------------
+
+    '    PanelRomlist.Controls("LabelRomlist_" & indiceRom).Focus()
+    'End Sub
+
+    Private Sub AggiornaPannello(sender As Panel)
+        Try
+            Dim usoOggetto As String = sender.Name.Substring(5)
 
             Dim usoFont As String = dt.Rows(dt.Rows.Count - 1).Item(usoOggetto & "_font_name")
             Dim usoSize As Integer = Int(dt.Rows(dt.Rows.Count - 1).Item(usoOggetto & "_font_size"))
@@ -556,7 +725,7 @@
             Dim contaValori() As String = usoColor.Split(",")
 
             Dim posizioneX As Integer
-            Dim posizioneY As Integer = Int((sender.size.height - usoSize) / 2)
+            Dim posizioneY As Integer = Int((sender.Size.Height - usoSize) / 2)
 
             Dim coloreA As Integer = 255
             Dim coloreR As Integer = Int(contaValori(0))
@@ -571,46 +740,53 @@
                 Case 0
                     posizioneX = 0
                 Case 1
-                    posizioneX = Int((sender.size.width - dtRoms.Rows(indiceRom).Item(usoOggetto).ToString.Length * usoSize) / 2)
+                    posizioneX = Int((sender.Size.Width - dtRoms.Rows(indiceRom).Item(usoOggetto).ToString.Length * usoSize) / 2)
                 Case 2
-                    posizioneX = Int(sender.size.width - dtRoms.Rows(indiceRom).Item(usoOggetto).ToString.Length * usoSize)
+                    posizioneX = Int(sender.Size.Width - dtRoms.Rows(indiceRom).Item(usoOggetto).ToString.Length * usoSize)
             End Select
 
-        If sender.Visible Then
-            e.Graphics.DrawString(dtRoms.Rows(indiceRom).Item(usoOggetto), New Font(usoFont, usoSize, usoStyle, GraphicsUnit.Point), New SolidBrush(Color.FromArgb(coloreA, coloreR, coloreG, coloreB)), posizioneX, posizioneY)
+            'If sender.Visible Then
+            Dim e As Graphics
 
-            usoColor = dt.Rows(dt.Rows.Count - 1).Item(usoOggetto & "_backcolor")
-            Dim contaValori2() As String = usoColor.Split(",")
+                e = sender.CreateGraphics()
+                e.DrawString(dtRoms.Rows(indiceRom).Item(usoOggetto), New Font(usoFont, usoSize, usoStyle, GraphicsUnit.Point), New SolidBrush(Color.FromArgb(coloreA, coloreR, coloreG, coloreB)), posizioneX, posizioneY)
 
-            coloreR = Int(contaValori2(0))
-            coloreG = Int(contaValori2(1))
-            coloreB = Int(contaValori2(2))
-            If contaValori2.Length = 4 Then
-                sender.backcolor = Color.Transparent
-            Else
-                sender.backcolor = Color.FromArgb(255, coloreR, coloreG, coloreB)
-            End If
-        End If
+                usoColor = dt.Rows(dt.Rows.Count - 1).Item(usoOggetto & "_backcolor")
+                Dim contaValori2() As String = usoColor.Split(",")
 
-        '---------------
-        'If eventoPaint Then
+                coloreR = Int(contaValori2(0))
+                coloreG = Int(contaValori2(1))
+                coloreB = Int(contaValori2(2))
+                If contaValori2.Length = 4 Then
+                    sender.BackColor = Color.Transparent
+                Else
+                    sender.BackColor = Color.FromArgb(255, coloreR, coloreG, coloreB)
+                End If
+            'End If
 
-        '    Dim w As Int16 = sender.width
-        '    Dim h As Int16 = sender.height
-        '    Dim panelBMP As Bitmap = New Bitmap(w, h)
-        '    sender.DrawToBitmap(panelBMP, sender.ClientRectangle)
+            '---------------
+            'If eventoPaint Then
 
-        '    pannelliBMP(pannelliBMPIndex) = panelBMP
-        '    pannelliBMPNomi(pannelliBMPIndex) = sender.name
+            Dim w As Int16 = sender.Width
+            Dim h As Int16 = sender.Height
+            Dim panelBMP As Bitmap = New Bitmap(w, h)
+            sender.DrawToBitmap(panelBMP, sender.ClientRectangle)
 
-        '    pannelliBMPIndex += 1
+            pannelliBMP(pannelliBMPIndex) = panelBMP
+            pannelliBMPNomi(pannelliBMPIndex) = sender.Name
+
+            'pannelliBMPIndex += 1
 
 
-        '    eventoPaint = False
-        'End If
-        '---------------
+            '    eventoPaint = False
+            'End If
+            '---------------
 
-        PanelRomlist.Controls("LabelRomlist_" & indiceRom).Focus()
+            PanelRomlist.Controls("LabelRomlist_" & indiceRom).Focus()
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub TimerMain_Tick(sender As Object, e As EventArgs) Handles TimerMain.Tick
@@ -666,10 +842,10 @@
             End If
         End If
 
-        'Dim g As Graphics
-        'g = Me.Controls("panelActors").CreateGraphics()
-        'g.Clear(Color.Transparent)
-        'g.DrawImage(actors(nImmagineActors), 0, 0)
+        Dim g As Graphics
+        g = Me.Controls("panelActors").CreateGraphics()
+        g.Clear(Color.Transparent)
+        g.DrawImage(actors(nImmagineActors), 0, 0)
     End Sub
 
     Private Sub TimerActorsDelay_Tick(sender As Object, e As EventArgs) Handles TimerActorsDelay.Tick
@@ -734,34 +910,36 @@
     '    'Next
     'End Sub
 
-    'Private Sub AggiornaSfondo2()
+    Private Sub AggiornaSfondo2()
 
-    '    Dim contaPannelliBMP As Integer = 1
+        'Dim contaPannelliBMP As Integer = 1
 
-    '    For Each pannello As Panel In Me.Controls
-    '        If pannello.Visible And (pannello.Name <> "PanelBackground") Then
-    '            Dim panelBMP As Bitmap = New Bitmap(pannello.Width, pannello.Height)
-    '            pannello.DrawToBitmap(panelBMP, pannello.ClientRectangle)
-    '            pannelliBMP(contaPannelliBMP) = panelBMP
-    '            pannelliBMPNomi(contaPannelliBMP) = pannello.Name
-    '            pannello.Visible = False
-    '            contaPannelliBMP += 1
-    '        End If
-    '    Next
+        'For Each pannello As Panel In Me.Controls
+        '    If pannello.Visible And (pannello.Name <> "PanelBackground") Then
+        '        Dim panelBMP As Bitmap = New Bitmap(pannello.Width, pannello.Height)
+        '        pannello.DrawToBitmap(panelBMP, pannello.ClientRectangle)
+        '        pannelliBMP(contaPannelliBMP) = panelBMP
+        '        pannelliBMPNomi(contaPannelliBMP) = pannello.Name
+        '        pannello.Visible = False
+        '        contaPannelliBMP += 1
+        '    End If
+        'Next
 
-    '    Dim g As Graphics
+        Dim g As Graphics
 
-    '    'g = PanelBackground.CreateGraphics()
+        g = Me.CreateGraphics()
 
-    '    'For i As Integer = 0 To contaPannelliBMP - 1
-    '    '    Try
-    '    '        g.DrawImage(pannelliBMP(i), Me.Controls(pannelliBMPNomi(i)).Location)
-    '    '    Catch ex As Exception
+        For i As Integer = 1 To pannelliBMPIndexUltimo - 1
+            Try
+                pannelliBMP(i).Save(pannelliBMPNomi(i) & ".png")
+                g.DrawImage(pannelliBMP(i), Me.Controls(pannelliBMPNomi(i)).Location)
 
-    '    '    End Try
+            Catch ex As Exception
 
-    '    'Next
+            End Try
 
-    'End Sub
+        Next
+
+    End Sub
 
 End Class

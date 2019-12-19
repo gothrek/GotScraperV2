@@ -516,6 +516,7 @@ Partial Class FormFLM
         Me.ButtonPannelloMainReset = New System.Windows.Forms.Button()
         Me.ButtonCarica = New System.Windows.Forms.Button()
         Me.ButtonPubblica = New System.Windows.Forms.Button()
+        Me.ButtonAnteprimaOld = New System.Windows.Forms.Button()
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -5500,11 +5501,11 @@ Partial Class FormFLM
         '
         Me.LabelPercorso.AutoSize = True
         Me.LabelPercorso.BackColor = System.Drawing.Color.Transparent
-        Me.LabelPercorso.Font = New System.Drawing.Font("SimSun", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPercorso.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelPercorso.ForeColor = System.Drawing.Color.Red
         Me.LabelPercorso.Location = New System.Drawing.Point(312, 733)
         Me.LabelPercorso.Name = "LabelPercorso"
-        Me.LabelPercorso.Size = New System.Drawing.Size(514, 21)
+        Me.LabelPercorso.Size = New System.Drawing.Size(464, 25)
         Me.LabelPercorso.TabIndex = 6
         Me.LabelPercorso.Text = "Percorso FEEL (doppio click x configurare)"
         '
@@ -5516,7 +5517,7 @@ Partial Class FormFLM
         Me.ButtonAnteprima.Name = "ButtonAnteprima"
         Me.ButtonAnteprima.Size = New System.Drawing.Size(80, 34)
         Me.ButtonAnteprima.TabIndex = 3
-        Me.ButtonAnteprima.Text = "Anteprima"
+        Me.ButtonAnteprima.Text = "AnteprimaV2"
         Me.ButtonAnteprima.UseVisualStyleBackColor = True
         '
         'LabelZoom
@@ -5914,14 +5915,26 @@ Partial Class FormFLM
         Me.ButtonPubblica.TabIndex = 4
         Me.ButtonPubblica.UseVisualStyleBackColor = False
         '
+        'ButtonAnteprimaOld
+        '
+        Me.ButtonAnteprimaOld.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonAnteprimaOld.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.ButtonAnteprimaOld.Location = New System.Drawing.Point(1033, 3)
+        Me.ButtonAnteprimaOld.Name = "ButtonAnteprimaOld"
+        Me.ButtonAnteprimaOld.Size = New System.Drawing.Size(80, 34)
+        Me.ButtonAnteprimaOld.TabIndex = 38
+        Me.ButtonAnteprimaOld.Text = "AnteprimaV1"
+        Me.ButtonAnteprimaOld.UseVisualStyleBackColor = True
+        '
         'FormFLM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
-        Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.Layout2
+        Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.Layout1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 761)
+        Me.Controls.Add(Me.ButtonAnteprimaOld)
         Me.Controls.Add(Me.ButtonPainter)
         Me.Controls.Add(Me.ButtonFLMOptions)
         Me.Controls.Add(Me.LabelPosizioneMouse)
@@ -6496,4 +6509,5 @@ Partial Class FormFLM
     Friend WithEvents ComboBoxRominputcontrol_text_align As ComboBox
     Friend WithEvents ComboBoxRomstatus_text_align As ComboBox
     Friend WithEvents ComboBoxRomcategory_text_align As ComboBox
+    Friend WithEvents ButtonAnteprimaOld As Button
 End Class

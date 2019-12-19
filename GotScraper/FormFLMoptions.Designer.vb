@@ -24,6 +24,8 @@ Partial Class FormFLMoptions
     Private Sub InitializeComponent()
         Me.LabelImpostazioni = New System.Windows.Forms.Label()
         Me.PanelImpostazioni = New System.Windows.Forms.Panel()
+        Me.TextBoxFontIntestazioni = New System.Windows.Forms.TextBox()
+        Me.LabelFontIntestazioni = New System.Windows.Forms.Label()
         Me.CheckBoxFLMBackgroundImage = New System.Windows.Forms.CheckBox()
         Me.PanelFLMLayout3 = New System.Windows.Forms.Panel()
         Me.Panel10 = New System.Windows.Forms.Panel()
@@ -61,6 +63,8 @@ Partial Class FormFLMoptions
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ButtonCancel = New System.Windows.Forms.Button()
         Me.ButtonOk = New System.Windows.Forms.Button()
+        Me.FontDialog1 = New System.Windows.Forms.FontDialog()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.PanelImpostazioni.SuspendLayout()
         Me.PanelFLMLayout3.SuspendLayout()
         Me.Panel10.SuspendLayout()
@@ -89,6 +93,8 @@ Partial Class FormFLMoptions
         '
         'PanelImpostazioni
         '
+        Me.PanelImpostazioni.Controls.Add(Me.TextBoxFontIntestazioni)
+        Me.PanelImpostazioni.Controls.Add(Me.LabelFontIntestazioni)
         Me.PanelImpostazioni.Controls.Add(Me.CheckBoxFLMBackgroundImage)
         Me.PanelImpostazioni.Controls.Add(Me.PanelFLMLayout3)
         Me.PanelImpostazioni.Controls.Add(Me.PanelFLMLayout2)
@@ -103,15 +109,33 @@ Partial Class FormFLMoptions
         Me.PanelImpostazioni.Controls.Add(Me.PanelFLMLayout1)
         Me.PanelImpostazioni.Location = New System.Drawing.Point(13, 46)
         Me.PanelImpostazioni.Name = "PanelImpostazioni"
-        Me.PanelImpostazioni.Size = New System.Drawing.Size(438, 320)
+        Me.PanelImpostazioni.Size = New System.Drawing.Size(438, 506)
         Me.PanelImpostazioni.TabIndex = 1
+        '
+        'TextBoxFontIntestazioni
+        '
+        Me.TextBoxFontIntestazioni.Font = New System.Drawing.Font("SimSun", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxFontIntestazioni.Location = New System.Drawing.Point(105, 90)
+        Me.TextBoxFontIntestazioni.Name = "TextBoxFontIntestazioni"
+        Me.TextBoxFontIntestazioni.Size = New System.Drawing.Size(330, 38)
+        Me.TextBoxFontIntestazioni.TabIndex = 13
+        Me.TextBoxFontIntestazioni.Text = "Default"
+        '
+        'LabelFontIntestazioni
+        '
+        Me.LabelFontIntestazioni.AutoSize = True
+        Me.LabelFontIntestazioni.Location = New System.Drawing.Point(3, 93)
+        Me.LabelFontIntestazioni.Name = "LabelFontIntestazioni"
+        Me.LabelFontIntestazioni.Size = New System.Drawing.Size(83, 13)
+        Me.LabelFontIntestazioni.TabIndex = 12
+        Me.LabelFontIntestazioni.Text = "Font intestazioni"
         '
         'CheckBoxFLMBackgroundImage
         '
         Me.CheckBoxFLMBackgroundImage.AutoSize = True
         Me.CheckBoxFLMBackgroundImage.Checked = True
         Me.CheckBoxFLMBackgroundImage.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBoxFLMBackgroundImage.Location = New System.Drawing.Point(9, 164)
+        Me.CheckBoxFLMBackgroundImage.Location = New System.Drawing.Point(9, 354)
         Me.CheckBoxFLMBackgroundImage.Name = "CheckBoxFLMBackgroundImage"
         Me.CheckBoxFLMBackgroundImage.Size = New System.Drawing.Size(113, 17)
         Me.CheckBoxFLMBackgroundImage.TabIndex = 11
@@ -125,7 +149,7 @@ Partial Class FormFLMoptions
         Me.PanelFLMLayout3.Controls.Add(Me.Panel11)
         Me.PanelFLMLayout3.Controls.Add(Me.Panel12)
         Me.PanelFLMLayout3.Enabled = False
-        Me.PanelFLMLayout3.Location = New System.Drawing.Point(307, 233)
+        Me.PanelFLMLayout3.Location = New System.Drawing.Point(307, 423)
         Me.PanelFLMLayout3.Name = "PanelFLMLayout3"
         Me.PanelFLMLayout3.Size = New System.Drawing.Size(128, 80)
         Me.PanelFLMLayout3.TabIndex = 10
@@ -200,7 +224,7 @@ Partial Class FormFLMoptions
         Me.PanelFLMLayout2.Controls.Add(Me.Panel8)
         Me.PanelFLMLayout2.Controls.Add(Me.Panel9)
         Me.PanelFLMLayout2.Enabled = False
-        Me.PanelFLMLayout2.Location = New System.Drawing.Point(157, 233)
+        Me.PanelFLMLayout2.Location = New System.Drawing.Point(157, 423)
         Me.PanelFLMLayout2.Name = "PanelFLMLayout2"
         Me.PanelFLMLayout2.Size = New System.Drawing.Size(128, 80)
         Me.PanelFLMLayout2.TabIndex = 9
@@ -273,7 +297,7 @@ Partial Class FormFLMoptions
         Me.Panel2.Controls.Add(Me.RadioButtonFLMLayout3)
         Me.Panel2.Controls.Add(Me.RadioButtonFLMLayout2)
         Me.Panel2.Controls.Add(Me.RadioButtonFLMLayout1)
-        Me.Panel2.Location = New System.Drawing.Point(4, 201)
+        Me.Panel2.Location = New System.Drawing.Point(4, 391)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(431, 26)
         Me.Panel2.TabIndex = 7
@@ -314,7 +338,7 @@ Partial Class FormFLMoptions
         'LabelFLMLayout
         '
         Me.LabelFLMLayout.AutoSize = True
-        Me.LabelFLMLayout.Location = New System.Drawing.Point(6, 184)
+        Me.LabelFLMLayout.Location = New System.Drawing.Point(6, 374)
         Me.LabelFLMLayout.Name = "LabelFLMLayout"
         Me.LabelFLMLayout.Size = New System.Drawing.Size(162, 13)
         Me.LabelFLMLayout.TabIndex = 6
@@ -378,7 +402,7 @@ Partial Class FormFLMoptions
         Me.PanelFLMLayout1.Controls.Add(Me.Panel4)
         Me.PanelFLMLayout1.Controls.Add(Me.Panel3)
         Me.PanelFLMLayout1.Enabled = False
-        Me.PanelFLMLayout1.Location = New System.Drawing.Point(3, 233)
+        Me.PanelFLMLayout1.Location = New System.Drawing.Point(3, 423)
         Me.PanelFLMLayout1.Name = "PanelFLMLayout1"
         Me.PanelFLMLayout1.Size = New System.Drawing.Size(128, 80)
         Me.PanelFLMLayout1.TabIndex = 8
@@ -452,7 +476,7 @@ Partial Class FormFLMoptions
         '
         'ButtonCancel
         '
-        Me.ButtonCancel.Location = New System.Drawing.Point(295, 372)
+        Me.ButtonCancel.Location = New System.Drawing.Point(295, 558)
         Me.ButtonCancel.Name = "ButtonCancel"
         Me.ButtonCancel.Size = New System.Drawing.Size(75, 23)
         Me.ButtonCancel.TabIndex = 2
@@ -461,18 +485,28 @@ Partial Class FormFLMoptions
         '
         'ButtonOk
         '
-        Me.ButtonOk.Location = New System.Drawing.Point(376, 372)
+        Me.ButtonOk.Location = New System.Drawing.Point(376, 558)
         Me.ButtonOk.Name = "ButtonOk"
         Me.ButtonOk.Size = New System.Drawing.Size(75, 23)
         Me.ButtonOk.TabIndex = 3
         Me.ButtonOk.Text = "Conferma"
         Me.ButtonOk.UseVisualStyleBackColor = True
         '
+        'FontDialog1
+        '
+        Me.FontDialog1.ShowColor = True
+        '
+        'ColorDialog1
+        '
+        Me.ColorDialog1.AnyColor = True
+        Me.ColorDialog1.FullOpen = True
+        Me.ColorDialog1.SolidColorOnly = True
+        '
         'FormFLMoptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(464, 399)
+        Me.ClientSize = New System.Drawing.Size(464, 593)
         Me.Controls.Add(Me.ButtonOk)
         Me.Controls.Add(Me.ButtonCancel)
         Me.Controls.Add(Me.PanelImpostazioni)
@@ -542,4 +576,8 @@ Partial Class FormFLMoptions
     Friend WithEvents CheckBoxFLMBackgroundImage As CheckBox
     Friend WithEvents ButtonCancel As Button
     Friend WithEvents ButtonOk As Button
+    Friend WithEvents TextBoxFontIntestazioni As TextBox
+    Friend WithEvents LabelFontIntestazioni As Label
+    Friend WithEvents FontDialog1 As FontDialog
+    Friend WithEvents ColorDialog1 As ColorDialog
 End Class

@@ -1,12 +1,26 @@
 ﻿Public Class FormFLMoptions
+    Dim fontName As String = FormFLM.fontIntestazioni
+    Dim fontSize As Single = FormFLM.fontIntestazioniSize
+    Dim fontStyle As FontStyle = FormFLM.fontIntestazioniStyle
+    Dim fontColor As String = FormFLM.fontIntestazioniColor
 
-    Dim usoLayout As Integer = FormFLM.flmLayout
+    Dim usoLayout As Integer
 
     Private Sub FormFLMoptions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim carattere As Font
+
+        usoLayout = FormFLM.flmLayout
+
         TextBoxPathFeel.Text = FormFLM.LabelPercorso.Text
         TextBoxPathFeel.Text = FormFLM.feelPath
 
         TextBoxPathGraphEditor.Text = FormFLM.grafxEditorPath
+
+        carattere = New Font(fontName, 8, fontStyle)
+
+        TextBoxFontIntestazioni.Text = fontName
+        TextBoxFontIntestazioni.Font = carattere
+        TextBoxFontIntestazioni.ForeColor = Color.FromName(fontColor)
 
         CheckBoxFLMBackgroundImage.Checked = FormFLM.flmBackgroundImageCheck
 
@@ -38,33 +52,38 @@
         End If
     End Sub
 
+    Private Sub TextBoxFontIntestazioni_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxFontIntestazioni.DoubleClick, TextBoxFontIntestazioni.Click
+        Dim carattere As Font
 
-    Private Sub CheckBoxFLMBackgroundImage_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxFLMBackgroundImage.CheckedChanged
-        If CheckBoxFLMBackgroundImage.Checked Then
-            FormFLM.BackgroundImage = ClassUtility.ChangeOpacity(FormFLM.flmBackgroundImage, 1)
-        Else
-            FormFLM.BackgroundImage = Nothing
+        If FontDialog1.ShowDialog() = DialogResult.OK Then
+            fontName = FontDialog1.Font.Name
+            fontSize = FontDialog1.Font.Size
+            fontStyle = FontDialog1.Font.Style
+            carattere = New Font(fontName, 8, fontStyle)
+            fontColor = FontDialog1.Color.Name
+
+            TextBoxFontIntestazioni.ForeColor = FontDialog1.Color
+            TextBoxFontIntestazioni.Font = carattere
+            TextBoxFontIntestazioni.Text = fontName
         End If
     End Sub
 
-    Private Sub RadioButtonFLMLayout1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonFLMLayout1.CheckedChanged
-        FormFLM.flmLayout = 1
-        FormFLM.flmBackgroundImage = My.Resources.Layout1
+    Private Sub TextBoxFontIntestazioni_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBoxFontIntestazioni.KeyDown
+        e.SuppressKeyPress = True
+    End Sub
 
+    Private Sub RadioButtonFLMLayout1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonFLMLayout1.CheckedChanged
+        usoLayout = 1
         PanelFLMLayout1.Enabled = RadioButtonFLMLayout1.Checked
     End Sub
 
     Private Sub RadioButtonFLMLayout2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonFLMLayout2.CheckedChanged
-        FormFLM.flmLayout = 2
-        FormFLM.flmBackgroundImage = My.Resources.Layout2
-
+        usoLayout = 2
         PanelFLMLayout2.Enabled = RadioButtonFLMLayout2.Checked
     End Sub
 
     Private Sub RadioButtonFLMLayout3_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonFLMLayout3.CheckedChanged
-        FormFLM.flmLayout = 3
-        'FormFLM.flmBackgroundImage = My.Resources.Layout3
-
+        usoLayout = 3
         PanelFLMLayout3.Enabled = RadioButtonFLMLayout3.Checked
     End Sub
 
@@ -74,51 +93,87 @@
 
         FormFLM.grafxEditorPath = TextBoxPathGraphEditor.Text
 
+        FormFLM.fontIntestazioni = fontName
+        FormFLM.fontIntestazioniSize = fontSize
+        FormFLM.fontIntestazioniStyle = fontStyle
+        FormFLM.fontIntestazioniColor = fontColor
+
         FormFLM.flmBackgroundImageCheck = CheckBoxFLMBackgroundImage.Checked
 
-        'FormFLM.flmLayout = FormFLM.flmLayout
+        Select Case usoLayout
+            Case 1
+                FormFLM.flmLayout = 1
+                FormFLM.flmBackgroundImage = My.Resources.Layout1
+            Case 2
+                FormFLM.flmLayout = 2
+                FormFLM.flmBackgroundImage = My.Resources.Layout2
+            Case 3
+                FormFLM.flmLayout = 3
+                'FormFLM.flmBackgroundImage = My.Resources.Layout3
+        End Select
+
+        If CheckBoxFLMBackgroundImage.Checked Then
+            FormFLM.BackgroundImage = ClassUtility.ChangeOpacity(FormFLM.flmBackgroundImage, 1)
+        Else
+            FormFLM.BackgroundImage = Nothing
+        End If
+
         FormFLM.FormFLM_Resize()
+        FormFLM.Refresh()
 
         If My.Computer.FileSystem.FileExists("FLM.ini") Then
             Try
                 System.IO.File.Delete("FLM.ini")
-                Dim file As System.IO.StreamWriter
 
-                file = My.Computer.FileSystem.OpenTextFileWriter("FLM.ini", True)
-
-                file.WriteLine("File di configurazione del programma FLM F.E.(E.L.) Layout Manager by gothrek")
-                file.WriteLine()
-                file.WriteLine("non editare il file, le sue impostazioni vengono gestite direttamente dal programma.")
-                file.WriteLine()
-                file.WriteLine("feelPath=" & TextBoxPathFeel.Text)
-                file.WriteLine("grafxEditorPath=" & TextBoxPathGraphEditor.Text)
-                file.WriteLine("templateLayoutIni=" & TextBoxTemplateLayoutIni.Text)
-                file.WriteLine("flmBackgroundImageCheck=" & CheckBoxFLMBackgroundImage.Checked)
-                file.WriteLine("flmLayout=" & FormFLM.flmLayout)
-
-                file.Close()
+                CreaFile()
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
         Else
-            Dim file As System.IO.StreamWriter
-
-            file = My.Computer.FileSystem.OpenTextFileWriter("FLM.ini", True)
-
-            file.WriteLine("File di configurazione del programma FLM F.E.(E.L.) Layout Manager by gothrek")
-            file.WriteLine()
-            file.WriteLine("non editare il file, le sue impostazioni vengono gestite direttamente dal programma.")
-            file.WriteLine()
-            file.WriteLine("feelPath=" & TextBoxPathFeel.Text)
-            file.WriteLine("grafxEditorPath=" & TextBoxPathGraphEditor.Text)
-            file.WriteLine("templateLayoutIni=" & TextBoxTemplateLayoutIni.Text)
-            file.WriteLine("flmBackgroundImageCheck=" & CheckBoxFLMBackgroundImage.Checked)
-            file.WriteLine("flmLayout=" & FormFLM.flmLayout)
-
-            file.Close()
+            CreaFile()
         End If
 
+        Dim usoFont As Font
+        usoFont = New Font(fontName, fontSize, fontStyle)
+        FormFLM.GroupBoxObj.Font = usoFont
+        FormFLM.GroupBoxObj.ForeColor = Color.FromName(fontColor)
+        FormFLM.GroupBoxObj.Refresh()
+
+        FormFLM.GroupBoxProprietà.Font = usoFont
+        FormFLM.GroupBoxProprietà.ForeColor = Color.FromName(fontColor)
+        FormFLM.GroupBoxProprietà.Refresh()
+
+        usoFont = New Font(fontName, fontSize - 4, FontStyle.Regular)
+        FormFLM.ListBoxObj.Font = usoFont
+        FormFLM.ListBoxObj.Refresh()
+
         Me.Close()
+    End Sub
+
+    Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
+        Me.Close()
+    End Sub
+
+    Private Sub CreaFile()
+        Dim file As System.IO.StreamWriter
+
+        file = My.Computer.FileSystem.OpenTextFileWriter("FLM.ini", True)
+
+        file.WriteLine("File di configurazione del programma FLM F.E.(E.L.) Layout Manager by gothrek")
+        file.WriteLine()
+        file.WriteLine("non editare il file, le sue impostazioni vengono gestite direttamente dal programma.")
+        file.WriteLine()
+        file.WriteLine("feelPath=" & TextBoxPathFeel.Text)
+        file.WriteLine("grafxEditorPath=" & TextBoxPathGraphEditor.Text)
+        file.WriteLine("templateLayoutIni=" & TextBoxTemplateLayoutIni.Text)
+        file.WriteLine("fontIntestazioniName=" & fontName)
+        file.WriteLine("fontIntestazioniSize=" & fontSize)
+        file.WriteLine("fontIntestazioniStyle=" & fontStyle)
+        file.WriteLine("fontIntestazioniColor=" & fontColor)
+        file.WriteLine("flmBackgroundImageCheck=" & CheckBoxFLMBackgroundImage.Checked)
+        file.WriteLine("flmLayout=" & usoLayout)
+
+        file.Close()
     End Sub
 
 End Class

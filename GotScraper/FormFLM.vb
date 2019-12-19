@@ -5,6 +5,11 @@
     Public flmBackgroundImageCheck As Boolean = True
     Public flmBackgroundImage As Image = My.Resources.bartop1280_800
 
+    Public fontIntestazioni As String = "Arial"
+    Public fontIntestazioniSize As Single = 8
+    Public fontIntestazioniStyle As FontStyle = 0
+    Public fontIntestazioniColor As String = "Red"
+
     Public templateLayoutIni As String = "Default"
     Public flmLayout As Integer = 1
 
@@ -52,6 +57,26 @@
             usoStringa = file.Substring(inizioStringa)
             fineStringa = usoStringa.IndexOf(vbCrLf)
             templateLayoutIni = usoStringa.Substring(0, fineStringa)
+
+            inizioStringa = file.IndexOf("fontIntestazioniName=") + 21
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontIntestazioni = usoStringa.Substring(0, fineStringa)
+
+            inizioStringa = file.IndexOf("fontIntestazioniSize=") + 21
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontIntestazioniSize = Int(usoStringa.Substring(0, fineStringa))
+
+            inizioStringa = file.IndexOf("fontIntestazioniStyle=") + 22
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontIntestazioniStyle = Int(usoStringa.Substring(0, fineStringa))
+
+            inizioStringa = file.IndexOf("fontIntestazioniColor=") + 22
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontIntestazioniColor = usoStringa.Substring(0, fineStringa)
 
             inizioStringa = file.IndexOf("flmBackgroundImageCheck=") + 24
             usoStringa = file.Substring(inizioStringa)
@@ -102,8 +127,15 @@
             file.Close()
         End If
 
-        dtOptionsLayout = New DataTable("Options")
-        dtRisoluzioni = New DataTable("Risoluzioni")
+        Dim usoFont As Font
+        usoFont = New Font(fontIntestazioni, fontIntestazioniSize, fontIntestazioniStyle)
+        GroupBoxObj.Font = usoFont
+        GroupBoxObj.ForeColor = Color.FromName(fontIntestazioniColor)
+        GroupBoxProprietà.Font = usoFont
+        GroupBoxProprietà.ForeColor = Color.FromName(fontIntestazioniColor)
+
+        usoFont = New Font(fontIntestazioni, fontIntestazioniSize - 4, FontStyle.Regular)
+        ListBoxObj.Font = usoFont
 
         If flmBackgroundImageCheck Then
             Me.BackgroundImage = ClassUtility.ChangeOpacity(flmBackgroundImage, 1)
@@ -111,12 +143,16 @@
             Me.BackgroundImage = Nothing
         End If
 
+        dtOptionsLayout = New DataTable("Options")
+
         formDimensioni = Me.Size
 
         LabelPercorso.Text = feelPath
 
         LabelSoundPath2.Text = feelPath & "\media"
         LabelMusic_path.Text = feelPath & "\media"
+
+        dtRisoluzioni = New DataTable("Risoluzioni")
 
         dtRisoluzioni.Columns.Add("Risoluzione", Type.GetType("System.String"))
         dtRisoluzioni.Columns.Add("x", Type.GetType("System.String"))
@@ -445,132 +481,101 @@
                 Case 1
                     GroupBoxProprietà.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
                     GroupBoxProprietà.Location = New Point(12, 41)
-                    'GroupBoxProprietà.Refresh()
 
                     GroupBoxObj.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
                     GroupBoxObj.Location = New Point(Me.Size.Width - Int(Me.Size.Width * 20 / 100) - 20, GroupBoxObj.Location.Y) 'TODO personalizzare il valore -20=20% della nuova dimensione a 12+8di bord form
-                    'GroupBoxObj.Refresh()
 
                     PanelMainMaster.Size = New Size(Int(Me.Size.Width * 50 / 100), Int(Me.Size.Height * 60 / 100)) 'Il pannello è il 50%W e il 60%H
                     PanelMainMaster.Location = New Point(Int(Me.Size.Width * 24.683544303797468 / 100) + 8, Int(Me.Size.Height * 14.5 / 100))
-                    'PanelMainMaster.Refresh()
+
+                    PanelMain.Size = PanelBackground.Size
+                    PanelMain.Location = New Point(Int((PanelMainMaster.Size.Width - PanelBackground.Size.Width) / 2), PanelMain.Location.Y)
 
                     LabelScreenRisoluzione.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y - 16)
-                    'LabelScreenRisoluzione.Refresh()
 
                     LabelPannello.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Location.X * 50 / 100), PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
-                    'LabelPannello.Refresh()
 
                     LabelPannelloMainY.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Size.Width / 2), PanelMainMaster.Location.Y - 16)
-                    'LabelPannelloMainY.Refresh()
 
                     ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
-                    'ButtonPannelloMainReset.Refresh()
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
-                    'LabelPercorso.Refresh()
 
                     PanelZoom.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - PanelZoom.Size.Width, Me.Size.Height - 68 - 39)
-                    'PanelZoom.Refresh()
 
                     ButtonCarica.Location = New Point(12, 1)
-                    'ButtonCarica.Refresh()
 
                     ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
-                    'ButtonPainter.Refresh()
 
                     ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
-                    'ButtonPubblica.Refresh()
 
                     ButtonFLMOptions.Location = New Point(Me.Size.Width - ButtonFLMOptions.Size.Width - 12 - 8, ButtonCarica.Location.Y)
-                    'ButtonFLMOptions.Refresh()
 
                     ButtonAnteprima.Location = New Point(ButtonFLMOptions.Location.X - ButtonAnteprima.Size.Width - 6, ButtonCarica.Location.Y)
-                    'ButtonAnteprima.Refresh()
 
                     LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
-                    'LabelPosizioneMouse.Refresh()
                 Case 2
                     GroupBoxObj.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
                     GroupBoxObj.Location = New Point(12, 41) 'TODO personalizzare il valore -20=20% della nuova dimensione a 12+8di bord form
-                    'GroupBoxObj.Refresh()
 
                     GroupBoxProprietà.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
                     GroupBoxProprietà.Location = New Point(GroupBoxObj.Location.X + GroupBoxObj.Size.Width + 12, GroupBoxObj.Location.Y)
-                    'GroupBoxProprietà.Refresh()
 
                     PanelMainMaster.Size = New Size(Int(Me.Size.Width * 50 / 100), Int(Me.Size.Height * 60 / 100)) 'Il pannello è il 50%W e il 60%H
                     PanelMainMaster.Location = New Point(GroupBoxProprietà.Location.X + GroupBoxProprietà.Size.Width + 53, Int(Me.Size.Height * 14.5 / 100))
-                    'PanelMainMaster.Refresh()
+
+                    PanelMain.Size = PanelBackground.Size
+                    PanelMain.Location = New Point(Int((PanelMainMaster.Size.Width - PanelBackground.Size.Width) / 2), PanelMain.Location.Y)
 
                     LabelScreenRisoluzione.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y - 16)
-                    'LabelScreenRisoluzione.Refresh()
 
                     LabelPannello.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Location.X * 50 / 100), PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
-                    'LabelPannello.Refresh()
 
                     LabelPannelloMainY.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Size.Width / 2), PanelMainMaster.Location.Y - 16)
-                    'LabelPannelloMainY.Refresh()
 
                     ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
-                    'ButtonPannelloMainReset.Refresh()
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
-                    'LabelPercorso.Refresh()
 
                     PanelZoom.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - PanelZoom.Size.Width, Me.Size.Height - 68 - 39)
-                    'PanelZoom.Refresh()
 
                     ButtonCarica.Location = New Point(12, 1)
-                    'ButtonCarica.Refresh()
 
                     ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
-                    'ButtonPainter.Refresh()
 
                     ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
-                    'ButtonPubblica.Refresh()
 
                     ButtonFLMOptions.Location = New Point(Me.Size.Width - ButtonFLMOptions.Size.Width - 12 - 8, ButtonCarica.Location.Y)
-                    'ButtonFLMOptions.Refresh()
 
                     ButtonAnteprima.Location = New Point(ButtonFLMOptions.Location.X - ButtonAnteprima.Size.Width - 6, ButtonCarica.Location.Y)
-                    'ButtonAnteprima.Refresh()
 
                     LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
-                    'LabelPosizioneMouse.Refresh()
                 Case 3
+                    'groupobj
+                    'groupproprietà
+                    'panelmainmaster
+
                     LabelScreenRisoluzione.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y - 16)
-                    'LabelScreenRisoluzione.Refresh()
 
                     LabelPannello.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Location.X * 50 / 100), PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
-                    'LabelPannello.Refresh()
 
                     LabelPannelloMainY.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Size.Width / 2), PanelMainMaster.Location.Y - 16)
-                    'LabelPannelloMainY.Refresh()
 
                     ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
-                    'ButtonPannelloMainReset.Refresh()
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
-                    'LabelPercorso.Refresh()
 
                     ButtonCarica.Location = New Point(12, 1)
-                    'ButtonCarica.Refresh()
 
                     ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
-                    'ButtonPainter.Refresh()
 
                     ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
-                    'ButtonPubblica.Refresh()
 
                     ButtonFLMOptions.Location = New Point(Me.Size.Width - ButtonFLMOptions.Size.Width - 12 - 8, ButtonCarica.Location.Y)
-                    'ButtonFLMOptions.Refresh()
 
                     ButtonAnteprima.Location = New Point(ButtonFLMOptions.Location.X - ButtonAnteprima.Size.Width - 6, ButtonCarica.Location.Y)
-                    'ButtonAnteprima.Refresh()
 
                     LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
-                    'LabelPosizioneMouse.Refresh()
                 Case Else
 
             End Select
@@ -591,81 +596,22 @@
     End Sub
 
     Private Sub ButtonFLMOptions_Click(sender As Object, e As EventArgs) Handles ButtonFLMOptions.Click
-        FormFLMoptions.Show()
+        FormFLMoptions.ShowDialog()
     End Sub
 
     Private Sub ButtonAnteprima_Click(sender As Object, e As EventArgs) Handles ButtonAnteprima.Click
-        'TODO caricare anche le immagini per simulare l'effetto vero
         'da svolgere in thread diverso
         'FormUsoBackground.Show()
-
-
-        '--- Metodo1 inizio ---
-        Dim file As System.IO.StreamWriter
-
-        Try
-            If My.Computer.FileSystem.FileExists("layoutAnteprima.ini") Then
-                My.Computer.FileSystem.DeleteFile("layoutAnteprima.ini")
-            End If
-        Catch ex As Exception
-
-        End Try
-
-        file = My.Computer.FileSystem.OpenTextFileWriter("layoutAnteprima.ini", True)
-
-        ValoriInTabella()
-
-        For Each dato As DataColumn In dtOptionsLayout.Columns
-
-            Dim riga As String
-            Dim usoTab As String = dato.ColumnName.Substring(0, dato.ColumnName.IndexOf("_"))
-
-            Try
-                Dim oggettoColoreFont As Color = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("Label" & dato.ColumnName).ForeColor
-
-                riga = dato.ColumnName
-                If oggettoColoreFont = Color.Green Then
-                    riga = "#" & riga
-                End If
-
-                For i As Integer = 1 To 40 - riga.Length
-                    riga &= " "
-                Next
-
-                riga &= dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(dato.Caption)
-                file.WriteLine(riga)
-            Catch ex As Exception
-
-            End Try
-
-            Try
-                Dim oggettoColoreFont As Color = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("CheckBox" & dato.ColumnName).ForeColor
-
-                riga = dato.ColumnName
-                If oggettoColoreFont = Color.Green Then
-                    riga = "#" & riga
-                End If
-
-                For i As Integer = 1 To 40 - riga.Length
-                    riga &= " "
-                Next
-
-                riga &= dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(dato.Caption)
-                file.WriteLine(riga)
-            Catch ex As Exception
-
-            End Try
-
-        Next
-
-        file.Close()
-        '--- Metodo1 fine ---
 
         '--- Metodo2 inizio ---
         ValoriInTabella()
         '--- Metodo2 fine ---
 
-        FormFLManteprima.Show() 'o lanciare programma esterno
+        FormFLManteprimaV2.Show() 'o lanciare programma esterno
+    End Sub
+
+    Private Sub ButtonAnteprimaOld_Click(sender As Object, e As EventArgs) Handles ButtonAnteprimaOld.Click
+        FormFLManteprima.Show()
     End Sub
 
     Private Sub LabelCarica_DoubleClick(sender As Object, e As EventArgs) Handles LabelPercorso.DoubleClick
@@ -686,9 +632,10 @@
         Dim cartella As String = ""
         Dim folder As DirectoryInfo
         Dim file As System.IO.StreamReader
+        Dim campiDisabilitati As ArrayList = New ArrayList
 
-        FolderBrowserDialog1.SelectedPath = LabelPercorso.Text & "\layouts\"
-        If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
+        FolderBrowserDialog1.SelectedPath = feelPath & "\layouts\"
+        If (FolderBrowserDialog1.ShowDialog() = DialogResult.OK) And My.Computer.FileSystem.FileExists(FolderBrowserDialog1.SelectedPath & "\" & "layout.ini") Then
             cartella = FolderBrowserDialog1.SelectedPath
 
             LabelPercorso.Text = cartella
@@ -703,10 +650,15 @@
             While Not file.EndOfStream
                 Try
                     Dim riga As String = file.ReadLine
-                    Dim campo As String = riga.Substring(0, riga.IndexOf(" "))
-                    Dim valore As String = riga.Substring(40)
 
-                    dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(campo) = valore
+                    If riga.Substring(0, 1) = "#" Then
+                        campiDisabilitati.Add(riga.Substring(1, riga.IndexOf(" ") - 1))
+                    Else
+                        Dim campo As String = riga.Substring(0, riga.IndexOf(" "))
+                        Dim valore As String = riga.Substring(40)
+
+                        dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(campo) = valore
+                    End If
                 Catch ex As Exception
 
                 End Try
@@ -714,1140 +666,1177 @@
 
             Try
                 TextBoxSound_fx_list.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_list")
+                LabelSound_fx_list.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelSound_fx_list.ForeColor = Color.Green
             End Try
             Try
                 TextBoxSound_fx_menu.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_menu")
+                LabelSound_fx_menu.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelSound_fx_menu.ForeColor = Color.Green
             End Try
             Try
                 TextBoxSound_fx_confirm.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_confirm")
+                LabelSound_fx_confirm.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelSound_fx_confirm.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxSound_fx_cancel.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_cancel")
+                LabelSound_fx_cancel.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelSound_fx_cancel.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxSound_fx_startemu.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_startemu")
+                LabelSound_fx_startemu.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelSound_fx_startemu.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxSound_fx_volume.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_volume")
+                LabelSound_fx_volume.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelSound_fx_volume.ForeColor = Color.Green
             End Try
 
             Try
                 TextBoxMusic_path.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("music_path")
+                LabelMusic_path.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMusic_path.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMusic_volume.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("music_volume")
+                LabelMusic_volume.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMusic_volume.ForeColor = Color.Green
             End Try
 
             Try
                 TextBoxScreen_res_x.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("screen_res_x")
+                LabelScreen_res_x.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelScreen_res_x.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxScreen_res_y.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("screen_res_y")
+                LabelScreen_res_y.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelScreen_res_y.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxScreen_saver_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("screen_saver_backcolor")
+                LabelScreen_saver_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelScreen_saver_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxScreen_saver_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("screen_saver_font_color")
-
+                LabelScreen_saver_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelScreen_saver_font_color.ForeColor = Color.Green
             End Try
 
             Try
                 TextBoxRomlist_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_x_pos")
+                LabelRomlist_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_y_pos")
+                LabelRomlist_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_width")
+                LabelRomlist_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_height")
+                LabelRomlist_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_font_name")
+                LabelRomlist_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_item_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_item_height")
+                LabelRomlist_item_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_item_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_font_size")
+                LabelRomlist_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_font_style")
+                LabelRomlist_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_font_color")
+                LabelRomlist_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_backcolor")
+                LabelRomlist_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_selected_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_selected_font_color")
+                LabelRomlist_selected_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_selected_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_selected_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_selected_backcolor")
+                LabelRomlist_selected_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_selected_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomlist_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_text_align")
+                LabelRomlist_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomlist_text_align.ForeColor = Color.Green
             End Try
-
             Try
                 CheckBoxRomlist_disable_stars.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romlist_disable_stars"))
+                CheckBoxRomlist_disable_stars.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxRomlist_disable_stars.ForeColor = Color.Green
             End Try
 
             Try
                 TextBoxBackground_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("background_width")
+                LabelBackground_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelBackground_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxBackground_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("background_height")
+                LabelBackground_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelBackground_height.ForeColor = Color.Green
             End Try
-
             Try
                 CheckBoxBackground_ontop.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("background_ontop"))
+                CheckBoxBackground_ontop.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxBackground_ontop.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxBackground_frame_duration_ms.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("background_frame_duration_ms")
+                LabelBackground_frame_duration_ms.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelBackground_frame_duration_ms.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxBackground_repeat_delay_ms.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("background_repeat_delay_ms")
+                LabelBackground_repeat_delay_ms.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelBackground_repeat_delay_ms.ForeColor = Color.Green
             End Try
-
             Try
                 Dim bm As Bitmap
-
                 bm = ClassUtility.ChangeOpacity(Image.FromFile(LabelPercorso.Text & "\main.png"), TrackBarPanelBackgroundImage.Value / 100)
-
                 PanelBackground.BackgroundImage = bm
                 PanelBackground.Refresh()
             Catch ex As Exception
-
             End Try
 
             Try
                 TextBoxSnapshot_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("snapshot_x_pos")
+                LabelSnapshot_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelSnapshot_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxSnapshot_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("snapshot_y_pos")
+                LabelSnapshot_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelSnapshot_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxSnapshot_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("snapshot_width")
+                LabelSnapshot_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelSnapshot_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxSnapshot_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("snapshot_height")
+                LabelSnapshot_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelSnapshot_height.ForeColor = Color.Green
             End Try
-
             Try
                 CheckBoxSnapshot_stretch.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("snapshot_stretch"))
+                CheckBoxSnapshot_stretch.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxSnapshot_stretch.ForeColor = Color.Green
             End Try
-
             Try
                 CheckBoxSnapshot_blackbackground.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("snapshot_blackbackground"))
+                CheckBoxSnapshot_blackbackground.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxSnapshot_blackbackground.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxCabinet_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("cabinet_visible"))
+                CheckBoxCabinet_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxCabinet_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxCabinet_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("cabinet_x_pos")
+                LabelCabinet_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelCabinet_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxCabinet_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("cabinet_y_pos")
+                LabelCabinet_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelCabinet_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxCabinet_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("cabinet_width")
+                LabelCabinet_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelCabinet_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxCabinet_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("cabinet_height")
+                LabelCabinet_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelCabinet_height.ForeColor = Color.Green
             End Try
-
             Try
                 CheckBoxCabinet_stretch.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("cabinet_stretch"))
+                CheckBoxCabinet_stretch.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxCabinet_stretch.ForeColor = Color.Green
             End Try
-
             Try
                 CheckBoxCabinet_blackbackground.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("cabinet_blackbackground"))
+                CheckBoxCabinet_blackbackground.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxCabinet_blackbackground.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxMarquee_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("marquee_visible"))
+                CheckBoxMarquee_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxMarquee_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMarquee_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("marquee_x_pos")
+                LabelMarquee_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMarquee_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMarquee_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("marquee_y_pos")
+                LabelMarquee_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMarquee_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMarquee_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("marquee_width")
+                LabelMarquee_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMarquee_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMarquee_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("marquee_height")
+                LabelMarquee_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMarquee_height.ForeColor = Color.Green
             End Try
-
             Try
                 CheckBoxMarquee_stretch.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("marquee_stretch"))
+                CheckBoxMarquee_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxMarquee_visible.ForeColor = Color.Green
             End Try
-
             Try
                 CheckBoxMarquee_blackbackground.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("marquee_blackbackground"))
+                CheckBoxMarquee_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxMarquee_visible.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxRomcounter_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_visible"))
+                CheckBoxRomcounter_visible.ForeColor = Color.Black
             Catch ex As Exception
-
-
+                CheckBoxRomcounter_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcounter_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_x_pos")
+                LabelRomcounter_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcounter_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcounter_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_y_pos")
+                LabelRomcounter_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcounter_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcounter_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_width")
+                LabelRomcounter_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcounter_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcounter_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_height")
+                LabelRomcounter_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcounter_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcounter_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_font_name")
+                LabelRomcounter_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcounter_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcounter_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_font_size")
+                LabelRomcounter_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcounter_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcounter_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_font_style")
+                LabelRomcounter_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcounter_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcounter_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_font_color")
+                LabelRomcounter_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcounter_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcounter_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_backcolor")
+                LabelRomcounter_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcounter_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcounter_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcounter_text_align")
+                LabelRomcounter_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcounter_text_align.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxPlatformname_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_visible"))
+                CheckBoxPlatformname_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxPlatformname_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxPlatformname_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_x_pos")
+                LabelPlatformname_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelPlatformname_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxPlatformname_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_y_pos")
+                LabelPlatformname_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelPlatformname_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxPlatformname_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_width")
+                LabelPlatformname_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelPlatformname_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxPlatformname_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_height")
+                LabelPlatformname_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelPlatformname_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxPlatformname_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_font_name")
+                LabelPlatformname_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelPlatformname_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxPlatformname_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_font_size")
+                LabelPlatformname_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelPlatformname_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxPlatformname_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_font_style")
+                LabelPlatformname_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelPlatformname_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxPlatformname_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_font_color")
+                LabelPlatformname_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelPlatformname_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxPlatformname_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_backcolor")
+                LabelPlatformname_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelPlatformname_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxPlatformname_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("platformname_text_align")
+                LabelPlatformname_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelPlatformname_text_align.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxEmulatorname_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_visible"))
+                CheckBoxEmulatorname_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxEmulatorname_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxEmulatorname_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_x_pos")
+                LabelEmulatorname_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelEmulatorname_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxEmulatorname_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_y_pos")
+                LabelEmulatorname_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelEmulatorname_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxEmulatorname_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_width")
+                LabelEmulatorname_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelEmulatorname_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxEmulatorname_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_height")
+                LabelEmulatorname_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelEmulatorname_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxEmulatorname_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_font_name")
+                LabelEmulatorname_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelEmulatorname_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxEmulatorname_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_font_size")
+                LabelEmulatorname_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelEmulatorname_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxEmulatorname_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_font_style")
+                LabelEmulatorname_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelEmulatorname_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxEmulatorname_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_font_color")
+                LabelEmulatorname_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelEmulatorname_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxEmulatorname_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_backcolor")
+                LabelEmulatorname_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelEmulatorname_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxEmulatorname_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("emulatorname_text_align")
+                LabelEmulatorname_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelEmulatorname_text_align.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxGamelistname_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_visible"))
+                CheckBoxGamelistname_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxGamelistname_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxGamelistname_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_x_pos")
+                LabelGamelistname_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelGamelistname_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxGamelistname_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_y_pos")
+                LabelGamelistname_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelGamelistname_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxGamelistname_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_width")
+                LabelGamelistname_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelGamelistname_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxGamelistname_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_height")
+                LabelGamelistname_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelGamelistname_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxGamelistname_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_font_name")
+                LabelGamelistname_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelGamelistname_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxGamelistname_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_font_size")
+                LabelGamelistname_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelGamelistname_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxGamelistname_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_font_style")
+                LabelGamelistname_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelGamelistname_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxGamelistname_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_font_color")
+                LabelGamelistname_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelGamelistname_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxGamelistname_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_backcolor")
+                LabelGamelistname_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelGamelistname_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxGamelistname_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("gamelistname_text_align")
+                LabelGamelistname_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelGamelistname_text_align.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxRomname_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_visible"))
+                CheckBoxRomname_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxRomname_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomname_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_x_pos")
+                LabelRomname_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomname_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomname_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_y_pos")
+                LabelRomname_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomname_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomname_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_width")
+                LabelRomname_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomname_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomname_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_height")
+                LabelRomname_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomname_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomname_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_font_name")
+                LabelRomname_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomname_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomname_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_font_size")
+                LabelRomname_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomname_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomname_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_font_style")
+                LabelRomname_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomname_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomname_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_font_color")
+                LabelRomname_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomname_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomname_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_backcolor")
+                LabelRomname_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomname_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomname_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romname_text_align")
+                LabelRomname_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomname_text_align.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxRomdescription_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_visible"))
+                CheckBoxRomdescription_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxRomdescription_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdescription_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_x_pos")
+                LabelRomdescription_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdescription_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdescription_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_y_pos")
+                LabelRomdescription_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdescription_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdescription_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_width")
+                LabelRomdescription_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdescription_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdescription_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_height")
+                LabelRomdescription_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdescription_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdescription_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_font_name")
+                LabelRomdescription_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdescription_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdescription_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_font_size")
+                LabelRomdescription_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdescription_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdescription_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_font_style")
+                LabelRomdescription_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdescription_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdescription_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_font_color")
+                LabelRomdescription_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdescription_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdescription_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_backcolor")
+                LabelRomdescription_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdescription_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdescription_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdescription_text_align")
+                LabelRomdescription_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdescription_text_align.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxRommanufacturer_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_visible"))
+                CheckBoxRommanufacturer_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxRommanufacturer_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRommanufacturer_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_x_pos")
+                LabelRommanufacturer_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRommanufacturer_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRommanufacturer_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_y_pos")
+                LabelRommanufacturer_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRommanufacturer_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRommanufacturer_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_width")
+                LabelRommanufacturer_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRommanufacturer_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRommanufacturer_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_height")
+                LabelRommanufacturer_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRommanufacturer_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRommanufacturer_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_font_name")
+                LabelRommanufacturer_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRommanufacturer_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRommanufacturer_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_font_size")
+                LabelRommanufacturer_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRommanufacturer_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRommanufacturer_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_font_style")
+                LabelRommanufacturer_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRommanufacturer_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRommanufacturer_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_font_color")
+                LabelRommanufacturer_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRommanufacturer_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRommanufacturer_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_backcolor")
+                LabelRommanufacturer_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRommanufacturer_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRommanufacturer_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rommanufacturer_text_align")
+                LabelRommanufacturer_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRommanufacturer_text_align.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxRomdisplaytype_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_visible"))
+                CheckBoxRomdisplaytype_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxRomdisplaytype_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdisplaytype_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_x_pos")
+                LabelRomdisplaytype_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdisplaytype_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdisplaytype_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_y_pos")
+                LabelRomdisplaytype_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdisplaytype_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdisplaytype_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_width")
+                LabelRomdisplaytype_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdisplaytype_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdisplaytype_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_height")
+                LabelRomdisplaytype_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdisplaytype_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdisplaytype_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_font_name")
+                LabelRomdisplaytype_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdisplaytype_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdisplaytype_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_font_size")
+                LabelRomdisplaytype_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdisplaytype_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdisplaytype_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_font_style")
+                LabelRomdisplaytype_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdisplaytype_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdisplaytype_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_font_color")
+                LabelRomdisplaytype_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdisplaytype_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdisplaytype_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_backcolor")
+                LabelRomdisplaytype_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdisplaytype_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomdisplaytype_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romdisplaytype_text_align")
+                LabelRomdisplaytype_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomdisplaytype_text_align.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxRominputcontrol_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_visible"))
+                CheckBoxRominputcontrol_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxRominputcontrol_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRominputcontrol_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_x_pos")
+                LabelRominputcontrol_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRominputcontrol_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRominputcontrol_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_y_pos")
+                LabelRominputcontrol_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRominputcontrol_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRominputcontrol_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_width")
+                LabelRominputcontrol_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRominputcontrol_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRominputcontrol_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_height")
+                LabelRominputcontrol_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRominputcontrol_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRominputcontrol_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_font_name")
+                LabelRominputcontrol_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRominputcontrol_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRominputcontrol_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_font_size")
+                LabelRominputcontrol_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRominputcontrol_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRominputcontrol_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_font_style")
+                LabelRominputcontrol_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRominputcontrol_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRominputcontrol_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_font_color")
+                LabelRominputcontrol_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRominputcontrol_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRominputcontrol_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_backcolor")
+                LabelRominputcontrol_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRominputcontrol_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRominputcontrol_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("rominputcontrol_text_align")
+                LabelRominputcontrol_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRominputcontrol_text_align.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxRomstatus_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_visible"))
+                CheckBoxRomstatus_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxRomstatus_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomstatus_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_x_pos")
+                LabelRomstatus_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomstatus_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomstatus_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_y_pos")
+                LabelRomstatus_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomstatus_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomstatus_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_width")
+                LabelRomstatus_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomstatus_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomstatus_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_height")
+                LabelRomstatus_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomstatus_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomstatus_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_font_name")
+                LabelRomstatus_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomstatus_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomstatus_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_font_size")
+                LabelRomstatus_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomstatus_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomstatus_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_font_style")
+                LabelRomstatus_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomstatus_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomstatus_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_font_color")
+                LabelRomstatus_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomstatus_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomstatus_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_backcolor")
+                LabelRomstatus_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomstatus_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomstatus_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romstatus_text_align")
+                LabelRomstatus_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomstatus_text_align.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxRomcategory_visible.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_visible"))
+                CheckBoxRomcategory_visible.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxRomcategory_visible.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcategory_x_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_x_pos")
+                LabelRomcategory_x_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcategory_x_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcategory_y_pos.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_y_pos")
+                LabelRomcategory_y_pos.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcategory_y_pos.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcategory_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_width")
+                LabelRomcategory_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcategory_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcategory_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_height")
+                LabelRomcategory_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcategory_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcategory_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_font_name")
+                LabelRomcategory_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcategory_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcategory_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_font_size")
+                LabelRomcategory_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcategory_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcategory_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_font_style")
+                LabelRomcategory_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcategory_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcategory_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_font_color")
+                LabelRomcategory_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcategory_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcategory_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_backcolor")
+                LabelRomcategory_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcategory_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxRomcategory_text_align.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("romcategory_text_align")
+                LabelRomcategory_text_align.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelRomcategory_text_align.ForeColor = Color.Green
             End Try
 
             Try
                 TextBoxMenu_width.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("menu_width")
+                LabelMenu_width.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMenu_width.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMenu_item_height.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("menu_item_height")
+                LabelMenu_item_height.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMenu_item_height.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMenu_font_name.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("menu_font_name")
+                LabelMenu_font_name.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMenu_font_name.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMenu_font_size.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("menu_font_size")
+                LabelMenu_font_size.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMenu_font_size.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMenu_font_style.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("menu_font_style")
+                LabelMenu_font_style.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMenu_font_style.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMenu_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("menu_font_color")
+                LabelMenu_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMenu_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMenu_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("menu_backcolor")
+                LabelMenu_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMenu_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMenu_selected_font_color.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("menu_selected_font_color")
+                LabelMenu_selected_font_color.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMenu_selected_font_color.ForeColor = Color.Green
             End Try
-
             Try
                 TextBoxMenu_selected_backcolor.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("menu_selected_backcolor")
+                LabelMenu_selected_backcolor.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelMenu_selected_backcolor.ForeColor = Color.Green
             End Try
-
             Try
                 CheckBoxMenu_show_sidebar.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("menu_show_sidebar"))
+                CheckBoxMenu_show_sidebar.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxMenu_show_sidebar.ForeColor = Color.Green
             End Try
 
             Try
                 TextBoxActors_frame_duration_ms.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("actors_frame_duration_ms")
+                LabelActors_frame_duration_ms.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelActors_frame_duration_ms.ForeColor = Color.Green
             End Try
 
             Try
                 TextBoxActors_repeat_delay_ms.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("actors_repeat_delay_ms")
+                LabelActors_repeat_delay_ms.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelActors_repeat_delay_ms.ForeColor = Color.Green
             End Try
 
             Try
                 TextBoxBezel_frame_duration_ms.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("bezel_frame_duration_ms")
+                LabelBezel_frame_duration_ms.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelBezel_frame_duration_ms.ForeColor = Color.Green
             End Try
 
             Try
                 TextBoxBezel_repeat_delay_ms.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("bezel_repeat_delay_ms")
+                LabelBezel_repeat_delay_ms.ForeColor = Color.Black
             Catch ex As Exception
-
+                LabelBezel_repeat_delay_ms.ForeColor = Color.Green
             End Try
 
             Try
                 CheckBoxShow_extended_messages.Checked = Int(dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("show_extended_messages"))
+                CheckBoxShow_extended_messages.ForeColor = Color.Black
             Catch ex As Exception
-
+                CheckBoxShow_extended_messages.ForeColor = Color.Green
             End Try
 
             file.Close()
 
+            TabControlTemp.TabPages.Insert(tabSelezionata, TabControlProprietà.TabPages(0))
+
+            For Each elemento As String In campiDisabilitati
+                Try
+                    Dim usoTab As String = "TabPage" & elemento.Substring(0, elemento.IndexOf("_"))
+                    Dim usoLabel As Label = TabControlTemp.TabPages(usoTab).Controls.Item("Label" & elemento)
+                    usoLabel.ForeColor = Color.Green
+                Catch ex As Exception
+
+                End Try
+            Next
+
+            TabControlProprietà.TabPages.Add(TabControlTemp.TabPages(tabSelezionata))
+
             MsgBox("File layout.ini caricato!")
+        Else
+            MsgBox("Attenzione! verifica file layout.ini e percorso!")
         End If
 
     End Sub
@@ -1940,6 +1929,7 @@
             file.Close()
 
             TabControlProprietà.TabPages.Add(TabControlTemp.TabPages(tabSelezionata))
+
             MsgBox("File layout.ini scritto correttamente!")
         End If
     End Sub
@@ -2171,28 +2161,28 @@
 
     End Sub
 
-    Private Sub TabControlProprietà_Selected(sender As Object, e As TabControlEventArgs) Handles TabControlProprietà.Selected
-        'Dim usoOggetto As String = sender.selectedtab.name.ToString.Substring(7)
-        'Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
+    'Private Sub TabControlProprietà_Selected(sender As Object, e As TabControlEventArgs) Handles TabControlProprietà.Selected
+    '    'Dim usoOggetto As String = sender.selectedtab.name.ToString.Substring(7)
+    '    'Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
 
-        'If usoOggetto <> "Background" Then 'per il background non vogliamo che nasconda tutti gli altri oggetti
-        '    Try
-        '        For Each pannello As Control In PanelMain.Controls
-        '            pannello.BackColor = Color.FromArgb(50, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
-        '        Next
+    '    'If usoOggetto <> "Background" Then 'per il background non vogliamo che nasconda tutti gli altri oggetti
+    '    '    Try
+    '    '        For Each pannello As Control In PanelMain.Controls
+    '    '            pannello.BackColor = Color.FromArgb(50, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
+    '    '        Next
 
-        '        oggettoPanel.BackColor = Color.FromArgb(255, oggettoPanel.BackColor.R, oggettoPanel.BackColor.G, oggettoPanel.BackColor.B)
-        '    Catch ex As Exception
-        '        For Each pannello As Control In PanelMain.Controls
-        '            pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
-        '        Next
-        '    End Try
-        'Else
-        '    For Each pannello As Control In PanelMain.Controls
-        '        pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
-        '    Next
-        'End If
-    End Sub
+    '    '        oggettoPanel.BackColor = Color.FromArgb(255, oggettoPanel.BackColor.R, oggettoPanel.BackColor.G, oggettoPanel.BackColor.B)
+    '    '    Catch ex As Exception
+    '    '        For Each pannello As Control In PanelMain.Controls
+    '    '            pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
+    '    '        Next
+    '    '    End Try
+    '    'Else
+    '    '    For Each pannello As Control In PanelMain.Controls
+    '    '        pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
+    '    '    Next
+    '    'End If
+    'End Sub
 
     Private Sub ListBoxObj_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxObj.SelectedIndexChanged
         'TabControlProprietà.SelectedIndex = ListBoxObj.SelectedIndex + 1
@@ -2239,7 +2229,6 @@
     End Sub
 
     Private Sub TrackBarZoom_Scroll(sender As Object, e As EventArgs) Handles TrackBarZoom.Scroll
-
         LabelZoom.Text = sender.value & "%"
         LabelZoom.Refresh()
         TextBoxZoom.Text = sender.value
@@ -2265,7 +2254,7 @@
         Next
 
         PanelMain.Refresh()
-
+        FormFLM_Resize()
     End Sub
 
     Private Sub TextBoxZoom_TextChanged(sender As Object, e As EventArgs) Handles TextBoxZoom.TextChanged
@@ -2307,18 +2296,13 @@
         Dim posizione As Integer = Int((sender.size.height - grandezzaCaratteri) / 2) - 1
         Dim nomepannello As String = sender.name
 
-        'Dim bmp As New Bitmap(larghezza, altezza)
-        'Dim gr As Graphics = Graphics.FromImage(bmp)
         Try
-            'sender.controls("PictureBox" & nomepannello).BackColor = Color.Transparent
-
             If grandezzaCaratteri >= sender.size.height Then
                 grandezzaCaratteri = sender.size.height
                 posizione = -1
             End If
 
             Try
-                'gr.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, 0, posizione)
                 If sender.backcolor.a = 50 Then
                     e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), New SolidBrush(Color.FromArgb(50, 255, 0, 0)), 0, posizione)
                 Else
@@ -2333,10 +2317,6 @@
             Catch ex As Exception
 
             End Try
-
-            'sender.controls("PictureBox" & nomepannello).Image = bmp
-            'bmp.Dispose()
-            'gr.Dispose()
         Catch ex As Exception
 
         End Try
@@ -2369,10 +2349,8 @@
 
         If (x >= 0) And (x <= PanelBackground.Size.Width) And (y >= 0) And (y <= PanelBackground.Size.Height) Then
             LabelPosizioneMouse.Text = Int(x / TrackBarZoom.Value * 100) & " , " & Int(y / TrackBarZoom.Value * 100)
-            'LabelPosizioneMouse.Refresh()
         Else
             LabelPosizioneMouse.Text = "- , -"
-            'LabelPosizioneMouse.Refresh()
         End If
 
         LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
@@ -2468,19 +2446,16 @@
         ListBoxObj.SelectedItem = usoOggetto
 
         If e.Button = MouseButtons.Right Then
-
             TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
 
             sender.tag = Math.Abs(Int(sender.tag) - 1)
             sender.refresh
         Else
-
             TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
 
             pannelloLocation = sender.Location
             mouseCoordinate = MousePosition
         End If
-
     End Sub
 
     Private Sub Panel_MouseUp(sender As Object, e As MouseEventArgs) Handles PanelSnapshot.MouseUp,
@@ -2530,7 +2505,6 @@
             LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & sender.location.x & " , " & sender.location.y
             sender.focus()
         End If
-
     End Sub
 
     Private Sub Panel_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles PanelRomlist.PreviewKeyDown, PanelSnapshot.PreviewKeyDown, PanelRomstatus.PreviewKeyDown, PanelRomname.PreviewKeyDown, PanelRommanufacturer.PreviewKeyDown, PanelRominputcontrol.PreviewKeyDown, PanelRomdisplaytype.PreviewKeyDown, PanelRomdescription.PreviewKeyDown, PanelRomcounter.PreviewKeyDown, PanelRomcategory.PreviewKeyDown, PanelPlatformname.PreviewKeyDown, PanelMenu.PreviewKeyDown, PanelMarquee.PreviewKeyDown, PanelGamelistname.PreviewKeyDown, PanelEmulatorname.PreviewKeyDown, PanelCabinet.PreviewKeyDown
@@ -2619,7 +2593,6 @@
                                                                         TextBoxRomlist_y_pos.Enter, TextBoxRomlist_x_pos.Enter,
                                                                         TextBoxBackground_y_pos.Enter, TextBoxBackground_x_pos.Enter
 
-
         valorePrecedente = sender.Text
     End Sub
 
@@ -2684,7 +2657,6 @@
         Catch ex As Exception
 
         End Try
-
     End Sub
 
     Private Sub TextBox_y_pos_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSnapshot_y_pos.TextChanged,
@@ -2732,7 +2704,6 @@
         Catch ex As Exception
 
         End Try
-
     End Sub
 
     Private Sub TextBox_width_TextChanged(sender As Object, e As EventArgs) Handles TextBoxRomlist_width.TextChanged,
@@ -2769,7 +2740,6 @@
         Catch ex As Exception
 
         End Try
-
     End Sub
 
     Private Sub TextBox_height_TextChanged(sender As Object, e As EventArgs) Handles TextBoxRomlist_height.TextChanged,
@@ -2806,7 +2776,6 @@
         Catch ex As Exception
 
         End Try
-
     End Sub
 
     Private Sub TextBox_font_name_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxRomlist_font_name.DoubleClick, TextBoxRomlist_font_style.DoubleClick, TextBoxRomlist_font_style.Click, TextBoxRomlist_font_size.DoubleClick, TextBoxRomlist_font_size.Click, TextBoxRomlist_font_name.Click,
@@ -2856,7 +2825,6 @@
         oggettoLabel.Font = carattere
         oggettoLabel.Refresh()
         carattere.Dispose()
-
     End Sub
 
     Private Sub TextBox_font_name_TextChanged(sender As Object, e As EventArgs) Handles TextBoxRomlist_font_name.TextChanged, TextBoxRomlist_font_style.TextChanged, TextBoxRomlist_font_size.TextChanged,
@@ -2913,7 +2881,6 @@
         Catch ex As Exception
 
         End Try
-
     End Sub
 
     Private Sub TextBox_font_color_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxRomlist_font_color.DoubleClick, TextBoxRomlist_font_color.Click,
@@ -2945,7 +2912,6 @@
             sender.Text = coloreR & ", " & coloreG & ", " & coloreB
             sender.Refresh()
         End If
-
     End Sub
 
     Private Sub TextBox_font_color_TextChanged(sender As Object, e As EventArgs) Handles TextBoxScreen_saver_font_color.TextChanged, TextBoxScreen_saver_backcolor.TextChanged,
@@ -3027,7 +2993,6 @@
             oggettoPanel.BackColor = ColorDialog1.Color
             oggettoPanel.Refresh()
         End If
-
     End Sub
 
     Private Sub TextBox_backcolor_TextChanged(sender As Object, e As EventArgs) Handles TextBoxRomlist_backcolor.TextChanged,
@@ -3043,8 +3008,8 @@
                                                                                         TextBoxMenu_backcolor.TextChanged,
                                                                                         TextBoxGamelistname_backcolor.TextChanged,
                                                                                         TextBoxEmulatorname_backcolor.TextChanged
-        Try
 
+        Try
             Dim valori() As String = sender.text.ToString.Split(",")
 
             Dim coloreA As Integer = 255
@@ -3138,7 +3103,6 @@
             'oggettoTextBox = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoOggetto & "_height")
             'oggettoTextBox.Text = dtOptionsLayout.Rows(0).Item(usoOggetto & "_height")
         End Try
-
     End Sub
 
     Private Sub Label_MouseDown(sender As Object, e As MouseEventArgs) Handles LabelSound_fx_list.MouseDown, LabelSound_fx_volume.MouseDown, LabelSound_fx_startemu.MouseDown, LabelSound_fx_menu.MouseDown, LabelSound_fx_confirm.MouseDown, LabelSound_fx_cancel.MouseDown,
@@ -3190,8 +3154,6 @@
         Catch ex As Exception
             oggettoTextBox.TextAlign = 0
         End Try
-
-
     End Sub
 
     '----------------------------------------------------------------------------------------------
@@ -3201,7 +3163,6 @@
         OpenFileDialog1.InitialDirectory = LabelSoundPath2.Text
         OpenFileDialog1.ShowDialog()
         TextBoxSound_fx_list.Text = OpenFileDialog1.SafeFileName
-        TextBoxSound_fx_list.Refresh()
     End Sub
 
     Private Sub TextBoxSound_fx_menu_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxSound_fx_menu.DoubleClick
@@ -3209,7 +3170,6 @@
         OpenFileDialog1.InitialDirectory = LabelSoundPath2.Text
         OpenFileDialog1.ShowDialog()
         TextBoxSound_fx_menu.Text = OpenFileDialog1.SafeFileName
-        TextBoxSound_fx_menu.Refresh()
     End Sub
 
     Private Sub TextBoxSound_fx_confirm_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxSound_fx_confirm.DoubleClick
@@ -3217,7 +3177,6 @@
         OpenFileDialog1.InitialDirectory = LabelSoundPath2.Text
         OpenFileDialog1.ShowDialog()
         TextBoxSound_fx_confirm.Text = OpenFileDialog1.SafeFileName
-        TextBoxSound_fx_confirm.Refresh()
     End Sub
 
     Private Sub TextBoxSound_fx_cancel_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxSound_fx_cancel.DoubleClick
@@ -3225,7 +3184,6 @@
         OpenFileDialog1.InitialDirectory = LabelSoundPath2.Text
         OpenFileDialog1.ShowDialog()
         TextBoxSound_fx_cancel.Text = OpenFileDialog1.SafeFileName
-        TextBoxSound_fx_cancel.Refresh()
     End Sub
 
     Private Sub TextBoxSound_fx_startemu_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxSound_fx_startemu.DoubleClick
@@ -3233,7 +3191,6 @@
         OpenFileDialog1.InitialDirectory = LabelSoundPath2.Text
         OpenFileDialog1.ShowDialog()
         TextBoxSound_fx_startemu.Text = OpenFileDialog1.SafeFileName
-        TextBoxSound_fx_startemu.Refresh()
     End Sub
 
     Private Sub TextBoxSound_fx_volume_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSound_fx_volume.TextChanged
@@ -3241,11 +3198,9 @@
             If (Int(TextBoxSound_fx_volume.Text) >= 0) And (Int(TextBoxSound_fx_volume.Text) <= 100) Then
             Else
                 TextBoxSound_fx_volume.Text = valorePrecedente
-                TextBoxSound_fx_volume.Refresh()
             End If
         Catch ex As Exception
             TextBoxSound_fx_volume.Text = valorePrecedente
-            TextBoxSound_fx_volume.Refresh()
         End Try
     End Sub
 
@@ -3260,7 +3215,6 @@
         OpenFileDialog1.InitialDirectory = LabelMusic_path.Text
         OpenFileDialog1.ShowDialog()
         TextBoxMusic_path.Text = OpenFileDialog1.SafeFileName
-        TextBoxMusic_path.Refresh()
     End Sub
 
     Private Sub TextBoxMusic_volume_TextChanged(sender As Object, e As EventArgs) Handles TextBoxMusic_volume.TextChanged
@@ -3268,11 +3222,9 @@
             If (Int(TextBoxMusic_volume.Text) >= 0) And (Int(TextBoxMusic_volume.Text) <= 100) Then
             Else
                 TextBoxMusic_volume.Text = valorePrecedente
-                TextBoxMusic_volume.Refresh()
             End If
         Catch ex As Exception
             TextBoxMusic_volume.Text = valorePrecedente
-            TextBoxMusic_volume.Refresh()
         End Try
     End Sub
 
@@ -3286,48 +3238,34 @@
         pannelloMainLocation = New Point(PanelMain.Location.X + (MousePosition.X - mouseCoordinate.X), PanelMain.Location.Y + (MousePosition.Y) - mouseCoordinate.Y)
 
         PanelMain.Location = pannelloMainLocation
-        PanelMain.Refresh()
 
         LabelPannello.Text = "Pannello main X: " & pannelloMainLocation.X
-        LabelPannello.Refresh()
 
         LabelPannelloMainY.Text = "Pannello main Y: " & pannelloMainLocation.Y
-        LabelPannelloMainY.Refresh()
     End Sub
 
     Private Sub ButtonPannelloMainReset_Click(sender As Object, e As EventArgs) Handles ButtonPannelloMainReset.Click
         PanelMain.Location = New Point(0, 0)
-        PanelMain.Refresh()
 
         LabelPannello.Text = "Pannello main X: " & PanelMain.Location.X
-        LabelPannello.Refresh()
 
         LabelPannelloMainY.Text = "Pannello main Y: " & PanelMain.Location.Y
-        LabelPannelloMainY.Refresh()
     End Sub
-
 
     Private Sub ComboBoxRisoluzione_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxRisoluzione.SelectedIndexChanged
         TextBoxScreen_res_x.Text = ComboBoxRisoluzione.SelectedItem.row.item(1)
-        TextBoxScreen_res_x.Refresh()
         TextBoxScreen_res_y.Text = ComboBoxRisoluzione.SelectedItem.row.item(2)
-        TextBoxScreen_res_y.Refresh()
 
         TextBoxBackground_width.Text = TextBoxScreen_res_x.Text
-        TextBoxBackground_width.Refresh()
         TextBoxBackground_height.Text = TextBoxScreen_res_y.Text
-        TextBoxBackground_height.Refresh()
 
         LabelScreenRisoluzione.Text = "Main " & TextBoxScreen_res_x.Text & " x " & TextBoxScreen_res_y.Text
-        LabelScreenRisoluzione.Refresh()
 
         Try
             PanelMain.Size = New Size(Int(TextBoxScreen_res_x.Text), Int(TextBoxScreen_res_y.Text))
-            PanelMain.Refresh()
         Catch ex As Exception
 
         End Try
-
     End Sub
 
     Private Sub TextBoxScreen_res_x_TextChanged(sender As Object, e As EventArgs) Handles TextBoxScreen_res_x.TextChanged
@@ -3346,10 +3284,8 @@
 
             If esci Then
                 TextBoxScreen_res_x.BackColor = Color.Green
-                TextBoxScreen_res_x.Refresh()
             Else
                 TextBoxScreen_res_x.BackColor = Color.Red
-                TextBoxScreen_res_x.Refresh()
             End If
         Catch ex As Exception
 
@@ -3359,21 +3295,18 @@
             Int(TextBoxScreen_res_x.Text)
         Catch ex As Exception
             TextBoxScreen_res_x.Text = ComboBoxRisoluzione.SelectedItem.row.item(1)
-            TextBoxScreen_res_x.Refresh()
         End Try
 
         LabelScreenRisoluzione.Text = "Main " & TextBoxScreen_res_x.Text & " x " & TextBoxScreen_res_y.Text
-        LabelScreenRisoluzione.Refresh()
 
         Try
             PanelMain.Size = New Size(Int(TextBoxScreen_res_x.Text), Int(TextBoxScreen_res_y.Text))
-            PanelMain.Refresh()
         Catch ex As Exception
 
         End Try
 
         TextBoxBackground_width.Text = TextBoxScreen_res_x.Text
-        TextBoxBackground_width.Refresh()
+        FormFLM_Resize()
     End Sub
 
     Private Sub TextBoxScreen_res_y_TextChanged(sender As Object, e As EventArgs) Handles TextBoxScreen_res_y.TextChanged
@@ -3392,10 +3325,8 @@
 
             If esci Then
                 TextBoxScreen_res_x.BackColor = Color.Green
-                TextBoxScreen_res_x.Refresh()
             Else
                 TextBoxScreen_res_y.BackColor = Color.Red
-                TextBoxScreen_res_y.Refresh()
             End If
 
         Catch ex As Exception
@@ -3406,21 +3337,18 @@
             Int(TextBoxScreen_res_y.Text)
         Catch ex As Exception
             TextBoxScreen_res_y.Text = ComboBoxRisoluzione.SelectedItem.row.item(2)
-            TextBoxScreen_res_y.Refresh()
         End Try
 
         LabelScreenRisoluzione.Text = "Main " & TextBoxScreen_res_x.Text & " x " & TextBoxScreen_res_y.Text
-        LabelScreenRisoluzione.Refresh()
 
         Try
             PanelMain.Size = New Size(Int(TextBoxScreen_res_x.Text), Int(TextBoxScreen_res_y.Text))
-            PanelMain.Refresh()
         Catch ex As Exception
 
         End Try
 
         TextBoxBackground_height.Text = TextBoxScreen_res_y.Text
-        TextBoxBackground_height.Refresh()
+        FormFLM_Resize()
     End Sub
 
     Private Sub TextBoxScreen_saver_backcolor_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxScreen_saver_backcolor.DoubleClick, TextBoxScreen_saver_backcolor.Click
@@ -3434,13 +3362,11 @@
 
             TextBoxScreen_saver_backcolor.ForeColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
             TextBoxScreen_saver_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB
-            TextBoxScreen_saver_backcolor.Refresh()
         End If
     End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà RomList
-
     Private Sub TextBoxRomlist_selected_backcolor_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxRomlist_selected_backcolor.DoubleClick, TextBoxRomlist_selected_backcolor.Click
         If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
             TextBoxRomlist_selected_backcolor.BackColor = ColorDialog1.Color
@@ -3452,13 +3378,11 @@
 
             TextBoxRomlist_selected_backcolor.ForeColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
             TextBoxRomlist_selected_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB
-            TextBoxRomlist_selected_backcolor.Refresh()
         End If
     End Sub
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Background
-
     Private Sub PanelBackground_MouseUp(sender As Object, e As MouseEventArgs) Handles PanelBackground.MouseUp
         TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPageBackground")
     End Sub
@@ -3496,16 +3420,12 @@
                 bm = ClassUtility.ChangeOpacity(Image.FromFile(LabelPercorso.Text & "\main.png"), 0.3)
 
                 PanelBackground.BackgroundImage = bm
-                PanelBackground.Refresh()
-
             Catch ex As Exception
 
             End Try
         Else
             PanelBackground.BackgroundImage = Nothing
-            PanelBackground.Refresh()
         End If
-
     End Sub
 
     Private Sub TrackBarPanelBackgroundImage_Scroll(sender As Object, e As EventArgs) Handles TrackBarPanelBackgroundImage.Scroll
@@ -3516,14 +3436,11 @@
                 bm = ClassUtility.ChangeOpacity(Image.FromFile(LabelPercorso.Text & "\main.png"), sender.value / 100)
 
                 PanelBackground.BackgroundImage = bm
-                PanelBackground.Refresh()
-
             Catch ex As Exception
 
             End Try
         Else
             PanelBackground.BackgroundImage = Nothing
-            PanelBackground.Refresh()
         End If
     End Sub
 
@@ -3533,7 +3450,6 @@
         If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
             cartella = FolderBrowserDialog1.SelectedPath
             LabelBackgroundPath2.Text = cartella
-            LabelBackgroundPath2.Refresh()
         End If
     End Sub
 
@@ -3603,11 +3519,8 @@
 
             TextBoxMenu_selected_backcolor.ForeColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
             TextBoxMenu_selected_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB
-            TextBoxMenu_selected_backcolor.Refresh()
         End If
     End Sub
-
-
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Actors
