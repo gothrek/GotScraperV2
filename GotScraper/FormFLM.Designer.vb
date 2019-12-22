@@ -517,6 +517,8 @@ Partial Class FormFLM
         Me.ButtonCarica = New System.Windows.Forms.Button()
         Me.ButtonPubblica = New System.Windows.Forms.Button()
         Me.ButtonAnteprimaOld = New System.Windows.Forms.Button()
+        Me.TextBoxValoreCursore = New System.Windows.Forms.TextBox()
+        Me.LabelValoreCursore = New System.Windows.Forms.Label()
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -5489,7 +5491,7 @@ Partial Class FormFLM
         'LabelZoomTesto
         '
         Me.LabelZoomTesto.AutoSize = True
-        Me.LabelZoomTesto.BackColor = System.Drawing.Color.Transparent
+        Me.LabelZoomTesto.BackColor = System.Drawing.Color.Black
         Me.LabelZoomTesto.ForeColor = System.Drawing.Color.Red
         Me.LabelZoomTesto.Location = New System.Drawing.Point(3, 40)
         Me.LabelZoomTesto.Name = "LabelZoomTesto"
@@ -5522,7 +5524,7 @@ Partial Class FormFLM
         '
         'LabelZoom
         '
-        Me.LabelZoom.BackColor = System.Drawing.Color.Transparent
+        Me.LabelZoom.BackColor = System.Drawing.Color.Black
         Me.LabelZoom.ForeColor = System.Drawing.Color.Red
         Me.LabelZoom.Location = New System.Drawing.Point(60, 40)
         Me.LabelZoom.Name = "LabelZoom"
@@ -5925,6 +5927,29 @@ Partial Class FormFLM
         Me.ButtonAnteprimaOld.TabIndex = 38
         Me.ButtonAnteprimaOld.Text = "AnteprimaV1"
         Me.ButtonAnteprimaOld.UseVisualStyleBackColor = True
+        Me.ButtonAnteprimaOld.Visible = False
+        '
+        'TextBoxValoreCursore
+        '
+        Me.TextBoxValoreCursore.BackColor = System.Drawing.Color.Black
+        Me.TextBoxValoreCursore.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBoxValoreCursore.ForeColor = System.Drawing.Color.Red
+        Me.TextBoxValoreCursore.Location = New System.Drawing.Point(393, 599)
+        Me.TextBoxValoreCursore.Name = "TextBoxValoreCursore"
+        Me.TextBoxValoreCursore.Size = New System.Drawing.Size(38, 13)
+        Me.TextBoxValoreCursore.TabIndex = 39
+        Me.TextBoxValoreCursore.Text = "1"
+        '
+        'LabelValoreCursore
+        '
+        Me.LabelValoreCursore.AutoSize = True
+        Me.LabelValoreCursore.BackColor = System.Drawing.Color.Black
+        Me.LabelValoreCursore.ForeColor = System.Drawing.Color.Red
+        Me.LabelValoreCursore.Location = New System.Drawing.Point(312, 599)
+        Me.LabelValoreCursore.Name = "LabelValoreCursore"
+        Me.LabelValoreCursore.Size = New System.Drawing.Size(75, 13)
+        Me.LabelValoreCursore.TabIndex = 9
+        Me.LabelValoreCursore.Text = "Valore cursore"
         '
         'FormFLM
         '
@@ -5934,6 +5959,8 @@ Partial Class FormFLM
         Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.Layout1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 761)
+        Me.Controls.Add(Me.LabelValoreCursore)
+        Me.Controls.Add(Me.TextBoxValoreCursore)
         Me.Controls.Add(Me.ButtonAnteprimaOld)
         Me.Controls.Add(Me.ButtonPainter)
         Me.Controls.Add(Me.ButtonFLMOptions)
@@ -5953,7 +5980,7 @@ Partial Class FormFLM
         Me.Controls.Add(Me.TabControlTemp)
         Me.DoubleBuffered = True
         Me.Name = "FormFLM"
-        Me.Text = "F.L.M. - F.E.(E.L.) Layout Manager - Alpha 5 by Gothrek"
+        Me.Text = "F.L.M. - F.E.(E.L.) Layout Manager - Alpha 6 by Gothrek"
         Me.GroupBoxProprietà.ResumeLayout(False)
         Me.TabControlProprietà.ResumeLayout(False)
         Me.TabPageProprietà.ResumeLayout(False)
@@ -6510,4 +6537,6 @@ Partial Class FormFLM
     Friend WithEvents ComboBoxRomstatus_text_align As ComboBox
     Friend WithEvents ComboBoxRomcategory_text_align As ComboBox
     Friend WithEvents ButtonAnteprimaOld As Button
+    Friend WithEvents TextBoxValoreCursore As TextBox
+    Friend WithEvents LabelValoreCursore As Label
 End Class

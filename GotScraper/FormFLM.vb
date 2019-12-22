@@ -499,6 +499,9 @@
 
                     ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
 
+                    LabelValoreCursore.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    TextBoxValoreCursore.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
 
                     PanelZoom.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - PanelZoom.Size.Width, Me.Size.Height - 68 - 39)
@@ -522,7 +525,7 @@
                     GroupBoxProprietà.Location = New Point(GroupBoxObj.Location.X + GroupBoxObj.Size.Width + 12, GroupBoxObj.Location.Y)
 
                     PanelMainMaster.Size = New Size(Int(Me.Size.Width * 50 / 100), Int(Me.Size.Height * 60 / 100)) 'Il pannello è il 50%W e il 60%H
-                    PanelMainMaster.Location = New Point(GroupBoxProprietà.Location.X + GroupBoxProprietà.Size.Width + 53, Int(Me.Size.Height * 14.5 / 100))
+                    PanelMainMaster.Location = New Point(Me.Size.Width - PanelMainMaster.Size.Width - 50 * (Me.Size.Width / 1280), Int(Me.Size.Height * 14.5 / 100))
 
                     PanelMain.Size = PanelBackground.Size
                     PanelMain.Location = New Point(Int((PanelMainMaster.Size.Width - PanelBackground.Size.Width) / 2), PanelMain.Location.Y)
@@ -534,6 +537,9 @@
                     LabelPannelloMainY.Location = New Point(Int(PanelMainMaster.Location.X + PanelMainMaster.Size.Width / 2), PanelMainMaster.Location.Y - 16)
 
                     ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
+
+                    LabelValoreCursore.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    TextBoxValoreCursore.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
 
@@ -635,8 +641,11 @@
         Dim campiDisabilitati As ArrayList = New ArrayList
 
         FolderBrowserDialog1.SelectedPath = feelPath & "\layouts\"
+
         If (FolderBrowserDialog1.ShowDialog() = DialogResult.OK) And My.Computer.FileSystem.FileExists(FolderBrowserDialog1.SelectedPath & "\" & "layout.ini") Then
             cartella = FolderBrowserDialog1.SelectedPath
+
+            PanelMainMaster.Visible = False
 
             LabelPercorso.Text = cartella
             LabelPercorso.Refresh()
@@ -1834,6 +1843,8 @@
 
             TabControlProprietà.TabPages.Add(TabControlTemp.TabPages(tabSelezionata))
 
+            PanelMainMaster.Visible = True
+
             MsgBox("File layout.ini caricato!")
         Else
             MsgBox("Attenzione! verifica file layout.ini e percorso!")
@@ -2270,6 +2281,17 @@
         End Try
     End Sub
 
+    Private Sub TextBoxValoreCursore_TextChanged(sender As Object, e As EventArgs) Handles TextBoxValoreCursore.TextChanged
+        Try
+            If Int(sender.Text) < 1 Then
+                sender.Text = 1
+            End If
+        Catch ex As Exception
+            sender.Text = 1
+            sender.Refresh()
+        End Try
+    End Sub
+
     '----------------------------------------------------------------------------------------------
     'Proprietà Oggetti - funzionalità comuni a tutti gli oggetti dello stesso tipo
     Private Sub Panel_Paint(sender As Object, e As PaintEventArgs) Handles PanelSnapshot.Paint,
@@ -2508,6 +2530,8 @@
     End Sub
 
     Private Sub Panel_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles PanelRomlist.PreviewKeyDown, PanelSnapshot.PreviewKeyDown, PanelRomstatus.PreviewKeyDown, PanelRomname.PreviewKeyDown, PanelRommanufacturer.PreviewKeyDown, PanelRominputcontrol.PreviewKeyDown, PanelRomdisplaytype.PreviewKeyDown, PanelRomdescription.PreviewKeyDown, PanelRomcounter.PreviewKeyDown, PanelRomcategory.PreviewKeyDown, PanelPlatformname.PreviewKeyDown, PanelMenu.PreviewKeyDown, PanelMarquee.PreviewKeyDown, PanelGamelistname.PreviewKeyDown, PanelEmulatorname.PreviewKeyDown, PanelCabinet.PreviewKeyDown
+        Dim valoreCursore As Integer = Int(TextBoxValoreCursore.Text)
+
         If sender.tag <> 1 Then
             Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
 
@@ -2515,22 +2539,22 @@
                 Case Keys.Right
                     Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
 
-                    sender.location = New Point(sender.location.x + 1, sender.location.y)
+                    sender.location = New Point(sender.location.x + valoreCursore, sender.location.y)
                     oggettoX.Text = sender.location.X
                 Case Keys.Left
                     Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
 
-                    sender.location = New Point(sender.location.x - 1, sender.location.y)
+                    sender.location = New Point(sender.location.x - valoreCursore, sender.location.y)
                     oggettoX.Text = sender.location.X
                 Case Keys.Up
                     Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
 
-                    sender.location = New Point(sender.location.x, sender.location.y - 1)
+                    sender.location = New Point(sender.location.x, sender.location.y - valoreCursore)
                     oggettoY.Text = sender.location.Y
                 Case Keys.Down
                     Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
 
-                    sender.location = New Point(sender.location.x, sender.location.y + 1)
+                    sender.location = New Point(sender.location.x, sender.location.y + valoreCursore)
                     oggettoY.Text = sender.location.Y
             End Select
 

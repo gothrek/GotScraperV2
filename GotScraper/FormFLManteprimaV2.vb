@@ -43,6 +43,7 @@
     Dim pannelliBMPW(20) As Integer
     Dim pannelliBMPH(20) As Integer
     Dim pannelliBMPIndexUltimo As Integer = 0
+    Dim pannelliBMPelenco = New List(Of Integer)
 
     Dim eventoPaint As Boolean = True
 
@@ -117,6 +118,7 @@
             pannelliBMPY(0) = 0
             pannelliBMPW(0) = Me.Width
             pannelliBMPH(0) = Me.Height
+            pannelliBMPelenco.Add(2)
         Catch ex As Exception
 
         End Try
@@ -191,6 +193,7 @@
             pannelliBMPY(4) = Int(dt.Rows(dt.Rows.Count - 1).Item("romlist_y_pos"))
             pannelliBMPW(4) = romlistW
             pannelliBMPH(4) = romlistH
+            pannelliBMPelenco.Add(4)
         Catch ex As Exception
 
         End Try
@@ -243,24 +246,40 @@
         '----------------------------------------------------------------------------------------------
         '---snapshot/cabinet/marquee----
         Try
-            pannelliBMP(5) = New Bitmap(Image.FromFile(".\anteprima\media\images\" & dtRoms.Rows(0).Item("romlist") & ".png"), dt.Rows(dt.Rows.Count - 1).Item("snapshot_width"), dt.Rows(dt.Rows.Count - 1).Item("snapshot_height"))
+            If My.Computer.FileSystem.FileExists(".\anteprima\media\images\" & dtRoms.Rows(0).Item("romlist") & ".png") Then
+                pannelliBMP(5) = New Bitmap(Image.FromFile(".\anteprima\media\images\" & dtRoms.Rows(0).Item("romlist") & ".png"), dt.Rows(dt.Rows.Count - 1).Item("snapshot_width"), dt.Rows(dt.Rows.Count - 1).Item("snapshot_height"))
+            Else
+                Dim w As Int32 = Int(dt.Rows(dt.Rows.Count - 1).Item("snapshot_width"))
+                Dim h As Int32 = Int(dt.Rows(dt.Rows.Count - 1).Item("snapshot_height"))
+                pannelliBMP(5) = New Bitmap(w, h)
+            End If
+
             pannelliBMPNomi(5) = "snapshot"
             pannelliBMPX(5) = dt.Rows(dt.Rows.Count - 1).Item("snapshot_x_pos")
             pannelliBMPY(5) = dt.Rows(dt.Rows.Count - 1).Item("snapshot_y_pos")
             pannelliBMPW(5) = dt.Rows(dt.Rows.Count - 1).Item("snapshot_width")
             pannelliBMPH(5) = dt.Rows(dt.Rows.Count - 1).Item("snapshot_height")
+            pannelliBMPelenco.Add(5)
         Catch ex As Exception
 
         End Try
 
         Try
             If dt.Rows(dt.Rows.Count - 1).Item("cabinet_visible") Then
-                pannelliBMP(6) = New Bitmap(Image.FromFile(".\anteprima\media\cabinets\" & dtRoms.Rows(0).Item("romlist") & ".png"), dt.Rows(dt.Rows.Count - 1).Item("cabinet_width"), dt.Rows(dt.Rows.Count - 1).Item("cabinet_height"))
+                If My.Computer.FileSystem.FileExists(".\anteprima\media\cabinets\" & dtRoms.Rows(0).Item("romlist") & ".png") Then
+                    pannelliBMP(6) = New Bitmap(Image.FromFile(".\anteprima\media\cabinets\" & dtRoms.Rows(0).Item("romlist") & ".png"), dt.Rows(dt.Rows.Count - 1).Item("cabinet_width"), dt.Rows(dt.Rows.Count - 1).Item("cabinet_height"))
+                Else
+                    Dim w As Int32 = Int(dt.Rows(dt.Rows.Count - 1).Item("cabinet_width"))
+                    Dim h As Int32 = Int(dt.Rows(dt.Rows.Count - 1).Item("cabinet_height"))
+                    pannelliBMP(6) = New Bitmap(w, h)
+                End If
+
                 pannelliBMPNomi(6) = "cabinet"
                 pannelliBMPX(6) = dt.Rows(dt.Rows.Count - 1).Item("cabinet_x_pos")
                 pannelliBMPY(6) = dt.Rows(dt.Rows.Count - 1).Item("cabinet_y_pos")
                 pannelliBMPW(6) = dt.Rows(dt.Rows.Count - 1).Item("cabinet_width")
                 pannelliBMPH(6) = dt.Rows(dt.Rows.Count - 1).Item("cabinet_height")
+                pannelliBMPelenco.Add(6)
             End If
         Catch ex As Exception
 
@@ -268,12 +287,20 @@
 
         Try
             If dt.Rows(dt.Rows.Count - 1).Item("marquee_visible") Then
-                pannelliBMP(7) = New Bitmap(Image.FromFile(".\anteprima\media\marquees\" & dtRoms.Rows(0).Item("romlist") & ".png"), dt.Rows(dt.Rows.Count - 1).Item("marquee_width"), dt.Rows(dt.Rows.Count - 1).Item("marquee_height"))
+                If My.Computer.FileSystem.FileExists(".\anteprima\media\cabinets\" & dtRoms.Rows(0).Item("romlist") & ".png") Then
+                    pannelliBMP(7) = New Bitmap(Image.FromFile(".\anteprima\media\marquees\" & dtRoms.Rows(0).Item("romlist") & ".png"), dt.Rows(dt.Rows.Count - 1).Item("marquee_width"), dt.Rows(dt.Rows.Count - 1).Item("marquee_height"))
+                Else
+                    Dim w As Int32 = Int(dt.Rows(dt.Rows.Count - 1).Item("marquee_width"))
+                    Dim h As Int32 = Int(dt.Rows(dt.Rows.Count - 1).Item("marquee_height"))
+                    pannelliBMP(7) = New Bitmap(w, h)
+                End If
+
                 pannelliBMPNomi(7) = "marquee"
                 pannelliBMPX(7) = dt.Rows(dt.Rows.Count - 1).Item("marquee_x_pos")
                 pannelliBMPY(7) = dt.Rows(dt.Rows.Count - 1).Item("marquee_y_pos")
                 pannelliBMPW(7) = dt.Rows(dt.Rows.Count - 1).Item("marquee_width")
                 pannelliBMPH(7) = dt.Rows(dt.Rows.Count - 1).Item("marquee_height")
+                pannelliBMPelenco.Add(7)
             End If
         Catch ex As Exception
 
@@ -285,6 +312,8 @@
 
         PanelMenu.Size = New Size(dt.Rows(dt.Rows.Count - 1).Item("menu_width"), Me.Size.Height - 100) 'TODO da verificare dimensione, nota solo la width
         PanelMenu.Location = New Point(Int((Me.Size.Width - PanelMenu.Size.Width) / 2), 50) 'TODO da verificare la posizione
+
+        pannelliBMPIndexUltimo = 19
 
         '----------------------------------------------------------------------------------------------
         '---menu----
@@ -373,6 +402,8 @@
             pannelliBMPH(19) = Me.Height
 
             timerActorsOK = True
+            pannelliBMPIndexUltimo = 20
+            pannelliBMPelenco.Add(19)
         Catch ex As Exception
 
         End Try
@@ -413,6 +444,8 @@
             pannelliBMPH(20) = Me.Height
 
             timerBezelOK = True
+            pannelliBMPIndexUltimo = 21
+            pannelliBMPelenco.Add(20)
         Catch ex As Exception
 
         End Try
@@ -435,8 +468,6 @@
 
         End Try
         bezel_repeat_delay_ms = Int(dt.Rows(dt.Rows.Count - 1).Item("bezel_repeat_delay_ms"))
-
-        pannelliBMPIndexUltimo = 21
 
         '----------------------------------------------------------------------------------------------
         If timerMainOK Then TimerMain.Start()
@@ -545,6 +576,7 @@
                 pannelliBMPW(i) = dt.Rows(dt.Rows.Count - 1).Item(arrayObj(i) & "_width")
                 pannelliBMPH(i) = dt.Rows(dt.Rows.Count - 1).Item(arrayObj(i) & "_height")
                 pannelliBMP(i) = imgtemp
+                pannelliBMPelenco.Add(i)
             End If
         Next
 
@@ -555,26 +587,32 @@
         Dim image As Bitmap = New Bitmap(Me.Width, Me.Height)
 
         g = Graphics.FromImage(image)
-        'g.Clear(Color.Transparent)
+        Dim g2 As Graphics = Graphics.FromHwnd(PanelBackground.Handle)
+        g.SmoothingMode = Drawing2D.SmoothingMode.None
+        g.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
+        g2.SmoothingMode = Drawing2D.SmoothingMode.None
+        g2.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
+        'For i As Integer = inizio To pannelliBMPIndexUltimo - 1
+        '    Try
+        '        Dim imgtemp As Bitmap = New Bitmap(pannelliBMP(i), New Size(pannelliBMPW(i), pannelliBMPH(i)))
+        '        'pannelliBMP(i).Save(pannelliBMPNomi(i) & ".png")
+        '        g.DrawImage(imgtemp, New Point(pannelliBMPX(i), pannelliBMPY(i)))
+        '    Catch ex As Exception
 
-        For i As Integer = inizio To pannelliBMPIndexUltimo - 1
+        '    End Try
+        'Next
+
+        For Each i As Integer In pannelliBMPelenco
             Try
                 Dim imgtemp As Bitmap = New Bitmap(pannelliBMP(i), New Size(pannelliBMPW(i), pannelliBMPH(i)))
-                'pannelliBMP(i).Save(pannelliBMPNomi(i) & ".png")
                 g.DrawImage(imgtemp, New Point(pannelliBMPX(i), pannelliBMPY(i)))
-
             Catch ex As Exception
 
             End Try
         Next
 
-        g = PanelBackground.CreateGraphics()
-        g.DrawImage(image, 0, 0)
+        g2.DrawImage(image, 0, 0)
 
-        If eventoPaint Then 'TODO non è chiaro perchè la prima volta il pannello risulti tutto nero quindi bypassato con questo trick
-            Me.BackgroundImage = image
-            eventoPaint = False
-        End If
     End Sub
 
     Private Sub Panel_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles PanelBackground.PreviewKeyDown, MyBase.PreviewKeyDown
@@ -684,11 +722,12 @@
 
         If nImmagineActors = contaImmaginiActors Then
             nImmagineActors = 0
+        End If
 
-            If actors_repeat_delay_ms > 0 Then
-                TimerActorsDelay.Interval = actors_repeat_delay_ms
-                TimerActorsDelay.Start()
-            End If
+        If (nImmagineActors = (contaImmaginiActors - 1)) And (actors_repeat_delay_ms > 0) Then
+            TimerActorsDelay.Interval = actors_repeat_delay_ms
+            TimerActors.Stop()
+            TimerActorsDelay.Start()
         End If
 
         Try
@@ -701,18 +740,20 @@
 
     Private Sub TimerActorsDelay_Tick(sender As Object, e As EventArgs) Handles TimerActorsDelay.Tick
         TimerActorsDelay.Stop()
+        TimerActors.Start()
     End Sub
 
     Private Sub TimerBezel_Tick(sender As Object, e As EventArgs) Handles TimerBezel.Tick
         nImmagineBezel += 1
 
-        If nImmagineBezel = contaImmaginiBezel Then
+        If (nImmagineBezel = contaImmaginiBezel) Then
             nImmagineBezel = 0
+        End If
 
-            If bezel_repeat_delay_ms > 0 Then
-                TimerBezelDelay.Interval = bezel_repeat_delay_ms
-                TimerBezelDelay.Start()
-            End If
+        If (nImmagineBezel = (contaImmaginiBezel - 1)) And (bezel_repeat_delay_ms > 0) Then
+            TimerBezelDelay.Interval = bezel_repeat_delay_ms
+            TimerBezel.Stop()
+            TimerBezelDelay.Start()
         End If
 
         Try
@@ -725,6 +766,7 @@
 
     Private Sub TimerBezelDelay_Tick(sender As Object, e As EventArgs) Handles TimerBezelDelay.Tick
         TimerBezelDelay.Stop()
+        TimerBezel.Start()
     End Sub
 
 End Class
