@@ -2310,38 +2310,39 @@
                                                                             PanelRomstatus.Paint,
                                                                             PanelRomcategory.Paint,
                                                                             PanelMenu.Paint ', PanelBackground.Paint, PanelMain.Paint,
-
+        'If Not mouseDrag Then
         Dim nCaratteri As Integer = sender.name.ToString.Length - 5
-        Dim larghezza As Integer = sender.size.width
-        Dim altezza As Integer = sender.size.height
-        Dim grandezzaCaratteri As Integer = Int(larghezza / nCaratteri)
-        Dim posizione As Integer = Int((sender.size.height - grandezzaCaratteri) / 2) - 1
-        Dim nomepannello As String = sender.name
-
-        Try
-            If grandezzaCaratteri >= sender.size.height Then
-                grandezzaCaratteri = sender.size.height
-                posizione = -1
-            End If
+            Dim larghezza As Integer = sender.size.width
+            Dim altezza As Integer = sender.size.height
+            Dim grandezzaCaratteri As Integer = Int(larghezza / nCaratteri)
+            Dim posizione As Integer = Int((sender.size.height - grandezzaCaratteri) / 2) - 1
+            Dim nomepannello As String = sender.name
 
             Try
-                If sender.backcolor.a = 50 Then
-                    e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), New SolidBrush(Color.FromArgb(50, 255, 0, 0)), 0, posizione)
-                Else
-                    e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, 0, posizione)
+                If grandezzaCaratteri >= sender.size.height Then
+                    grandezzaCaratteri = sender.size.height
+                    posizione = -1
                 End If
 
-                If sender.tag = 1 Then
-                    e.Graphics.DrawRectangle(New Pen(Color.Red, 2), sender.ClientRectangle)
-                Else
-                    e.Graphics.DrawRectangle(New Pen(Color.Green, 2), sender.ClientRectangle)
-                End If
+                Try
+                    If sender.backcolor.a = 50 Then
+                        e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), New SolidBrush(Color.FromArgb(50, 255, 0, 0)), 0, posizione)
+                    Else
+                        e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, 0, posizione)
+                    End If
+
+                    If sender.tag = 1 Then
+                        e.Graphics.DrawRectangle(New Pen(Color.Red, 2), sender.ClientRectangle)
+                    Else
+                        e.Graphics.DrawRectangle(New Pen(Color.Green, 2), sender.ClientRectangle)
+                    End If
+                Catch ex As Exception
+
+                End Try
             Catch ex As Exception
 
             End Try
-        Catch ex As Exception
-
-        End Try
+        'End If
     End Sub
 
     Private Sub Panel_MouseMove(sender As Object, e As MouseEventArgs) Handles PanelSnapshot.MouseMove,
@@ -2362,11 +2363,16 @@
                                                                                             PanelBackground.MouseMove,
                                                                                             PanelCabinet.MouseMove ', MyBase.MouseMove '<--uso test
         ''---uso test---
-        'Dim x As Integer = MousePosition.X - Me.Location.X - 7 '7 è il bordo
+        'Dim x As Integer = MousePosition.X - Me.Location.X - 8 '8 è il bordo
         'Dim y As Integer = MousePosition.Y - Me.Location.Y - 30 '30 è l'intestazione della form
         'LabelPosizioneMouse.Text = x & " , " & y
         ''---uso test fine---
-        Dim x As Integer = MousePosition.X - PanelMainMaster.Location.X - Me.Location.X - 7 '7 è il bordo
+        Dim delta As Integer = Int((Me.Size.Width / 2 - PanelMain.Size.Width) / 2)
+        '---test---
+        'delta = 0
+        'LabelPannelloMainY.Text = delta
+        '----fine test----
+        Dim x As Integer = MousePosition.X - PanelMainMaster.Location.X - Me.Location.X - 8 - delta '8 è il bordo
         Dim y As Integer = MousePosition.Y - PanelMainMaster.Location.Y - Me.Location.Y - 30 '30 è l'intestazione della form
 
         If (x >= 0) And (x <= PanelBackground.Size.Width) And (y >= 0) And (y <= PanelBackground.Size.Height) Then
@@ -2378,8 +2384,20 @@
         LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
 
         If MouseButtons.HasFlag(MouseButtons.Left) And (sender.tag <> 1) Then
-            sender.location = New Point(sender.Location.X + (MousePosition.X - mouseCoordinate.X), sender.Location.Y + (MousePosition.Y) - mouseCoordinate.Y)
-            LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & sender.location.x & " , " & sender.location.y
+            'x = Int((x / TrackBarZoom.Value * 100) - sender.size.width / 2)
+            'y = Int((y / TrackBarZoom.Value * 100) - sender.size.height / 2)
+
+            x = Math.Round((x - sender.size.width / 2) / TrackBarZoom.Value * 100)
+            y = Math.Round((y - sender.size.height / 2) / TrackBarZoom.Value * 100)
+
+            'LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & sender.location.x & " , " & sender.location.y
+            LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & x & " , " & y
+
+            'x = MousePosition.X - mouseCoordinate.X
+            'y = MousePosition.Y - mouseCoordinate.Y
+
+            'sender.location = New Point(sender.Location.X + x, sender.Location.Y + y)
+
             mouseCoordinate = MousePosition
         End If
     End Sub
@@ -2471,12 +2489,22 @@
             TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
 
             sender.tag = Math.Abs(Int(sender.tag) - 1)
-            sender.refresh
         Else
             TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
 
-            pannelloLocation = sender.Location
-            mouseCoordinate = MousePosition
+            Dim x As Integer = Int(sender.size.width / 2 - e.X)
+            Dim y As Integer = Int(sender.size.height / 2 - e.Y)
+
+            mouseCoordinate = New Point(mouseCoordinate.X + x - 9, mouseCoordinate.Y + y - 1) '-9 e -1 aggiustano la psizione rispetto al cursore del mouse
+
+            Dim bm As Bitmap = ClassUtility.GetControlImage(sender)
+            Dim ptrCur As IntPtr = bm.GetHicon
+            Dim cur As Cursor
+
+            cur = New Cursor(ptrCur)
+            sender.visible = False
+
+            Me.Cursor = cur
         End If
     End Sub
 
@@ -2501,25 +2529,48 @@
 
         If e.Button = MouseButtons.Left Then
             If sender.tag <> 1 Then
+                ''----originale----
+                'ListBoxObj.SelectedItem = usoOggetto
+
+                'pannelloLocation = New Point(sender.Location.X + (MousePosition.X - mouseCoordinate.X), sender.Location.Y + (MousePosition.Y) - mouseCoordinate.Y)
+                ''pannelloLocation = New Point(
+                'sender.Location = pannelloLocation
+
+                'Try
+                '    Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
+                '    Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
+
+                '    oggettoX.Text = pannelloLocation.X
+                '    oggettoY.Text = pannelloLocation.Y
+                '    sender.visible = True
+                'Catch ex As Exception
+
+                'End Try
+                ''----fine originale
+                '----test----
                 ListBoxObj.SelectedItem = usoOggetto
-
-                pannelloLocation = New Point(sender.Location.X + (MousePosition.X - mouseCoordinate.X), sender.Location.Y + (MousePosition.Y) - mouseCoordinate.Y)
-
-                sender.Location = pannelloLocation
-                sender.Refresh()
-
+                'Dim x As Integer = Int(LabelPosizioneMouse.Text.Substring(0, LabelPosizioneMouse.Text.IndexOf(",")))
+                'Dim y As Integer = Int(LabelPosizioneMouse.Text.Substring(LabelPosizioneMouse.Text.IndexOf(",") + 1))
+                Dim delta As Integer = Int((Me.Size.Width / 2 - PanelMain.Size.Width) / 2)
+                Dim x As Integer = MousePosition.X - PanelMainMaster.Location.X - Me.Location.X - 8 - delta '8 è il bordo
+                Dim y As Integer = MousePosition.Y - PanelMainMaster.Location.Y - Me.Location.Y - 30 '30 è l'intestazione della form
+                x = (x - sender.size.width / 2) '/ TrackBarZoom.Value * 100
+                y = (y - sender.size.height / 2) '/ TrackBarZoom.Value * 100
+                sender.location = New Point(x, y)
+                'sender.location = New Point(Int((x - sender.size.width / 2) / TrackBarZoom.Value * 100), Int((y - sender.size.height / 2) / TrackBarZoom.Value * 100))
                 Try
                     Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
                     Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
 
-                    oggettoX.Text = pannelloLocation.X
-                    oggettoX.Refresh()
-
-                    oggettoY.Text = pannelloLocation.Y
-                    oggettoY.Refresh()
+                    oggettoX.Text = sender.location.X
+                    oggettoY.Text = sender.location.Y
+                    sender.visible = True
+                    sender.refresh
                 Catch ex As Exception
 
                 End Try
+                '----fine test----
+
             Else
                 MsgBox("Il pannello è in lock! Per spostarlo col mouse devi prima sbloccarlo con bottone dx del mouse.")
             End If

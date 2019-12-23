@@ -91,4 +91,18 @@ Public Class ClassUtility
         Return bmp
     End Function
 
+    Public Shared Function GetBitmap(ByVal pCtrl As Control) As Drawing.Bitmap
+        Dim myBmp As New Bitmap(pCtrl.Width, pCtrl.Height)
+        Dim g As Graphics = Graphics.FromImage(myBmp)
+        Dim pt As Point = pCtrl.Parent.PointToScreen(pCtrl.Location)
+        g.CopyFromScreen(pt, Point.Empty, myBmp.Size)
+        g.Dispose()
+        Return myBmp
+    End Function
+
+    Public Shared Function GetControlImage(ByVal ctl As Control) As Bitmap
+        Dim bm As New Bitmap(ctl.Width, ctl.Height)
+        ctl.DrawToBitmap(bm, New Rectangle(0, 0, ctl.Width, ctl.Height))
+        Return bm
+    End Function
 End Class

@@ -5608,7 +5608,6 @@ Partial Class FormFLM
         Me.LabelPannelloMainY.Size = New System.Drawing.Size(95, 13)
         Me.LabelPannelloMainY.TabIndex = 29
         Me.LabelPannelloMainY.Text = "Pannello main Y: 0"
-        Me.LabelPannelloMainY.Visible = False
         '
         'LabelScreenRisoluzione
         '
@@ -5624,6 +5623,7 @@ Partial Class FormFLM
         'PanelMain
         '
         Me.PanelMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.PanelMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.PanelMain.Controls.Add(Me.PanelMenu)
         Me.PanelMain.Controls.Add(Me.PanelRominputcontrol)
         Me.PanelMain.Controls.Add(Me.PanelRomcategory)
