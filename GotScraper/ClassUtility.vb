@@ -3,7 +3,7 @@ Imports System.Text
 Imports System.Drawing.Imaging
 
 Public Class ClassUtility
-    Public Function GetCRC32(ByVal fileName As String) As String
+    Public Shared Function GetCRC32(ByVal fileName As String) As String
         Try
             Dim FS As FileStream = New FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read, 8192)
             Dim CRC32Result As Integer = &HFFFFFFFF
@@ -49,7 +49,7 @@ Public Class ClassUtility
 
     End Function
 
-    Public Function GetMD5(ByVal fileName As String) As String
+    Public Shared Function GetMD5(ByVal fileName As String) As String
         Dim md5Hash As MD5 = MD5.Create()
         Dim data As Byte() '= md5Hash.ComputeHash(Encoding.UTF8.GetBytes(Input))
         Dim sBuilder = New StringBuilder
@@ -78,9 +78,9 @@ Public Class ClassUtility
 
         Dim bmp As New Bitmap(img.Width, img.Height)
         Dim graphics__1 As Graphics = Graphics.FromImage(bmp)
-        Dim colormatrix As New ColorMatrix
-
-        colormatrix.Matrix33 = opacityvalue
+        Dim colormatrix As New ColorMatrix With {
+            .Matrix33 = opacityvalue
+        }
 
         Dim imgAttribute As New ImageAttributes
 

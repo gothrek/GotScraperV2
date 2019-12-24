@@ -4,6 +4,8 @@
     Dim fontStyle As FontStyle = FormFLM.fontIntestazioniStyle
     Dim fontColor As String = FormFLM.fontIntestazioniColor
 
+    Dim mouseTimeC As Integer = FormFLM.mouseTimeClick
+
     Dim usoLayout As Integer
 
     Private Sub FormFLMoptions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -21,6 +23,8 @@
         TextBoxFontIntestazioni.Text = fontName
         TextBoxFontIntestazioni.Font = carattere
         TextBoxFontIntestazioni.ForeColor = Color.FromName(fontColor)
+
+        TextBoxMouseTimeClick.Text = mouseTimeC
 
         CheckBoxFLMBackgroundImage.Checked = FormFLM.flmBackgroundImageCheck
 
@@ -72,6 +76,14 @@
         e.SuppressKeyPress = True
     End Sub
 
+    Private Sub TextBoxMouseTimeClick_TextChanged(sender As Object, e As EventArgs) Handles TextBoxMouseTimeClick.TextChanged
+        Try
+            mouseTimeC = Int(sender.text)
+        Catch ex As Exception
+            mouseTimeC = 300
+        End Try
+    End Sub
+
     Private Sub RadioButtonFLMLayout1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonFLMLayout1.CheckedChanged
         usoLayout = 1
         PanelFLMLayout1.Enabled = RadioButtonFLMLayout1.Checked
@@ -97,6 +109,8 @@
         FormFLM.fontIntestazioniSize = fontSize
         FormFLM.fontIntestazioniStyle = fontStyle
         FormFLM.fontIntestazioniColor = fontColor
+
+        FormFLM.mouseTimeClick = mouseTimeC
 
         FormFLM.flmBackgroundImageCheck = CheckBoxFLMBackgroundImage.Checked
 
@@ -170,6 +184,7 @@
         file.WriteLine("fontIntestazioniSize=" & fontSize)
         file.WriteLine("fontIntestazioniStyle=" & fontStyle)
         file.WriteLine("fontIntestazioniColor=" & fontColor)
+        file.WriteLine("mouseTimeClick=" & mouseTimeC)
         file.WriteLine("flmBackgroundImageCheck=" & CheckBoxFLMBackgroundImage.Checked)
         file.WriteLine("flmLayout=" & usoLayout)
 

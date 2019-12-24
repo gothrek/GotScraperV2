@@ -65,6 +65,8 @@ Partial Class FormFLMoptions
         Me.ButtonOk = New System.Windows.Forms.Button()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.TextBoxMouseTimeClick = New System.Windows.Forms.TextBox()
+        Me.LabelMouseTimeClick = New System.Windows.Forms.Label()
         Me.PanelImpostazioni.SuspendLayout()
         Me.PanelFLMLayout3.SuspendLayout()
         Me.Panel10.SuspendLayout()
@@ -93,6 +95,8 @@ Partial Class FormFLMoptions
         '
         'PanelImpostazioni
         '
+        Me.PanelImpostazioni.Controls.Add(Me.TextBoxMouseTimeClick)
+        Me.PanelImpostazioni.Controls.Add(Me.LabelMouseTimeClick)
         Me.PanelImpostazioni.Controls.Add(Me.TextBoxFontIntestazioni)
         Me.PanelImpostazioni.Controls.Add(Me.LabelFontIntestazioni)
         Me.PanelImpostazioni.Controls.Add(Me.CheckBoxFLMBackgroundImage)
@@ -502,6 +506,24 @@ Partial Class FormFLMoptions
         Me.ColorDialog1.FullOpen = True
         Me.ColorDialog1.SolidColorOnly = True
         '
+        'TextBoxMouseTimeClick
+        '
+        Me.TextBoxMouseTimeClick.Location = New System.Drawing.Point(140, 134)
+        Me.TextBoxMouseTimeClick.Name = "TextBoxMouseTimeClick"
+        Me.TextBoxMouseTimeClick.Size = New System.Drawing.Size(295, 20)
+        Me.TextBoxMouseTimeClick.TabIndex = 15
+        Me.TextBoxMouseTimeClick.Text = "300"
+        Me.TextBoxMouseTimeClick.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'LabelMouseTimeClick
+        '
+        Me.LabelMouseTimeClick.AutoSize = True
+        Me.LabelMouseTimeClick.Location = New System.Drawing.Point(3, 137)
+        Me.LabelMouseTimeClick.Name = "LabelMouseTimeClick"
+        Me.LabelMouseTimeClick.Size = New System.Drawing.Size(131, 13)
+        Me.LabelMouseTimeClick.TabIndex = 14
+        Me.LabelMouseTimeClick.Text = "Mouse time click (in msec)"
+        '
         'FormFLMoptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -580,4 +602,6 @@ Partial Class FormFLMoptions
     Friend WithEvents LabelFontIntestazioni As Label
     Friend WithEvents FontDialog1 As FontDialog
     Friend WithEvents ColorDialog1 As ColorDialog
+    Friend WithEvents TextBoxMouseTimeClick As TextBox
+    Friend WithEvents LabelMouseTimeClick As Label
 End Class

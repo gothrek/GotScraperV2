@@ -200,13 +200,13 @@ Public Class Form1
             info = CercaArcadeDatabase(game)
             Try
                 If info <> "" Then 'info.Chars(11) <> "]" Then
-                    crc32 = utility.GetCRC32(file)
+                    crc32 = ClassUtility.GetCRC32(file)
 
                     swFile.WriteLine(info)
                     contatore += 1
                 Else
                     game = file.Substring(Label1.Text.Length + 1, file.Length - Label1.Text.Length - 1)
-                    crc32 = utility.GetCRC32(file)
+                    crc32 = ClassUtility.GetCRC32(file)
                     swFileFalliti.WriteLine(game & crc32 & " - Fallito")
                     contatoreScartati += 1
                 End If

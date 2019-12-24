@@ -179,8 +179,8 @@ Public Class FormUtility
                     Scrivi.WriteAttributeString("size", entry.Length) 'size 
                     'MsgBox(utility.GetCRC32(My.Application.GetEnvironmentVariable("temp") & "\" & entry.FullName))
                     'MsgBox(utility.GetMD5(My.Application.GetEnvironmentVariable("temp") & "\" & entry.FullName))
-                    Scrivi.WriteAttributeString("crc", utility.GetCRC32(My.Application.GetEnvironmentVariable("temp") & "\" & entry.FullName)) 'crc
-                    Scrivi.WriteAttributeString("md5", utility.GetMD5(My.Application.GetEnvironmentVariable("temp") & "\" & entry.FullName)) 'md5
+                    Scrivi.WriteAttributeString("crc", ClassUtility.GetCRC32(My.Application.GetEnvironmentVariable("temp") & "\" & entry.FullName)) 'crc
+                    Scrivi.WriteAttributeString("md5", ClassUtility.GetMD5(My.Application.GetEnvironmentVariable("temp") & "\" & entry.FullName)) 'md5
                     'sha1 Scrivi.WriteAttributeString("sha1", dtFiles.Rows(i).Item("FullName"))
                     'status Scrivi.WriteAttributeString("status", dtFiles.Rows(i).Item("FullName"))
                     Scrivi.WriteEndElement() 'rom

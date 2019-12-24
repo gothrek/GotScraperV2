@@ -10,6 +10,8 @@
     Public fontIntestazioniStyle As FontStyle = 0
     Public fontIntestazioniColor As String = "Red"
 
+    Public mouseTimeClick As Integer = 300
+
     Public templateLayoutIni As String = "Default"
     Public flmLayout As Integer = 1
 
@@ -17,6 +19,9 @@
     Dim dtRisoluzioni As DataTable
 
     Dim mouseCoordinate As Point = MousePosition
+    Dim tempoMouseClick As Date
+    Dim mouseDownX As Integer
+    Dim mouseDownY As Integer
 
     Dim valorePrecedente As String
     Dim tabSelezionata As Integer = 3 '3 corrisponde alla tab Screen
@@ -78,6 +83,11 @@
             fineStringa = usoStringa.IndexOf(vbCrLf)
             fontIntestazioniColor = usoStringa.Substring(0, fineStringa)
 
+            inizioStringa = file.IndexOf("mouseTimeClick=") + 15
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            mouseTimeClick = Int(usoStringa.Substring(0, fineStringa))
+
             inizioStringa = file.IndexOf("flmBackgroundImageCheck=") + 24
             usoStringa = file.Substring(inizioStringa)
             fineStringa = usoStringa.IndexOf(vbCrLf)
@@ -121,6 +131,11 @@
             file.WriteLine("feelPath=" & feelPath)
             file.WriteLine("grafxEditorPath=" & grafxEditorPath)
             file.WriteLine("templateLayoutIni=" & templateLayoutIni)
+            file.WriteLine("fontIntestazioniName=" & fontIntestazioni)
+            file.WriteLine("fontIntestazioniSize=" & fontIntestazioniSize)
+            file.WriteLine("fontIntestazioniStyle=" & fontIntestazioniStyle)
+            file.WriteLine("fontIntestazioniColor=" & fontIntestazioniColor)
+            file.WriteLine("mouseTimeClick=" & mouseTimeClick)
             file.WriteLine("flmBackgroundImageCheck=" & flmBackgroundImageCheck)
             file.WriteLine("flmLayout=" & flmLayout)
 
@@ -585,6 +600,17 @@
                 Case Else
 
             End Select
+
+            Try
+                TrackBarZoom.Maximum = Int(PanelMainMaster.Size.Width / Int(TextBoxScreen_res_x.Text) * 100)
+                If Int(PanelMainMaster.Size.Height / Int(TextBoxScreen_res_y.Text) * 100) / TrackBarZoom.Maximum Then
+                    TrackBarZoom.Maximum = Int(PanelMainMaster.Size.Height / Int(TextBoxScreen_res_y.Text) * 100)
+                End If
+                TextBoxZoom.Text = TrackBarZoom.Value
+            Catch ex As Exception
+
+            End Try
+
             'Dim t As New Threading.Thread(AddressOf PanelBackground_MousePosition)
             't.Start()
         End If
@@ -606,14 +632,8 @@
     End Sub
 
     Private Sub ButtonAnteprima_Click(sender As Object, e As EventArgs) Handles ButtonAnteprima.Click
-        'da svolgere in thread diverso
-        'FormUsoBackground.Show()
-
-        '--- Metodo2 inizio ---
         ValoriInTabella()
-        '--- Metodo2 fine ---
-
-        FormFLManteprimaV2.Show() 'o lanciare programma esterno
+        FormFLManteprimaV2.Show() 'o lanciare programma esterno o in thread diverso
     End Sub
 
     Private Sub ButtonAnteprimaOld_Click(sender As Object, e As EventArgs) Handles ButtonAnteprimaOld.Click
@@ -2239,46 +2259,65 @@
         End If
     End Sub
 
-    Private Sub TrackBarZoom_Scroll(sender As Object, e As EventArgs) Handles TrackBarZoom.Scroll
-        LabelZoom.Text = sender.value & "%"
-        LabelZoom.Refresh()
-        TextBoxZoom.Text = sender.value
-        TextBoxZoom.Refresh()
+    Private Sub TrackBarZoom_ValueChanged(sender As Object, e As EventArgs) Handles TrackBarZoom.ValueChanged
+        Try
+            If sender.Value > TrackBarZoom.Maximum Then
+                TrackBarZoom.Value = TrackBarZoom.Maximum
+            End If
+        Catch ex As Exception
+            TrackBarZoom.Value = 100
+        End Try
 
-        PanelMain.Size = New Size(Int(Val(TextBoxScreen_res_x.Text) * sender.value / 100), Int(Val(TextBoxScreen_res_y.Text) * sender.value / 100))
+        AggiornaZoom(sender.value)
+    End Sub
+
+    Private Sub TextBoxZoom_TextChanged(sender As Object, e As EventArgs) Handles TextBoxZoom.TextChanged
+        Try
+            TrackBarZoom.Value = Int(sender.text)
+
+            If TrackBarZoom.Value > TrackBarZoom.Maximum Then
+                TrackBarZoom.Value = TrackBarZoom.Maximum
+            End If
+        Catch ex As Exception
+            sender.text = "100"
+            TrackBarZoom.Value = 100
+        End Try
+
+        AggiornaZoom(TrackBarZoom.Value)
+    End Sub
+
+    Private Sub AggiornaZoom(valore As Integer)
+        If valore > TrackBarZoom.Maximum Then
+            valore = TrackBarZoom.Maximum
+        End If
+        Debug.WriteLine("TrackMax:" & TrackBarZoom.Maximum)
+        LabelZoom.Text = valore & "%"
+
+        PanelMain.Size = New Size(Int(Val(TextBoxScreen_res_x.Text) * valore / 100), Int(Val(TextBoxScreen_res_y.Text) * valore / 100))
         For Each controllo As Object In PanelMain.Controls
             Dim usoTab As String = controllo.name.ToString.Substring(5)
 
             Try
                 Dim oggettoTextBox_size_width As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_width")
                 Dim oggettoTextBox_size_height As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_height")
+                Dim oggettoTextBox_x_pos As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_x_pos")
+                Dim oggettoTextBox_y_pos As Object = TabControlProprietà.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_y_pos")
 
-                controllo.size = New Size(Int(Val(oggettoTextBox_size_width.text) * sender.value / 100), Int(Val(oggettoTextBox_size_height.text) * sender.value / 100))
+                controllo.size = New Size(Int(Val(oggettoTextBox_size_width.text) * valore / 100), Int(Val(oggettoTextBox_size_height.text) * valore / 100))
+                controllo.location = New Point(Int(Val(oggettoTextBox_x_pos.text) * valore / 100), Int(Val(oggettoTextBox_y_pos.text) * valore / 100))
             Catch ex As Exception
                 Dim oggettoTextBox_size_width As Object = TabControlTemp.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_width")
                 Dim oggettoTextBox_size_height As Object = TabControlTemp.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_height")
+                Dim oggettoTextBox_x_pos As Object = TabControlTemp.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_x_pos")
+                Dim oggettoTextBox_y_pos As Object = TabControlTemp.TabPages.Item("TabPage" & usoTab).Controls.Item("TextBox" & usoTab & "_y_pos")
 
-                controllo.size = New Size(Int(Val(oggettoTextBox_size_width.text) * sender.value / 100), Int(Val(oggettoTextBox_size_height.text) * sender.value / 100))
+                controllo.size = New Size(Int(Val(oggettoTextBox_size_width.text) * valore / 100), Int(Val(oggettoTextBox_size_height.text) * valore / 100))
+                controllo.location = New Point(Int(Val(oggettoTextBox_x_pos.text) * valore / 100), Int(Val(oggettoTextBox_y_pos.text) * valore / 100))
             End Try
-
-            controllo.refresh
         Next
 
         PanelMain.Refresh()
         FormFLM_Resize()
-    End Sub
-
-    Private Sub TextBoxZoom_TextChanged(sender As Object, e As EventArgs) Handles TextBoxZoom.TextChanged
-        Try
-            TrackBarZoom.Value = Int(sender.text)
-            TrackBarZoom.Refresh()
-
-            LabelZoom.Text = TrackBarZoom.Value & "%"
-            LabelZoom.Refresh()
-
-        Catch ex As Exception
-            sender.text = "100"
-        End Try
     End Sub
 
     Private Sub TextBoxValoreCursore_TextChanged(sender As Object, e As EventArgs) Handles TextBoxValoreCursore.TextChanged
@@ -2310,39 +2349,35 @@
                                                                             PanelRomstatus.Paint,
                                                                             PanelRomcategory.Paint,
                                                                             PanelMenu.Paint ', PanelBackground.Paint, PanelMain.Paint,
-        'If Not mouseDrag Then
+
         Dim nCaratteri As Integer = sender.name.ToString.Length - 5
-            Dim larghezza As Integer = sender.size.width
-            Dim altezza As Integer = sender.size.height
-            Dim grandezzaCaratteri As Integer = Int(larghezza / nCaratteri)
-            Dim posizione As Integer = Int((sender.size.height - grandezzaCaratteri) / 2) - 1
-            Dim nomepannello As String = sender.name
+        Dim larghezza As Integer = sender.size.width
+        Dim altezza As Integer = sender.size.height
+        Dim grandezzaCaratteri As Integer = Int(larghezza / nCaratteri)
+        Dim posizione As Integer = Int((sender.size.height - grandezzaCaratteri) / 2) - 1
+        Dim nomepannello As String = sender.name
 
-            Try
-                If grandezzaCaratteri >= sender.size.height Then
-                    grandezzaCaratteri = sender.size.height
-                    posizione = -1
-                End If
+        If grandezzaCaratteri >= sender.size.height Then
+            grandezzaCaratteri = sender.size.height
+            posizione = -1
+        End If
 
-                Try
-                    If sender.backcolor.a = 50 Then
-                        e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), New SolidBrush(Color.FromArgb(50, 255, 0, 0)), 0, posizione)
-                    Else
-                        e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, 0, posizione)
-                    End If
 
-                    If sender.tag = 1 Then
-                        e.Graphics.DrawRectangle(New Pen(Color.Red, 2), sender.ClientRectangle)
-                    Else
-                        e.Graphics.DrawRectangle(New Pen(Color.Green, 2), sender.ClientRectangle)
-                    End If
-                Catch ex As Exception
+        Try
+            If sender.backcolor.a = 50 Then
+                e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), New SolidBrush(Color.FromArgb(50, 255, 0, 0)), 0, posizione)
+            Else
+                e.Graphics.DrawString(sender.name.ToString.Substring(5), New Font("Arial", grandezzaCaratteri, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, 0, posizione)
+            End If
 
-                End Try
-            Catch ex As Exception
+            If sender.tag = 1 Then
+                e.Graphics.DrawRectangle(New Pen(Color.Red, 2), sender.ClientRectangle)
+            Else
+                e.Graphics.DrawRectangle(New Pen(Color.Green, 2), sender.ClientRectangle)
+            End If
+        Catch ex As Exception
 
-            End Try
-        'End If
+        End Try
     End Sub
 
     Private Sub Panel_MouseMove(sender As Object, e As MouseEventArgs) Handles PanelSnapshot.MouseMove,
@@ -2362,16 +2397,13 @@
                                                                                             PanelEmulatorname.MouseMove,
                                                                                             PanelBackground.MouseMove,
                                                                                             PanelCabinet.MouseMove ', MyBase.MouseMove '<--uso test
+
         ''---uso test---
         'Dim x As Integer = MousePosition.X - Me.Location.X - 8 '8 è il bordo
         'Dim y As Integer = MousePosition.Y - Me.Location.Y - 30 '30 è l'intestazione della form
         'LabelPosizioneMouse.Text = x & " , " & y
         ''---uso test fine---
         Dim delta As Integer = Int((Me.Size.Width / 2 - PanelMain.Size.Width) / 2)
-        '---test---
-        'delta = 0
-        'LabelPannelloMainY.Text = delta
-        '----fine test----
         Dim x As Integer = MousePosition.X - PanelMainMaster.Location.X - Me.Location.X - 8 - delta '8 è il bordo
         Dim y As Integer = MousePosition.Y - PanelMainMaster.Location.Y - Me.Location.Y - 30 '30 è l'intestazione della form
 
@@ -2384,19 +2416,10 @@
         LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
 
         If MouseButtons.HasFlag(MouseButtons.Left) And (sender.tag <> 1) Then
-            'x = Int((x / TrackBarZoom.Value * 100) - sender.size.width / 2)
-            'y = Int((y / TrackBarZoom.Value * 100) - sender.size.height / 2)
-
             x = Math.Round((x - sender.size.width / 2) / TrackBarZoom.Value * 100)
             y = Math.Round((y - sender.size.height / 2) / TrackBarZoom.Value * 100)
 
-            'LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & sender.location.x & " , " & sender.location.y
             LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & x & " , " & y
-
-            'x = MousePosition.X - mouseCoordinate.X
-            'y = MousePosition.Y - mouseCoordinate.Y
-
-            'sender.location = New Point(sender.Location.X + x, sender.Location.Y + y)
 
             mouseCoordinate = MousePosition
         End If
@@ -2481,6 +2504,7 @@
                                                                                 PanelRomcategory.MouseDown,
                                                                                 PanelMenu.MouseDown ', PanelBackground.MouseDown, PanelMain.MouseDown,
 
+        tempoMouseClick = Now()
         Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
 
         ListBoxObj.SelectedItem = usoOggetto
@@ -2495,7 +2519,9 @@
             Dim x As Integer = Int(sender.size.width / 2 - e.X)
             Dim y As Integer = Int(sender.size.height / 2 - e.Y)
 
-            mouseCoordinate = New Point(mouseCoordinate.X + x - 9, mouseCoordinate.Y + y - 1) '-9 e -1 aggiustano la psizione rispetto al cursore del mouse
+            mouseCoordinate = New Point(mouseCoordinate.X + x - 9, mouseCoordinate.Y + y - 1) '-9 e -1 aggiustano la posizione rispetto al cursore del mouse
+            mouseDownX = MousePosition.X
+            mouseDownY = MousePosition.Y
 
             Dim bm As Bitmap = ClassUtility.GetControlImage(sender)
             Dim ptrCur As IntPtr = bm.GetHicon
@@ -2505,6 +2531,7 @@
             sender.visible = False
 
             Me.Cursor = cur
+
         End If
     End Sub
 
@@ -2529,49 +2556,34 @@
 
         If e.Button = MouseButtons.Left Then
             If sender.tag <> 1 Then
-                ''----originale----
-                'ListBoxObj.SelectedItem = usoOggetto
+                Dim dataDiff As TimeSpan = Now.Subtract(tempoMouseClick)
 
-                'pannelloLocation = New Point(sender.Location.X + (MousePosition.X - mouseCoordinate.X), sender.Location.Y + (MousePosition.Y) - mouseCoordinate.Y)
-                ''pannelloLocation = New Point(
-                'sender.Location = pannelloLocation
+                If ((dataDiff.TotalMilliseconds) > mouseTimeClick) And (mouseDownX <> MousePosition.X) And (mouseDownY <> MousePosition.Y) Then
+                    ListBoxObj.SelectedItem = usoOggetto
 
-                'Try
-                '    Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
-                '    Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
+                    Dim delta As Integer = Int((Me.Size.Width / 2 - PanelMain.Size.Width) / 2)
+                    Dim x As Integer = MousePosition.X - PanelMainMaster.Location.X - Me.Location.X - 8 - delta '8 è il bordo
+                    Dim y As Integer = MousePosition.Y - PanelMainMaster.Location.Y - Me.Location.Y - 30 '30 è l'intestazione della form
 
-                '    oggettoX.Text = pannelloLocation.X
-                '    oggettoY.Text = pannelloLocation.Y
-                '    sender.visible = True
-                'Catch ex As Exception
+                    x = (x - sender.size.width / 2)
+                    y = (y - sender.size.height / 2)
+                    sender.location = New Point(x, y)
 
-                'End Try
-                ''----fine originale
-                '----test----
-                ListBoxObj.SelectedItem = usoOggetto
-                'Dim x As Integer = Int(LabelPosizioneMouse.Text.Substring(0, LabelPosizioneMouse.Text.IndexOf(",")))
-                'Dim y As Integer = Int(LabelPosizioneMouse.Text.Substring(LabelPosizioneMouse.Text.IndexOf(",") + 1))
-                Dim delta As Integer = Int((Me.Size.Width / 2 - PanelMain.Size.Width) / 2)
-                Dim x As Integer = MousePosition.X - PanelMainMaster.Location.X - Me.Location.X - 8 - delta '8 è il bordo
-                Dim y As Integer = MousePosition.Y - PanelMainMaster.Location.Y - Me.Location.Y - 30 '30 è l'intestazione della form
-                x = (x - sender.size.width / 2) '/ TrackBarZoom.Value * 100
-                y = (y - sender.size.height / 2) '/ TrackBarZoom.Value * 100
-                sender.location = New Point(x, y)
-                'sender.location = New Point(Int((x - sender.size.width / 2) / TrackBarZoom.Value * 100), Int((y - sender.size.height / 2) / TrackBarZoom.Value * 100))
-                Try
-                    Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
-                    Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
+                    Try
+                        Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
+                        Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
 
-                    oggettoX.Text = sender.location.X
-                    oggettoY.Text = sender.location.Y
+                        oggettoX.Text = sender.location.X
+                        oggettoY.Text = sender.location.Y
+                        sender.visible = True
+                    Catch ex As Exception
+
+                    End Try
+                Else
                     sender.visible = True
-                    sender.refresh
-                Catch ex As Exception
-
-                End Try
-                '----fine test----
-
+                End If
             Else
+                sender.visible = True
                 MsgBox("Il pannello è in lock! Per spostarlo col mouse devi prima sbloccarlo con bottone dx del mouse.")
             End If
 
@@ -2580,7 +2592,7 @@
         End If
     End Sub
 
-    Private Sub Panel_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles PanelRomlist.PreviewKeyDown, PanelSnapshot.PreviewKeyDown, PanelRomstatus.PreviewKeyDown, PanelRomname.PreviewKeyDown, PanelRommanufacturer.PreviewKeyDown, PanelRominputcontrol.PreviewKeyDown, PanelRomdisplaytype.PreviewKeyDown, PanelRomdescription.PreviewKeyDown, PanelRomcounter.PreviewKeyDown, PanelRomcategory.PreviewKeyDown, PanelPlatformname.PreviewKeyDown, PanelMenu.PreviewKeyDown, PanelMarquee.PreviewKeyDown, PanelGamelistname.PreviewKeyDown, PanelEmulatorname.PreviewKeyDown, PanelCabinet.PreviewKeyDown
+    Private Sub Panel_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles PanelSnapshot.PreviewKeyDown, PanelRomstatus.PreviewKeyDown, PanelRomname.PreviewKeyDown, PanelRommanufacturer.PreviewKeyDown, PanelRomlist.PreviewKeyDown, PanelRominputcontrol.PreviewKeyDown, PanelRomdisplaytype.PreviewKeyDown, PanelRomdescription.PreviewKeyDown, PanelRomcounter.PreviewKeyDown, PanelRomcategory.PreviewKeyDown, PanelPlatformname.PreviewKeyDown, PanelMenu.PreviewKeyDown, PanelMarquee.PreviewKeyDown, PanelGamelistname.PreviewKeyDown, PanelEmulatorname.PreviewKeyDown, PanelCabinet.PreviewKeyDown
         Dim valoreCursore As Integer = Int(TextBoxValoreCursore.Text)
 
         If sender.tag <> 1 Then
@@ -2615,22 +2627,7 @@
         End If
     End Sub
 
-    Private Sub CheckBoxPanelVisibile_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxCabinet_visible.CheckedChanged,
-                                                                                                CheckBoxMarquee_visible.CheckedChanged,
-                                                                                                CheckBoxRomcounter_visible.CheckedChanged,
-                                                                                                CheckBoxPlatformname_visible.CheckedChanged,
-                                                                                                CheckBoxEmulatorname_visible.CheckedChanged,
-                                                                                                CheckBoxGamelistname_visible.CheckedChanged,
-                                                                                                CheckBoxRomname_visible.CheckedChanged,
-                                                                                                CheckBoxRomdescription_visible.CheckedChanged,
-                                                                                                CheckBoxRommanufacturer_visible.CheckedChanged,
-                                                                                                CheckBoxRomdisplaytype_visible.CheckedChanged,
-                                                                                                CheckBoxRominputcontrol_visible.CheckedChanged,
-                                                                                                CheckBoxRomstatus_visible.CheckedChanged,
-                                                                                                CheckBoxRomcategory_visible.CheckedChanged,
-                                                                                                CheckBoxMenu.CheckedChanged,
-                                                                                                CheckBoxRomlistVisibile.CheckedChanged,
-                                                                                                CheckBoxSnapshot.CheckedChanged
+    Private Sub CheckBoxPanelVisibile_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxSnapshot.CheckedChanged, CheckBoxRomstatus_visible.CheckedChanged, CheckBoxRomname_visible.CheckedChanged, CheckBoxRommanufacturer_visible.CheckedChanged, CheckBoxRomlistVisibile.CheckedChanged, CheckBoxRominputcontrol_visible.CheckedChanged, CheckBoxRomdisplaytype_visible.CheckedChanged, CheckBoxRomdescription_visible.CheckedChanged, CheckBoxRomcounter_visible.CheckedChanged, CheckBoxRomcategory_visible.CheckedChanged, CheckBoxPlatformname_visible.CheckedChanged, CheckBoxMenu.CheckedChanged, CheckBoxMarquee_visible.CheckedChanged, CheckBoxGamelistname_visible.CheckedChanged, CheckBoxEmulatorname_visible.CheckedChanged, CheckBoxCabinet_visible.CheckedChanged
 
         Try
             Dim usoOggetto As String = sender.name.ToString.Substring(8, sender.name.ToString.Length - 16)
@@ -3214,11 +3211,11 @@
         End If
     End Sub
 
-    Private Sub ComboBox_KeyDown(sender As Object, e As KeyEventArgs) Handles ComboBoxRisoluzione.KeyDown, ComboBoxRomlist_text_align.KeyDown, ComboBoxRomcounter_text_align.KeyDown, ComboBoxRomstatus_text_align.KeyDown, ComboBoxRomname_text_align.KeyDown, ComboBoxRommanufacturer_text_align.KeyDown, ComboBoxRominputcontrol_text_align.KeyDown, ComboBoxRomdisplaytype_text_align.KeyDown, ComboBoxRomdescription_text_align.KeyDown, ComboBoxRomcategory_text_align.KeyDown, ComboBoxPlatformname_text_align.KeyDown, ComboBoxGamelistname_text_align.KeyDown, ComboBoxEmulatorname_text_align.KeyDown
+    Private Sub ComboBox_KeyDown(sender As Object, e As KeyEventArgs) Handles ComboBoxRomstatus_text_align.KeyDown, ComboBoxRomname_text_align.KeyDown, ComboBoxRommanufacturer_text_align.KeyDown, ComboBoxRomlist_text_align.KeyDown, ComboBoxRominputcontrol_text_align.KeyDown, ComboBoxRomdisplaytype_text_align.KeyDown, ComboBoxRomdescription_text_align.KeyDown, ComboBoxRomcounter_text_align.KeyDown, ComboBoxRomcategory_text_align.KeyDown, ComboBoxRisoluzione.KeyDown, ComboBoxPlatformname_text_align.KeyDown, ComboBoxGamelistname_text_align.KeyDown, ComboBoxEmulatorname_text_align.KeyDown
         e.SuppressKeyPress = True
     End Sub
 
-    Private Sub ComboBoxRomText_align_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxRomlist_text_align.SelectedIndexChanged, ComboBoxRomcounter_text_align.SelectedIndexChanged, ComboBoxRomstatus_text_align.SelectedIndexChanged, ComboBoxRomname_text_align.SelectedIndexChanged, ComboBoxRommanufacturer_text_align.SelectedIndexChanged, ComboBoxRominputcontrol_text_align.SelectedIndexChanged, ComboBoxRomdisplaytype_text_align.SelectedIndexChanged, ComboBoxRomdescription_text_align.SelectedIndexChanged, ComboBoxRomcategory_text_align.SelectedIndexChanged, ComboBoxPlatformname_text_align.SelectedIndexChanged, ComboBoxGamelistname_text_align.SelectedIndexChanged, ComboBoxEmulatorname_text_align.SelectedIndexChanged
+    Private Sub ComboBoxRomText_align_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxRomstatus_text_align.SelectedIndexChanged, ComboBoxRomname_text_align.SelectedIndexChanged, ComboBoxRommanufacturer_text_align.SelectedIndexChanged, ComboBoxRomlist_text_align.SelectedIndexChanged, ComboBoxRominputcontrol_text_align.SelectedIndexChanged, ComboBoxRomdisplaytype_text_align.SelectedIndexChanged, ComboBoxRomdescription_text_align.SelectedIndexChanged, ComboBoxRomcounter_text_align.SelectedIndexChanged, ComboBoxRomcategory_text_align.SelectedIndexChanged, ComboBoxPlatformname_text_align.SelectedIndexChanged, ComboBoxGamelistname_text_align.SelectedIndexChanged, ComboBoxEmulatorname_text_align.SelectedIndexChanged
         Dim textAlign As Integer = sender.selectedindex
         Dim usoOggetto As String = sender.name.ToString.Substring(8)
         Dim oggettoTextBox As Object = TabControlProprietà.TabPages.Item(sender.parent.name).Controls.Item("TextBox" & usoOggetto)
