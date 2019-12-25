@@ -121,6 +121,12 @@
     <Compile Include="FormFLM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFLMAbout.Designer.vb">
+      <DependentUpon>FormFLMAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFLMAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFLManteprima.Designer.vb">
       <DependentUpon>FormFLManteprima.vb</DependentUpon>
     </Compile>
@@ -185,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFLM.resx">
       <DependentUpon>FormFLM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFLMAbout.resx">
+      <DependentUpon>FormFLMAbout.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFLManteprima.resx">
       <DependentUpon>FormFLManteprima.vb</DependentUpon>
@@ -272,6 +281,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Layout2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FLMRampage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FLMRampage1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

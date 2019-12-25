@@ -519,6 +519,8 @@ Partial Class FormFLM
         Me.ButtonAnteprimaOld = New System.Windows.Forms.Button()
         Me.TextBoxValoreCursore = New System.Windows.Forms.TextBox()
         Me.LabelValoreCursore = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.ButtonAbout = New System.Windows.Forms.Button()
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -5515,7 +5517,7 @@ Partial Class FormFLM
         '
         Me.ButtonAnteprima.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonAnteprima.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.ButtonAnteprima.Location = New System.Drawing.Point(1119, 3)
+        Me.ButtonAnteprima.Location = New System.Drawing.Point(1070, 3)
         Me.ButtonAnteprima.Name = "ButtonAnteprima"
         Me.ButtonAnteprima.Size = New System.Drawing.Size(80, 34)
         Me.ButtonAnteprima.TabIndex = 3
@@ -5872,7 +5874,7 @@ Partial Class FormFLM
         Me.ButtonFLMOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonFLMOptions.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonFLMOptions.ForeColor = System.Drawing.Color.Black
-        Me.ButtonFLMOptions.Location = New System.Drawing.Point(1205, 3)
+        Me.ButtonFLMOptions.Location = New System.Drawing.Point(1156, 3)
         Me.ButtonFLMOptions.Name = "ButtonFLMOptions"
         Me.ButtonFLMOptions.Size = New System.Drawing.Size(44, 34)
         Me.ButtonFLMOptions.TabIndex = 35
@@ -5921,7 +5923,7 @@ Partial Class FormFLM
         '
         Me.ButtonAnteprimaOld.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonAnteprimaOld.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.ButtonAnteprimaOld.Location = New System.Drawing.Point(1033, 3)
+        Me.ButtonAnteprimaOld.Location = New System.Drawing.Point(984, 3)
         Me.ButtonAnteprimaOld.Name = "ButtonAnteprimaOld"
         Me.ButtonAnteprimaOld.Size = New System.Drawing.Size(80, 34)
         Me.ButtonAnteprimaOld.TabIndex = 38
@@ -5951,6 +5953,21 @@ Partial Class FormFLM
         Me.LabelValoreCursore.TabIndex = 9
         Me.LabelValoreCursore.Text = "Valore cursore"
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 3000
+        '
+        'ButtonAbout
+        '
+        Me.ButtonAbout.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonAbout.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.ButtonAbout.Location = New System.Drawing.Point(1206, 3)
+        Me.ButtonAbout.Name = "ButtonAbout"
+        Me.ButtonAbout.Size = New System.Drawing.Size(46, 34)
+        Me.ButtonAbout.TabIndex = 40
+        Me.ButtonAbout.Text = "About"
+        Me.ButtonAbout.UseVisualStyleBackColor = True
+        '
         'FormFLM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -5959,6 +5976,7 @@ Partial Class FormFLM
         Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.Layout1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 761)
+        Me.Controls.Add(Me.ButtonAbout)
         Me.Controls.Add(Me.LabelValoreCursore)
         Me.Controls.Add(Me.TextBoxValoreCursore)
         Me.Controls.Add(Me.ButtonAnteprimaOld)
@@ -6539,4 +6557,6 @@ Partial Class FormFLM
     Friend WithEvents ButtonAnteprimaOld As Button
     Friend WithEvents TextBoxValoreCursore As TextBox
     Friend WithEvents LabelValoreCursore As Label
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents ButtonAbout As Button
 End Class

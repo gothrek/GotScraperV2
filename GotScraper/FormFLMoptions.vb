@@ -1,10 +1,12 @@
 ﻿Public Class FormFLMoptions
+    Dim start As Boolean = True
+
     Dim fontName As String = FormFLM.fontIntestazioni
     Dim fontSize As Single = FormFLM.fontIntestazioniSize
     Dim fontStyle As FontStyle = FormFLM.fontIntestazioniStyle
     Dim fontColor As String = FormFLM.fontIntestazioniColor
 
-    Dim mouseTimeC As Integer = FormFLM.mouseTimeClick
+    Dim mouseTimeClick As Integer = FormFLM.Timer1.Interval
 
     Dim usoLayout As Integer
 
@@ -24,7 +26,7 @@
         TextBoxFontIntestazioni.Font = carattere
         TextBoxFontIntestazioni.ForeColor = Color.FromName(fontColor)
 
-        TextBoxMouseTimeClick.Text = mouseTimeC
+        TextBoxMouseTimeClick.Text = mouseTimeClick
 
         CheckBoxFLMBackgroundImage.Checked = FormFLM.flmBackgroundImageCheck
 
@@ -77,11 +79,17 @@
     End Sub
 
     Private Sub TextBoxMouseTimeClick_TextChanged(sender As Object, e As EventArgs) Handles TextBoxMouseTimeClick.TextChanged
-        Try
-            mouseTimeC = Int(sender.text)
-        Catch ex As Exception
-            mouseTimeC = 300
-        End Try
+        If Not start Then
+            Try
+                mouseTimeClick = Int(sender.text)
+            Catch ex As Exception
+                mouseTimeClick = FormFLM.Timer1.Interval
+            End Try
+
+            sender.text = mouseTimeClick
+        Else
+            start = False
+        End If
     End Sub
 
     Private Sub RadioButtonFLMLayout1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonFLMLayout1.CheckedChanged
@@ -110,7 +118,8 @@
         FormFLM.fontIntestazioniStyle = fontStyle
         FormFLM.fontIntestazioniColor = fontColor
 
-        FormFLM.mouseTimeClick = mouseTimeC
+        FormFLM.mouseTimeClick = mouseTimeClick
+        FormFLM.Timer1.Interval = mouseTimeClick
 
         FormFLM.flmBackgroundImageCheck = CheckBoxFLMBackgroundImage.Checked
 
@@ -165,6 +174,7 @@
     End Sub
 
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
+        TextBoxMouseTimeClick.Text = FormFLM.Timer1.Interval
         Me.Close()
     End Sub
 
@@ -184,7 +194,7 @@
         file.WriteLine("fontIntestazioniSize=" & fontSize)
         file.WriteLine("fontIntestazioniStyle=" & fontStyle)
         file.WriteLine("fontIntestazioniColor=" & fontColor)
-        file.WriteLine("mouseTimeClick=" & mouseTimeC)
+        file.WriteLine("mouseTimeClick=" & mouseTimeClick)
         file.WriteLine("flmBackgroundImageCheck=" & CheckBoxFLMBackgroundImage.Checked)
         file.WriteLine("flmLayout=" & usoLayout)
 

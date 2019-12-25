@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Video Game Scraper by Gothrek")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("GotScraper")>
-<Assembly: AssemblyCopyright("Copyright ©  2017-2020")>
+<Assembly: AssemblyCopyright("Copyright ©  2017-2020 by Gothrek")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' usando l'asterisco '*' come illustrato di seguito:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("0.7.2.0")>
+<Assembly: AssemblyFileVersion("0.7.2.0")>

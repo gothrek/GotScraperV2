@@ -93,6 +93,16 @@ Namespace My.Resources
         '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property FLMRampage1() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("FLMRampage1", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Layout1() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Layout1", resourceCulture)

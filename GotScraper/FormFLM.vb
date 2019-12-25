@@ -10,7 +10,7 @@
     Public fontIntestazioniStyle As FontStyle = 0
     Public fontIntestazioniColor As String = "Red"
 
-    Public mouseTimeClick As Integer = 300
+    Public mouseTimeClick As Integer '= 300
 
     Public templateLayoutIni As String = "Default"
     Public flmLayout As Integer = 1
@@ -33,6 +33,7 @@
 
     Dim pannelloLocation As Point
     Dim pannelloSize As Size
+    Dim pannello As Panel
 
     Dim pannelloRomlistLocation As Point
     Dim pannelloRomlistSize As Size
@@ -87,6 +88,7 @@
             usoStringa = file.Substring(inizioStringa)
             fineStringa = usoStringa.IndexOf(vbCrLf)
             mouseTimeClick = Int(usoStringa.Substring(0, fineStringa))
+            Timer1.Interval = mouseTimeClick
 
             inizioStringa = file.IndexOf("flmBackgroundImageCheck=") + 24
             usoStringa = file.Substring(inizioStringa)
@@ -527,7 +529,9 @@
 
                     ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
 
-                    ButtonFLMOptions.Location = New Point(Me.Size.Width - ButtonFLMOptions.Size.Width - 12 - 8, ButtonCarica.Location.Y)
+                    ButtonAbout.Location = New Point(Me.Size.Width - ButtonAbout.Size.Width - 20 - 8, ButtonCarica.Location.Y)
+
+                    ButtonFLMOptions.Location = New Point(ButtonAbout.Location.X - ButtonFLMOptions.Size.Width - 6, ButtonCarica.Location.Y)
 
                     ButtonAnteprima.Location = New Point(ButtonFLMOptions.Location.X - ButtonAnteprima.Size.Width - 6, ButtonCarica.Location.Y)
 
@@ -566,7 +570,9 @@
 
                     ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
 
-                    ButtonFLMOptions.Location = New Point(Me.Size.Width - ButtonFLMOptions.Size.Width - 12 - 8, ButtonCarica.Location.Y)
+                    ButtonAbout.Location = New Point(Me.Size.Width - ButtonAbout.Size.Width - 20 - 8, ButtonCarica.Location.Y)
+
+                    ButtonFLMOptions.Location = New Point(ButtonAbout.Location.X - ButtonFLMOptions.Size.Width - 6, ButtonCarica.Location.Y)
 
                     ButtonAnteprima.Location = New Point(ButtonFLMOptions.Location.X - ButtonAnteprima.Size.Width - 6, ButtonCarica.Location.Y)
 
@@ -625,6 +631,10 @@
         Dim proc As New System.Diagnostics.Process()
 
         proc = Process.Start(grafxEditorPath, "")
+    End Sub
+
+    Private Sub ButtonAbout_Click(sender As Object, e As EventArgs) Handles ButtonAbout.Click
+        FormFLMAbout.Show()
     End Sub
 
     Private Sub ButtonFLMOptions_Click(sender As Object, e As EventArgs) Handles ButtonFLMOptions.Click
@@ -2192,31 +2202,7 @@
 
     End Sub
 
-    'Private Sub TabControlProprietà_Selected(sender As Object, e As TabControlEventArgs) Handles TabControlProprietà.Selected
-    '    'Dim usoOggetto As String = sender.selectedtab.name.ToString.Substring(7)
-    '    'Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
-
-    '    'If usoOggetto <> "Background" Then 'per il background non vogliamo che nasconda tutti gli altri oggetti
-    '    '    Try
-    '    '        For Each pannello As Control In PanelMain.Controls
-    '    '            pannello.BackColor = Color.FromArgb(50, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
-    '    '        Next
-
-    '    '        oggettoPanel.BackColor = Color.FromArgb(255, oggettoPanel.BackColor.R, oggettoPanel.BackColor.G, oggettoPanel.BackColor.B)
-    '    '    Catch ex As Exception
-    '    '        For Each pannello As Control In PanelMain.Controls
-    '    '            pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
-    '    '        Next
-    '    '    End Try
-    '    'Else
-    '    '    For Each pannello As Control In PanelMain.Controls
-    '    '        pannello.BackColor = Color.FromArgb(255, pannello.BackColor.R, pannello.BackColor.G, pannello.BackColor.B)
-    '    '    Next
-    '    'End If
-    'End Sub
-
     Private Sub ListBoxObj_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxObj.SelectedIndexChanged
-        'TabControlProprietà.SelectedIndex = ListBoxObj.SelectedIndex + 1
         TabControlTemp.TabPages.Insert(tabSelezionata, TabControlProprietà.TabPages(0))
         tabSelezionata = ListBoxObj.SelectedIndex + 1
         TabControlProprietà.TabPages.Add(TabControlTemp.TabPages(tabSelezionata))
@@ -2290,7 +2276,7 @@
         If valore > TrackBarZoom.Maximum Then
             valore = TrackBarZoom.Maximum
         End If
-        Debug.WriteLine("TrackMax:" & TrackBarZoom.Maximum)
+
         LabelZoom.Text = valore & "%"
 
         PanelMain.Size = New Size(Int(Val(TextBoxScreen_res_x.Text) * valore / 100), Int(Val(TextBoxScreen_res_y.Text) * valore / 100))
@@ -2523,15 +2509,8 @@
             mouseDownX = MousePosition.X
             mouseDownY = MousePosition.Y
 
-            Dim bm As Bitmap = ClassUtility.GetControlImage(sender)
-            Dim ptrCur As IntPtr = bm.GetHicon
-            Dim cur As Cursor
-
-            cur = New Cursor(ptrCur)
-            sender.visible = False
-
-            Me.Cursor = cur
-
+            pannello = sender
+            Timer1.Start()
         End If
     End Sub
 
@@ -2557,6 +2536,7 @@
         If e.Button = MouseButtons.Left Then
             If sender.tag <> 1 Then
                 Dim dataDiff As TimeSpan = Now.Subtract(tempoMouseClick)
+                Timer1.Stop()
 
                 If ((dataDiff.TotalMilliseconds) > mouseTimeClick) And (mouseDownX <> MousePosition.X) And (mouseDownY <> MousePosition.Y) Then
                     ListBoxObj.SelectedItem = usoOggetto
@@ -2590,6 +2570,18 @@
             LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & sender.location.x & " , " & sender.location.y
             sender.focus()
         End If
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+
+        Dim bm As Bitmap = ClassUtility.GetControlImage(pannello)
+        Dim ptrCur As IntPtr = bm.GetHicon
+        Dim cur As Cursor
+
+        cur = New Cursor(ptrCur)
+        pannello.Visible = False
+
+        Me.Cursor = cur
     End Sub
 
     Private Sub Panel_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles PanelSnapshot.PreviewKeyDown, PanelRomstatus.PreviewKeyDown, PanelRomname.PreviewKeyDown, PanelRommanufacturer.PreviewKeyDown, PanelRomlist.PreviewKeyDown, PanelRominputcontrol.PreviewKeyDown, PanelRomdisplaytype.PreviewKeyDown, PanelRomdescription.PreviewKeyDown, PanelRomcounter.PreviewKeyDown, PanelRomcategory.PreviewKeyDown, PanelPlatformname.PreviewKeyDown, PanelMenu.PreviewKeyDown, PanelMarquee.PreviewKeyDown, PanelGamelistname.PreviewKeyDown, PanelEmulatorname.PreviewKeyDown, PanelCabinet.PreviewKeyDown
