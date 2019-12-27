@@ -18,6 +18,8 @@
     Public dtOptionsLayout As DataTable
     Dim dtRisoluzioni As DataTable
 
+    Dim colorDialog1 As New CutoutPro.Winforms.ArgbColorDialog
+
     Dim mp3player As New ClassMedia.MP3Player
     Dim soundPlay As Boolean = False
     Dim musicPlay As Boolean = False
@@ -43,7 +45,6 @@
     Dim pannelloRomlistSize As Size
 
     Private Sub FormFLM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         If My.Computer.FileSystem.FileExists("FLM.ini") Then
             'Il file esiste verrà caricato
             Dim file As String
@@ -169,6 +170,10 @@
         formDimensioni = Me.Size
 
         LabelPercorso.Text = feelPath
+
+        colorDialog1.AnyColor = True
+        colorDialog1.FullOpen = True
+        colorDialog1.Text = "Seleziona un colore"
 
         LabelSoundPath2.Text = feelPath & "\media"
         LabelMusic_path.Text = feelPath & "\media"
@@ -3007,14 +3012,13 @@
                                                                                             TextBoxMenu_font_color.Click, TextBoxMenu_font_color.DoubleClick,
                                                                                             TextBoxMenu_selected_font_color.DoubleClick, TextBoxMenu_selected_font_color.Click
 
-        If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
-            sender.BackColor = ColorDialog1.Color
-
+        If (colorDialog1.ShowDialog() = DialogResult.OK) Then
             Dim coloreA As Integer = 255
-            Dim coloreR As Integer = ColorDialog1.Color.R Xor 255
-            Dim coloreG As Integer = ColorDialog1.Color.G Xor 255
-            Dim coloreB As Integer = ColorDialog1.Color.B Xor 255
+            Dim coloreR As Integer = colorDialog1.Color.R Xor 255
+            Dim coloreG As Integer = colorDialog1.Color.G Xor 255
+            Dim coloreB As Integer = colorDialog1.Color.B Xor 255
 
+            sender.BackColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
             sender.ForeColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
             sender.Text = coloreR & ", " & coloreG & ", " & coloreB
             sender.Refresh()
@@ -3083,7 +3087,7 @@
                                                                                         TextBoxRomcategory_backcolor.DoubleClick, TextBoxRomcategory_backcolor.Click, TextBoxMenu_backcolor.DoubleClick, TextBoxMenu_backcolor.Click
 
         If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
-            sender.BackColor = ColorDialog1.Color
+            sender.BackColor = Color.FromArgb(255, colorDialog1.Color.R, colorDialog1.Color.G, colorDialog1.Color.B)
 
             Dim coloreA As Integer = 255
             Dim coloreR As Integer = ColorDialog1.Color.R Xor 255
@@ -3091,7 +3095,7 @@
             Dim coloreB As Integer = ColorDialog1.Color.B Xor 255
 
             sender.ForeColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
-            sender.Text = coloreR & ", " & coloreG & ", " & coloreB
+            sender.Text = coloreR & ", " & coloreG & ", " & coloreB & ", " & colorDialog1.Color.A
             sender.Refresh()
 
             Dim usoOggetto As String = sender.name.ToString.Substring(7, sender.name.ToString.IndexOf("_") - 7)
@@ -3529,7 +3533,7 @@
 
     Private Sub TextBoxScreen_saver_backcolor_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxScreen_saver_backcolor.DoubleClick, TextBoxScreen_saver_backcolor.Click
         If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
-            TextBoxScreen_saver_backcolor.BackColor = ColorDialog1.Color
+            TextBoxScreen_saver_backcolor.BackColor = Color.FromArgb(255, colorDialog1.Color.R, colorDialog1.Color.G, colorDialog1.Color.B)
 
             Dim coloreA As Integer = 255
             Dim coloreR As Integer = ColorDialog1.Color.R Xor 255
@@ -3537,7 +3541,7 @@
             Dim coloreB As Integer = ColorDialog1.Color.B Xor 255
 
             TextBoxScreen_saver_backcolor.ForeColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
-            TextBoxScreen_saver_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB
+            TextBoxScreen_saver_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB & ", " & coloreA
         End If
     End Sub
 
@@ -3545,7 +3549,7 @@
     'Proprietà RomList
     Private Sub TextBoxRomlist_selected_backcolor_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxRomlist_selected_backcolor.DoubleClick, TextBoxRomlist_selected_backcolor.Click
         If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
-            TextBoxRomlist_selected_backcolor.BackColor = ColorDialog1.Color
+            TextBoxRomlist_selected_backcolor.BackColor = Color.FromArgb(255, colorDialog1.Color.R, colorDialog1.Color.G, colorDialog1.Color.B)
 
             Dim coloreA As Integer = 255
             Dim coloreR As Integer = ColorDialog1.Color.R Xor 255
@@ -3553,7 +3557,7 @@
             Dim coloreB As Integer = ColorDialog1.Color.B Xor 255
 
             TextBoxRomlist_selected_backcolor.ForeColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
-            TextBoxRomlist_selected_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB
+            TextBoxRomlist_selected_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB & ", " & coloreA
         End If
     End Sub
 
@@ -3686,7 +3690,7 @@
 
     Private Sub TextBoxMenu_selected_backcolor_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxMenu_selected_backcolor.DoubleClick, TextBoxMenu_selected_backcolor.Click
         If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
-            TextBoxMenu_selected_backcolor.BackColor = ColorDialog1.Color
+            TextBoxMenu_selected_backcolor.BackColor = Color.FromArgb(255, colorDialog1.Color.R, colorDialog1.Color.G, colorDialog1.Color.B)
 
             Dim coloreA As Integer = 0
             Dim coloreR As Integer = ColorDialog1.Color.R Xor 255
@@ -3694,7 +3698,7 @@
             Dim coloreB As Integer = ColorDialog1.Color.B Xor 255
 
             TextBoxMenu_selected_backcolor.ForeColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
-            TextBoxMenu_selected_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB
+            TextBoxMenu_selected_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB & ", " & coloreA
         End If
     End Sub
 

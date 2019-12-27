@@ -488,7 +488,6 @@ Partial Class FormFLM
         Me.TextBoxZoom = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.LabelPannello = New System.Windows.Forms.Label()
         Me.LabelPannelloMainY = New System.Windows.Forms.Label()
         Me.LabelScreenRisoluzione = New System.Windows.Forms.Label()
@@ -5643,12 +5642,6 @@ Partial Class FormFLM
         Me.TextBoxZoom.Text = "100"
         Me.TextBoxZoom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'ColorDialog1
-        '
-        Me.ColorDialog1.AnyColor = True
-        Me.ColorDialog1.FullOpen = True
-        Me.ColorDialog1.SolidColorOnly = True
-        '
         'LabelPannello
         '
         Me.LabelPannello.AutoSize = True
@@ -6192,7 +6185,6 @@ Partial Class FormFLM
     Friend WithEvents LabelScreen_saver_font_color As Label
     Friend WithEvents TextBoxScreen_saver_backcolor As TextBox
     Friend WithEvents LabelScreen_saver_backcolor As Label
-    Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents LabelProprietà As Label
     Friend WithEvents LabelPannelloMainY As Label
     Friend WithEvents LabelPannello As Label

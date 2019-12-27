@@ -64,8 +64,8 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="gCursor">
-      <HintPath>..\..\gCursor\gCursor\bin\Release\gCursor.dll</HintPath>
+    <Reference Include="ArgbColorDialog">
+      <HintPath>..\..\csharp-ArgbColorDialog\csharp-ArgbColorDialog-844bf8f2cf5ed9fc355fcc68f7e90009e18ff927\ArgbColorDialog\bin\Release\ArgbColorDialog.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics4.Shared.v17.2, Version=17.2.20172.2006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics4.Win.Misc.v17.2, Version=17.2.20172.2006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
@@ -91,7 +91,7 @@
     <Reference Include="UIAutomationTypes" />
   </ItemGroup>
   <ItemGroup>
-    <Import Include="gCursorLib" />
+    <Import Include="CutoutPro.Winforms" />
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
     <Import Include="System.Collections" />
