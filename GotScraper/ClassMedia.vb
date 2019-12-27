@@ -2,7 +2,6 @@
 Imports System.Runtime.InteropServices
 
 Namespace ClassMedia
-
     Public Class OpenFileEventArgs
         Inherits EventArgs
         Public Sub New(ByVal filename As String)
@@ -43,7 +42,6 @@ Namespace ClassMedia
 
         Public ReadOnly ErrNum As Long
     End Class
-
 
     Public Class MP3Player
         Private Pcommand As String, FName As String
@@ -100,7 +98,6 @@ Namespace ClassMedia
             End Set
         End Property
 
-
         Public Property MuteLeft() As Boolean
             Get
                 Return MutedLeft
@@ -120,7 +117,6 @@ Namespace ClassMedia
                 End If
             End Set
         End Property
-
 
         Public Property MuteRight() As Boolean
             Get
@@ -142,7 +138,6 @@ Namespace ClassMedia
             End Set
         End Property
 
-
         Public Property VolumeAll() As Integer
             Get
                 Return aVolume
@@ -157,7 +152,6 @@ Namespace ClassMedia
                 End If
             End Set
         End Property
-
         Public Property VolumeLeft() As Integer
             Get
                 Return lVolume

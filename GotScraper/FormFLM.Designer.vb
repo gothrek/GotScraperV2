@@ -29,6 +29,9 @@ Partial Class FormFLM
         Me.LabelIstruzioni = New System.Windows.Forms.Label()
         Me.LabelProprietà = New System.Windows.Forms.Label()
         Me.TabPageSound = New System.Windows.Forms.TabPage()
+        Me.CheckBoxSoundLoop = New System.Windows.Forms.CheckBox()
+        Me.ButtonSoundPlay = New System.Windows.Forms.Button()
+        Me.ListBoxSound = New System.Windows.Forms.ListBox()
         Me.ButtonSoundPath = New System.Windows.Forms.Button()
         Me.LabelSoundPath2 = New System.Windows.Forms.Label()
         Me.LabelSoundPath = New System.Windows.Forms.Label()
@@ -45,6 +48,8 @@ Partial Class FormFLM
         Me.TextBoxSound_fx_list = New System.Windows.Forms.TextBox()
         Me.LabelSound_fx_list = New System.Windows.Forms.Label()
         Me.TabPageMusic = New System.Windows.Forms.TabPage()
+        Me.CheckBoxMusicLoop = New System.Windows.Forms.CheckBox()
+        Me.ButtonMusicPlay = New System.Windows.Forms.Button()
         Me.TextBoxMusic_path = New System.Windows.Forms.TextBox()
         Me.TextBoxMusic_volume = New System.Windows.Forms.TextBox()
         Me.LabelMusic_volume = New System.Windows.Forms.Label()
@@ -521,6 +526,7 @@ Partial Class FormFLM
         Me.LabelValoreCursore = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.ButtonAbout = New System.Windows.Forms.Button()
+        Me.TimerMP3 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -640,6 +646,9 @@ Partial Class FormFLM
         '
         'TabPageSound
         '
+        Me.TabPageSound.Controls.Add(Me.CheckBoxSoundLoop)
+        Me.TabPageSound.Controls.Add(Me.ButtonSoundPlay)
+        Me.TabPageSound.Controls.Add(Me.ListBoxSound)
         Me.TabPageSound.Controls.Add(Me.ButtonSoundPath)
         Me.TabPageSound.Controls.Add(Me.LabelSoundPath2)
         Me.TabPageSound.Controls.Add(Me.LabelSoundPath)
@@ -665,9 +674,38 @@ Partial Class FormFLM
         Me.TabPageSound.Text = "Sound"
         Me.TabPageSound.UseVisualStyleBackColor = True
         '
+        'CheckBoxSoundLoop
+        '
+        Me.CheckBoxSoundLoop.AutoSize = True
+        Me.CheckBoxSoundLoop.ForeColor = System.Drawing.Color.Red
+        Me.CheckBoxSoundLoop.Location = New System.Drawing.Point(156, 407)
+        Me.CheckBoxSoundLoop.Name = "CheckBoxSoundLoop"
+        Me.CheckBoxSoundLoop.Size = New System.Drawing.Size(83, 17)
+        Me.CheckBoxSoundLoop.TabIndex = 23
+        Me.CheckBoxSoundLoop.Text = "Sound_loop"
+        Me.CheckBoxSoundLoop.UseVisualStyleBackColor = True
+        '
+        'ButtonSoundPlay
+        '
+        Me.ButtonSoundPlay.Location = New System.Drawing.Point(6, 403)
+        Me.ButtonSoundPlay.Name = "ButtonSoundPlay"
+        Me.ButtonSoundPlay.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonSoundPlay.TabIndex = 22
+        Me.ButtonSoundPlay.Text = "Play"
+        Me.ButtonSoundPlay.UseVisualStyleBackColor = True
+        '
+        'ListBoxSound
+        '
+        Me.ListBoxSound.FormattingEnabled = True
+        Me.ListBoxSound.Items.AddRange(New Object() {"invader_list.wav", "invader_menu.wav", "invader_confirm.wav", "invader_cancel.wav", "goal.wav"})
+        Me.ListBoxSound.Location = New System.Drawing.Point(6, 315)
+        Me.ListBoxSound.Name = "ListBoxSound"
+        Me.ListBoxSound.Size = New System.Drawing.Size(230, 82)
+        Me.ListBoxSound.TabIndex = 15
+        '
         'ButtonSoundPath
         '
-        Me.ButtonSoundPath.Location = New System.Drawing.Point(96, 322)
+        Me.ButtonSoundPath.Location = New System.Drawing.Point(96, 521)
         Me.ButtonSoundPath.Name = "ButtonSoundPath"
         Me.ButtonSoundPath.Size = New System.Drawing.Size(140, 23)
         Me.ButtonSoundPath.TabIndex = 14
@@ -678,7 +716,7 @@ Partial Class FormFLM
         '
         Me.LabelSoundPath2.AutoSize = True
         Me.LabelSoundPath2.ForeColor = System.Drawing.Color.Red
-        Me.LabelSoundPath2.Location = New System.Drawing.Point(3, 353)
+        Me.LabelSoundPath2.Location = New System.Drawing.Point(3, 552)
         Me.LabelSoundPath2.Name = "LabelSoundPath2"
         Me.LabelSoundPath2.Size = New System.Drawing.Size(40, 13)
         Me.LabelSoundPath2.TabIndex = 13
@@ -688,7 +726,7 @@ Partial Class FormFLM
         '
         Me.LabelSoundPath.AutoSize = True
         Me.LabelSoundPath.ForeColor = System.Drawing.Color.Red
-        Me.LabelSoundPath.Location = New System.Drawing.Point(3, 327)
+        Me.LabelSoundPath.Location = New System.Drawing.Point(3, 526)
         Me.LabelSoundPath.Name = "LabelSoundPath"
         Me.LabelSoundPath.Size = New System.Drawing.Size(60, 13)
         Me.LabelSoundPath.TabIndex = 12
@@ -804,6 +842,8 @@ Partial Class FormFLM
         '
         'TabPageMusic
         '
+        Me.TabPageMusic.Controls.Add(Me.CheckBoxMusicLoop)
+        Me.TabPageMusic.Controls.Add(Me.ButtonMusicPlay)
         Me.TabPageMusic.Controls.Add(Me.TextBoxMusic_path)
         Me.TabPageMusic.Controls.Add(Me.TextBoxMusic_volume)
         Me.TabPageMusic.Controls.Add(Me.LabelMusic_volume)
@@ -819,6 +859,26 @@ Partial Class FormFLM
         Me.TabPageMusic.TabIndex = 1
         Me.TabPageMusic.Text = "Music"
         Me.TabPageMusic.UseVisualStyleBackColor = True
+        '
+        'CheckBoxMusicLoop
+        '
+        Me.CheckBoxMusicLoop.AutoSize = True
+        Me.CheckBoxMusicLoop.ForeColor = System.Drawing.Color.Red
+        Me.CheckBoxMusicLoop.Location = New System.Drawing.Point(134, 96)
+        Me.CheckBoxMusicLoop.Name = "CheckBoxMusicLoop"
+        Me.CheckBoxMusicLoop.Size = New System.Drawing.Size(80, 17)
+        Me.CheckBoxMusicLoop.TabIndex = 22
+        Me.CheckBoxMusicLoop.Text = "Music_loop"
+        Me.CheckBoxMusicLoop.UseVisualStyleBackColor = True
+        '
+        'ButtonMusicPlay
+        '
+        Me.ButtonMusicPlay.Location = New System.Drawing.Point(53, 92)
+        Me.ButtonMusicPlay.Name = "ButtonMusicPlay"
+        Me.ButtonMusicPlay.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonMusicPlay.TabIndex = 21
+        Me.ButtonMusicPlay.Text = "Play"
+        Me.ButtonMusicPlay.UseVisualStyleBackColor = True
         '
         'TextBoxMusic_path
         '
@@ -5968,6 +6028,9 @@ Partial Class FormFLM
         Me.ButtonAbout.Text = "About"
         Me.ButtonAbout.UseVisualStyleBackColor = True
         '
+        'TimerMP3
+        '
+        '
         'FormFLM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -6559,4 +6622,10 @@ Partial Class FormFLM
     Friend WithEvents LabelValoreCursore As Label
     Friend WithEvents Timer1 As Timer
     Friend WithEvents ButtonAbout As Button
+    Friend WithEvents ButtonMusicPlay As Button
+    Friend WithEvents CheckBoxMusicLoop As CheckBox
+    Friend WithEvents ButtonSoundPlay As Button
+    Friend WithEvents ListBoxSound As ListBox
+    Friend WithEvents CheckBoxSoundLoop As CheckBox
+    Friend WithEvents TimerMP3 As Timer
 End Class

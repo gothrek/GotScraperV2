@@ -2,7 +2,7 @@
     Dim dt As DataTable
     Dim arrayObj(FormFLM.ListBoxObj.Items.Count) As String
 
-    Dim mp3player As New ClassMedia.MP3Player
+    Dim mp3playerMusic As New ClassMedia.MP3Player
 
     Dim dtRoms As DataTable
     Dim indiceRom As Integer
@@ -29,23 +29,31 @@
     Dim nImmagineActors As Integer = 0
     Dim actors_frame_duration_ms As Integer
     Dim actors_repeat_delay_ms As Integer
+    Dim actorsStart(9) As Bitmap
+    Dim contaImmaginiActorsStart As Integer = 0
+    Dim nImmagineActorsStart As Integer = 0
+    Dim actors_start As Boolean = False
+    Dim actors_startCTRL As Boolean = False
 
     Dim bezel(9) As Bitmap
     Dim contaImmaginiBezel As Integer = 0
     Dim nImmagineBezel As Integer = 0
     Dim bezel_frame_duration_ms As Integer
     Dim bezel_repeat_delay_ms As Integer
+    Dim bezelStart(9) As Bitmap
+    Dim contaImmaginiBezelStart As Integer = 0
+    Dim nImmagineBezelStart As Integer = 0
+    Dim bezel_start As Boolean = False
+    Dim bezel_startCTRL As Boolean = False
 
-    Dim pannelliBMP(20) As Bitmap
-    Dim pannelliBMPNomi(20) As String
-    Dim pannelliBMPX(20) As Integer
-    Dim pannelliBMPY(20) As Integer
-    Dim pannelliBMPW(20) As Integer
-    Dim pannelliBMPH(20) As Integer
+    Dim pannelliBMP(22) As Bitmap
+    Dim pannelliBMPNomi(22) As String
+    Dim pannelliBMPX(22) As Integer
+    Dim pannelliBMPY(22) As Integer
+    Dim pannelliBMPW(22) As Integer
+    Dim pannelliBMPH(22) As Integer
     Dim pannelliBMPIndexUltimo As Integer = 0
     Dim pannelliBMPelenco = New List(Of Integer)
-
-    Dim eventoPaint As Boolean = True
 
     Private Sub FormFLManteprimaV2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim usocolor As String
@@ -87,20 +95,18 @@
 
         '----------------------------------------------------------------------------------------------
         '---sound----
-        'sound_fx_list                           invader_list.wav
-        'sound_fx_menu                           invader_menu.wav
         'sound_fx_confirm                        invader_confirm.wav
         'sound_fx_cancel                         invader_cancel.wav
-        'sound_fx_startemu                       goal.wav
         'sound_fx_volume                         100
 
         '----------------------------------------------------------------------------------------------
         '---music----
         If dt.Rows(dt.Rows.Count - 1).Item("music_path").ToString.Length > 2 Then
             Try
-                mp3player.VolumeAll = Int(dt.Rows(dt.Rows.Count - 1).Item("music_volume"))
-                mp3player.Open(FormFLM.feelPath & "\media\" & dt.Rows(dt.Rows.Count - 1).Item("music_path"))
-                mp3player.Play()
+                mp3playerMusic.VolumeAll = Int(dt.Rows(dt.Rows.Count - 1).Item("music_volume"))
+                mp3playerMusic.Looping = True
+                mp3playerMusic.Open(FormFLM.feelPath & "\media\" & dt.Rows(dt.Rows.Count - 1).Item("music_path"))
+                mp3playerMusic.Play()
             Catch ex As Exception
                 MsgBox("Attenzione! Verificare il file audio musicale impostato!")
             End Try
@@ -416,7 +422,6 @@
                 Catch ex As Exception
                     esci = True
                 End Try
-
             End If
         Loop Until esci
 
@@ -430,22 +435,50 @@
         End Try
         actors_repeat_delay_ms = Int(dt.Rows(dt.Rows.Count - 1).Item("actors_repeat_delay_ms"))
 
+        Try
+            actorsStart(0) = Bitmap.FromFile(FormFLM.LabelPercorso.Text & "\actors_start.png")
+            pannelliBMP(20) = actorsStart(0)
+            pannelliBMPNomi(20) = "actors_start"
+            pannelliBMPX(20) = 0
+            pannelliBMPY(20) = 0
+            pannelliBMPW(20) = Me.Width
+            pannelliBMPH(20) = Me.Height
+
+            actors_start = True
+            pannelliBMPIndexUltimo = 21
+        Catch ex As Exception
+
+        End Try
+
+        Do
+            If Not esci Then
+                Try
+                    contaImmaginiActorsStart += 1
+                    actorsStart(contaImmaginiActorsStart) = New Bitmap(Image.FromFile(FormFLM.LabelPercorso.Text & "\actors_start" & contaImmaginiActorsStart & ".png"), Me.Width, Me.Height)
+                Catch ex As Exception
+                    esci = True
+                End Try
+            End If
+        Loop Until esci
+
+        esci = False
+
         '----------------------------------------------------------------------------------------------
         '---bezel----
         Dim timerBezelOK As Boolean = False
 
         Try
             bezel(0) = Bitmap.FromFile(FormFLM.LabelPercorso.Text & "\bezel.png")
-            pannelliBMP(20) = bezel(0)
-            pannelliBMPNomi(20) = "bezel"
-            pannelliBMPX(20) = 0
-            pannelliBMPY(20) = 0
-            pannelliBMPW(20) = Me.Width
-            pannelliBMPH(20) = Me.Height
+            pannelliBMP(21) = bezel(0)
+            pannelliBMPNomi(21) = "bezel"
+            pannelliBMPX(21) = 0
+            pannelliBMPY(21) = 0
+            pannelliBMPW(21) = Me.Width
+            pannelliBMPH(21) = Me.Height
 
             timerBezelOK = True
-            pannelliBMPIndexUltimo = 21
-            pannelliBMPelenco.Add(20)
+            pannelliBMPIndexUltimo = 22
+            pannelliBMPelenco.Add(21)
         Catch ex As Exception
 
         End Try
@@ -461,6 +494,8 @@
             End If
         Loop Until esci
 
+        esci = False
+
         bezel_frame_duration_ms = Int(dt.Rows(dt.Rows.Count - 1).Item("bezel_frame_duration_ms"))
         Try
             TimerBezel.Interval = bezel_frame_duration_ms
@@ -468,6 +503,32 @@
 
         End Try
         bezel_repeat_delay_ms = Int(dt.Rows(dt.Rows.Count - 1).Item("bezel_repeat_delay_ms"))
+
+        Try
+            bezelStart(0) = Bitmap.FromFile(FormFLM.LabelPercorso.Text & "\bezel_start.png")
+            pannelliBMP(22) = bezelStart(0)
+            pannelliBMPNomi(22) = "bezel_start"
+            pannelliBMPX(22) = 0
+            pannelliBMPY(22) = 0
+            pannelliBMPW(22) = Me.Width
+            pannelliBMPH(22) = Me.Height
+
+            bezel_start = True
+            pannelliBMPIndexUltimo = 23
+        Catch ex As Exception
+
+        End Try
+
+        Do
+            If Not esci Then
+                Try
+                    contaImmaginiBezelStart += 1
+                    bezelStart(contaImmaginiBezelStart) = New Bitmap(Image.FromFile(FormFLM.LabelPercorso.Text & "\bezel_start" & contaImmaginiBezelStart & ".png"), Me.Width, Me.Height)
+                Catch ex As Exception
+                    esci = True
+                End Try
+            End If
+        Loop Until esci
 
         '----------------------------------------------------------------------------------------------
         If timerMainOK Then TimerMain.Start()
@@ -582,7 +643,7 @@
 
     End Sub
 
-    Private Sub AggiornaSfondo2(inizio As Integer)
+    Private Sub AggiornaSfondo2()
         Dim g As Graphics
         Dim image As Bitmap = New Bitmap(Me.Width, Me.Height)
 
@@ -592,15 +653,6 @@
         g.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
         g2.SmoothingMode = Drawing2D.SmoothingMode.None
         g2.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
-        'For i As Integer = inizio To pannelliBMPIndexUltimo - 1
-        '    Try
-        '        Dim imgtemp As Bitmap = New Bitmap(pannelliBMP(i), New Size(pannelliBMPW(i), pannelliBMPH(i)))
-        '        'pannelliBMP(i).Save(pannelliBMPNomi(i) & ".png")
-        '        g.DrawImage(imgtemp, New Point(pannelliBMPX(i), pannelliBMPY(i)))
-        '    Catch ex As Exception
-
-        '    End Try
-        'Next
 
         For Each i As Integer In pannelliBMPelenco
             Try
@@ -618,34 +670,79 @@
     Private Sub Panel_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles PanelBackground.PreviewKeyDown, MyBase.PreviewKeyDown
         Dim esci As Boolean = False
 
-        If e.Modifiers = Keys.Alt Then
-            PanelMenu.Visible = Not PanelMenu.Visible
-        Else
-            PanelMenu.Visible = False
+        Select Case e.Modifiers
+            Case Keys.Alt
+                PanelMenu.Visible = Not PanelMenu.Visible
 
-            Select Case e.KeyCode
-                Case Keys.Up
-                    indiceRom -= 1
+                Try
+                    My.Computer.Audio.Play(FormFLM.feelPath & "\media\" & dt.Rows(dt.Rows.Count - 1).Item("sound_fx_menu"), AudioPlayMode.Background)
+                Catch ex As Exception
 
-                    If indiceRom < 0 Then
-                        indiceRom = dtRoms.Rows.Count - 1
-                    End If
+                End Try
+            Case Keys.Control
+                If actors_start Then
+                    actors_startCTRL = True
+                    Try
+                        pannelliBMPelenco.remove(19)
+                        pannelliBMPelenco.remove(21)
+                        pannelliBMPelenco.add(20)
+                        pannelliBMPelenco.add(21)
+                    Catch ex As Exception
 
-                    Romlist(indiceRom)
+                    End Try
+                End If
 
-                Case Keys.Down
-                    indiceRom += 1
+                If bezel_start Then
+                    bezel_startCTRL = True
+                    Try
+                        pannelliBMPelenco.remove(21)
+                        pannelliBMPelenco.add(22)
+                    Catch ex As Exception
 
-                    If indiceRom = dtRoms.Rows.Count Then
-                        indiceRom = 0
-                    End If
+                    End Try
+                End If
 
-                    Romlist(indiceRom)
+                Try
+                    My.Computer.Audio.Play(FormFLM.feelPath & "\media\" & dt.Rows(dt.Rows.Count - 1).Item("sound_fx_startemu"), AudioPlayMode.Background)
+                Catch ex As Exception
 
-                Case Keys.Escape
-                    esci = True
-            End Select
-        End If
+                End Try
+            Case Else
+                PanelMenu.Visible = False
+
+                Select Case e.KeyCode
+                    Case Keys.Up
+                        indiceRom -= 1
+
+                        If indiceRom < 0 Then
+                            indiceRom = dtRoms.Rows.Count - 1
+                        End If
+
+                        Romlist(indiceRom)
+
+                        Try
+                            My.Computer.Audio.Play(FormFLM.feelPath & "\media\" & dt.Rows(dt.Rows.Count - 1).Item("sound_fx_list"), AudioPlayMode.Background)
+                        Catch ex As Exception
+
+                        End Try
+                    Case Keys.Down
+                        indiceRom += 1
+
+                        If indiceRom = dtRoms.Rows.Count Then
+                            indiceRom = 0
+                        End If
+
+                        Romlist(indiceRom)
+
+                        Try
+                            My.Computer.Audio.Play(FormFLM.feelPath & "\media\" & dt.Rows(dt.Rows.Count - 1).Item("sound_fx_list"), AudioPlayMode.Background)
+                        Catch ex As Exception
+
+                        End Try
+                    Case Keys.Escape
+                        esci = True
+                End Select
+        End Select
 
         Try
             pannelliBMP(5) = Image.FromFile(".\anteprima\media\images\" & dtRoms.Rows(indiceRom).Item("romlist") & ".png")
@@ -667,10 +764,10 @@
 
         pannelli()
 
-        AggiornaSfondo2(2)
+        AggiornaSfondo2()
 
         If esci Then
-            mp3player.Close()
+            mp3playerMusic.Close()
             Me.Close()
         End If
     End Sub
@@ -687,30 +784,12 @@
             End If
         End If
 
-        '---Metodo1----
-        'Me.SuspendLayout()
-        'Me.BackgroundImage = Nothing
-        'Me.BackgroundImage = main(nImmagineMain)
-        'Me.ResumeLayout()
-
-        '---Metodo2----
-        'Try
-        '    Dim g As Graphics
-        '    g = PanelBackground.CreateGraphics()
-        '    g.DrawImage(main(nImmagineMain), 0, 0)
-        '    AggiornaSfondo2(5)
-        'Catch ex As Exception
-
-        'End Try
-
-        '---Metodo3----
         Try
             pannelliBMP(2) = main(nImmagineMain)
-            AggiornaSfondo2(2)
+            AggiornaSfondo2()
         Catch ex As Exception
 
         End Try
-
     End Sub
 
     Private Sub TimerMainDelay_Tick(sender As Object, e As EventArgs) Handles TimerMainDelay.Tick
@@ -718,24 +797,47 @@
     End Sub
 
     Private Sub TimerActors_Tick(sender As Object, e As EventArgs) Handles TimerActors.Tick
-        nImmagineActors += 1
+        If actors_startCTRL Then 'actors start
+            nImmagineActorsStart += 1
 
-        If nImmagineActors = contaImmaginiActors Then
-            nImmagineActors = 0
+            If nImmagineActorsStart = contaImmaginiActorsStart Then
+                nImmagineActorsStart = 0
+                nImmagineActors = 0
+
+                pannelliBMPelenco.remove(20)
+                pannelliBMPelenco.remove(21)
+                pannelliBMPelenco.add(19)
+                pannelliBMPelenco.add(21)
+
+                actors_startCTRL = False
+            End If
+
+            Try
+                pannelliBMP(20) = actorsStart(nImmagineActorsStart)
+                AggiornaSfondo2()
+            Catch ex As Exception
+
+            End Try
+        Else 'actors normale
+            nImmagineActors += 1
+
+            If nImmagineActors = contaImmaginiActors Then
+                nImmagineActors = 0
+            End If
+
+            If (nImmagineActors = (contaImmaginiActors - 1)) And (actors_repeat_delay_ms > 0) Then
+                TimerActorsDelay.Interval = actors_repeat_delay_ms
+                TimerActors.Stop()
+                TimerActorsDelay.Start()
+            End If
+
+            Try
+                pannelliBMP(19) = actors(nImmagineActors)
+                AggiornaSfondo2()
+            Catch ex As Exception
+
+            End Try
         End If
-
-        If (nImmagineActors = (contaImmaginiActors - 1)) And (actors_repeat_delay_ms > 0) Then
-            TimerActorsDelay.Interval = actors_repeat_delay_ms
-            TimerActors.Stop()
-            TimerActorsDelay.Start()
-        End If
-
-        Try
-            pannelliBMP(19) = actors(nImmagineActors)
-            AggiornaSfondo2(2)
-        Catch ex As Exception
-
-        End Try
     End Sub
 
     Private Sub TimerActorsDelay_Tick(sender As Object, e As EventArgs) Handles TimerActorsDelay.Tick
@@ -744,24 +846,45 @@
     End Sub
 
     Private Sub TimerBezel_Tick(sender As Object, e As EventArgs) Handles TimerBezel.Tick
-        nImmagineBezel += 1
+        If bezel_startCTRL Then 'bezel start
+            nImmagineBezelStart += 1
 
-        If (nImmagineBezel = contaImmaginiBezel) Then
-            nImmagineBezel = 0
+            If (nImmagineBezelStart = contaImmaginiBezelStart) Then
+                nImmagineBezelStart = 0
+                nImmagineBezel = 0
+
+                pannelliBMPelenco.remove(22)
+                pannelliBMPelenco.add(21)
+
+                bezel_startCTRL = False
+            End If
+
+            Try
+                pannelliBMP(22) = bezelStart(nImmagineBezelStart)
+                AggiornaSfondo2()
+            Catch ex As Exception
+
+            End Try
+        Else 'bezel normale
+            nImmagineBezel += 1
+
+            If (nImmagineBezel = contaImmaginiBezel) Then
+                nImmagineBezel = 0
+            End If
+
+            If (nImmagineBezel = (contaImmaginiBezel - 1)) And (bezel_repeat_delay_ms > 0) Then
+                TimerBezelDelay.Interval = bezel_repeat_delay_ms
+                TimerBezel.Stop()
+                TimerBezelDelay.Start()
+            End If
+
+            Try
+                pannelliBMP(21) = bezel(nImmagineBezel)
+                AggiornaSfondo2()
+            Catch ex As Exception
+
+            End Try
         End If
-
-        If (nImmagineBezel = (contaImmaginiBezel - 1)) And (bezel_repeat_delay_ms > 0) Then
-            TimerBezelDelay.Interval = bezel_repeat_delay_ms
-            TimerBezel.Stop()
-            TimerBezelDelay.Start()
-        End If
-
-        Try
-            pannelliBMP(20) = bezel(nImmagineBezel)
-            AggiornaSfondo2(2)
-        Catch ex As Exception
-
-        End Try
     End Sub
 
     Private Sub TimerBezelDelay_Tick(sender As Object, e As EventArgs) Handles TimerBezelDelay.Tick

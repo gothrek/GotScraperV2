@@ -18,6 +18,10 @@
     Public dtOptionsLayout As DataTable
     Dim dtRisoluzioni As DataTable
 
+    Dim mp3player As New ClassMedia.MP3Player
+    Dim soundPlay As Boolean = False
+    Dim musicPlay As Boolean = False
+
     Dim mouseCoordinate As Point = MousePosition
     Dim tempoMouseClick As Date
     Dim mouseDownX As Integer
@@ -623,6 +627,7 @@
     End Sub
 
     Private Sub FormFLM_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        mp3player.Close()
         dtOptionsLayout.Dispose()
         'dtRisoluzioni.Dispose()
     End Sub
@@ -634,19 +639,39 @@
     End Sub
 
     Private Sub ButtonAbout_Click(sender As Object, e As EventArgs) Handles ButtonAbout.Click
+        soundPlay = False
+        musicPlay = False
+        ButtonSoundPlay.Text = "Play"
+        ButtonMusicPlay.Text = "Play"
+        mp3player.Close()
         FormFLMAbout.Show()
     End Sub
 
     Private Sub ButtonFLMOptions_Click(sender As Object, e As EventArgs) Handles ButtonFLMOptions.Click
+        soundPlay = False
+        musicPlay = False
+        ButtonSoundPlay.Text = "Play"
+        ButtonMusicPlay.Text = "Play"
+        mp3player.Close()
         FormFLMoptions.ShowDialog()
     End Sub
 
     Private Sub ButtonAnteprima_Click(sender As Object, e As EventArgs) Handles ButtonAnteprima.Click
         ValoriInTabella()
+        soundPlay = False
+        musicPlay = False
+        ButtonSoundPlay.Text = "Play"
+        ButtonMusicPlay.Text = "Play"
+        mp3player.Close()
         FormFLManteprimaV2.Show() 'o lanciare programma esterno o in thread diverso
     End Sub
 
     Private Sub ButtonAnteprimaOld_Click(sender As Object, e As EventArgs) Handles ButtonAnteprimaOld.Click
+        soundPlay = False
+        musicPlay = False
+        ButtonSoundPlay.Text = "Play"
+        ButtonMusicPlay.Text = "Play"
+        mp3player.Close()
         FormFLManteprima.Show()
     End Sub
 
@@ -703,32 +728,44 @@
                 End Try
             End While
 
+            mp3player.Close()
+            ListBoxSound.Items.Clear()
+            soundPlay = False
+            musicPlay = False
+            ButtonSoundPlay.Text = "Play"
+            ButtonMusicPlay.Text = "Play"
+
             Try
                 TextBoxSound_fx_list.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_list")
+                ListBoxSound.Items.Add(TextBoxSound_fx_list.Text)
                 LabelSound_fx_list.ForeColor = Color.Black
             Catch ex As Exception
                 LabelSound_fx_list.ForeColor = Color.Green
             End Try
             Try
                 TextBoxSound_fx_menu.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_menu")
+                ListBoxSound.Items.Add(TextBoxSound_fx_menu.Text)
                 LabelSound_fx_menu.ForeColor = Color.Black
             Catch ex As Exception
                 LabelSound_fx_menu.ForeColor = Color.Green
             End Try
             Try
                 TextBoxSound_fx_confirm.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_confirm")
+                ListBoxSound.Items.Add(TextBoxSound_fx_confirm.Text)
                 LabelSound_fx_confirm.ForeColor = Color.Black
             Catch ex As Exception
                 LabelSound_fx_confirm.ForeColor = Color.Green
             End Try
             Try
                 TextBoxSound_fx_cancel.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_cancel")
+                ListBoxSound.Items.Add(TextBoxSound_fx_cancel.Text)
                 LabelSound_fx_cancel.ForeColor = Color.Black
             Catch ex As Exception
                 LabelSound_fx_cancel.ForeColor = Color.Green
             End Try
             Try
                 TextBoxSound_fx_startemu.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_startemu")
+                ListBoxSound.Items.Add(TextBoxSound_fx_startemu.Text)
                 LabelSound_fx_startemu.ForeColor = Color.Black
             Catch ex As Exception
                 LabelSound_fx_startemu.ForeColor = Color.Green
@@ -2203,6 +2240,12 @@
     End Sub
 
     Private Sub ListBoxObj_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxObj.SelectedIndexChanged
+        soundPlay = False
+        musicPlay = False
+        ButtonSoundPlay.Text = "Play"
+        ButtonMusicPlay.Text = "Play"
+        mp3player.Close()
+
         TabControlTemp.TabPages.Insert(tabSelezionata, TabControlProprietà.TabPages(0))
         tabSelezionata = ListBoxObj.SelectedIndex + 1
         TabControlProprietà.TabPages.Add(TabControlTemp.TabPages(tabSelezionata))
@@ -3272,6 +3315,39 @@
         FolderBrowserDialog1.ShowDialog()
     End Sub
 
+    Private Sub ButtonSoundPlay_Click(sender As Object, e As EventArgs) Handles ButtonSoundPlay.Click
+        soundPlay = Not soundPlay
+        mp3player.Looping = CheckBoxSoundLoop.Checked
+
+        If soundPlay Then
+            Try
+                mp3player.VolumeAll = Int(TextBoxSound_fx_volume.Text)
+                mp3player.Open(feelPath & "\media\" & ListBoxSound.SelectedItem)
+                mp3player.Play()
+
+                If Not CheckBoxSoundLoop.Checked Then
+                    TimerMP3.Interval = mp3player.AudioLength
+                    TimerMP3.Start()
+                End If
+
+                ButtonSoundPlay.Text = "Pause"
+            Catch ex As Exception
+
+            End Try
+        Else
+            ButtonSoundPlay.Text = "Play"
+            mp3player.Close()
+        End If
+    End Sub
+
+    Private Sub ListBoxSound_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxSound.SelectedIndexChanged,
+                                                                                            CheckBoxSoundLoop.CheckedChanged
+
+        ButtonSoundPlay.Text = "Play"
+        soundPlay = False
+        mp3player.Close()
+    End Sub
+
     '----------------------------------------------------------------------------------------------
     'Proprietà Music
     Private Sub TextBoxMusicPath_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxMusic_path.DoubleClick
@@ -3294,6 +3370,42 @@
 
     Private Sub ButtonMusic_path_Click(sender As Object, e As EventArgs) Handles ButtonMusic_path.Click
         FolderBrowserDialog1.ShowDialog()
+    End Sub
+
+    Private Sub ButtonMusicPlay_Click(sender As Object, e As EventArgs) Handles ButtonMusicPlay.Click
+        musicPlay = Not musicPlay
+        mp3player.Looping = CheckBoxMusicLoop.Checked
+
+        If musicPlay Then
+            mp3player.VolumeAll = Int(TextBoxMusic_volume.Text)
+            mp3player.Open(feelPath & "\media\" & TextBoxMusic_path.Text)
+            mp3player.Play()
+
+            If Not CheckBoxMusicLoop.Checked Then
+                TimerMP3.Interval = mp3player.AudioLength
+                TimerMP3.Start()
+            End If
+
+            ButtonMusicPlay.Text = "Pause"
+            Else
+                ButtonMusicPlay.Text = "Play"
+            mp3player.Close()
+        End If
+    End Sub
+
+    Private Sub CheckBoxMusicLoop_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxMusicLoop.CheckedChanged
+        ButtonMusicPlay.Text = "Play"
+        musicPlay = False
+        mp3player.Close()
+    End Sub
+
+    Private Sub TimerMP3_Tick(sender As Object, e As EventArgs) Handles TimerMP3.Tick
+        ButtonSoundPlay.Text = "Play"
+        soundPlay = False
+        ButtonMusicPlay.Text = "Play"
+        musicPlay = False
+        mp3player.Close()
+        TimerMP3.Stop()
     End Sub
 
     '----------------------------------------------------------------------------------------------
