@@ -5663,6 +5663,7 @@ Partial Class FormFLM
         Me.LabelPannelloMainY.Size = New System.Drawing.Size(95, 13)
         Me.LabelPannelloMainY.TabIndex = 29
         Me.LabelPannelloMainY.Text = "Pannello main Y: 0"
+        Me.LabelPannelloMainY.Visible = False
         '
         'LabelScreenRisoluzione
         '
