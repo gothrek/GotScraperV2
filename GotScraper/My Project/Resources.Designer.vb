@@ -73,6 +73,36 @@ Namespace My.Resources
         '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property _228484_preview_256x256() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("228484_preview_256x256", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property _228488_vienna_256x256() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("228488_vienna_256x256", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property _228527_app_256x256() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("228527_app_256x256", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property BarTop() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("BarTop", resourceCulture)

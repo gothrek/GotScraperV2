@@ -288,5 +288,14 @@
   <ItemGroup>
     <None Include="Resources\FLMRampage1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\228527_app_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\228484_preview_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\228488_vienna_256x256.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

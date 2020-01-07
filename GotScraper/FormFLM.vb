@@ -2538,7 +2538,6 @@
                                                                                 PanelRomcategory.MouseDown,
                                                                                 PanelMenu.MouseDown ', PanelBackground.MouseDown, PanelMain.MouseDown,
 
-        tempoMouseClick = Now()
         Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
 
         ListBoxObj.SelectedItem = usoOggetto
@@ -2548,6 +2547,8 @@
 
             sender.tag = Math.Abs(Int(sender.tag) - 1)
         Else
+            tempoMouseClick = Now()
+
             TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
 
             Dim x As Integer = Int(sender.size.width / 2 - e.X)
@@ -2611,6 +2612,7 @@
                     sender.visible = True
                 End If
             Else
+                Timer1.Stop()
                 sender.visible = True
                 MsgBox("Il pannello è in lock! Per spostarlo col mouse devi prima sbloccarlo con bottone dx del mouse.")
             End If

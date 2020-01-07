@@ -5574,14 +5574,17 @@ Partial Class FormFLM
         '
         'ButtonAnteprima
         '
+        Me.ButtonAnteprima.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonAnteprima.BackgroundImage = Global.GotScraper.My.Resources.Resources._228484_preview_256x256
+        Me.ButtonAnteprima.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonAnteprima.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonAnteprima.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonAnteprima.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.ButtonAnteprima.Location = New System.Drawing.Point(1070, 3)
+        Me.ButtonAnteprima.ForeColor = System.Drawing.Color.Black
+        Me.ButtonAnteprima.Location = New System.Drawing.Point(1106, 3)
         Me.ButtonAnteprima.Name = "ButtonAnteprima"
-        Me.ButtonAnteprima.Size = New System.Drawing.Size(80, 34)
+        Me.ButtonAnteprima.Size = New System.Drawing.Size(44, 34)
         Me.ButtonAnteprima.TabIndex = 3
-        Me.ButtonAnteprima.Text = "AnteprimaV2"
-        Me.ButtonAnteprima.UseVisualStyleBackColor = True
+        Me.ButtonAnteprima.UseVisualStyleBackColor = False
         '
         'LabelZoom
         '
@@ -5908,8 +5911,8 @@ Partial Class FormFLM
         '
         'ButtonPainter
         '
-        Me.ButtonPainter.BackColor = System.Drawing.Color.Black
-        Me.ButtonPainter.BackgroundImage = Global.GotScraper.My.Resources.Resources.pencil
+        Me.ButtonPainter.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonPainter.BackgroundImage = Global.GotScraper.My.Resources.Resources._228527_app_256x256
         Me.ButtonPainter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonPainter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonPainter.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -6012,14 +6015,16 @@ Partial Class FormFLM
         '
         'ButtonAbout
         '
+        Me.ButtonAbout.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonAbout.BackgroundImage = Global.GotScraper.My.Resources.Resources._228488_vienna_256x256
+        Me.ButtonAbout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonAbout.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonAbout.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ButtonAbout.Location = New System.Drawing.Point(1206, 3)
         Me.ButtonAbout.Name = "ButtonAbout"
         Me.ButtonAbout.Size = New System.Drawing.Size(46, 34)
         Me.ButtonAbout.TabIndex = 40
-        Me.ButtonAbout.Text = "About"
-        Me.ButtonAbout.UseVisualStyleBackColor = True
+        Me.ButtonAbout.UseVisualStyleBackColor = False
         '
         'TimerMP3
         '
