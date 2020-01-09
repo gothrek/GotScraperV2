@@ -1,4 +1,6 @@
 ﻿Public Class FormFLM
+    Public fileErrorLog As System.IO.StreamWriter
+
     Public feelPath As String = "C:\"
     Public grafxEditorPath As String = "C:\Windows\system32\mspaint.exe" 'percorso di default del Paint di Windows
 
@@ -45,6 +47,9 @@
     Dim pannelloRomlistSize As Size
 
     Private Sub FormFLM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", False)
+        fileErrorLog.Close()
+
         If My.Computer.FileSystem.FileExists("FLM.ini") Then
             'Il file esiste verrà caricato
             Dim file As String
@@ -102,6 +107,9 @@
                 flmBackgroundImageCheck = Convert.ToBoolean(usoStringa.Substring(0, fineStringa))
             Catch ex As Exception
                 flmBackgroundImageCheck = True
+                fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", True)
+                fileErrorLog.WriteLine(Now.ToShortTimeString & " - FormFLM_Load" & " - flmBackgroundImageCheck - " & ex.Message)
+                fileErrorLog.Close()
             End Try
 
             inizioStringa = file.IndexOf("flmLayout=") + 10
@@ -123,6 +131,9 @@
                 FormFLM_Resize()
             Catch ex As Exception
                 flmLayout = 1
+                fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", True)
+                fileErrorLog.WriteLine(Now.ToShortTimeString & " - FormFLM_Load" & " - flmLayout - " & ex.Message)
+                fileErrorLog.Close()
             End Try
 
         Else
@@ -204,8 +215,10 @@
                             dtRisoluzioni.Rows(dtRisoluzioni.Rows.Count - 1).Item(i) = riga(i)
                         Next
 
-                    Catch ex As Microsoft.VisualBasic.
-                        FileIO.MalformedLineException
+                    Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException
+                        fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", True)
+                        fileErrorLog.WriteLine(Now.ToShortTimeString & " - FormFLM_Load" & " - MyReader - " & ex.Message)
+                        fileErrorLog.Close()
                     End Try
                 End While
             End Using
@@ -243,6 +256,9 @@
             riga = {"1920x1200 16:10", "1920", "1200", "16:10"}
             dtRisoluzioni.Rows.Add(riga)
 
+            fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", True)
+            fileErrorLog.WriteLine(Now.ToShortTimeString & " - FormFLM_Load" & " - dtRisoluzioni - " & ex.Message)
+            fileErrorLog.Close()
         End Try
 
         ComboBoxRisoluzione.DataSource = dtRisoluzioni
@@ -260,7 +276,9 @@
         Try
             PanelMain.Size = New Size(Int(TextBoxScreen_res_x.Text), Int(TextBoxScreen_res_y.Text))
         Catch ex As Exception
-
+            fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", True)
+            fileErrorLog.WriteLine(Now.ToShortTimeString & " - FormFLM_Load" & " - PanelMain.Size - " & ex.Message)
+            fileErrorLog.Close()
         End Try
 
         For i As Integer = 0 To 23
@@ -623,7 +641,9 @@
                 End If
                 TextBoxZoom.Text = TrackBarZoom.Value
             Catch ex As Exception
-
+                fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", True)
+                fileErrorLog.WriteLine(Now.ToShortTimeString & " - FormFLM_Resize" & " - TrackBarZoom.Maximum - " & ex.Message)
+                fileErrorLog.Close()
             End Try
 
             'Dim t As New Threading.Thread(AddressOf PanelBackground_MousePosition)
@@ -729,7 +749,9 @@
                         dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(campo) = valore
                     End If
                 Catch ex As Exception
-
+                    fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", True)
+                    fileErrorLog.WriteLine(Now.ToShortTimeString & " - ButtonCarica_Click" & " - file.ReadLine - " & ex.Message)
+                    fileErrorLog.Close()
                 End Try
             End While
 
@@ -2546,6 +2568,7 @@
             TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPage" & usoOggetto)
 
             sender.tag = Math.Abs(Int(sender.tag) - 1)
+            sender.refresh()
         Else
             tempoMouseClick = Now()
 
