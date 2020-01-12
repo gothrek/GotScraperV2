@@ -126,10 +126,10 @@
         Select Case usoLayout
             Case 1
                 FormFLM.flmLayout = 1
-                FormFLM.flmBackgroundImage = My.Resources.Layout1
+                FormFLM.flmBackgroundImage = My.Resources.Layout1Marquee
             Case 2
                 FormFLM.flmLayout = 2
-                FormFLM.flmBackgroundImage = My.Resources.Layout2
+                FormFLM.flmBackgroundImage = My.Resources.Layout2Marquee
             Case 3
                 FormFLM.flmLayout = 3
                 'FormFLM.flmBackgroundImage = My.Resources.Layout3

@@ -119,9 +119,9 @@
                 flmLayout = Int(usoStringa.Substring(0, fineStringa))
                 Select Case flmLayout
                     Case 1
-                        flmBackgroundImage = My.Resources.Layout1
+                        flmBackgroundImage = My.Resources.Layout1Marquee
                     Case 2
-                        flmBackgroundImage = My.Resources.Layout2
+                        flmBackgroundImage = My.Resources.Layout2Marquee
                     Case 3
                         'flmBackgroundImage = My.Resources.Layout3
                     Case Else
@@ -3241,6 +3241,26 @@
         End Try
     End Sub
 
+    Private Sub Button_MouseHover(sender As Object, e As EventArgs) Handles ButtonCarica.MouseHover,
+                                                                            ButtonPubblica.MouseHover,
+                                                                            ButtonPainter.MouseHover,
+                                                                            ButtonFLMOptions.MouseHover,
+                                                                            ButtonAnteprima.MouseHover,
+                                                                            ButtonAbout.MouseHover
+
+        ToolTip1.Show(sender.name.ToString.Substring(6), sender)
+    End Sub
+
+    Private Sub Button_MouseLeave(sender As Object, e As EventArgs) Handles ButtonPubblica.MouseLeave,
+                                                                            ButtonPainter.MouseLeave,
+                                                                            ButtonFLMOptions.MouseLeave,
+                                                                            ButtonAnteprima.MouseLeave,
+                                                                            ButtonAbout.MouseLeave
+
+        ToolTip1.Hide(sender)
+    End Sub
+
+
     Private Sub Label_MouseDown(sender As Object, e As MouseEventArgs) Handles LabelSound_fx_list.MouseDown, LabelSound_fx_volume.MouseDown, LabelSound_fx_startemu.MouseDown, LabelSound_fx_menu.MouseDown, LabelSound_fx_confirm.MouseDown, LabelSound_fx_cancel.MouseDown,
                                                                                 LabelMusic_volume.MouseDown, LabelMusic_path.MouseDown,
                                                                                 LabelScreen_saver_font_color.MouseDown, LabelScreen_saver_backcolor.MouseDown, LabelScreen_res_y.MouseDown, LabelScreen_res_x.MouseDown,
@@ -3416,8 +3436,8 @@
             End If
 
             ButtonMusicPlay.Text = "Pause"
-            Else
-                ButtonMusicPlay.Text = "Play"
+        Else
+            ButtonMusicPlay.Text = "Play"
             mp3player.Close()
         End If
     End Sub
@@ -3557,13 +3577,13 @@
     End Sub
 
     Private Sub TextBoxScreen_saver_backcolor_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxScreen_saver_backcolor.DoubleClick, TextBoxScreen_saver_backcolor.Click
-        If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
+        If (colorDialog1.ShowDialog() = DialogResult.OK) Then
             TextBoxScreen_saver_backcolor.BackColor = Color.FromArgb(255, colorDialog1.Color.R, colorDialog1.Color.G, colorDialog1.Color.B)
 
             Dim coloreA As Integer = 255
-            Dim coloreR As Integer = ColorDialog1.Color.R Xor 255
-            Dim coloreG As Integer = ColorDialog1.Color.G Xor 255
-            Dim coloreB As Integer = ColorDialog1.Color.B Xor 255
+            Dim coloreR As Integer = colorDialog1.Color.R Xor 255
+            Dim coloreG As Integer = colorDialog1.Color.G Xor 255
+            Dim coloreB As Integer = colorDialog1.Color.B Xor 255
 
             TextBoxScreen_saver_backcolor.ForeColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
             TextBoxScreen_saver_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB & ", " & coloreA
@@ -3573,13 +3593,13 @@
     '----------------------------------------------------------------------------------------------
     'Proprietà RomList
     Private Sub TextBoxRomlist_selected_backcolor_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxRomlist_selected_backcolor.DoubleClick, TextBoxRomlist_selected_backcolor.Click
-        If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
+        If (colorDialog1.ShowDialog() = DialogResult.OK) Then
             TextBoxRomlist_selected_backcolor.BackColor = Color.FromArgb(255, colorDialog1.Color.R, colorDialog1.Color.G, colorDialog1.Color.B)
 
             Dim coloreA As Integer = 255
-            Dim coloreR As Integer = ColorDialog1.Color.R Xor 255
-            Dim coloreG As Integer = ColorDialog1.Color.G Xor 255
-            Dim coloreB As Integer = ColorDialog1.Color.B Xor 255
+            Dim coloreR As Integer = colorDialog1.Color.R Xor 255
+            Dim coloreG As Integer = colorDialog1.Color.G Xor 255
+            Dim coloreB As Integer = colorDialog1.Color.B Xor 255
 
             TextBoxRomlist_selected_backcolor.ForeColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
             TextBoxRomlist_selected_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB & ", " & coloreA
@@ -3714,13 +3734,13 @@
     'Proprietà Menu
 
     Private Sub TextBoxMenu_selected_backcolor_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxMenu_selected_backcolor.DoubleClick, TextBoxMenu_selected_backcolor.Click
-        If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
+        If (colorDialog1.ShowDialog() = DialogResult.OK) Then
             TextBoxMenu_selected_backcolor.BackColor = Color.FromArgb(255, colorDialog1.Color.R, colorDialog1.Color.G, colorDialog1.Color.B)
 
             Dim coloreA As Integer = 0
-            Dim coloreR As Integer = ColorDialog1.Color.R Xor 255
-            Dim coloreG As Integer = ColorDialog1.Color.G Xor 255
-            Dim coloreB As Integer = ColorDialog1.Color.B Xor 255
+            Dim coloreR As Integer = colorDialog1.Color.R Xor 255
+            Dim coloreG As Integer = colorDialog1.Color.G Xor 255
+            Dim coloreB As Integer = colorDialog1.Color.B Xor 255
 
             TextBoxMenu_selected_backcolor.ForeColor = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
             TextBoxMenu_selected_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB & ", " & coloreA

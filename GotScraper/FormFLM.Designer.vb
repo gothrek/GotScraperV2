@@ -5666,6 +5666,7 @@ Partial Class FormFLM
         Me.LabelPannelloMainY.Size = New System.Drawing.Size(95, 13)
         Me.LabelPannelloMainY.TabIndex = 29
         Me.LabelPannelloMainY.Text = "Pannello main Y: 0"
+        Me.LabelPannelloMainY.Visible = False
         '
         'LabelScreenRisoluzione
         '
@@ -5912,7 +5913,7 @@ Partial Class FormFLM
         'ButtonPainter
         '
         Me.ButtonPainter.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonPainter.BackgroundImage = Global.GotScraper.My.Resources.Resources._228527_app_256x256
+        Me.ButtonPainter.BackgroundImage = Global.GotScraper.My.Resources.Resources.paint_button
         Me.ButtonPainter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonPainter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonPainter.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -5952,7 +5953,7 @@ Partial Class FormFLM
         'ButtonCarica
         '
         Me.ButtonCarica.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonCarica.BackgroundImage = Global.GotScraper.My.Resources.Resources.load
+        Me.ButtonCarica.BackgroundImage = Global.GotScraper.My.Resources.Resources.load_button
         Me.ButtonCarica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonCarica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonCarica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -5965,7 +5966,7 @@ Partial Class FormFLM
         'ButtonPubblica
         '
         Me.ButtonPubblica.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonPubblica.BackgroundImage = Global.GotScraper.My.Resources.Resources.save
+        Me.ButtonPubblica.BackgroundImage = Global.GotScraper.My.Resources.Resources.save_button
         Me.ButtonPubblica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonPubblica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonPubblica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -6016,10 +6017,11 @@ Partial Class FormFLM
         'ButtonAbout
         '
         Me.ButtonAbout.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonAbout.BackgroundImage = Global.GotScraper.My.Resources.Resources._228488_vienna_256x256
+        Me.ButtonAbout.BackgroundImage = Global.GotScraper.My.Resources.Resources.about_
         Me.ButtonAbout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonAbout.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonAbout.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.ButtonAbout.ForeColor = System.Drawing.Color.Black
         Me.ButtonAbout.Location = New System.Drawing.Point(1206, 3)
         Me.ButtonAbout.Name = "ButtonAbout"
         Me.ButtonAbout.Size = New System.Drawing.Size(46, 34)
@@ -6034,7 +6036,7 @@ Partial Class FormFLM
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
-        Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.Layout1
+        Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.Layout1Marquee
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 761)
         Me.Controls.Add(Me.ButtonAbout)

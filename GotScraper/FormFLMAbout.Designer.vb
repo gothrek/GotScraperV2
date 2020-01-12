@@ -32,7 +32,7 @@ Partial Class FormFLMAbout
         '
         Me.LabelFEEL.AutoSize = True
         Me.LabelFEEL.Font = New System.Drawing.Font("Rampage", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelFEEL.Location = New System.Drawing.Point(77, 479)
+        Me.LabelFEEL.Location = New System.Drawing.Point(54, 479)
         Me.LabelFEEL.Name = "LabelFEEL"
         Me.LabelFEEL.Size = New System.Drawing.Size(310, 11)
         Me.LabelFEEL.TabIndex = 0
@@ -44,9 +44,9 @@ Partial Class FormFLMAbout
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelFLM.Font = New System.Drawing.Font("Rampage", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelFLM.Location = New System.Drawing.Point(33, 498)
+        Me.LabelFLM.Location = New System.Drawing.Point(0, 490)
         Me.LabelFLM.Name = "LabelFLM"
-        Me.LabelFLM.Size = New System.Drawing.Size(409, 47)
+        Me.LabelFLM.Size = New System.Drawing.Size(447, 78)
         Me.LabelFLM.TabIndex = 1
         Me.LabelFLM.Text = "F.L.M. F.E.(E.L.) Layout Manager"
         Me.LabelFLM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -56,7 +56,7 @@ Partial Class FormFLMAbout
         Me.LabelVersion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelVersion.AutoSize = True
         Me.LabelVersion.Font = New System.Drawing.Font("Rampage", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelVersion.Location = New System.Drawing.Point(312, 580)
+        Me.LabelVersion.Location = New System.Drawing.Point(291, 589)
         Me.LabelVersion.Name = "LabelVersion"
         Me.LabelVersion.Size = New System.Drawing.Size(141, 8)
         Me.LabelVersion.TabIndex = 2
@@ -66,7 +66,7 @@ Partial Class FormFLMAbout
         '
         Me.LabelAuthor.AutoSize = True
         Me.LabelAuthor.Font = New System.Drawing.Font("Rampage", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelAuthor.Location = New System.Drawing.Point(12, 545)
+        Me.LabelAuthor.Location = New System.Drawing.Point(0, 561)
         Me.LabelAuthor.Name = "LabelAuthor"
         Me.LabelAuthor.Size = New System.Drawing.Size(167, 11)
         Me.LabelAuthor.TabIndex = 3
@@ -77,9 +77,9 @@ Partial Class FormFLMAbout
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.PaleGoldenrod
-        Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.FLMRampage1
+        Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.FLMRampage22
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.ClientSize = New System.Drawing.Size(465, 597)
+        Me.ClientSize = New System.Drawing.Size(444, 606)
         Me.Controls.Add(Me.LabelAuthor)
         Me.Controls.Add(Me.LabelVersion)
         Me.Controls.Add(Me.LabelFLM)

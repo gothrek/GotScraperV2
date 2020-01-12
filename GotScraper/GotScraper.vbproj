@@ -297,5 +297,47 @@
   <ItemGroup>
     <None Include="Resources\228488_vienna_256x256.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\load button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\anteprima button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Layout1Marquee.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Layout2Marquee.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\anteprima.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FLMRampage2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FLMRampage21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FLMRampage22.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
