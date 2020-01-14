@@ -6061,7 +6061,7 @@ Partial Class FormFLM
         Me.Controls.Add(Me.TabControlTemp)
         Me.DoubleBuffered = True
         Me.Name = "FormFLM"
-        Me.Text = "F.L.M. - F.E.(E.L.) Layout Manager - Alpha 7 by Gothrek"
+        Me.Text = "F.L.M. - F.E.(E.L.) Layout Manager - Beta 2 by Gothrek"
         Me.GroupBoxProprietà.ResumeLayout(False)
         Me.TabControlProprietà.ResumeLayout(False)
         Me.TabPageProprietà.ResumeLayout(False)

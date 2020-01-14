@@ -58,9 +58,9 @@ Partial Class FormFLMAbout
         Me.LabelVersion.Font = New System.Drawing.Font("Rampage", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelVersion.Location = New System.Drawing.Point(291, 589)
         Me.LabelVersion.Name = "LabelVersion"
-        Me.LabelVersion.Size = New System.Drawing.Size(141, 8)
+        Me.LabelVersion.Size = New System.Drawing.Size(143, 8)
         Me.LabelVersion.TabIndex = 2
-        Me.LabelVersion.Text = "Versione {0}.{1:00}"
+        Me.LabelVersion.Text = "Versione {0}.{1}.{2}"
         '
         'LabelAuthor
         '

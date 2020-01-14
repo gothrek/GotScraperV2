@@ -108,7 +108,7 @@
                 mp3playerMusic.Open(FormFLM.feelPath & "\media\" & dt.Rows(dt.Rows.Count - 1).Item("music_path"))
                 mp3playerMusic.Play()
             Catch ex As Exception
-                MsgBox("Attenzione! Verificare il file audio musicale impostato!")
+                MsgBox("Attenzione! Verificare il file audio musicale impostato e il percorso del feel nelle opzioni!")
             End Try
         End If
 

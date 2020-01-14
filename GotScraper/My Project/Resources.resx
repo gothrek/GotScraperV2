@@ -125,7 +125,7 @@
     <value>..\Resources\FLMRampage2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Layout1Marquee" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Layout1Marquee.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Layout1Marquee1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="anteprima" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\anteprima.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -138,9 +138,6 @@
   </data>
   <data name="BarTop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BarTop.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Layout2Marquee" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Layout2Marquee.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="228488_vienna_256x256" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\228488_vienna_256x256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,6 +187,9 @@
   <data name="anteprima button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\anteprima button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FLMRampage22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FLMRampage22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FLMRampage1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FLMRampage1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -199,7 +199,7 @@
   <data name="228484_preview_256x256" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\228484_preview_256x256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FLMRampage22" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FLMRampage22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Layout2Marquee" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Layout2Marquee1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

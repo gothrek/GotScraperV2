@@ -339,5 +339,11 @@
   <ItemGroup>
     <None Include="Resources\FLMRampage22.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Layout1Marquee1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Layout2Marquee1.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -47,6 +47,8 @@
     Dim pannelloRomlistSize As Size
 
     Private Sub FormFLM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Text = "FLM - F.E.(E.L.) Layout Manager - versione " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & " - " & My.Application.Info.Copyright
+
         fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", False)
         fileErrorLog.Close()
 
@@ -242,6 +244,8 @@
             riga = {"1280x800  16:10", "1280", "800", "16:10"}
             dtRisoluzioni.Rows.Add(riga)
             riga = {"1280x1024  5:4", "1280", "1024", "5:4"}
+            dtRisoluzioni.Rows.Add(riga)
+            riga = {"1366x768  16:9", "1366", "768", "16:9"}
             dtRisoluzioni.Rows.Add(riga)
             riga = {"1400x1050  4:3", "1400", "1050", "4:3"}
             dtRisoluzioni.Rows.Add(riga)
@@ -636,10 +640,12 @@
 
             Try
                 TrackBarZoom.Maximum = Int(PanelMainMaster.Size.Width / Int(TextBoxScreen_res_x.Text) * 100)
-                If Int(PanelMainMaster.Size.Height / Int(TextBoxScreen_res_y.Text) * 100) / TrackBarZoom.Maximum Then
+                If Int(PanelMainMaster.Size.Height / Int(TextBoxScreen_res_y.Text) * 100) < TrackBarZoom.Maximum Then
                     TrackBarZoom.Maximum = Int(PanelMainMaster.Size.Height / Int(TextBoxScreen_res_y.Text) * 100)
                 End If
                 TextBoxZoom.Text = TrackBarZoom.Value
+                'TextBoxZoom.Text = TrackBarZoom.Maximum
+                'TrackBarZoom.Value = TrackBarZoom.Maximum
             Catch ex As Exception
                 fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", True)
                 fileErrorLog.WriteLine(Now.ToShortTimeString & " - FormFLM_Resize" & " - TrackBarZoom.Maximum - " & ex.Message)
@@ -2617,19 +2623,24 @@
                     Dim x As Integer = MousePosition.X - PanelMainMaster.Location.X - Me.Location.X - 8 - delta '8 è il bordo
                     Dim y As Integer = MousePosition.Y - PanelMainMaster.Location.Y - Me.Location.Y - 30 '30 è l'intestazione della form
 
-                    x = (x - sender.size.width / 2)
-                    y = (y - sender.size.height / 2)
-                    sender.location = New Point(x, y)
+                    'x = (x - sender.size.width / 2)
+                    'y = (y - sender.size.height / 2)
+                    'MsgBox(mouseCoordinate.X & " - " & mouseCoordinate.Y)
+                    'sender.location = New Point(x, y)
 
                     Try
                         Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
                         Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
 
-                        oggettoX.Text = sender.location.X
-                        oggettoY.Text = sender.location.Y
-                        sender.visible = True
-                    Catch ex As Exception
+                        oggettoX.Text = Math.Round((x - sender.size.width / 2) / TrackBarZoom.Value * 100)
+                        oggettoY.Text = Math.Round((y - sender.size.height / 2) / TrackBarZoom.Value * 100)
 
+                        sender.location = New Point(Int(Val(oggettoX.text) * TrackBarZoom.Value / 100), Int(Val(oggettoY.text) * TrackBarZoom.Value / 100))
+                        sender.visible = True
+
+
+                    Catch ex As Exception
+                        MsgBox(ex.Message)
                     End Try
                 Else
                     sender.visible = True
@@ -2640,7 +2651,7 @@
                 MsgBox("Il pannello è in lock! Per spostarlo col mouse devi prima sbloccarlo con bottone dx del mouse.")
             End If
 
-            LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & sender.location.x & " , " & sender.location.y
+            LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & Int(sender.location.x * 100 / TrackBarZoom.Value) & " , " & Int(sender.location.y * 100 / TrackBarZoom.Value)
             sender.focus()
         End If
     End Sub
@@ -2777,12 +2788,13 @@
             Dim usoOggetto As String = sender.name.ToString.Substring(7, sender.name.ToString.Length - 13)
             Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
 
-            oggettoPanel.Location = New Point(Int(sender.Text), oggettoPanel.Location.Y)
+            'oggettoPanel.Location = New Point(Int(sender.Text), oggettoPanel.Location.Y)
+            oggettoPanel.Location = New Point(Int(Val(sender.text) * TrackBarZoom.Value / 100), oggettoPanel.Location.Y)
 
             If oggettoPanel.location.x < (-oggettoPanel.Size.Width) Then
                 sender.backcolor = Color.Red
             Else
-                If oggettoPanel.location.x > PanelMain.Location.X + PanelMain.Size.Width Then
+                If (oggettoPanel.location.x * TrackBarZoom.Value / 100) > PanelMain.Location.X + PanelMain.Size.Width Then
                     sender.backcolor = Color.Red
 
                 Else
@@ -2791,6 +2803,7 @@
             End If
             oggettoPanel.Refresh()
 
+            LabelPannello.Text = "Pannello " & oggettoPanel.name.ToString.Substring(5) & " " & Int(Val(sender.text)) & " , " & Int(oggettoPanel.location.y * 100 / TrackBarZoom.Value)
         Catch ex As Exception
 
         End Try
@@ -2826,18 +2839,21 @@
             Dim usoOggetto As String = sender.name.ToString.Substring(7, sender.name.ToString.Length - 13)
             Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
 
-            oggettoPanel.Location = New Point(oggettoPanel.Location.X, Int(sender.Text))
+            'oggettoPanel.Location = New Point(oggettoPanel.Location.X, Int(sender.Text))
+            oggettoPanel.Location = New Point(oggettoPanel.Location.x, Int(Val(sender.text) * TrackBarZoom.Value / 100))
 
             If oggettoPanel.location.y < (-oggettoPanel.Size.Height) Then
                 sender.backcolor = Color.Red
             Else
-                If oggettoPanel.location.y > PanelMain.Location.Y + PanelMain.Size.Height Then
+                If (oggettoPanel.location.y * TrackBarZoom.Value / 100) > PanelMain.Location.Y + PanelMain.Size.Height Then
                     sender.backcolor = Color.Red
                 Else
                     sender.BackColor = Color.Green
                 End If
             End If
             oggettoPanel.Refresh()
+
+            LabelPannello.Text = "Pannello " & oggettoPanel.name.ToString.Substring(5) & " " & Int(oggettoPanel.location.x * 100 / TrackBarZoom.Value) & " , " & Int(Val(sender.text))
         Catch ex As Exception
 
         End Try
@@ -3488,6 +3504,16 @@
 
         Try
             PanelMain.Size = New Size(Int(TextBoxScreen_res_x.Text), Int(TextBoxScreen_res_y.Text))
+
+            TrackBarZoom.Maximum = Int(PanelMainMaster.Size.Width / Int(TextBoxScreen_res_x.Text) * 100)
+            If Int(PanelMainMaster.Size.Height / Int(TextBoxScreen_res_y.Text) * 100) < TrackBarZoom.Maximum Then
+                TrackBarZoom.Maximum = Int(PanelMainMaster.Size.Height / Int(TextBoxScreen_res_y.Text) * 100)
+            End If
+            'TextBoxZoom.Text = TrackBarZoom.Value
+            TextBoxZoom.Text = TrackBarZoom.Maximum
+            TrackBarZoom.Value = TrackBarZoom.Maximum
+
+            AggiornaZoom(TrackBarZoom.Value)
         Catch ex As Exception
 
         End Try
