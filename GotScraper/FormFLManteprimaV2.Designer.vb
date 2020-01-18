@@ -69,8 +69,10 @@ Partial Class FormFLManteprimaV2
         '
         'PanelBackground
         '
+        Me.PanelBackground.AutoSize = True
         Me.PanelBackground.BackColor = System.Drawing.Color.Transparent
         Me.PanelBackground.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PanelBackground.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelBackground.Location = New System.Drawing.Point(0, 0)
         Me.PanelBackground.Name = "PanelBackground"
         Me.PanelBackground.Size = New System.Drawing.Size(640, 480)
@@ -299,6 +301,7 @@ Partial Class FormFLManteprimaV2
         Me.Text = "FormFLManteprimaV2"
         Me.PanelMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
