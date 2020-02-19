@@ -110,7 +110,6 @@ Partial Class FormFLM
         Me.ButtonBackgroundPath = New System.Windows.Forms.Button()
         Me.LabelBackgroundPath2 = New System.Windows.Forms.Label()
         Me.LabelBackgroundPath = New System.Windows.Forms.Label()
-        Me.ButtonBackgroundAnimator = New System.Windows.Forms.Button()
         Me.TextBoxBackground_frame_duration_ms = New System.Windows.Forms.TextBox()
         Me.LabelBackground_frame_duration_ms = New System.Windows.Forms.Label()
         Me.TextBoxBackground_repeat_delay_ms = New System.Windows.Forms.TextBox()
@@ -520,7 +519,6 @@ Partial Class FormFLM
         Me.ButtonPannelloMainReset = New System.Windows.Forms.Button()
         Me.ButtonCarica = New System.Windows.Forms.Button()
         Me.ButtonPubblica = New System.Windows.Forms.Button()
-        Me.ButtonAnteprimaOld = New System.Windows.Forms.Button()
         Me.TextBoxValoreCursore = New System.Windows.Forms.TextBox()
         Me.LabelValoreCursore = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
@@ -1421,7 +1419,6 @@ Partial Class FormFLM
         Me.TabPageBackground.Controls.Add(Me.ButtonBackgroundPath)
         Me.TabPageBackground.Controls.Add(Me.LabelBackgroundPath2)
         Me.TabPageBackground.Controls.Add(Me.LabelBackgroundPath)
-        Me.TabPageBackground.Controls.Add(Me.ButtonBackgroundAnimator)
         Me.TabPageBackground.Controls.Add(Me.TextBoxBackground_frame_duration_ms)
         Me.TabPageBackground.Controls.Add(Me.LabelBackground_frame_duration_ms)
         Me.TabPageBackground.Controls.Add(Me.TextBoxBackground_repeat_delay_ms)
@@ -1540,15 +1537,6 @@ Partial Class FormFLM
         Me.LabelBackgroundPath.Size = New System.Drawing.Size(87, 13)
         Me.LabelBackgroundPath.TabIndex = 48
         Me.LabelBackgroundPath.Text = "BackgroundPath"
-        '
-        'ButtonBackgroundAnimator
-        '
-        Me.ButtonBackgroundAnimator.Location = New System.Drawing.Point(71, 330)
-        Me.ButtonBackgroundAnimator.Name = "ButtonBackgroundAnimator"
-        Me.ButtonBackgroundAnimator.Size = New System.Drawing.Size(117, 53)
-        Me.ButtonBackgroundAnimator.TabIndex = 33
-        Me.ButtonBackgroundAnimator.Text = "Background Animator"
-        Me.ButtonBackgroundAnimator.UseVisualStyleBackColor = True
         '
         'TextBoxBackground_frame_duration_ms
         '
@@ -5976,18 +5964,6 @@ Partial Class FormFLM
         Me.ButtonPubblica.TabIndex = 4
         Me.ButtonPubblica.UseVisualStyleBackColor = False
         '
-        'ButtonAnteprimaOld
-        '
-        Me.ButtonAnteprimaOld.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonAnteprimaOld.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.ButtonAnteprimaOld.Location = New System.Drawing.Point(984, 3)
-        Me.ButtonAnteprimaOld.Name = "ButtonAnteprimaOld"
-        Me.ButtonAnteprimaOld.Size = New System.Drawing.Size(80, 34)
-        Me.ButtonAnteprimaOld.TabIndex = 38
-        Me.ButtonAnteprimaOld.Text = "AnteprimaV1"
-        Me.ButtonAnteprimaOld.UseVisualStyleBackColor = True
-        Me.ButtonAnteprimaOld.Visible = False
-        '
         'TextBoxValoreCursore
         '
         Me.TextBoxValoreCursore.BackColor = System.Drawing.Color.Black
@@ -6042,7 +6018,6 @@ Partial Class FormFLM
         Me.Controls.Add(Me.ButtonAbout)
         Me.Controls.Add(Me.LabelValoreCursore)
         Me.Controls.Add(Me.TextBoxValoreCursore)
-        Me.Controls.Add(Me.ButtonAnteprimaOld)
         Me.Controls.Add(Me.ButtonPainter)
         Me.Controls.Add(Me.ButtonFLMOptions)
         Me.Controls.Add(Me.LabelPosizioneMouse)
@@ -6244,7 +6219,6 @@ Partial Class FormFLM
     Friend WithEvents ButtonBackgroundPath As Button
     Friend WithEvents LabelBackgroundPath2 As Label
     Friend WithEvents LabelBackgroundPath As Label
-    Friend WithEvents ButtonBackgroundAnimator As Button
     Friend WithEvents TextBoxSnapshot_height As TextBox
     Friend WithEvents LabelSnapshot_height As Label
     Friend WithEvents TextBoxSnapshot_width As TextBox
@@ -6616,7 +6590,6 @@ Partial Class FormFLM
     Friend WithEvents ComboBoxRominputcontrol_text_align As ComboBox
     Friend WithEvents ComboBoxRomstatus_text_align As ComboBox
     Friend WithEvents ComboBoxRomcategory_text_align As ComboBox
-    Friend WithEvents ButtonAnteprimaOld As Button
     Friend WithEvents TextBoxValoreCursore As TextBox
     Friend WithEvents LabelValoreCursore As Label
     Friend WithEvents Timer1 As Timer

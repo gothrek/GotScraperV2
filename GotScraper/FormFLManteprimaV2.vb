@@ -169,28 +169,6 @@
 
         Romlist(0)
 
-        ''romlist_backcolor                       11, 86, 162, 0
-
-        ''PanelRomlist.Controls("LabelRomlist_0").ForeColor = coloreSecondario
-
-        ''usocolor = dt.Rows(dt.Rows.Count - 1).Item("romlist_selected_backcolor")
-
-        ''Dim contaValori3() As String = usocolor.Split(",")
-
-        ''coloreR = Int(contaValori3(0))
-        ''coloreG = Int(contaValori3(1))
-        ''coloreB = Int(contaValori3(2))
-
-        ''If contaValori3.Length = 4 Then
-        ''    coloreA = Int(contaValori3(3))
-        ''Else
-        ''    coloreA = 255
-        ''End If
-
-        ''coloreSecondarioBack = Color.FromArgb(coloreA, coloreR, coloreG, coloreB)
-
-        ''PanelRomlist.Controls("LabelRomlist_0").BackColor = coloreSecondarioBack
-
         'OLD romlist_disable_stars                   0
 
         Try

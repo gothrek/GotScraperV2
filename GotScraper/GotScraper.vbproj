@@ -14,20 +14,26 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>false</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <PublishUrl>ftp://ftp.flm.altervista.org/flm/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <InstallUrl>\\localhost\flm\</InstallUrl>
+    <ProductName>FLM Feel Layout Manager</ProductName>
+    <PublisherName>Luca Pellegrino</PublisherName>
+    <SuiteName>GotScraper</SuiteName>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -63,17 +69,22 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>13E8B772F5E3941F00CFFF1BD7322FFCC65DFA09</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>GotScraper_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ArgbColorDialog">
       <HintPath>..\..\csharp-ArgbColorDialog\csharp-ArgbColorDialog-844bf8f2cf5ed9fc355fcc68f7e90009e18ff927\ArgbColorDialog\bin\Release\ArgbColorDialog.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics4.Shared.v17.2, Version=17.2.20172.2006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
-    <Reference Include="Infragistics4.Win.Misc.v17.2, Version=17.2.20172.2006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
-    <Reference Include="Infragistics4.Win.UltraWinDataSource.v17.2, Version=17.2.20172.2006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
-    <Reference Include="Infragistics4.Win.UltraWinEditors.v17.2, Version=17.2.20172.2006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
-    <Reference Include="Infragistics4.Win.UltraWinGrid.v17.2, Version=17.2.20172.2006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
-    <Reference Include="Infragistics4.Win.UltraWinListView.v17.2, Version=17.2.20172.2006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
-    <Reference Include="Infragistics4.Win.v17.2, Version=17.2.20172.2006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -108,13 +119,6 @@
   <ItemGroup>
     <Compile Include="ClassMedia.vb" />
     <Compile Include="ClassUtility.vb" />
-    <Compile Include="Form1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="FormFLM.Designer.vb">
       <DependentUpon>FormFLM.vb</DependentUpon>
     </Compile>
@@ -127,12 +131,6 @@
     <Compile Include="FormFLMAbout.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormFLManteprima.Designer.vb">
-      <DependentUpon>FormFLManteprima.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormFLManteprima.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="FormFLManteprimaV2.Designer.vb">
       <DependentUpon>FormFLManteprimaV2.vb</DependentUpon>
     </Compile>
@@ -143,24 +141,6 @@
       <DependentUpon>FormFLMoptions.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFLMoptions.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormOptions.Designer.vb">
-      <DependentUpon>FormOptions.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormOptions.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormUsoBackground.Designer.vb">
-      <DependentUpon>FormUsoBackground.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormUsoBackground.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormUtility.Designer.vb">
-      <DependentUpon>FormUtility.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormUtility.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -186,32 +166,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormFLM.resx">
       <DependentUpon>FormFLM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFLMAbout.resx">
       <DependentUpon>FormFLMAbout.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormFLManteprima.resx">
-      <DependentUpon>FormFLManteprima.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormFLManteprimaV2.resx">
       <DependentUpon>FormFLManteprimaV2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFLMoptions.resx">
       <DependentUpon>FormFLMoptions.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormOptions.resx">
-      <DependentUpon>FormOptions.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormUsoBackground.resx">
-      <DependentUpon>FormUsoBackground.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormUtility.resx">
-      <DependentUpon>FormUtility.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -226,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="GotScraper_TemporaryKey.pfx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -243,7 +209,7 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
+      <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
@@ -344,6 +310,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Layout2Marquee1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Release\Note di release.txt" />
+    <Content Include="bin\Release\Risoluzioni.txt" />
+    <None Include="Resources\reset1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

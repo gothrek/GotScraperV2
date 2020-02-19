@@ -32,7 +32,7 @@
     Dim mouseDownY As Integer
 
     Dim valorePrecedente As String
-    Dim tabSelezionata As Integer = 3 '3 corrisponde alla tab Screen
+    Dim tabSelezionata As Integer = 3 '3 corrisponde alla tab "Screen"
 
     Dim pannelloMainLocation As Point
     Dim pannelloMainSize As Size
@@ -53,7 +53,7 @@
         fileErrorLog.Close()
 
         If My.Computer.FileSystem.FileExists("FLM.ini") Then
-            'Il file esiste verrà caricato
+            'Il file esiste, verrà caricato
             Dim file As String
             Dim inizioStringa As Integer = 0
             Dim fineStringa As Integer = 0
@@ -139,7 +139,7 @@
             End Try
 
         Else
-            'Il file non esiste verrà creato
+            'Il file non esiste, verrà creato
             Dim file As System.IO.StreamWriter
 
             file = My.Computer.FileSystem.OpenTextFileWriter("FLM.ini", True)
@@ -224,7 +224,7 @@
                     End Try
                 End While
             End Using
-        Catch ex As Exception 'problemi nel trovare il file carica i dati di default
+        Catch ex As Exception 'problemi nel trovare il file, carica i dati di default
             MsgBox("Problemi nella lettura del file delle risoluzioni! Verranno caricati valori di default.")
 
             Dim riga() As String
@@ -511,10 +511,9 @@
         dtOptionsLayout.Columns.Add("show_extended_messages", Type.GetType("System.String"))
 
         ValoriInTabella()
-
     End Sub
 
-    Public Sub FormFLM_Resize() Handles MyBase.Resize, MyBase.SizeChanged 'sender As Object, e As EventArgs
+    Public Sub FormFLM_Resize() Handles MyBase.Resize, MyBase.SizeChanged
         If Me.WindowState <> FormWindowState.Minimized Then
 
             If Me.Size.Width < 1280 Then
@@ -640,27 +639,24 @@
 
             Try
                 TrackBarZoom.Maximum = Int(PanelMainMaster.Size.Width / Int(TextBoxScreen_res_x.Text) * 100)
+
                 If Int(PanelMainMaster.Size.Height / Int(TextBoxScreen_res_y.Text) * 100) < TrackBarZoom.Maximum Then
                     TrackBarZoom.Maximum = Int(PanelMainMaster.Size.Height / Int(TextBoxScreen_res_y.Text) * 100)
                 End If
+
                 TextBoxZoom.Text = TrackBarZoom.Value
-                'TextBoxZoom.Text = TrackBarZoom.Maximum
-                'TrackBarZoom.Value = TrackBarZoom.Maximum
             Catch ex As Exception
                 fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", True)
                 fileErrorLog.WriteLine(Now.ToShortTimeString & " - FormFLM_Resize" & " - TrackBarZoom.Maximum - " & ex.Message)
                 fileErrorLog.Close()
             End Try
 
-            'Dim t As New Threading.Thread(AddressOf PanelBackground_MousePosition)
-            't.Start()
         End If
     End Sub
 
     Private Sub FormFLM_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         mp3player.Close()
         dtOptionsLayout.Dispose()
-        'dtRisoluzioni.Dispose()
     End Sub
 
     Private Sub ButtonPainter_Click(sender As Object, e As EventArgs) Handles ButtonPainter.Click
@@ -694,20 +690,11 @@
         ButtonSoundPlay.Text = "Play"
         ButtonMusicPlay.Text = "Play"
         mp3player.Close()
-        FormFLManteprimaV2.Show() 'o lanciare programma esterno o in thread diverso
-    End Sub
-
-    Private Sub ButtonAnteprimaOld_Click(sender As Object, e As EventArgs) Handles ButtonAnteprimaOld.Click
-        soundPlay = False
-        musicPlay = False
-        ButtonSoundPlay.Text = "Play"
-        ButtonMusicPlay.Text = "Play"
-        mp3player.Close()
-        FormFLManteprima.Show()
+        FormFLManteprimaV2.Show()
     End Sub
 
     Private Sub LabelCarica_DoubleClick(sender As Object, e As EventArgs) Handles LabelPercorso.DoubleClick
-        Dim cartella As String ' = ""
+        Dim cartella As String
         Dim folder As DirectoryInfo
 
         If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
@@ -1949,7 +1936,6 @@
         Else
             MsgBox("Attenzione! verifica file layout.ini e percorso!")
         End If
-
     End Sub
 
     Private Sub ButtonPubblica_Click(sender As Object, e As EventArgs) Handles ButtonPubblica.Click
@@ -2048,17 +2034,6 @@
     Private Sub ValoriInTabella()
 
         dtOptionsLayout.Rows.Add()
-
-        'test1
-        'For Each tab As Object In TabControlProprietà.TabPages
-        '    For Each controllo As Object In TabControlProprietà.TabPages.Item(tab.name).controls
-        '        Try
-        '            dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item(controllo.name.ToString.Substring(7)) = controllo.text
-        '        Catch ex As Exception
-
-        '        End Try
-        '    Next
-        'Next
 
         dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_list") = TextBoxSound_fx_list.Text
         dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_menu") = TextBoxSound_fx_menu.Text
@@ -2269,7 +2244,6 @@
         dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("bezel_repeat_delay_ms") = TextBoxBezel_repeat_delay_ms.Text
 
         dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("show_extended_messages") = Int(CheckBoxShow_extended_messages.Checked)
-
     End Sub
 
     Private Sub ListBoxObj_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxObj.SelectedIndexChanged
@@ -2410,7 +2384,7 @@
                                                                             PanelRominputcontrol.Paint,
                                                                             PanelRomstatus.Paint,
                                                                             PanelRomcategory.Paint,
-                                                                            PanelMenu.Paint ', PanelBackground.Paint, PanelMain.Paint,
+                                                                            PanelMenu.Paint
 
         Dim nCaratteri As Integer = sender.name.ToString.Length - 5
         Dim larghezza As Integer = sender.size.width
@@ -2458,13 +2432,8 @@
                                                                                             PanelGamelistname.MouseMove,
                                                                                             PanelEmulatorname.MouseMove,
                                                                                             PanelBackground.MouseMove,
-                                                                                            PanelCabinet.MouseMove ', MyBase.MouseMove '<--uso test
+                                                                                            PanelCabinet.MouseMove
 
-        ''---uso test---
-        'Dim x As Integer = MousePosition.X - Me.Location.X - 8 '8 è il bordo
-        'Dim y As Integer = MousePosition.Y - Me.Location.Y - 30 '30 è l'intestazione della form
-        'LabelPosizioneMouse.Text = x & " , " & y
-        ''---uso test fine---
         Dim delta As Integer = Int((Me.Size.Width / 2 - PanelMain.Size.Width) / 2)
         Dim x As Integer = MousePosition.X - PanelMainMaster.Location.X - Me.Location.X - 8 - delta '8 è il bordo
         Dim y As Integer = MousePosition.Y - PanelMainMaster.Location.Y - Me.Location.Y - 30 '30 è l'intestazione della form
@@ -2502,10 +2471,9 @@
                                                                             PanelMarquee.MouseHover,
                                                                             PanelGamelistname.MouseHover,
                                                                             PanelEmulatorname.MouseHover,
-                                                                            PanelCabinet.MouseHover 'PanelBackground.MouseHover, PanelMain.MouseHover,
+                                                                            PanelCabinet.MouseHover
 
         ToolTip1.Show(sender.name, sender)
-
     End Sub
 
     Private Sub Panel_MouseEnter(sender As Object, e As EventArgs) Handles PanelSnapshot.MouseEnter,
@@ -2523,7 +2491,7 @@
                                                                             PanelRominputcontrol.MouseEnter,
                                                                             PanelRomstatus.MouseEnter,
                                                                             PanelRomcategory.MouseEnter,
-                                                                            PanelMenu.MouseEnter ', PanelBackground.MouseEnter, PanelMain.MouseEnter,
+                                                                            PanelMenu.MouseEnter
 
         Me.Cursor = Cursors.Hand
     End Sub
@@ -2543,7 +2511,7 @@
                                                                             PanelRominputcontrol.MouseLeave,
                                                                             PanelRomstatus.MouseLeave,
                                                                             PanelRomcategory.MouseLeave,
-                                                                            PanelMenu.MouseLeave ', PanelBackground.MouseLeave, PanelMain.MouseLeave,
+                                                                            PanelMenu.MouseLeave
 
         Me.Cursor = Cursors.Default
         ToolTip1.Hide(sender)
@@ -2564,7 +2532,7 @@
                                                                                 PanelRominputcontrol.MouseDown,
                                                                                 PanelRomstatus.MouseDown,
                                                                                 PanelRomcategory.MouseDown,
-                                                                                PanelMenu.MouseDown ', PanelBackground.MouseDown, PanelMain.MouseDown,
+                                                                                PanelMenu.MouseDown
 
         Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
 
@@ -2607,7 +2575,7 @@
                                                                                 PanelRomstatus.MouseUp,
                                                                                 PanelRomcategory.MouseUp,
                                                                                 PanelMenu.MouseUp,
-                                                                                PanelRomlist.MouseUp ',PanelBackground.MouseUp, PanelMain.Mouseup,
+                                                                                PanelRomlist.MouseUp
 
         Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
 
@@ -2622,11 +2590,6 @@
                     Dim delta As Integer = Int((Me.Size.Width / 2 - PanelMain.Size.Width) / 2)
                     Dim x As Integer = MousePosition.X - PanelMainMaster.Location.X - Me.Location.X - 8 - delta '8 è il bordo
                     Dim y As Integer = MousePosition.Y - PanelMainMaster.Location.Y - Me.Location.Y - 30 '30 è l'intestazione della form
-
-                    'x = (x - sender.size.width / 2)
-                    'y = (y - sender.size.height / 2)
-                    'MsgBox(mouseCoordinate.X & " - " & mouseCoordinate.Y)
-                    'sender.location = New Point(x, y)
 
                     Try
                         Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
@@ -2788,7 +2751,6 @@
             Dim usoOggetto As String = sender.name.ToString.Substring(7, sender.name.ToString.Length - 13)
             Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
 
-            'oggettoPanel.Location = New Point(Int(sender.Text), oggettoPanel.Location.Y)
             oggettoPanel.Location = New Point(Int(Val(sender.text) * TrackBarZoom.Value / 100), oggettoPanel.Location.Y)
 
             If oggettoPanel.location.x < (-oggettoPanel.Size.Width) Then
@@ -2839,7 +2801,6 @@
             Dim usoOggetto As String = sender.name.ToString.Substring(7, sender.name.ToString.Length - 13)
             Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
 
-            'oggettoPanel.Location = New Point(oggettoPanel.Location.X, Int(sender.Text))
             oggettoPanel.Location = New Point(oggettoPanel.Location.x, Int(Val(sender.text) * TrackBarZoom.Value / 100))
 
             If oggettoPanel.location.y < (-oggettoPanel.Size.Height) Then
@@ -3093,7 +3054,7 @@
 
             Try
                 coloreA = Int(valori(3))
-                If coloreA = 0 Then 'TODO va salvato in qualche modo il dato anche se il controllo non supporta la trasparenza
+                If coloreA = 0 Then
                     coloreA = 255
                 End If
             Catch ex As Exception
@@ -3171,7 +3132,7 @@
 
             Try
                 coloreA = Int(valori(3))
-                If coloreA = 0 Then 'TODO va salvato in qualche modo il dato anche se il controllo non supporta la trasparenza
+                If coloreA = 0 Then
                     coloreA = 255
                 End If
             Catch ex As Exception
@@ -3220,7 +3181,7 @@
                                                                                     ButtonBackgroundReset.Click
 
         Dim usoOggetto As String = sender.name.ToString.Substring(6, sender.name.ToString.Length - 11)
-        Dim usoTab As String = usoOggetto 'sender.name.ToString.Substring(7, sender.name.ToString.IndexOf("_") - 7)
+        Dim usoTab As String = usoOggetto
 
         Dim oggettoTextBox As Object
 
@@ -3506,10 +3467,11 @@
             PanelMain.Size = New Size(Int(TextBoxScreen_res_x.Text), Int(TextBoxScreen_res_y.Text))
 
             TrackBarZoom.Maximum = Int(PanelMainMaster.Size.Width / Int(TextBoxScreen_res_x.Text) * 100)
+
             If Int(PanelMainMaster.Size.Height / Int(TextBoxScreen_res_y.Text) * 100) < TrackBarZoom.Maximum Then
                 TrackBarZoom.Maximum = Int(PanelMainMaster.Size.Height / Int(TextBoxScreen_res_y.Text) * 100)
             End If
-            'TextBoxZoom.Text = TrackBarZoom.Value
+
             TextBoxZoom.Text = TrackBarZoom.Maximum
             TrackBarZoom.Value = TrackBarZoom.Maximum
 
@@ -3638,31 +3600,6 @@
         TabControlProprietà.SelectedTab = TabControlProprietà.TabPages("TabPageBackground")
     End Sub
 
-
-    'Private Sub PanelBackground_MousePosition()
-    '    Dim LabelPosizioneMouse As New Label
-
-    '    LabelPosizioneMouse.Location = New Point(933, 599)
-    '    LabelPosizioneMouse.ForeColor = Color.Red
-    '    LabelPosizioneMouse.AutoSize = True
-
-    '    Me.Controls.Add(LabelPosizioneMouse)
-
-    '    Do
-    '        Dim x As Integer = MousePosition.X - PanelBackground.Location.X
-    '        Dim y As Integer = MousePosition.Y - PanelBackground.Location.Y
-    '        If (x >= 0) And (x <= PanelBackground.Size.Width) And (y >= 0) And (y <= PanelBackground.Size.Height) Then
-    '            LabelPosizioneMouse.Text = x & "," & y
-    '            'LabelPosizioneMouse.Refresh()
-    '        Else
-    '            LabelPosizioneMouse.Text = "- , -"
-    '            'LabelPosizioneMouse.Refresh()
-    '        End If
-
-    '    Loop
-
-    'End Sub
-
     Private Sub CheckBoxBackgroundImage_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxBackgroundImage.CheckedChanged
         If CheckBoxBackgroundImage.Checked Then
             Try
@@ -3702,16 +3639,6 @@
             cartella = FolderBrowserDialog1.SelectedPath
             LabelBackgroundPath2.Text = cartella
         End If
-    End Sub
-
-    Private Sub ButtonBackgroundAnimator_Click(sender As Object, e As EventArgs) Handles ButtonBackgroundAnimator.Click
-        'Dim cartella As String ' = ""
-
-        'FolderBrowserDialog1.ShowDialog()
-        'cartella = FolderBrowserDialog1.SelectedPath
-        'LabelCarica.Text = cartella
-        'LabelCarica.Refresh()
-        MsgBox("Sviluppi futuri!")
     End Sub
 
     '----------------------------------------------------------------------------------------------
