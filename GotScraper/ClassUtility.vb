@@ -105,4 +105,8 @@ Public Class ClassUtility
         ctl.DrawToBitmap(bm, New Rectangle(0, 0, ctl.Width, ctl.Height))
         Return bm
     End Function
+
+    Public Shared Function ResizeImage(ByVal InputImage As Image, w As Integer, h As Integer) As Image
+        Return New Bitmap(InputImage, New Size(w, h))
+    End Function
 End Class

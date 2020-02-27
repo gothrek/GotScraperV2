@@ -265,6 +265,10 @@
             fileErrorLog.Close()
         End Try
 
+        For Each riga As DataRow In dtRisoluzioni.Rows
+            ComboBoxPubblica.Items.Add("Esporta in " & riga.Item(0))
+        Next
+
         ComboBoxRisoluzione.DataSource = dtRisoluzioni
         ComboBoxRisoluzione.DisplayMember = dtRisoluzioni.Columns(0).ColumnName
         ComboBoxRisoluzione.SelectedIndex = 1
@@ -1938,21 +1942,59 @@
         End If
     End Sub
 
-    Private Sub ButtonPubblica_Click(sender As Object, e As EventArgs) Handles ButtonPubblica.Click
+    Private Sub ButtonPubblica_Click(sender As Object, e As EventArgs) Handles ButtonPubblica.Click, ComboBoxPubblica.SelectedIndexChanged
 
         Dim file As System.IO.StreamWriter
         Dim cartella As String
+        Dim cartella2 As String
         Dim folder As DirectoryInfo
+        Dim condivisione As MsgBoxResult
+        Dim precedenteRisoluzioneComboIndex As Integer = ComboBoxRisoluzione.SelectedIndex 'salva risoluzione attuale
+
+        condivisione = MsgBox("Vuoi condividere il layout col sito di FEEL?", MsgBoxStyle.YesNo)
+
+
 
         FolderBrowserDialog1.SelectedPath = LabelPercorso.Text
 
         If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
             cartella = FolderBrowserDialog1.SelectedPath
 
+            If sender.name = "ComboBoxPubblica" Then 'esportazione ad una risoluzione diversa dalla selezionata
+                'TODO sender.text
+                'salva sfondo attuale? possibilità di resize
+                'imposta nuova risoluzione
+                'My.Computer.FileSystem.CreateDirectory(cartella & ComboBoxRisoluzione.SelectedValue.row.item(1).ToString & "x" & ComboBoxRisoluzione.SelectedValue.row.item(2).ToString)
+                ComboBoxRisoluzione.SelectedIndex = ComboBoxPubblica.SelectedIndex
+
+                Dim dirTemp As String = cartella & ComboBoxRisoluzione.SelectedValue.row.item(1).ToString & "x" & ComboBoxRisoluzione.SelectedValue.row.item(2).ToString
+
+                My.Computer.FileSystem.CopyDirectory(cartella, dirTemp)
+
+                Dim dir As New DirectoryInfo(dirTemp)
+                Dim filesTemp As FileInfo() = dir.GetFiles("*.png")
+
+                For Each fileTemp As FileInfo In filesTemp
+                    Dim image_source As Image = Image.FromFile(dirTemp & "\" & fileTemp.Name)
+                    Dim image_dest As Image = ClassUtility.ResizeImage(image_source, CInt(ComboBoxRisoluzione.SelectedValue.row.item(1).ToString), CInt(ComboBoxRisoluzione.SelectedValue.row.item(2).ToString))
+
+                    image_source.Dispose()
+                    fileTemp.Delete()
+
+                    image_dest.Save(dirTemp & "\" & fileTemp.Name)
+                Next
+
+                cartella = dirTemp
+            End If
+
             LabelPercorso.Text = cartella
             LabelPercorso.Refresh()
 
             folder = My.Computer.FileSystem.GetDirectoryInfo(cartella)
+
+            Dim indiceCartella2 As Integer = cartella.LastIndexOf("\")
+
+            cartella2 = cartella.Substring(indiceCartella2 + 1)
 
             Try
                 If My.Computer.FileSystem.FileExists(cartella & "\" & "layout.ini") Then
@@ -2027,7 +2069,47 @@
 
             TabControlProprietà.TabPages.Add(TabControlTemp.TabPages(tabSelezionata))
 
-            MsgBox("File layout.ini scritto correttamente!")
+            If condivisione = MsgBoxResult.Yes Then
+                'TO DO pubblica sul sito in ftp
+                Dim userFTP As String = "flm"
+                Dim passwordFTP As String = "8XapaPYHxfCq"
+                Dim hostFTP As String = "ftp://flm.altervista.org"
+                Dim portaFTP As Integer = 21
+                Dim fileZip As String = cartella2 & ".zip"
+
+                cartella2 = cartella.Substring(0, indiceCartella2)
+                'zip del layout
+                ZipFile.CreateFromDirectory(cartella, cartella2 & "\" & fileZip)
+                'pubblicazione dello zip
+
+                ' set up request...
+                Dim clsRequest As System.Net.FtpWebRequest = DirectCast(System.Net.WebRequest.Create(hostFTP & "/layouts/" & fileZip), System.Net.FtpWebRequest)
+                clsRequest.Credentials = New System.Net.NetworkCredential(userFTP, passwordFTP)
+                clsRequest.UsePassive = True
+                clsRequest.KeepAlive = False
+                clsRequest.Method = System.Net.WebRequestMethods.Ftp.UploadFile
+
+                ' read in file...
+
+                Dim bFile() As Byte = System.IO.File.ReadAllBytes(cartella2 & "\" & fileZip)
+
+                ' upload file...
+                Dim clsStream As System.IO.Stream = clsRequest.GetRequestStream()
+                clsStream.Write(bFile, 0, bFile.Length)
+                clsStream.Close()
+                clsStream.Dispose()
+
+                MsgBox("File condiviso correttamente!")
+            Else
+                MsgBox("File layout.ini scritto correttamente!")
+            End If
+
+            If sender.name = "ComboBoxPubblica" Then 'esportazione ad una risoluzione diversa da quella selezionata
+                'TODO sender.text
+                'ripristina vecchia risoluzione
+                ComboBoxRisoluzione.SelectedIndex = precedenteRisoluzioneComboIndex
+            End If
+
         End If
     End Sub
 

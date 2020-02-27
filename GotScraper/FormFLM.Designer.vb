@@ -524,6 +524,7 @@ Partial Class FormFLM
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.ButtonAbout = New System.Windows.Forms.Button()
         Me.TimerMP3 = New System.Windows.Forms.Timer(Me.components)
+        Me.ComboBoxPubblica = New System.Windows.Forms.ComboBox()
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -6007,6 +6008,19 @@ Partial Class FormFLM
         'TimerMP3
         '
         '
+        'ComboBoxPubblica
+        '
+        Me.ComboBoxPubblica.BackColor = System.Drawing.Color.Black
+        Me.ComboBoxPubblica.DropDownWidth = 220
+        Me.ComboBoxPubblica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBoxPubblica.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBoxPubblica.ForeColor = System.Drawing.Color.White
+        Me.ComboBoxPubblica.FormattingEnabled = True
+        Me.ComboBoxPubblica.Location = New System.Drawing.Point(260, 5)
+        Me.ComboBoxPubblica.Name = "ComboBoxPubblica"
+        Me.ComboBoxPubblica.Size = New System.Drawing.Size(17, 28)
+        Me.ComboBoxPubblica.TabIndex = 41
+        '
         'FormFLM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -6015,6 +6029,7 @@ Partial Class FormFLM
         Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.Layout1Marquee
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 761)
+        Me.Controls.Add(Me.ComboBoxPubblica)
         Me.Controls.Add(Me.ButtonAbout)
         Me.Controls.Add(Me.LabelValoreCursore)
         Me.Controls.Add(Me.TextBoxValoreCursore)
@@ -6600,4 +6615,5 @@ Partial Class FormFLM
     Friend WithEvents ListBoxSound As ListBox
     Friend WithEvents CheckBoxSoundLoop As CheckBox
     Friend WithEvents TimerMP3 As Timer
+    Friend WithEvents ComboBoxPubblica As ComboBox
 End Class
