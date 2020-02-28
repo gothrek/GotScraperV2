@@ -22,6 +22,7 @@ Partial Class FormFLMAbout
     'Non modificarla mediante l'editor del codice.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFLMAbout))
         Me.LabelFEEL = New System.Windows.Forms.Label()
         Me.LabelFLM = New System.Windows.Forms.Label()
         Me.LabelVersion = New System.Windows.Forms.Label()
@@ -84,6 +85,7 @@ Partial Class FormFLMAbout
         Me.Controls.Add(Me.LabelVersion)
         Me.Controls.Add(Me.LabelFLM)
         Me.Controls.Add(Me.LabelFEEL)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFLMAbout"

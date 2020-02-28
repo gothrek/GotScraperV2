@@ -81,6 +81,9 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>FLM.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ArgbColorDialog">
       <HintPath>..\..\csharp-ArgbColorDialog\csharp-ArgbColorDialog-844bf8f2cf5ed9fc355fcc68f7e90009e18ff927\ArgbColorDialog\bin\Release\ArgbColorDialog.dll</HintPath>
@@ -143,6 +146,12 @@
     <Compile Include="FormFLMoptions.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFLMtips.Designer.vb">
+      <DependentUpon>FormFLMtips.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFLMtips.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -177,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFLMoptions.resx">
       <DependentUpon>FormFLMoptions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFLMtips.resx">
+      <DependentUpon>FormFLMtips.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -314,6 +326,8 @@
   <ItemGroup>
     <Content Include="bin\Release\Note di release.txt" />
     <Content Include="bin\Release\Risoluzioni.txt" />
+    <Content Include="FLM.ico" />
+    <None Include="Resources\save button freccia.png" />
     <None Include="Resources\reset1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

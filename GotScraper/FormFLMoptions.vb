@@ -8,6 +8,8 @@
 
     Dim mouseTimeClick As Integer = FormFLM.Timer1.Interval
 
+    Dim flmTips As Integer = FormFLM.flmTipsCheck
+
     Dim usoLayout As Integer
 
     Private Sub FormFLMoptions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -27,6 +29,12 @@
         TextBoxFontIntestazioni.ForeColor = Color.FromName(fontColor)
 
         TextBoxMouseTimeClick.Text = mouseTimeClick
+
+        If flmTips > 0 Then
+            CheckBoxFLMTips.Checked = True
+        Else
+            CheckBoxFLMTips.Checked = False
+        End If
 
         CheckBoxFLMBackgroundImage.Checked = FormFLM.flmBackgroundImageCheck
 
@@ -121,6 +129,16 @@
         FormFLM.mouseTimeClick = mouseTimeClick
         FormFLM.Timer1.Interval = mouseTimeClick
 
+        If (flmTips = 0) And CheckBoxFLMTips.Checked Then
+            flmTips = 1
+        End If
+
+        If Not CheckBoxFLMTips.Checked Then
+            flmTips = 0
+        End If
+
+        FormFLM.flmTipsCheck = flmTips
+
         FormFLM.flmBackgroundImageCheck = CheckBoxFLMBackgroundImage.Checked
 
         Select Case usoLayout
@@ -195,6 +213,13 @@
         file.WriteLine("fontIntestazioniStyle=" & fontStyle)
         file.WriteLine("fontIntestazioniColor=" & fontColor)
         file.WriteLine("mouseTimeClick=" & mouseTimeClick)
+
+        If CheckBoxFLMTips.Checked Then
+            file.WriteLine("flmTips=" & flmTips)
+        Else
+            file.WriteLine("flmTips=0")
+        End If
+
         file.WriteLine("flmBackgroundImageCheck=" & CheckBoxFLMBackgroundImage.Checked)
         file.WriteLine("flmLayout=" & usoLayout)
 

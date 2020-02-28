@@ -22,8 +22,12 @@ Partial Class FormFLMoptions
     'Non modificarla mediante l'editor del codice.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFLMoptions))
         Me.LabelImpostazioni = New System.Windows.Forms.Label()
         Me.PanelImpostazioni = New System.Windows.Forms.Panel()
+        Me.CheckBoxFLMTips = New System.Windows.Forms.CheckBox()
+        Me.TextBoxMouseTimeClick = New System.Windows.Forms.TextBox()
+        Me.LabelMouseTimeClick = New System.Windows.Forms.Label()
         Me.TextBoxFontIntestazioni = New System.Windows.Forms.TextBox()
         Me.LabelFontIntestazioni = New System.Windows.Forms.Label()
         Me.CheckBoxFLMBackgroundImage = New System.Windows.Forms.CheckBox()
@@ -65,8 +69,6 @@ Partial Class FormFLMoptions
         Me.ButtonOk = New System.Windows.Forms.Button()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
-        Me.TextBoxMouseTimeClick = New System.Windows.Forms.TextBox()
-        Me.LabelMouseTimeClick = New System.Windows.Forms.Label()
         Me.PanelImpostazioni.SuspendLayout()
         Me.PanelFLMLayout3.SuspendLayout()
         Me.Panel10.SuspendLayout()
@@ -95,6 +97,7 @@ Partial Class FormFLMoptions
         '
         'PanelImpostazioni
         '
+        Me.PanelImpostazioni.Controls.Add(Me.CheckBoxFLMTips)
         Me.PanelImpostazioni.Controls.Add(Me.TextBoxMouseTimeClick)
         Me.PanelImpostazioni.Controls.Add(Me.LabelMouseTimeClick)
         Me.PanelImpostazioni.Controls.Add(Me.TextBoxFontIntestazioni)
@@ -115,6 +118,36 @@ Partial Class FormFLMoptions
         Me.PanelImpostazioni.Name = "PanelImpostazioni"
         Me.PanelImpostazioni.Size = New System.Drawing.Size(438, 506)
         Me.PanelImpostazioni.TabIndex = 1
+        '
+        'CheckBoxFLMTips
+        '
+        Me.CheckBoxFLMTips.AutoSize = True
+        Me.CheckBoxFLMTips.Checked = True
+        Me.CheckBoxFLMTips.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxFLMTips.Location = New System.Drawing.Point(9, 331)
+        Me.CheckBoxFLMTips.Name = "CheckBoxFLMTips"
+        Me.CheckBoxFLMTips.Size = New System.Drawing.Size(87, 17)
+        Me.CheckBoxFLMTips.TabIndex = 17
+        Me.CheckBoxFLMTips.Text = "Tips all'avvio"
+        Me.CheckBoxFLMTips.UseVisualStyleBackColor = True
+        '
+        'TextBoxMouseTimeClick
+        '
+        Me.TextBoxMouseTimeClick.Location = New System.Drawing.Point(140, 134)
+        Me.TextBoxMouseTimeClick.Name = "TextBoxMouseTimeClick"
+        Me.TextBoxMouseTimeClick.Size = New System.Drawing.Size(295, 20)
+        Me.TextBoxMouseTimeClick.TabIndex = 15
+        Me.TextBoxMouseTimeClick.Text = "300"
+        Me.TextBoxMouseTimeClick.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'LabelMouseTimeClick
+        '
+        Me.LabelMouseTimeClick.AutoSize = True
+        Me.LabelMouseTimeClick.Location = New System.Drawing.Point(3, 137)
+        Me.LabelMouseTimeClick.Name = "LabelMouseTimeClick"
+        Me.LabelMouseTimeClick.Size = New System.Drawing.Size(131, 13)
+        Me.LabelMouseTimeClick.TabIndex = 14
+        Me.LabelMouseTimeClick.Text = "Mouse time click (in msec)"
         '
         'TextBoxFontIntestazioni
         '
@@ -506,24 +539,6 @@ Partial Class FormFLMoptions
         Me.ColorDialog1.FullOpen = True
         Me.ColorDialog1.SolidColorOnly = True
         '
-        'TextBoxMouseTimeClick
-        '
-        Me.TextBoxMouseTimeClick.Location = New System.Drawing.Point(140, 134)
-        Me.TextBoxMouseTimeClick.Name = "TextBoxMouseTimeClick"
-        Me.TextBoxMouseTimeClick.Size = New System.Drawing.Size(295, 20)
-        Me.TextBoxMouseTimeClick.TabIndex = 15
-        Me.TextBoxMouseTimeClick.Text = "300"
-        Me.TextBoxMouseTimeClick.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'LabelMouseTimeClick
-        '
-        Me.LabelMouseTimeClick.AutoSize = True
-        Me.LabelMouseTimeClick.Location = New System.Drawing.Point(3, 137)
-        Me.LabelMouseTimeClick.Name = "LabelMouseTimeClick"
-        Me.LabelMouseTimeClick.Size = New System.Drawing.Size(131, 13)
-        Me.LabelMouseTimeClick.TabIndex = 14
-        Me.LabelMouseTimeClick.Text = "Mouse time click (in msec)"
-        '
         'FormFLMoptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -533,6 +548,7 @@ Partial Class FormFLMoptions
         Me.Controls.Add(Me.ButtonCancel)
         Me.Controls.Add(Me.PanelImpostazioni)
         Me.Controls.Add(Me.LabelImpostazioni)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFLMoptions"
@@ -604,4 +620,5 @@ Partial Class FormFLMoptions
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents TextBoxMouseTimeClick As TextBox
     Friend WithEvents LabelMouseTimeClick As Label
+    Friend WithEvents CheckBoxFLMTips As CheckBox
 End Class

@@ -23,6 +23,7 @@ Partial Class FormFLManteprimaV2
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFLManteprimaV2))
         Me.TimerMain = New System.Windows.Forms.Timer(Me.components)
         Me.TimerMainDelay = New System.Windows.Forms.Timer(Me.components)
         Me.TimerActors = New System.Windows.Forms.Timer(Me.components)
@@ -295,6 +296,7 @@ Partial Class FormFLManteprimaV2
         Me.Controls.Add(Me.PanelBackground)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFLManteprimaV2"

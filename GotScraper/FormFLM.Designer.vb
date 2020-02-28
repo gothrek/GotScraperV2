@@ -23,6 +23,7 @@ Partial Class FormFLM
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFLM))
         Me.GroupBoxProprietà = New System.Windows.Forms.GroupBox()
         Me.TabControlProprietà = New System.Windows.Forms.TabControl()
         Me.TabPageProprietà = New System.Windows.Forms.TabPage()
@@ -5955,7 +5956,7 @@ Partial Class FormFLM
         'ButtonPubblica
         '
         Me.ButtonPubblica.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonPubblica.BackgroundImage = Global.GotScraper.My.Resources.Resources.save_button
+        Me.ButtonPubblica.BackgroundImage = Global.GotScraper.My.Resources.Resources.save_button_freccia
         Me.ButtonPubblica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonPubblica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonPubblica.Font = New System.Drawing.Font("SimSun", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -6016,9 +6017,9 @@ Partial Class FormFLM
         Me.ComboBoxPubblica.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxPubblica.ForeColor = System.Drawing.Color.White
         Me.ComboBoxPubblica.FormattingEnabled = True
-        Me.ComboBoxPubblica.Location = New System.Drawing.Point(260, 5)
+        Me.ComboBoxPubblica.Location = New System.Drawing.Point(186, 1)
         Me.ComboBoxPubblica.Name = "ComboBoxPubblica"
-        Me.ComboBoxPubblica.Size = New System.Drawing.Size(17, 28)
+        Me.ComboBoxPubblica.Size = New System.Drawing.Size(82, 28)
         Me.ComboBoxPubblica.TabIndex = 41
         '
         'FormFLM
@@ -6029,7 +6030,6 @@ Partial Class FormFLM
         Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.Layout1Marquee
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 761)
-        Me.Controls.Add(Me.ComboBoxPubblica)
         Me.Controls.Add(Me.ButtonAbout)
         Me.Controls.Add(Me.LabelValoreCursore)
         Me.Controls.Add(Me.TextBoxValoreCursore)
@@ -6049,7 +6049,9 @@ Partial Class FormFLM
         Me.Controls.Add(Me.ButtonPubblica)
         Me.Controls.Add(Me.GroupBoxProprietà)
         Me.Controls.Add(Me.TabControlTemp)
+        Me.Controls.Add(Me.ComboBoxPubblica)
         Me.DoubleBuffered = True
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormFLM"
         Me.Text = "F.L.M. - F.E.(E.L.) Layout Manager - Beta 2 by Gothrek"
         Me.GroupBoxProprietà.ResumeLayout(False)

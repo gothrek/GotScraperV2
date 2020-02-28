@@ -4,6 +4,9 @@
     Public feelPath As String = "C:\"
     Public grafxEditorPath As String = "C:\Windows\system32\mspaint.exe" 'percorso di default del Paint di Windows
 
+    Public flmTipsCheck As Integer = 1
+    Public flmTip As String = ""
+
     Public flmBackgroundImageCheck As Boolean = True
     Public flmBackgroundImage As Image = My.Resources.bartop1280_800
 
@@ -102,9 +105,15 @@
             mouseTimeClick = Int(usoStringa.Substring(0, fineStringa))
             Timer1.Interval = mouseTimeClick
 
+            inizioStringa = file.IndexOf("flmTips=") + 8
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            flmTipsCheck = Int(usoStringa.Substring(0, fineStringa))
+
             inizioStringa = file.IndexOf("flmBackgroundImageCheck=") + 24
             usoStringa = file.Substring(inizioStringa)
             fineStringa = usoStringa.IndexOf(vbCrLf)
+
             Try
                 flmBackgroundImageCheck = Convert.ToBoolean(usoStringa.Substring(0, fineStringa))
             Catch ex As Exception
@@ -140,26 +149,7 @@
 
         Else
             'Il file non esiste, verrà creato
-            Dim file As System.IO.StreamWriter
-
-            file = My.Computer.FileSystem.OpenTextFileWriter("FLM.ini", True)
-
-            file.WriteLine("File di configurazione del programma FLM F.E.(E.L.) Layout Manager by gothrek")
-            file.WriteLine()
-            file.WriteLine("non editare il file, le sue impostazioni vengono gestite direttamente dal programma.")
-            file.WriteLine()
-            file.WriteLine("feelPath=" & feelPath)
-            file.WriteLine("grafxEditorPath=" & grafxEditorPath)
-            file.WriteLine("templateLayoutIni=" & templateLayoutIni)
-            file.WriteLine("fontIntestazioniName=" & fontIntestazioni)
-            file.WriteLine("fontIntestazioniSize=" & fontIntestazioniSize)
-            file.WriteLine("fontIntestazioniStyle=" & fontIntestazioniStyle)
-            file.WriteLine("fontIntestazioniColor=" & fontIntestazioniColor)
-            file.WriteLine("mouseTimeClick=" & mouseTimeClick)
-            file.WriteLine("flmBackgroundImageCheck=" & flmBackgroundImageCheck)
-            file.WriteLine("flmLayout=" & flmLayout)
-
-            file.Close()
+            CreaFileIni()
         End If
 
         Dim usoFont As Font
@@ -517,6 +507,78 @@
         ValoriInTabella()
     End Sub
 
+    Public Sub CreaFileIni()
+        If My.Computer.FileSystem.FileExists("FLM.ini") Then
+            My.Computer.FileSystem.DeleteFile("FLM.ini")
+        End If
+
+        Dim file As System.IO.StreamWriter
+
+        file = My.Computer.FileSystem.OpenTextFileWriter("FLM.ini", True)
+
+        file.WriteLine("File di configurazione del programma FLM F.E.(E.L.) Layout Manager by gothrek")
+        file.WriteLine()
+        file.WriteLine("non editare il file, le sue impostazioni vengono gestite direttamente dal programma.")
+        file.WriteLine()
+        file.WriteLine("feelPath=" & feelPath)
+        file.WriteLine("grafxEditorPath=" & grafxEditorPath)
+        file.WriteLine("templateLayoutIni=" & templateLayoutIni)
+        file.WriteLine("fontIntestazioniName=" & fontIntestazioni)
+        file.WriteLine("fontIntestazioniSize=" & fontIntestazioniSize)
+        file.WriteLine("fontIntestazioniStyle=" & fontIntestazioniStyle)
+        file.WriteLine("fontIntestazioniColor=" & fontIntestazioniColor)
+        file.WriteLine("mouseTimeClick=" & mouseTimeClick)
+        file.WriteLine("flmTips=" & flmTipsCheck)
+        file.WriteLine("flmBackgroundImageCheck=" & flmBackgroundImageCheck)
+        file.WriteLine("flmLayout=" & flmLayout)
+
+        file.Close()
+    End Sub
+
+    Private Sub FormFLM_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        If flmTipsCheck > 0 Then
+            If My.Computer.FileSystem.FileExists("FLMTips.txt") Then
+
+                Dim objReader As New StreamReader("FLMTips.txt")
+                Dim sLine As String = ""
+                Dim arrText As New ArrayList()
+
+                Do
+                    sLine = objReader.ReadLine()
+                    If Not sLine Is Nothing Then
+                        arrText.Add(sLine)
+                    End If
+                Loop Until sLine Is Nothing
+                objReader.Close()
+
+                flmTip = arrText(flmTipsCheck)
+
+                Dim esci As Boolean = False
+                Do
+                    Dim risultato As DialogResult = FormFLMtips.ShowDialog
+
+                    If risultato = DialogResult.OK Then
+                        flmTipsCheck += 1
+                        If flmTipsCheck = arrText.Count Then
+                            flmTipsCheck = 1
+                        End If
+
+                        flmTip = arrText(flmTipsCheck)
+                        CreaFileIni()
+                    Else
+                        esci = True
+
+                        If risultato = DialogResult.Cancel Then
+                            flmTipsCheck = 0
+                            CreaFileIni()
+                        End If
+                    End If
+                Loop Until esci
+
+            End If
+        End If
+    End Sub
+
     Public Sub FormFLM_Resize() Handles MyBase.Resize, MyBase.SizeChanged
         If Me.WindowState <> FormWindowState.Minimized Then
 
@@ -562,6 +624,7 @@
                     ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
 
                     ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
+                    ComboBoxPubblica.Location = ButtonPubblica.Location
 
                     ButtonAbout.Location = New Point(Me.Size.Width - ButtonAbout.Size.Width - 20 - 8, ButtonCarica.Location.Y)
 
@@ -603,6 +666,7 @@
                     ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
 
                     ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
+                    ComboBoxPubblica.Location = ButtonPubblica.Location
 
                     ButtonAbout.Location = New Point(Me.Size.Width - ButtonAbout.Size.Width - 20 - 8, ButtonCarica.Location.Y)
 
@@ -631,6 +695,7 @@
                     ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
 
                     ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
+                    ComboBoxPubblica.Location = ButtonPubblica.Location
 
                     ButtonFLMOptions.Location = New Point(Me.Size.Width - ButtonFLMOptions.Size.Width - 12 - 8, ButtonCarica.Location.Y)
 
@@ -1942,6 +2007,12 @@
         End If
     End Sub
 
+    Private Sub ButtonPubblica_MouseDown(sender As Object, e As MouseEventArgs) Handles ButtonPubblica.MouseDown
+        If e.X >= 58 Then
+            ComboBoxPubblica.DroppedDown = Not ComboBoxPubblica.DroppedDown
+        End If
+    End Sub
+
     Private Sub ButtonPubblica_Click(sender As Object, e As EventArgs) Handles ButtonPubblica.Click, ComboBoxPubblica.SelectedIndexChanged
 
         Dim file As System.IO.StreamWriter
@@ -1952,8 +2023,6 @@
         Dim precedenteRisoluzioneComboIndex As Integer = ComboBoxRisoluzione.SelectedIndex 'salva risoluzione attuale
 
         condivisione = MsgBox("Vuoi condividere il layout col sito di FEEL?", MsgBoxStyle.YesNo)
-
-
 
         FolderBrowserDialog1.SelectedPath = LabelPercorso.Text
 
@@ -3781,6 +3850,7 @@
             TextBoxMenu_selected_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB & ", " & coloreA
         End If
     End Sub
+
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Actors

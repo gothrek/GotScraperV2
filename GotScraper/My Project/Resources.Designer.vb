@@ -213,6 +213,16 @@ Namespace My.Resources
         '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property save_button_freccia() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("save button freccia", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property setting() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("setting", resourceCulture)
