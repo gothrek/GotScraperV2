@@ -526,6 +526,7 @@ Partial Class FormFLM
         Me.ButtonAbout = New System.Windows.Forms.Button()
         Me.TimerMP3 = New System.Windows.Forms.Timer(Me.components)
         Me.ComboBoxPubblica = New System.Windows.Forms.ComboBox()
+        Me.CheckBoxScreen_verticale = New System.Windows.Forms.CheckBox()
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -936,6 +937,7 @@ Partial Class FormFLM
         '
         'TabPageScreen
         '
+        Me.TabPageScreen.Controls.Add(Me.CheckBoxScreen_verticale)
         Me.TabPageScreen.Controls.Add(Me.TextBoxScreen_saver_font_color)
         Me.TabPageScreen.Controls.Add(Me.LabelScreen_saver_font_color)
         Me.TabPageScreen.Controls.Add(Me.TextBoxScreen_saver_backcolor)
@@ -6022,6 +6024,17 @@ Partial Class FormFLM
         Me.ComboBoxPubblica.Size = New System.Drawing.Size(82, 28)
         Me.ComboBoxPubblica.TabIndex = 41
         '
+        'CheckBoxScreen_verticale
+        '
+        Me.CheckBoxScreen_verticale.AutoSize = True
+        Me.CheckBoxScreen_verticale.ForeColor = System.Drawing.Color.Red
+        Me.CheckBoxScreen_verticale.Location = New System.Drawing.Point(164, 19)
+        Me.CheckBoxScreen_verticale.Name = "CheckBoxScreen_verticale"
+        Me.CheckBoxScreen_verticale.Size = New System.Drawing.Size(67, 17)
+        Me.CheckBoxScreen_verticale.TabIndex = 28
+        Me.CheckBoxScreen_verticale.Text = "Verticale"
+        Me.CheckBoxScreen_verticale.UseVisualStyleBackColor = True
+        '
         'FormFLM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -6618,4 +6631,5 @@ Partial Class FormFLM
     Friend WithEvents CheckBoxSoundLoop As CheckBox
     Friend WithEvents TimerMP3 As Timer
     Friend WithEvents ComboBoxPubblica As ComboBox
+    Friend WithEvents CheckBoxScreen_verticale As CheckBox
 End Class

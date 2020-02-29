@@ -565,6 +565,7 @@
 
                         flmTip = arrText(flmTipsCheck)
                         CreaFileIni()
+                        esci = True 'da eliminare
                     Else
                         esci = True
 
@@ -574,7 +575,6 @@
                         End If
                     End If
                 Loop Until esci
-
             End If
         End If
     End Sub
@@ -2021,6 +2021,8 @@
         Dim folder As DirectoryInfo
         Dim condivisione As MsgBoxResult
         Dim precedenteRisoluzioneComboIndex As Integer = ComboBoxRisoluzione.SelectedIndex 'salva risoluzione attuale
+        Dim x As Integer
+        Dim y As Integer
 
         condivisione = MsgBox("Vuoi condividere il layout col sito di FEEL?", MsgBoxStyle.YesNo)
 
@@ -2030,13 +2032,18 @@
             cartella = FolderBrowserDialog1.SelectedPath
 
             If sender.name = "ComboBoxPubblica" Then 'esportazione ad una risoluzione diversa dalla selezionata
-                'TODO sender.text
-                'salva sfondo attuale? possibilità di resize
-                'imposta nuova risoluzione
-                'My.Computer.FileSystem.CreateDirectory(cartella & ComboBoxRisoluzione.SelectedValue.row.item(1).ToString & "x" & ComboBoxRisoluzione.SelectedValue.row.item(2).ToString)
+
                 ComboBoxRisoluzione.SelectedIndex = ComboBoxPubblica.SelectedIndex
 
-                Dim dirTemp As String = cartella & ComboBoxRisoluzione.SelectedValue.row.item(1).ToString & "x" & ComboBoxRisoluzione.SelectedValue.row.item(2).ToString
+                If CheckBoxScreen_verticale.Checked Then
+                    x = Int(ComboBoxRisoluzione.SelectedValue.row.item(2))
+                    y = Int(ComboBoxRisoluzione.SelectedValue.row.item(1))
+                Else
+                    x = Int(ComboBoxRisoluzione.SelectedValue.row.item(1))
+                    y = Int(ComboBoxRisoluzione.SelectedValue.row.item(2))
+                End If
+
+                Dim dirTemp As String = cartella & x & "x" & y
 
                 My.Computer.FileSystem.CopyDirectory(cartella, dirTemp)
 
@@ -2045,7 +2052,7 @@
 
                 For Each fileTemp As FileInfo In filesTemp
                     Dim image_source As Image = Image.FromFile(dirTemp & "\" & fileTemp.Name)
-                    Dim image_dest As Image = ClassUtility.ResizeImage(image_source, CInt(ComboBoxRisoluzione.SelectedValue.row.item(1).ToString), CInt(ComboBoxRisoluzione.SelectedValue.row.item(2).ToString))
+                    Dim image_dest As Image = ClassUtility.ResizeImage(image_source, CInt(x), CInt(y))
 
                     image_source.Dispose()
                     fileTemp.Delete()
@@ -2067,10 +2074,10 @@
 
             Try
                 If My.Computer.FileSystem.FileExists(cartella & "\" & "layout.ini") Then
-                    My.Computer.FileSystem.RenameFile(cartella & "\" & "layout.ini", "layout_" & Today.Year.ToString & Today.Month.ToString & Today.Day.ToString & ".ini")
+                    My.Computer.FileSystem.RenameFile(cartella & "\" & "layout.ini", "layout_" & Today.Year.ToString & Today.Month.ToString & Today.Day.ToString & Now.Hour.ToString & Now.Minute.ToString & Now.Second.ToString & ".ini")
                 End If
             Catch ex As Exception
-
+                My.Computer.FileSystem.DeleteFile(cartella & "\" & "layout.ini")
             End Try
 
             file = My.Computer.FileSystem.OpenTextFileWriter(cartella & "\" & "layout.ini", True)
@@ -3605,9 +3612,16 @@
         LabelPannelloMainY.Text = "Pannello main Y: " & PanelMain.Location.Y
     End Sub
 
-    Private Sub ComboBoxRisoluzione_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxRisoluzione.SelectedIndexChanged
-        TextBoxScreen_res_x.Text = ComboBoxRisoluzione.SelectedItem.row.item(1)
-        TextBoxScreen_res_y.Text = ComboBoxRisoluzione.SelectedItem.row.item(2)
+    Private Sub ComboBoxRisoluzione_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxRisoluzione.SelectedIndexChanged,
+                                                                                                    CheckBoxScreen_verticale.CheckedChanged
+
+        If CheckBoxScreen_verticale.Checked Then
+            TextBoxScreen_res_x.Text = ComboBoxRisoluzione.SelectedItem.row.item(2)
+            TextBoxScreen_res_y.Text = ComboBoxRisoluzione.SelectedItem.row.item(1)
+        Else
+            TextBoxScreen_res_x.Text = ComboBoxRisoluzione.SelectedItem.row.item(1)
+            TextBoxScreen_res_y.Text = ComboBoxRisoluzione.SelectedItem.row.item(2)
+        End If
 
         TextBoxBackground_width.Text = TextBoxScreen_res_x.Text
         TextBoxBackground_height.Text = TextBoxScreen_res_y.Text

@@ -11,11 +11,12 @@
     End Sub
 
     Private Sub ButtonChiudi_Click(sender As Object, e As EventArgs) Handles ButtonChiudi.Click
-        If Not CheckBoxTip.Checked Then
-            Me.DialogResult = DialogResult.No
+        If CheckBoxTip.Checked Then
+            Me.DialogResult = DialogResult.OK
         Else
-            Me.DialogResult = DialogResult.Retry
+            Me.DialogResult = DialogResult.Cancel
         End If
         Me.Close()
     End Sub
+
 End Class
