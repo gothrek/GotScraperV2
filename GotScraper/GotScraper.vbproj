@@ -327,6 +327,18 @@
     <Content Include="bin\Release\Note di release.txt" />
     <Content Include="bin\Release\Risoluzioni.txt" />
     <Content Include="FLM.ico" />
+    <None Include="Resources\Layout3Marquee.bmp" />
+    <None Include="Resources\Layout3.bmp" />
+    <None Include="Resources\InformationSymbol_16x.png" />
+    <None Include="Resources\HelpApplication_16x.png" />
+    <None Include="Resources\ConfigureComputer_16x.png" />
+    <None Include="Resources\PaintBrush_16x.png" />
+    <None Include="Resources\PreviewInRightPanel_16x.png" />
+    <None Include="Resources\Exit_16x.png" />
+    <None Include="Resources\Export_16x.png" />
+    <None Include="Resources\SaveAs_16x.png" />
+    <None Include="Resources\Save_grey_16x.png" />
+    <None Include="Resources\OpenFile_16x.png" />
     <None Include="Resources\save button freccia.png" />
     <None Include="Resources\reset1.png" />
   </ItemGroup>

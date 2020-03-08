@@ -58,6 +58,7 @@ Partial Class FormFLM
         Me.LabelMusicPath = New System.Windows.Forms.Label()
         Me.LabelMusic_path = New System.Windows.Forms.Label()
         Me.TabPageScreen = New System.Windows.Forms.TabPage()
+        Me.CheckBoxScreen_verticale = New System.Windows.Forms.CheckBox()
         Me.TextBoxScreen_saver_font_color = New System.Windows.Forms.TextBox()
         Me.LabelScreen_saver_font_color = New System.Windows.Forms.Label()
         Me.TextBoxScreen_saver_backcolor = New System.Windows.Forms.TextBox()
@@ -526,7 +527,37 @@ Partial Class FormFLM
         Me.ButtonAbout = New System.Windows.Forms.Button()
         Me.TimerMP3 = New System.Windows.Forms.Timer(Me.components)
         Me.ComboBoxPubblica = New System.Windows.Forms.ComboBox()
-        Me.CheckBoxScreen_verticale = New System.Windows.Forms.CheckBox()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripDropDownButtonFile = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.LoadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveAsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.QuitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripDropDownButtonStrumenti = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.AnteprimaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.PaintToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OpzioniToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripDropDownButtonAbout = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.VisualizzaGuidaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InviaCommentiESuggerimentiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SegnalaUnProblemaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SuggerisciUnaFunzionalitàToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ControllaLaDisponibilitàDiAggiornamentiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SupportoTecnico = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FEELWebSiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.InformazioniSuFeelLayoutManagerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OffrimiUnCaffèToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LabelFeelLayoutManager = New System.Windows.Forms.Label()
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -559,6 +590,7 @@ Partial Class FormFLM
         Me.PanelMain.SuspendLayout()
         Me.PanelMainMaster.SuspendLayout()
         Me.PanelZoom.SuspendLayout()
+        Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBoxProprietà
@@ -957,6 +989,17 @@ Partial Class FormFLM
         Me.TabPageScreen.TabIndex = 2
         Me.TabPageScreen.Text = "Screen"
         Me.TabPageScreen.UseVisualStyleBackColor = True
+        '
+        'CheckBoxScreen_verticale
+        '
+        Me.CheckBoxScreen_verticale.AutoSize = True
+        Me.CheckBoxScreen_verticale.ForeColor = System.Drawing.Color.Red
+        Me.CheckBoxScreen_verticale.Location = New System.Drawing.Point(164, 19)
+        Me.CheckBoxScreen_verticale.Name = "CheckBoxScreen_verticale"
+        Me.CheckBoxScreen_verticale.Size = New System.Drawing.Size(67, 17)
+        Me.CheckBoxScreen_verticale.TabIndex = 28
+        Me.CheckBoxScreen_verticale.Text = "Verticale"
+        Me.CheckBoxScreen_verticale.UseVisualStyleBackColor = True
         '
         'TextBoxScreen_saver_font_color
         '
@@ -5544,7 +5587,7 @@ Partial Class FormFLM
         'LabelZoomTesto
         '
         Me.LabelZoomTesto.AutoSize = True
-        Me.LabelZoomTesto.BackColor = System.Drawing.Color.Black
+        Me.LabelZoomTesto.BackColor = System.Drawing.Color.Transparent
         Me.LabelZoomTesto.ForeColor = System.Drawing.Color.Red
         Me.LabelZoomTesto.Location = New System.Drawing.Point(3, 40)
         Me.LabelZoomTesto.Name = "LabelZoomTesto"
@@ -5580,7 +5623,7 @@ Partial Class FormFLM
         '
         'LabelZoom
         '
-        Me.LabelZoom.BackColor = System.Drawing.Color.Black
+        Me.LabelZoom.BackColor = System.Drawing.Color.Transparent
         Me.LabelZoom.ForeColor = System.Drawing.Color.Red
         Me.LabelZoom.Location = New System.Drawing.Point(60, 40)
         Me.LabelZoom.Name = "LabelZoom"
@@ -5896,7 +5939,7 @@ Partial Class FormFLM
         '
         'TabControlTemp
         '
-        Me.TabControlTemp.Location = New System.Drawing.Point(42, 12)
+        Me.TabControlTemp.Location = New System.Drawing.Point(42, 0)
         Me.TabControlTemp.Name = "TabControlTemp"
         Me.TabControlTemp.SelectedIndex = 0
         Me.TabControlTemp.Size = New System.Drawing.Size(23, 15)
@@ -5982,7 +6025,7 @@ Partial Class FormFLM
         'LabelValoreCursore
         '
         Me.LabelValoreCursore.AutoSize = True
-        Me.LabelValoreCursore.BackColor = System.Drawing.Color.Black
+        Me.LabelValoreCursore.BackColor = System.Drawing.Color.Transparent
         Me.LabelValoreCursore.ForeColor = System.Drawing.Color.Red
         Me.LabelValoreCursore.Location = New System.Drawing.Point(312, 599)
         Me.LabelValoreCursore.Name = "LabelValoreCursore"
@@ -6024,16 +6067,219 @@ Partial Class FormFLM
         Me.ComboBoxPubblica.Size = New System.Drawing.Size(82, 28)
         Me.ComboBoxPubblica.TabIndex = 41
         '
-        'CheckBoxScreen_verticale
+        'ToolStrip1
         '
-        Me.CheckBoxScreen_verticale.AutoSize = True
-        Me.CheckBoxScreen_verticale.ForeColor = System.Drawing.Color.Red
-        Me.CheckBoxScreen_verticale.Location = New System.Drawing.Point(164, 19)
-        Me.CheckBoxScreen_verticale.Name = "CheckBoxScreen_verticale"
-        Me.CheckBoxScreen_verticale.Size = New System.Drawing.Size(67, 17)
-        Me.CheckBoxScreen_verticale.TabIndex = 28
-        Me.CheckBoxScreen_verticale.Text = "Verticale"
-        Me.CheckBoxScreen_verticale.UseVisualStyleBackColor = True
+        Me.ToolStrip1.BackColor = System.Drawing.SystemColors.Control
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButtonFile, Me.ToolStripDropDownButtonStrumenti, Me.ToolStripDropDownButtonAbout})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1264, 25)
+        Me.ToolStrip1.TabIndex = 42
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripDropDownButtonFile
+        '
+        Me.ToolStripDropDownButtonFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripDropDownButtonFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadToolStripMenuItem, Me.ToolStripSeparator5, Me.SaveToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.ToolStripSeparator8, Me.ExportToolStripMenuItem, Me.ToolStripSeparator6, Me.QuitToolStripMenuItem})
+        Me.ToolStripDropDownButtonFile.Image = CType(resources.GetObject("ToolStripDropDownButtonFile.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButtonFile.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButtonFile.Name = "ToolStripDropDownButtonFile"
+        Me.ToolStripDropDownButtonFile.Size = New System.Drawing.Size(38, 22)
+        Me.ToolStripDropDownButtonFile.Text = "File"
+        '
+        'LoadToolStripMenuItem
+        '
+        Me.LoadToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.OpenFile_16x
+        Me.LoadToolStripMenuItem.Name = "LoadToolStripMenuItem"
+        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LoadToolStripMenuItem.Text = "Load"
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(177, 6)
+        '
+        'SaveToolStripMenuItem
+        '
+        Me.SaveToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.Save_grey_16x
+        Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaveToolStripMenuItem.Text = "Save"
+        '
+        'SaveAsToolStripMenuItem
+        '
+        Me.SaveAsToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.SaveAs_16x
+        Me.SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
+        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaveAsToolStripMenuItem.Text = "Save as..."
+        '
+        'ToolStripSeparator8
+        '
+        Me.ToolStripSeparator8.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(177, 6)
+        '
+        'ExportToolStripMenuItem
+        '
+        Me.ExportToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.Export_16x
+        Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
+        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExportToolStripMenuItem.Text = "Export"
+        '
+        'ToolStripSeparator6
+        '
+        Me.ToolStripSeparator6.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(177, 6)
+        '
+        'QuitToolStripMenuItem
+        '
+        Me.QuitToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.Exit_16x
+        Me.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
+        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.QuitToolStripMenuItem.Text = "Quit"
+        '
+        'ToolStripDropDownButtonStrumenti
+        '
+        Me.ToolStripDropDownButtonStrumenti.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripDropDownButtonStrumenti.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnteprimaToolStripMenuItem, Me.ToolStripSeparator4, Me.PaintToolStripMenuItem, Me.ToolStripSeparator7, Me.OpzioniToolStripMenuItem})
+        Me.ToolStripDropDownButtonStrumenti.Image = CType(resources.GetObject("ToolStripDropDownButtonStrumenti.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButtonStrumenti.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButtonStrumenti.Name = "ToolStripDropDownButtonStrumenti"
+        Me.ToolStripDropDownButtonStrumenti.Size = New System.Drawing.Size(72, 22)
+        Me.ToolStripDropDownButtonStrumenti.Text = "Strumenti"
+        '
+        'AnteprimaToolStripMenuItem
+        '
+        Me.AnteprimaToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.PreviewInRightPanel_16x
+        Me.AnteprimaToolStripMenuItem.Name = "AnteprimaToolStripMenuItem"
+        Me.AnteprimaToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.AnteprimaToolStripMenuItem.Text = "Anteprima"
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(127, 6)
+        '
+        'PaintToolStripMenuItem
+        '
+        Me.PaintToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.PaintBrush_16x
+        Me.PaintToolStripMenuItem.Name = "PaintToolStripMenuItem"
+        Me.PaintToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.PaintToolStripMenuItem.Text = "Paint"
+        '
+        'ToolStripSeparator7
+        '
+        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(127, 6)
+        '
+        'OpzioniToolStripMenuItem
+        '
+        Me.OpzioniToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.ConfigureComputer_16x
+        Me.OpzioniToolStripMenuItem.Name = "OpzioniToolStripMenuItem"
+        Me.OpzioniToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.OpzioniToolStripMenuItem.Text = "Opzioni"
+        '
+        'ToolStripDropDownButtonAbout
+        '
+        Me.ToolStripDropDownButtonAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripDropDownButtonAbout.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VisualizzaGuidaToolStripMenuItem, Me.InviaCommentiESuggerimentiToolStripMenuItem, Me.ToolStripSeparator1, Me.ControllaLaDisponibilitàDiAggiornamentiToolStripMenuItem, Me.ToolStripSeparator9, Me.SupportoTecnico, Me.FEELWebSiteToolStripMenuItem, Me.ToolStripSeparator2, Me.InformazioniSuFeelLayoutManagerToolStripMenuItem, Me.ToolStripSeparator3, Me.OffrimiUnCaffèToolStripMenuItem})
+        Me.ToolStripDropDownButtonAbout.Image = CType(resources.GetObject("ToolStripDropDownButtonAbout.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButtonAbout.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButtonAbout.Name = "ToolStripDropDownButtonAbout"
+        Me.ToolStripDropDownButtonAbout.Size = New System.Drawing.Size(25, 22)
+        Me.ToolStripDropDownButtonAbout.Text = "?"
+        '
+        'VisualizzaGuidaToolStripMenuItem
+        '
+        Me.VisualizzaGuidaToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.HelpApplication_16x
+        Me.VisualizzaGuidaToolStripMenuItem.Name = "VisualizzaGuidaToolStripMenuItem"
+        Me.VisualizzaGuidaToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
+        Me.VisualizzaGuidaToolStripMenuItem.Text = "Visualizza guida"
+        '
+        'InviaCommentiESuggerimentiToolStripMenuItem
+        '
+        Me.InviaCommentiESuggerimentiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SegnalaUnProblemaToolStripMenuItem, Me.SuggerisciUnaFunzionalitàToolStripMenuItem})
+        Me.InviaCommentiESuggerimentiToolStripMenuItem.Name = "InviaCommentiESuggerimentiToolStripMenuItem"
+        Me.InviaCommentiESuggerimentiToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
+        Me.InviaCommentiESuggerimentiToolStripMenuItem.Text = "Invia commenti e suggerimenti"
+        '
+        'SegnalaUnProblemaToolStripMenuItem
+        '
+        Me.SegnalaUnProblemaToolStripMenuItem.Name = "SegnalaUnProblemaToolStripMenuItem"
+        Me.SegnalaUnProblemaToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
+        Me.SegnalaUnProblemaToolStripMenuItem.Text = "Segnala un problema"
+        '
+        'SuggerisciUnaFunzionalitàToolStripMenuItem
+        '
+        Me.SuggerisciUnaFunzionalitàToolStripMenuItem.Name = "SuggerisciUnaFunzionalitàToolStripMenuItem"
+        Me.SuggerisciUnaFunzionalitàToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
+        Me.SuggerisciUnaFunzionalitàToolStripMenuItem.Text = "Suggerisci una funzionalità"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(294, 6)
+        '
+        'ControllaLaDisponibilitàDiAggiornamentiToolStripMenuItem
+        '
+        Me.ControllaLaDisponibilitàDiAggiornamentiToolStripMenuItem.Enabled = False
+        Me.ControllaLaDisponibilitàDiAggiornamentiToolStripMenuItem.Name = "ControllaLaDisponibilitàDiAggiornamentiToolStripMenuItem"
+        Me.ControllaLaDisponibilitàDiAggiornamentiToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
+        Me.ControllaLaDisponibilitàDiAggiornamentiToolStripMenuItem.Text = "Controlla la disponibilità di aggiornamenti"
+        '
+        'ToolStripSeparator9
+        '
+        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(294, 6)
+        '
+        'SupportoTecnico
+        '
+        Me.SupportoTecnico.Name = "SupportoTecnico"
+        Me.SupportoTecnico.Size = New System.Drawing.Size(297, 22)
+        Me.SupportoTecnico.Text = "Supporto tecnico"
+        '
+        'FEELWebSiteToolStripMenuItem
+        '
+        Me.FEELWebSiteToolStripMenuItem.Name = "FEELWebSiteToolStripMenuItem"
+        Me.FEELWebSiteToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
+        Me.FEELWebSiteToolStripMenuItem.Text = "FEEL Web Site"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(294, 6)
+        '
+        'InformazioniSuFeelLayoutManagerToolStripMenuItem
+        '
+        Me.InformazioniSuFeelLayoutManagerToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.InformationSymbol_16x
+        Me.InformazioniSuFeelLayoutManagerToolStripMenuItem.Name = "InformazioniSuFeelLayoutManagerToolStripMenuItem"
+        Me.InformazioniSuFeelLayoutManagerToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
+        Me.InformazioniSuFeelLayoutManagerToolStripMenuItem.Text = "Informazioni su Feel Layout Manager"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(294, 6)
+        '
+        'OffrimiUnCaffèToolStripMenuItem
+        '
+        Me.OffrimiUnCaffèToolStripMenuItem.Name = "OffrimiUnCaffèToolStripMenuItem"
+        Me.OffrimiUnCaffèToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
+        Me.OffrimiUnCaffèToolStripMenuItem.Text = "Offrimi un caffè"
+        '
+        'LabelFeelLayoutManager
+        '
+        Me.LabelFeelLayoutManager.AutoSize = True
+        Me.LabelFeelLayoutManager.BackColor = System.Drawing.Color.Transparent
+        Me.LabelFeelLayoutManager.Font = New System.Drawing.Font("Aghara Pro Regular", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFeelLayoutManager.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.LabelFeelLayoutManager.Location = New System.Drawing.Point(330, 41)
+        Me.LabelFeelLayoutManager.Name = "LabelFeelLayoutManager"
+        Me.LabelFeelLayoutManager.Size = New System.Drawing.Size(602, 54)
+        Me.LabelFeelLayoutManager.TabIndex = 43
+        Me.LabelFeelLayoutManager.Text = "Feel Layout Manager"
         '
         'FormFLM
         '
@@ -6043,6 +6289,8 @@ Partial Class FormFLM
         Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.Layout1Marquee
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 761)
+        Me.Controls.Add(Me.LabelFeelLayoutManager)
+        Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.ButtonAbout)
         Me.Controls.Add(Me.LabelValoreCursore)
         Me.Controls.Add(Me.TextBoxValoreCursore)
@@ -6124,6 +6372,8 @@ Partial Class FormFLM
         Me.PanelMainMaster.ResumeLayout(False)
         Me.PanelZoom.ResumeLayout(False)
         Me.PanelZoom.PerformLayout()
+        Me.ToolStrip1.ResumeLayout(False)
+        Me.ToolStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -6632,4 +6882,35 @@ Partial Class FormFLM
     Friend WithEvents TimerMP3 As Timer
     Friend WithEvents ComboBoxPubblica As ComboBox
     Friend WithEvents CheckBoxScreen_verticale As CheckBox
+    Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents ToolStripDropDownButtonFile As ToolStripDropDownButton
+    Friend WithEvents LoadToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
+    Friend WithEvents SaveToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveAsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
+    Friend WithEvents ExportToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
+    Friend WithEvents QuitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripDropDownButtonStrumenti As ToolStripDropDownButton
+    Friend WithEvents AnteprimaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
+    Friend WithEvents PaintToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpzioniToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripDropDownButtonAbout As ToolStripDropDownButton
+    Friend WithEvents VisualizzaGuidaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents InviaCommentiESuggerimentiToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SegnalaUnProblemaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SuggerisciUnaFunzionalitàToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents ControllaLaDisponibilitàDiAggiornamentiToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SupportoTecnico As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents InformazioniSuFeelLayoutManagerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents OffrimiUnCaffèToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator9 As ToolStripSeparator
+    Friend WithEvents FEELWebSiteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LabelFeelLayoutManager As Label
 End Class

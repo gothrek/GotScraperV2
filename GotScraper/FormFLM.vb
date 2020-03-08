@@ -15,6 +15,16 @@
     Public fontIntestazioniStyle As FontStyle = 0
     Public fontIntestazioniColor As String = "Red"
 
+    Public fontElementi As String = "Arial"
+    Public fontElementiSize As Single = 8
+    Public fontElementiStyle As FontStyle = 0
+    Public fontElementiColor As String = "Red"
+
+    Public fontFLM As String = "Aghara Pro Regular"
+    Public fontFLMSize As Single = 36
+    Public fontFLMStyle As FontStyle = 1
+    Public fontFLMColor As String = "ControlDarkDark"
+
     Public mouseTimeClick As Integer '= 300
 
     Public templateLayoutIni As String = "Default"
@@ -99,6 +109,46 @@
             fineStringa = usoStringa.IndexOf(vbCrLf)
             fontIntestazioniColor = usoStringa.Substring(0, fineStringa)
 
+            inizioStringa = file.IndexOf("fontElementiName=") + 17
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontElementi = usoStringa.Substring(0, fineStringa)
+
+            inizioStringa = file.IndexOf("fontElementiSize=") + 17
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontElementiSize = Int(usoStringa.Substring(0, fineStringa))
+
+            inizioStringa = file.IndexOf("fontElementiStyle=") + 18
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontElementiStyle = Int(usoStringa.Substring(0, fineStringa))
+
+            inizioStringa = file.IndexOf("fontElementiColor=") + 18
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontElementiColor = usoStringa.Substring(0, fineStringa)
+
+            inizioStringa = file.IndexOf("fontFLMName=") + 12
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontFLM = usoStringa.Substring(0, fineStringa)
+
+            inizioStringa = file.IndexOf("fontFLMSize=") + 12
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontFLMSize = Int(usoStringa.Substring(0, fineStringa))
+
+            inizioStringa = file.IndexOf("fontFLMStyle=") + 13
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontFLMStyle = Int(usoStringa.Substring(0, fineStringa))
+
+            inizioStringa = file.IndexOf("fontFLMColor=") + 13
+            usoStringa = file.Substring(inizioStringa)
+            fineStringa = usoStringa.IndexOf(vbCrLf)
+            fontFLMColor = usoStringa.Substring(0, fineStringa)
+
             inizioStringa = file.IndexOf("mouseTimeClick=") + 15
             usoStringa = file.Substring(inizioStringa)
             fineStringa = usoStringa.IndexOf(vbCrLf)
@@ -134,7 +184,7 @@
                     Case 2
                         flmBackgroundImage = My.Resources.Layout2Marquee
                     Case 3
-                        'flmBackgroundImage = My.Resources.Layout3
+                        flmBackgroundImage = My.Resources.Layout3Marquee
                     Case Else
                         MsgBox("Attenzione, valore di Layout nel file ini errato!! Verificare!")
                 End Select
@@ -159,7 +209,17 @@
         GroupBoxProprietà.Font = usoFont
         GroupBoxProprietà.ForeColor = Color.FromName(fontIntestazioniColor)
 
-        usoFont = New Font(fontIntestazioni, fontIntestazioniSize - 4, FontStyle.Regular)
+        LabelScreenRisoluzione.ForeColor = Color.FromName(fontIntestazioniColor)
+        LabelValoreCursore.ForeColor = Color.FromName(fontIntestazioniColor)
+        TextBoxValoreCursore.ForeColor = Color.FromName(fontIntestazioniColor)
+        LabelPannello.ForeColor = Color.FromName(fontIntestazioniColor)
+        LabelPosizioneMouse.ForeColor = Color.FromName(fontIntestazioniColor)
+        LabelPercorso.ForeColor = Color.FromName(fontIntestazioniColor)
+        LabelZoom.ForeColor = Color.FromName(fontIntestazioniColor)
+        LabelZoomTesto.ForeColor = Color.FromName(fontIntestazioniColor)
+        TextBoxZoom.ForeColor = Color.FromName(fontIntestazioniColor)
+
+        usoFont = New Font(fontElementi, fontElementiSize, FontStyle.Regular)
         ListBoxObj.Font = usoFont
 
         If flmBackgroundImageCheck Then
@@ -592,6 +652,10 @@
 
             Select Case flmLayout
                 Case 1
+                    ToolStrip1.Visible = False
+
+                    LabelFeelLayoutManager.Visible = False
+
                     GroupBoxProprietà.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
                     GroupBoxProprietà.Location = New Point(12, 41)
 
@@ -614,26 +678,41 @@
 
                     LabelValoreCursore.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
                     TextBoxValoreCursore.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    TextBoxValoreCursore.BackColor = Color.Black
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
 
                     PanelZoom.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - PanelZoom.Size.Width, Me.Size.Height - 68 - 39)
+                    TrackBarZoom.BackColor = Color.Black
+                    TextBoxZoom.BackColor = Color.Black
 
                     ButtonCarica.Location = New Point(12, 1)
+                    ButtonCarica.Visible = True
 
                     ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
+                    ButtonPainter.Visible = True
 
                     ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
                     ComboBoxPubblica.Location = ButtonPubblica.Location
+                    ButtonPubblica.Visible = True
+                    ComboBoxPubblica.Visible = True
 
                     ButtonAbout.Location = New Point(Me.Size.Width - ButtonAbout.Size.Width - 20 - 8, ButtonCarica.Location.Y)
 
                     ButtonFLMOptions.Location = New Point(ButtonAbout.Location.X - ButtonFLMOptions.Size.Width - 6, ButtonCarica.Location.Y)
+                    ButtonFLMOptions.Visible = True
 
                     ButtonAnteprima.Location = New Point(ButtonFLMOptions.Location.X - ButtonAnteprima.Size.Width - 6, ButtonCarica.Location.Y)
+                    ButtonAnteprima.Visible = True
+
+                    ButtonAbout.Visible = True
 
                     LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
                 Case 2
+                    ToolStrip1.Visible = False
+
+                    LabelFeelLayoutManager.Visible = False
+
                     GroupBoxObj.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
                     GroupBoxObj.Location = New Point(12, 41) 'TODO personalizzare il valore -20=20% della nuova dimensione a 12+8di bord form
 
@@ -656,29 +735,50 @@
 
                     LabelValoreCursore.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
                     TextBoxValoreCursore.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    TextBoxValoreCursore.BackColor = Color.Black
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
 
                     PanelZoom.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - PanelZoom.Size.Width, Me.Size.Height - 68 - 39)
+                    TrackBarZoom.BackColor = Color.Black
+                    TextBoxZoom.BackColor = Color.Black
 
                     ButtonCarica.Location = New Point(12, 1)
+                    ButtonCarica.Visible = True
 
                     ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
+                    ButtonPainter.Visible = True
 
                     ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
                     ComboBoxPubblica.Location = ButtonPubblica.Location
+                    ButtonPubblica.Visible = True
+                    ComboBoxPubblica.Visible = True
 
                     ButtonAbout.Location = New Point(Me.Size.Width - ButtonAbout.Size.Width - 20 - 8, ButtonCarica.Location.Y)
 
                     ButtonFLMOptions.Location = New Point(ButtonAbout.Location.X - ButtonFLMOptions.Size.Width - 6, ButtonCarica.Location.Y)
+                    ButtonFLMOptions.Visible = True
 
                     ButtonAnteprima.Location = New Point(ButtonFLMOptions.Location.X - ButtonAnteprima.Size.Width - 6, ButtonCarica.Location.Y)
+                    ButtonAnteprima.Visible = True
+
+                    ButtonAbout.Visible = True
 
                     LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
                 Case 3
-                    'groupobj
-                    'groupproprietà
-                    'panelmainmaster
+                    ToolStrip1.Visible = True
+
+                    GroupBoxObj.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
+                    GroupBoxObj.Location = New Point(12, 41) 'TODO personalizzare il valore -20=20% della nuova dimensione a 12+8di bord form
+
+                    GroupBoxProprietà.Size = New Size(Int(Me.Size.Width * 20 / 100), Int(Me.Size.Height - 92)) 'TODO personalizzare il valore 92= 39 barra form +41sopra +12sotto
+                    GroupBoxProprietà.Location = New Point(GroupBoxObj.Location.X + GroupBoxObj.Size.Width + 12, GroupBoxObj.Location.Y)
+
+                    PanelMainMaster.Size = New Size(Int(Me.Size.Width * 50 / 100), Int(Me.Size.Height * 60 / 100)) 'Il pannello è il 50%W e il 60%H
+                    PanelMainMaster.Location = New Point(Me.Size.Width - PanelMainMaster.Size.Width - 50 * (Me.Size.Width / 1280), Int(Me.Size.Height * 14.5 / 100))
+
+                    PanelMain.Size = PanelBackground.Size
+                    PanelMain.Location = New Point(Int((PanelMainMaster.Size.Width - PanelBackground.Size.Width) / 2), PanelMain.Location.Y)
 
                     LabelScreenRisoluzione.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y - 16)
 
@@ -688,20 +788,41 @@
 
                     ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
 
+                    LabelValoreCursore.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    TextBoxValoreCursore.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    TextBoxValoreCursore.BackColor = Color.FromArgb(255, 30, 30, 30)
+
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
 
+                    PanelZoom.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - PanelZoom.Size.Width, Me.Size.Height - 68 - 39)
+                    TrackBarZoom.BackColor = Color.FromArgb(255, 30, 30, 30)
+                    TextBoxZoom.BackColor = Color.FromArgb(255, 30, 30, 30)
+
                     ButtonCarica.Location = New Point(12, 1)
+                    ButtonCarica.Visible = False
 
                     ButtonPainter.Location = New Point(ButtonCarica.Location.X + ButtonCarica.Size.Width + 6, ButtonCarica.Location.Y)
+                    ButtonPainter.Visible = False
 
                     ButtonPubblica.Location = New Point(ButtonPainter.Location.X + ButtonPainter.Size.Width + 6, ButtonCarica.Location.Y)
                     ComboBoxPubblica.Location = ButtonPubblica.Location
+                    ButtonPubblica.Visible = False
+                    ComboBoxPubblica.Visible = False
 
-                    ButtonFLMOptions.Location = New Point(Me.Size.Width - ButtonFLMOptions.Size.Width - 12 - 8, ButtonCarica.Location.Y)
+                    ButtonAbout.Location = New Point(Me.Size.Width - ButtonAbout.Size.Width - 20 - 8, ButtonCarica.Location.Y)
+
+                    ButtonFLMOptions.Location = New Point(ButtonAbout.Location.X - ButtonFLMOptions.Size.Width - 6, ButtonCarica.Location.Y)
+                    ButtonFLMOptions.Visible = False
 
                     ButtonAnteprima.Location = New Point(ButtonFLMOptions.Location.X - ButtonAnteprima.Size.Width - 6, ButtonCarica.Location.Y)
+                    ButtonAnteprima.Visible = False
+
+                    ButtonAbout.Visible = False
 
                     LabelPosizioneMouse.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Width - LabelPosizioneMouse.Width - 23, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+
+                    LabelFeelLayoutManager.Location = New Point(PanelMainMaster.Location.X + ((PanelMainMaster.Size.Width - LabelFeelLayoutManager.Size.Width) / 2), LabelFeelLayoutManager.Location.Y)
+                    LabelFeelLayoutManager.Visible = True
                 Case Else
 
             End Select
@@ -728,13 +849,23 @@
         dtOptionsLayout.Dispose()
     End Sub
 
-    Private Sub ButtonPainter_Click(sender As Object, e As EventArgs) Handles ButtonPainter.Click
+    Private Sub QuitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitToolStripMenuItem.Click
+        mp3player.Close()
+        dtOptionsLayout.Dispose()
+        Me.Close()
+    End Sub
+
+    Private Sub ButtonPainter_Click(sender As Object, e As EventArgs) Handles ButtonPainter.Click,
+                                                                                PaintToolStripMenuItem.Click
+
         Dim proc As New System.Diagnostics.Process()
 
         proc = Process.Start(grafxEditorPath, "")
     End Sub
 
-    Private Sub ButtonAbout_Click(sender As Object, e As EventArgs) Handles ButtonAbout.Click
+    Private Sub ButtonAbout_Click(sender As Object, e As EventArgs) Handles ButtonAbout.Click,
+                                                                                InformazioniSuFeelLayoutManagerToolStripMenuItem.Click
+
         soundPlay = False
         musicPlay = False
         ButtonSoundPlay.Text = "Play"
@@ -743,7 +874,38 @@
         FormFLMAbout.Show()
     End Sub
 
-    Private Sub ButtonFLMOptions_Click(sender As Object, e As EventArgs) Handles ButtonFLMOptions.Click
+    Private Sub SupportoTecnico_Click(sender As Object, e As EventArgs) Handles SupportoTecnico.Click
+        Process.Start("https://www.arcadeitalia.net/viewforum.php?f=64")
+    End Sub
+
+    Private Sub FEELWebSiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FEELWebSiteToolStripMenuItem.Click
+        Process.Start("http://feelfrontend.altervista.org/it/")
+    End Sub
+
+    Private Sub SegnalaUnProblemaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SegnalaUnProblemaToolStripMenuItem.Click
+        Process.Start("https://github.com/gothrek/GotScraperV2/issues")
+    End Sub
+
+    Private Sub SuggerisciUnaFunzionalitàToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SuggerisciUnaFunzionalitàToolStripMenuItem.Click
+        Process.Start("https://github.com/gothrek/GotScraperV2")
+    End Sub
+
+    Private Sub VisualizzaGuidaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VisualizzaGuidaToolStripMenuItem.Click
+        If System.IO.File.Exists("Quick Guide FLM.pdf") Then
+            Process.Start("Quick Guide FLM.pdf")
+        Else
+            MsgBox("Attenzione!! Verificare esistenza file guida 'Quick Guide FLM.pdf'")
+        End If
+    End Sub
+
+    Private Sub OffrimiUnCaffèToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OffrimiUnCaffèToolStripMenuItem.Click
+        'BuyMeACoffee
+
+        MsgBox("Ti è piaciuto il mio lavoro? offrimi un caffè!! " & vbCr & "    (paypal gothek@hotmail.com)")
+    End Sub
+    Private Sub ButtonFLMOptions_Click(sender As Object, e As EventArgs) Handles ButtonFLMOptions.Click,
+                                                                                OpzioniToolStripMenuItem.Click
+
         soundPlay = False
         musicPlay = False
         ButtonSoundPlay.Text = "Play"
@@ -752,7 +914,9 @@
         FormFLMoptions.ShowDialog()
     End Sub
 
-    Private Sub ButtonAnteprima_Click(sender As Object, e As EventArgs) Handles ButtonAnteprima.Click
+    Private Sub ButtonAnteprima_Click(sender As Object, e As EventArgs) Handles ButtonAnteprima.Click,
+                                                                                AnteprimaToolStripMenuItem.Click
+
         ValoriInTabella()
         soundPlay = False
         musicPlay = False
@@ -776,7 +940,9 @@
         End If
     End Sub
 
-    Private Sub ButtonCarica_Click(sender As Object, e As EventArgs) Handles ButtonCarica.Click
+    Private Sub ButtonCarica_Click(sender As Object, e As EventArgs) Handles ButtonCarica.Click,
+                                                                                LoadToolStripMenuItem.Click
+
         Dim cartella As String = ""
         Dim folder As DirectoryInfo
         Dim file As System.IO.StreamReader
@@ -2013,7 +2179,12 @@
         End If
     End Sub
 
-    Private Sub ButtonPubblica_Click(sender As Object, e As EventArgs) Handles ButtonPubblica.Click, ComboBoxPubblica.SelectedIndexChanged
+    Private Sub ButtonPubblica_Click(sender As Object, e As EventArgs) Handles ButtonPubblica.Click,
+                                                                                ComboBoxPubblica.SelectedIndexChanged,
+                                                                                SaveToolStripMenuItem.Click,
+                                                                                SaveAsToolStripMenuItem.Click,
+                                                                                ExportToolStripMenuItem.Click
+
 
         Dim file As System.IO.StreamWriter
         Dim cartella As String
@@ -3864,7 +4035,6 @@
             TextBoxMenu_selected_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB & ", " & coloreA
         End If
     End Sub
-
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Actors

@@ -1,10 +1,20 @@
 ﻿Public Class FormFLMoptions
     Dim start As Boolean = True
 
-    Dim fontName As String = FormFLM.fontIntestazioni
-    Dim fontSize As Single = FormFLM.fontIntestazioniSize
-    Dim fontStyle As FontStyle = FormFLM.fontIntestazioniStyle
-    Dim fontColor As String = FormFLM.fontIntestazioniColor
+    Dim fontIntestazioni As String = FormFLM.fontIntestazioni
+    Dim fontIntestazioniSize As Single = FormFLM.fontIntestazioniSize
+    Dim fontIntestazioniStyle As FontStyle = FormFLM.fontIntestazioniStyle
+    Dim fontIntestazioniColor As String = FormFLM.fontIntestazioniColor
+
+    Dim fontElementi As String = FormFLM.fontElementi
+    Dim fontElementiSize As Single = FormFLM.fontElementiSize
+    Dim fontElementiStyle As FontStyle = FormFLM.fontElementiStyle
+    Dim fontElementiColor As String = FormFLM.fontElementiColor
+
+    Dim fontFLM As String = FormFLM.fontFLM
+    Dim fontFLMSize As Single = FormFLM.fontFLMSize
+    Dim fontFLMStyle As FontStyle = FormFLM.fontFLMStyle
+    Dim fontFLMColor As String = FormFLM.fontFLMColor
 
     Dim mouseTimeClick As Integer = FormFLM.Timer1.Interval
 
@@ -22,11 +32,18 @@
 
         TextBoxPathGraphEditor.Text = FormFLM.grafxEditorPath
 
-        carattere = New Font(fontName, 8, fontStyle)
+        carattere = New Font(fontIntestazioni, 8, fontIntestazioniStyle)
 
-        TextBoxFontIntestazioni.Text = fontName
+        TextBoxFontIntestazioni.Text = fontIntestazioni
         TextBoxFontIntestazioni.Font = carattere
-        TextBoxFontIntestazioni.ForeColor = Color.FromName(fontColor)
+        TextBoxFontIntestazioni.ForeColor = Color.FromName(fontIntestazioniColor)
+
+        carattere = New Font(fontElementi, 8, fontElementiStyle)
+
+        TextBoxFontElementi.Text = fontElementi
+        TextBoxFontElementi.Font = carattere
+        TextBoxFontElementi.ForeColor = Color.FromName(fontElementiColor)
+        'TODO font FLM
 
         TextBoxMouseTimeClick.Text = mouseTimeClick
 
@@ -66,23 +83,69 @@
         End If
     End Sub
 
-    Private Sub TextBoxFontIntestazioni_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxFontIntestazioni.DoubleClick, TextBoxFontIntestazioni.Click
+    Private Sub TextBoxFontIntestazioni_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxFontIntestazioni.DoubleClick,
+                                                                                                TextBoxFontIntestazioni.Click
+
         Dim carattere As Font
 
         If FontDialog1.ShowDialog() = DialogResult.OK Then
-            fontName = FontDialog1.Font.Name
-            fontSize = FontDialog1.Font.Size
-            fontStyle = FontDialog1.Font.Style
-            carattere = New Font(fontName, 8, fontStyle)
-            fontColor = FontDialog1.Color.Name
+            fontIntestazioni = FontDialog1.Font.Name
+            fontIntestazioniSize = FontDialog1.Font.Size
+            fontIntestazioniStyle = FontDialog1.Font.Style
+            carattere = New Font(fontIntestazioni, 8, fontIntestazioniStyle)
+            fontIntestazioniColor = FontDialog1.Color.Name
 
             TextBoxFontIntestazioni.ForeColor = FontDialog1.Color
             TextBoxFontIntestazioni.Font = carattere
-            TextBoxFontIntestazioni.Text = fontName
+            TextBoxFontIntestazioni.Text = fontIntestazioni
         End If
     End Sub
 
     Private Sub TextBoxFontIntestazioni_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBoxFontIntestazioni.KeyDown
+        e.SuppressKeyPress = True
+    End Sub
+
+    Private Sub TextBoxFontElementi_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxFontElementi.DoubleClick,
+                                                                                            TextBoxFontElementi.Click
+
+        Dim carattere As Font
+
+        If FontDialog1.ShowDialog() = DialogResult.OK Then
+            fontElementi = FontDialog1.Font.Name
+            fontElementiSize = FontDialog1.Font.Size
+            fontElementiStyle = FontDialog1.Font.Style
+            carattere = New Font(fontElementi, 8, fontElementiStyle)
+            fontElementiColor = FontDialog1.Color.Name
+
+            TextBoxFontElementi.ForeColor = FontDialog1.Color
+            TextBoxFontElementi.Font = carattere
+            TextBoxFontElementi.Text = fontElementi
+        End If
+    End Sub
+
+    Private Sub TextBoxFontElementi_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBoxFontElementi.KeyDown
+        e.SuppressKeyPress = True
+    End Sub
+
+    Private Sub TextBoxFontFLM_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxFontFLM.DoubleClick,
+                                                                                        TextBoxFontFLM.Click
+
+        Dim carattere As Font
+
+        If FontDialog1.ShowDialog() = DialogResult.OK Then
+            fontFLM = FontDialog1.Font.Name
+            fontFLMSize = FontDialog1.Font.Size
+            fontFLMStyle = FontDialog1.Font.Style
+            carattere = New Font(fontFLM, 8, fontFLMStyle)
+            fontFLMColor = FontDialog1.Color.Name
+
+            TextBoxFontFLM.ForeColor = FontDialog1.Color
+            TextBoxFontFLM.Font = carattere
+            TextBoxFontFLM.Text = fontFLM
+        End If
+    End Sub
+
+    Private Sub TextBoxFontFLM_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBoxFontFLM.KeyDown
         e.SuppressKeyPress = True
     End Sub
 
@@ -121,10 +184,20 @@
 
         FormFLM.grafxEditorPath = TextBoxPathGraphEditor.Text
 
-        FormFLM.fontIntestazioni = fontName
-        FormFLM.fontIntestazioniSize = fontSize
-        FormFLM.fontIntestazioniStyle = fontStyle
-        FormFLM.fontIntestazioniColor = fontColor
+        FormFLM.fontIntestazioni = fontIntestazioni
+        FormFLM.fontIntestazioniSize = fontIntestazioniSize
+        FormFLM.fontIntestazioniStyle = fontIntestazioniStyle
+        FormFLM.fontIntestazioniColor = fontIntestazioniColor
+
+        FormFLM.fontElementi = fontElementi
+        FormFLM.fontElementiSize = fontElementiSize
+        FormFLM.fontElementiStyle = fontElementiStyle
+        FormFLM.fontElementiColor = fontElementiColor
+
+        FormFLM.fontFLM = fontFLM
+        FormFLM.fontFLMSize = fontFLMSize
+        FormFLM.fontFLMStyle = fontFLMStyle
+        FormFLM.fontFLMColor = fontFLMColor
 
         FormFLM.mouseTimeClick = mouseTimeClick
         FormFLM.Timer1.Interval = mouseTimeClick
@@ -150,7 +223,7 @@
                 FormFLM.flmBackgroundImage = My.Resources.Layout2Marquee
             Case 3
                 FormFLM.flmLayout = 3
-                'FormFLM.flmBackgroundImage = My.Resources.Layout3
+                FormFLM.flmBackgroundImage = My.Resources.Layout3Marquee
         End Select
 
         If CheckBoxFLMBackgroundImage.Checked Then
@@ -175,18 +248,22 @@
         End If
 
         Dim usoFont As Font
-        usoFont = New Font(fontName, fontSize, fontStyle)
+        usoFont = New Font(fontIntestazioni, fontIntestazioniSize, fontIntestazioniStyle)
         FormFLM.GroupBoxObj.Font = usoFont
-        FormFLM.GroupBoxObj.ForeColor = Color.FromName(fontColor)
+        FormFLM.GroupBoxObj.ForeColor = Color.FromName(fontIntestazioniColor)
         FormFLM.GroupBoxObj.Refresh()
 
         FormFLM.GroupBoxProprietà.Font = usoFont
-        FormFLM.GroupBoxProprietà.ForeColor = Color.FromName(fontColor)
+        FormFLM.GroupBoxProprietà.ForeColor = Color.FromName(fontIntestazioniColor)
         FormFLM.GroupBoxProprietà.Refresh()
 
-        usoFont = New Font(fontName, fontSize - 4, FontStyle.Regular)
+        usoFont = New Font(fontElementi, fontElementiSize, FontStyle.Regular)
         FormFLM.ListBoxObj.Font = usoFont
         FormFLM.ListBoxObj.Refresh()
+
+        usoFont = New Font(fontFLM, fontFLMSize, FontStyle.Regular)
+        FormFLM.LabelFeelLayoutManager.Font = usoFont
+        FormFLM.LabelFeelLayoutManager.Refresh()
 
         Me.Close()
     End Sub
@@ -208,10 +285,18 @@
         file.WriteLine("feelPath=" & TextBoxPathFeel.Text)
         file.WriteLine("grafxEditorPath=" & TextBoxPathGraphEditor.Text)
         file.WriteLine("templateLayoutIni=" & TextBoxTemplateLayoutIni.Text)
-        file.WriteLine("fontIntestazioniName=" & fontName)
-        file.WriteLine("fontIntestazioniSize=" & fontSize)
-        file.WriteLine("fontIntestazioniStyle=" & fontStyle)
-        file.WriteLine("fontIntestazioniColor=" & fontColor)
+        file.WriteLine("fontIntestazioniName=" & fontIntestazioni)
+        file.WriteLine("fontIntestazioniSize=" & fontIntestazioniSize)
+        file.WriteLine("fontIntestazioniStyle=" & fontIntestazioniStyle)
+        file.WriteLine("fontIntestazioniColor=" & fontIntestazioniColor)
+        file.WriteLine("fontElementiName=" & fontElementi)
+        file.WriteLine("fontElementiSize=" & fontElementiSize)
+        file.WriteLine("fontElementiStyle=" & fontElementiStyle)
+        file.WriteLine("fontElementiColor=" & fontElementiColor)
+        file.WriteLine("fontFLMName=" & fontFLM)
+        file.WriteLine("fontFLMSize=" & fontFLMSize)
+        file.WriteLine("fontFLMStyle=" & fontFLMStyle)
+        file.WriteLine("fontFLMColor=" & fontFLMColor)
         file.WriteLine("mouseTimeClick=" & mouseTimeClick)
 
         If CheckBoxFLMTips.Checked Then

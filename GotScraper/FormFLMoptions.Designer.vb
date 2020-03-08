@@ -25,19 +25,23 @@ Partial Class FormFLMoptions
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFLMoptions))
         Me.LabelImpostazioni = New System.Windows.Forms.Label()
         Me.PanelImpostazioni = New System.Windows.Forms.Panel()
+        Me.TextBoxFontFLM = New System.Windows.Forms.TextBox()
+        Me.LabelFontFLM = New System.Windows.Forms.Label()
+        Me.TextBoxFontElementi = New System.Windows.Forms.TextBox()
+        Me.LabelFontElementi = New System.Windows.Forms.Label()
+        Me.PanelFLMLayout3 = New System.Windows.Forms.Panel()
+        Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.LabelLayout3Obj = New System.Windows.Forms.Label()
+        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.LabelLayout3Main = New System.Windows.Forms.Label()
+        Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.LabelLayout3Prop = New System.Windows.Forms.Label()
         Me.CheckBoxFLMTips = New System.Windows.Forms.CheckBox()
         Me.TextBoxMouseTimeClick = New System.Windows.Forms.TextBox()
         Me.LabelMouseTimeClick = New System.Windows.Forms.Label()
         Me.TextBoxFontIntestazioni = New System.Windows.Forms.TextBox()
         Me.LabelFontIntestazioni = New System.Windows.Forms.Label()
         Me.CheckBoxFLMBackgroundImage = New System.Windows.Forms.CheckBox()
-        Me.PanelFLMLayout3 = New System.Windows.Forms.Panel()
-        Me.Panel10 = New System.Windows.Forms.Panel()
-        Me.LabelLayout3Obj = New System.Windows.Forms.Label()
-        Me.Panel11 = New System.Windows.Forms.Panel()
-        Me.LabelLayout3Main = New System.Windows.Forms.Label()
-        Me.Panel12 = New System.Windows.Forms.Panel()
-        Me.LabelLayout3Prop = New System.Windows.Forms.Label()
         Me.PanelFLMLayout2 = New System.Windows.Forms.Panel()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.LabelLayout2Obj = New System.Windows.Forms.Label()
@@ -71,9 +75,9 @@ Partial Class FormFLMoptions
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.PanelImpostazioni.SuspendLayout()
         Me.PanelFLMLayout3.SuspendLayout()
+        Me.Panel6.SuspendLayout()
         Me.Panel10.SuspendLayout()
         Me.Panel11.SuspendLayout()
-        Me.Panel12.SuspendLayout()
         Me.PanelFLMLayout2.SuspendLayout()
         Me.Panel7.SuspendLayout()
         Me.Panel8.SuspendLayout()
@@ -97,13 +101,17 @@ Partial Class FormFLMoptions
         '
         'PanelImpostazioni
         '
+        Me.PanelImpostazioni.Controls.Add(Me.TextBoxFontFLM)
+        Me.PanelImpostazioni.Controls.Add(Me.LabelFontFLM)
+        Me.PanelImpostazioni.Controls.Add(Me.TextBoxFontElementi)
+        Me.PanelImpostazioni.Controls.Add(Me.LabelFontElementi)
+        Me.PanelImpostazioni.Controls.Add(Me.PanelFLMLayout3)
         Me.PanelImpostazioni.Controls.Add(Me.CheckBoxFLMTips)
         Me.PanelImpostazioni.Controls.Add(Me.TextBoxMouseTimeClick)
         Me.PanelImpostazioni.Controls.Add(Me.LabelMouseTimeClick)
         Me.PanelImpostazioni.Controls.Add(Me.TextBoxFontIntestazioni)
         Me.PanelImpostazioni.Controls.Add(Me.LabelFontIntestazioni)
         Me.PanelImpostazioni.Controls.Add(Me.CheckBoxFLMBackgroundImage)
-        Me.PanelImpostazioni.Controls.Add(Me.PanelFLMLayout3)
         Me.PanelImpostazioni.Controls.Add(Me.PanelFLMLayout2)
         Me.PanelImpostazioni.Controls.Add(Me.Panel2)
         Me.PanelImpostazioni.Controls.Add(Me.LabelFLMLayout)
@@ -119,6 +127,117 @@ Partial Class FormFLMoptions
         Me.PanelImpostazioni.Size = New System.Drawing.Size(438, 506)
         Me.PanelImpostazioni.TabIndex = 1
         '
+        'TextBoxFontFLM
+        '
+        Me.TextBoxFontFLM.Font = New System.Drawing.Font("SimSun", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxFontFLM.Location = New System.Drawing.Point(105, 178)
+        Me.TextBoxFontFLM.Name = "TextBoxFontFLM"
+        Me.TextBoxFontFLM.Size = New System.Drawing.Size(330, 38)
+        Me.TextBoxFontFLM.TabIndex = 21
+        Me.TextBoxFontFLM.Text = "Default"
+        '
+        'LabelFontFLM
+        '
+        Me.LabelFontFLM.AutoSize = True
+        Me.LabelFontFLM.Location = New System.Drawing.Point(3, 181)
+        Me.LabelFontFLM.Name = "LabelFontFLM"
+        Me.LabelFontFLM.Size = New System.Drawing.Size(52, 13)
+        Me.LabelFontFLM.TabIndex = 20
+        Me.LabelFontFLM.Text = "Font FLM"
+        '
+        'TextBoxFontElementi
+        '
+        Me.TextBoxFontElementi.Font = New System.Drawing.Font("SimSun", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxFontElementi.Location = New System.Drawing.Point(105, 134)
+        Me.TextBoxFontElementi.Name = "TextBoxFontElementi"
+        Me.TextBoxFontElementi.Size = New System.Drawing.Size(330, 38)
+        Me.TextBoxFontElementi.TabIndex = 19
+        Me.TextBoxFontElementi.Text = "Default"
+        '
+        'LabelFontElementi
+        '
+        Me.LabelFontElementi.AutoSize = True
+        Me.LabelFontElementi.Location = New System.Drawing.Point(3, 137)
+        Me.LabelFontElementi.Name = "LabelFontElementi"
+        Me.LabelFontElementi.Size = New System.Drawing.Size(70, 13)
+        Me.LabelFontElementi.TabIndex = 18
+        Me.LabelFontElementi.Text = "Font elementi"
+        '
+        'PanelFLMLayout3
+        '
+        Me.PanelFLMLayout3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanelFLMLayout3.Controls.Add(Me.Panel6)
+        Me.PanelFLMLayout3.Controls.Add(Me.Panel10)
+        Me.PanelFLMLayout3.Controls.Add(Me.Panel11)
+        Me.PanelFLMLayout3.Enabled = False
+        Me.PanelFLMLayout3.Location = New System.Drawing.Point(304, 423)
+        Me.PanelFLMLayout3.Name = "PanelFLMLayout3"
+        Me.PanelFLMLayout3.Size = New System.Drawing.Size(128, 80)
+        Me.PanelFLMLayout3.TabIndex = 10
+        '
+        'Panel6
+        '
+        Me.Panel6.BackColor = System.Drawing.Color.White
+        Me.Panel6.Controls.Add(Me.LabelLayout3Obj)
+        Me.Panel6.Location = New System.Drawing.Point(3, 3)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Size = New System.Drawing.Size(30, 73)
+        Me.Panel6.TabIndex = 1
+        '
+        'LabelLayout3Obj
+        '
+        Me.LabelLayout3Obj.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.LabelLayout3Obj.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelLayout3Obj.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelLayout3Obj.Location = New System.Drawing.Point(0, 0)
+        Me.LabelLayout3Obj.Name = "LabelLayout3Obj"
+        Me.LabelLayout3Obj.Size = New System.Drawing.Size(30, 73)
+        Me.LabelLayout3Obj.TabIndex = 1
+        Me.LabelLayout3Obj.Text = "Obj"
+        Me.LabelLayout3Obj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel10
+        '
+        Me.Panel10.BackColor = System.Drawing.Color.White
+        Me.Panel10.Controls.Add(Me.LabelLayout3Main)
+        Me.Panel10.Location = New System.Drawing.Point(68, 10)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.Size = New System.Drawing.Size(54, 55)
+        Me.Panel10.TabIndex = 1
+        '
+        'LabelLayout3Main
+        '
+        Me.LabelLayout3Main.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.LabelLayout3Main.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelLayout3Main.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelLayout3Main.Location = New System.Drawing.Point(0, 0)
+        Me.LabelLayout3Main.Name = "LabelLayout3Main"
+        Me.LabelLayout3Main.Size = New System.Drawing.Size(54, 55)
+        Me.LabelLayout3Main.TabIndex = 0
+        Me.LabelLayout3Main.Text = "Main"
+        Me.LabelLayout3Main.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel11
+        '
+        Me.Panel11.BackColor = System.Drawing.Color.White
+        Me.Panel11.Controls.Add(Me.LabelLayout3Prop)
+        Me.Panel11.Location = New System.Drawing.Point(35, 3)
+        Me.Panel11.Name = "Panel11"
+        Me.Panel11.Size = New System.Drawing.Size(30, 73)
+        Me.Panel11.TabIndex = 0
+        '
+        'LabelLayout3Prop
+        '
+        Me.LabelLayout3Prop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.LabelLayout3Prop.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelLayout3Prop.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelLayout3Prop.Location = New System.Drawing.Point(0, 0)
+        Me.LabelLayout3Prop.Name = "LabelLayout3Prop"
+        Me.LabelLayout3Prop.Size = New System.Drawing.Size(30, 73)
+        Me.LabelLayout3Prop.TabIndex = 0
+        Me.LabelLayout3Prop.Text = "Proprietà"
+        Me.LabelLayout3Prop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'CheckBoxFLMTips
         '
         Me.CheckBoxFLMTips.AutoSize = True
@@ -133,7 +252,7 @@ Partial Class FormFLMoptions
         '
         'TextBoxMouseTimeClick
         '
-        Me.TextBoxMouseTimeClick.Location = New System.Drawing.Point(140, 134)
+        Me.TextBoxMouseTimeClick.Location = New System.Drawing.Point(140, 227)
         Me.TextBoxMouseTimeClick.Name = "TextBoxMouseTimeClick"
         Me.TextBoxMouseTimeClick.Size = New System.Drawing.Size(295, 20)
         Me.TextBoxMouseTimeClick.TabIndex = 15
@@ -143,7 +262,7 @@ Partial Class FormFLMoptions
         'LabelMouseTimeClick
         '
         Me.LabelMouseTimeClick.AutoSize = True
-        Me.LabelMouseTimeClick.Location = New System.Drawing.Point(3, 137)
+        Me.LabelMouseTimeClick.Location = New System.Drawing.Point(3, 230)
         Me.LabelMouseTimeClick.Name = "LabelMouseTimeClick"
         Me.LabelMouseTimeClick.Size = New System.Drawing.Size(131, 13)
         Me.LabelMouseTimeClick.TabIndex = 14
@@ -178,81 +297,6 @@ Partial Class FormFLMoptions
         Me.CheckBoxFLMBackgroundImage.TabIndex = 11
         Me.CheckBoxFLMBackgroundImage.Text = "BackgroundImage"
         Me.CheckBoxFLMBackgroundImage.UseVisualStyleBackColor = True
-        '
-        'PanelFLMLayout3
-        '
-        Me.PanelFLMLayout3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PanelFLMLayout3.Controls.Add(Me.Panel10)
-        Me.PanelFLMLayout3.Controls.Add(Me.Panel11)
-        Me.PanelFLMLayout3.Controls.Add(Me.Panel12)
-        Me.PanelFLMLayout3.Enabled = False
-        Me.PanelFLMLayout3.Location = New System.Drawing.Point(307, 423)
-        Me.PanelFLMLayout3.Name = "PanelFLMLayout3"
-        Me.PanelFLMLayout3.Size = New System.Drawing.Size(128, 80)
-        Me.PanelFLMLayout3.TabIndex = 10
-        '
-        'Panel10
-        '
-        Me.Panel10.BackColor = System.Drawing.Color.White
-        Me.Panel10.Controls.Add(Me.LabelLayout3Obj)
-        Me.Panel10.Location = New System.Drawing.Point(3, 4)
-        Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(59, 20)
-        Me.Panel10.TabIndex = 1
-        '
-        'LabelLayout3Obj
-        '
-        Me.LabelLayout3Obj.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.LabelLayout3Obj.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelLayout3Obj.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelLayout3Obj.Location = New System.Drawing.Point(0, 0)
-        Me.LabelLayout3Obj.Name = "LabelLayout3Obj"
-        Me.LabelLayout3Obj.Size = New System.Drawing.Size(59, 20)
-        Me.LabelLayout3Obj.TabIndex = 1
-        Me.LabelLayout3Obj.Text = "Obj"
-        Me.LabelLayout3Obj.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Panel11
-        '
-        Me.Panel11.BackColor = System.Drawing.Color.White
-        Me.Panel11.Controls.Add(Me.LabelLayout3Main)
-        Me.Panel11.Location = New System.Drawing.Point(68, 10)
-        Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(53, 55)
-        Me.Panel11.TabIndex = 1
-        '
-        'LabelLayout3Main
-        '
-        Me.LabelLayout3Main.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.LabelLayout3Main.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelLayout3Main.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelLayout3Main.Location = New System.Drawing.Point(0, 0)
-        Me.LabelLayout3Main.Name = "LabelLayout3Main"
-        Me.LabelLayout3Main.Size = New System.Drawing.Size(53, 55)
-        Me.LabelLayout3Main.TabIndex = 0
-        Me.LabelLayout3Main.Text = "Main"
-        Me.LabelLayout3Main.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Panel12
-        '
-        Me.Panel12.BackColor = System.Drawing.Color.White
-        Me.Panel12.Controls.Add(Me.LabelLayout3Prop)
-        Me.Panel12.Location = New System.Drawing.Point(3, 27)
-        Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(59, 50)
-        Me.Panel12.TabIndex = 0
-        '
-        'LabelLayout3Prop
-        '
-        Me.LabelLayout3Prop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.LabelLayout3Prop.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelLayout3Prop.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelLayout3Prop.Location = New System.Drawing.Point(0, 0)
-        Me.LabelLayout3Prop.Name = "LabelLayout3Prop"
-        Me.LabelLayout3Prop.Size = New System.Drawing.Size(59, 50)
-        Me.LabelLayout3Prop.TabIndex = 0
-        Me.LabelLayout3Prop.Text = "Proprietà"
-        Me.LabelLayout3Prop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'PanelFLMLayout2
         '
@@ -342,7 +386,6 @@ Partial Class FormFLMoptions
         'RadioButtonFLMLayout3
         '
         Me.RadioButtonFLMLayout3.AutoSize = True
-        Me.RadioButtonFLMLayout3.Enabled = False
         Me.RadioButtonFLMLayout3.Location = New System.Drawing.Point(341, 4)
         Me.RadioButtonFLMLayout3.Name = "RadioButtonFLMLayout3"
         Me.RadioButtonFLMLayout3.Size = New System.Drawing.Size(87, 17)
@@ -557,9 +600,9 @@ Partial Class FormFLMoptions
         Me.PanelImpostazioni.ResumeLayout(False)
         Me.PanelImpostazioni.PerformLayout()
         Me.PanelFLMLayout3.ResumeLayout(False)
+        Me.Panel6.ResumeLayout(False)
         Me.Panel10.ResumeLayout(False)
         Me.Panel11.ResumeLayout(False)
-        Me.Panel12.ResumeLayout(False)
         Me.PanelFLMLayout2.ResumeLayout(False)
         Me.Panel7.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
@@ -597,13 +640,6 @@ Partial Class FormFLMoptions
     Friend WithEvents LabelLayout1Prop As Label
     Friend WithEvents LabelLayout1Main As Label
     Friend WithEvents LabelLayout1Obj As Label
-    Friend WithEvents PanelFLMLayout3 As Panel
-    Friend WithEvents Panel10 As Panel
-    Friend WithEvents LabelLayout3Obj As Label
-    Friend WithEvents Panel11 As Panel
-    Friend WithEvents LabelLayout3Main As Label
-    Friend WithEvents Panel12 As Panel
-    Friend WithEvents LabelLayout3Prop As Label
     Friend WithEvents PanelFLMLayout2 As Panel
     Friend WithEvents Panel7 As Panel
     Friend WithEvents LabelLayout2Obj As Label
@@ -621,4 +657,15 @@ Partial Class FormFLMoptions
     Friend WithEvents TextBoxMouseTimeClick As TextBox
     Friend WithEvents LabelMouseTimeClick As Label
     Friend WithEvents CheckBoxFLMTips As CheckBox
+    Friend WithEvents TextBoxFontFLM As TextBox
+    Friend WithEvents LabelFontFLM As Label
+    Friend WithEvents TextBoxFontElementi As TextBox
+    Friend WithEvents LabelFontElementi As Label
+    Friend WithEvents PanelFLMLayout3 As Panel
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents LabelLayout3Obj As Label
+    Friend WithEvents Panel10 As Panel
+    Friend WithEvents LabelLayout3Main As Label
+    Friend WithEvents Panel11 As Panel
+    Friend WithEvents LabelLayout3Prop As Label
 End Class
