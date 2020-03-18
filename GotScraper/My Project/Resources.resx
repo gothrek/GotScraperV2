@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="228484_preview_256x256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\228484_preview_256x256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PaintBrush_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PaintBrush_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -130,20 +133,23 @@
   <data name="save button freccia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save button freccia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Backwards_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Backwards_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Layout2Marquee" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Layout2Marquee1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Layout1Marquee" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Layout1Marquee1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Exit_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Exit_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="setting" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\setting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="reset" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reset1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="about_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\about_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OpenFile_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OpenFile_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,20 +166,26 @@
   <data name="ConfigureComputer_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ConfigureComputer_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Forwards_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forwards_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Layout3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Layout3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Export_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Export_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Exit_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Exit_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="about_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\about_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SaveAs_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SaveAs_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Save_grey_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save_grey_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Forwards_disabled_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forwards_disabled_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="save button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,9 +196,6 @@
   <data name="228462_configure_256x256" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\228462_configure_256x256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PreviewInRightPanel_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PreviewInRightPanel_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="anteprima button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\anteprima button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -196,16 +205,19 @@
   <data name="HelpApplication_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HelpApplication_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Layout3Marquee" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Layout3Marquee.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="BarTop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BarTop.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="about button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\about button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="228484_preview_256x256" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\228484_preview_256x256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PreviewInRightPanel_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PreviewInRightPanel_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Layout3Marquee" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Layout3Marquee.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Backwards_disabled_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Backwards_disabled_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

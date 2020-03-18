@@ -677,8 +677,14 @@
                     ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
 
                     LabelValoreCursore.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
-                    TextBoxValoreCursore.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    TextBoxValoreCursore.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width + ButtonValoreCursoreSX.Size.Width + 3, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
                     TextBoxValoreCursore.BackColor = Color.Black
+                    ButtonValoreCursoreSX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
+                    ButtonValoreCursoreSX.BackColor = Color.Black
+                    ButtonValoreCursoreSX.Image = My.Resources.Backwards_16x
+                    ButtonValoreCursoreDX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width + ButtonValoreCursoreSX.Size.Width + TextBoxValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
+                    ButtonValoreCursoreDX.BackColor = Color.Black
+                    ButtonValoreCursoreDX.Image = My.Resources.Forwards_16x
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
 
@@ -734,8 +740,14 @@
                     ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
 
                     LabelValoreCursore.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
-                    TextBoxValoreCursore.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    TextBoxValoreCursore.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width + ButtonValoreCursoreSX.Size.Width + 3, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
                     TextBoxValoreCursore.BackColor = Color.Black
+                    ButtonValoreCursoreSX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
+                    ButtonValoreCursoreSX.BackColor = Color.Black
+                    ButtonValoreCursoreSX.Image = My.Resources.Backwards_16x
+                    ButtonValoreCursoreDX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width + ButtonValoreCursoreSX.Size.Width + TextBoxValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
+                    ButtonValoreCursoreDX.BackColor = Color.Black
+                    ButtonValoreCursoreDX.Image = My.Resources.Forwards_16x
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
 
@@ -789,8 +801,14 @@
                     ButtonPannelloMainReset.Location = New Point(PanelMainMaster.Location.X + PanelMainMaster.Size.Width - ButtonPannelloMainReset.Size.Width, PanelMainMaster.Location.Y - 45)
 
                     LabelValoreCursore.Location = New Point(PanelMainMaster.Location.X, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
-                    TextBoxValoreCursore.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
+                    TextBoxValoreCursore.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width + ButtonValoreCursoreSX.Size.Width + 3, PanelMainMaster.Location.Y + PanelMainMaster.Height + 3)
                     TextBoxValoreCursore.BackColor = Color.FromArgb(255, 30, 30, 30)
+                    ButtonValoreCursoreSX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
+                    ButtonValoreCursoreSX.BackColor = Color.FromArgb(255, 30, 30, 30)
+                    ButtonValoreCursoreSX.Image = My.Resources.Backwards_disabled_16x
+                    ButtonValoreCursoreDX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width + ButtonValoreCursoreSX.Size.Width + TextBoxValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
+                    ButtonValoreCursoreDX.BackColor = Color.FromArgb(255, 30, 30, 30)
+                    ButtonValoreCursoreDX.Image = My.Resources.Forwards_disabled_16x
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
 
@@ -2694,6 +2712,47 @@
             sender.Text = 1
             sender.Refresh()
         End Try
+
+        Try
+            If Int(sender.Text) > 10 Then
+                sender.Text = 10
+            End If
+        Catch ex As Exception
+            sender.Text = 10
+            sender.Refresh()
+        End Try
+    End Sub
+
+    Private Sub ButtonValoreCursoreSX_Click(sender As Object, e As EventArgs) Handles ButtonValoreCursoreSX.Click
+        Try
+            Dim valore As Integer = Int(TextBoxValoreCursore.Text)
+
+            valore -= 1
+            TextBoxValoreCursore.Text = valore
+        Catch ex As Exception
+            TextBoxValoreCursore.Text = 1
+            TextBoxValoreCursore.Refresh()
+        End Try
+    End Sub
+
+    Private Sub ButtonValoreCursoreDX_Click(sender As Object, e As EventArgs) Handles ButtonValoreCursoreDX.Click
+        Try
+            Dim valore As Integer = Int(TextBoxValoreCursore.Text)
+
+            valore += 1
+            TextBoxValoreCursore.Text = valore
+        Catch ex As Exception
+            TextBoxValoreCursore.Text = 10
+            TextBoxValoreCursore.Refresh()
+        End Try
+    End Sub
+
+    Private Sub LabelValoreCursore_MouseHover(sender As Object, e As EventArgs) Handles LabelValoreCursore.MouseHover,
+                                                                                        TextBoxValoreCursore.MouseHover,
+                                                                                        ButtonValoreCursoreSX.MouseHover,
+                                                                                        ButtonValoreCursoreDX.MouseHover
+
+        ToolTip1.Show("Regola il n.di pixel per lo spostamento con i cursori.", sender)
     End Sub
 
     '----------------------------------------------------------------------------------------------
@@ -2782,6 +2841,14 @@
             LabelPannello.Text = "Pannello " & sender.name.ToString.Substring(5) & " " & x & " , " & y
 
             mouseCoordinate = MousePosition
+
+            Dim usoOggetto As String = sender.name.ToString.Substring(5, sender.name.ToString.Length - 5)
+
+            Dim oggettoX As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_x_pos")
+            Dim oggettoY As Object = TabControlProprietà.TabPages.Item("TabPage" & usoOggetto).Controls.Item("TextBox" & usoOggetto & "_y_pos")
+
+            oggettoX.Text = x
+            oggettoY.Text = y
         End If
     End Sub
 
@@ -2840,7 +2907,11 @@
                                                                             PanelRominputcontrol.MouseLeave,
                                                                             PanelRomstatus.MouseLeave,
                                                                             PanelRomcategory.MouseLeave,
-                                                                            PanelMenu.MouseLeave
+                                                                            PanelMenu.MouseLeave,
+                                                                            LabelValoreCursore.MouseLeave,
+                                                                            TextBoxValoreCursore.MouseLeave,
+                                                                            ButtonValoreCursoreSX.MouseLeave,
+                                                                            ButtonValoreCursoreDX.MouseLeave
 
         Me.Cursor = Cursors.Default
         ToolTip1.Hide(sender)
@@ -4035,6 +4106,7 @@
             TextBoxMenu_selected_backcolor.Text = coloreR & ", " & coloreG & ", " & coloreB & ", " & coloreA
         End If
     End Sub
+
 
     '----------------------------------------------------------------------------------------------
     'Proprietà Actors

@@ -327,6 +327,10 @@
     <Content Include="bin\Release\Note di release.txt" />
     <Content Include="bin\Release\Risoluzioni.txt" />
     <Content Include="FLM.ico" />
+    <None Include="Resources\Backwards_disabled_16x.png" />
+    <None Include="Resources\Forwards_disabled_16x.png" />
+    <None Include="Resources\Forwards_16x.png" />
+    <None Include="Resources\Backwards_16x.png" />
     <None Include="Resources\Layout3Marquee.bmp" />
     <None Include="Resources\Layout3.bmp" />
     <None Include="Resources\InformationSymbol_16x.png" />

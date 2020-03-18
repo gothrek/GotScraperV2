@@ -558,6 +558,8 @@ Partial Class FormFLM
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.OffrimiUnCaffèToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LabelFeelLayoutManager = New System.Windows.Forms.Label()
+        Me.ButtonValoreCursoreSX = New System.Windows.Forms.Button()
+        Me.ButtonValoreCursoreDX = New System.Windows.Forms.Button()
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -6016,9 +6018,9 @@ Partial Class FormFLM
         Me.TextBoxValoreCursore.BackColor = System.Drawing.Color.Black
         Me.TextBoxValoreCursore.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBoxValoreCursore.ForeColor = System.Drawing.Color.Red
-        Me.TextBoxValoreCursore.Location = New System.Drawing.Point(393, 599)
+        Me.TextBoxValoreCursore.Location = New System.Drawing.Point(417, 599)
         Me.TextBoxValoreCursore.Name = "TextBoxValoreCursore"
-        Me.TextBoxValoreCursore.Size = New System.Drawing.Size(38, 13)
+        Me.TextBoxValoreCursore.Size = New System.Drawing.Size(18, 13)
         Me.TextBoxValoreCursore.TabIndex = 39
         Me.TextBoxValoreCursore.Text = "1"
         '
@@ -6091,53 +6093,53 @@ Partial Class FormFLM
         '
         Me.LoadToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.OpenFile_16x
         Me.LoadToolStripMenuItem.Name = "LoadToolStripMenuItem"
-        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
         Me.LoadToolStripMenuItem.Text = "Load"
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(118, 6)
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.Save_grey_16x
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
         Me.SaveToolStripMenuItem.Text = "Save"
         '
         'SaveAsToolStripMenuItem
         '
         Me.SaveAsToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.SaveAs_16x
         Me.SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
-        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
         Me.SaveAsToolStripMenuItem.Text = "Save as..."
         '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(118, 6)
         '
         'ExportToolStripMenuItem
         '
         Me.ExportToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.Export_16x
         Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
-        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
         Me.ExportToolStripMenuItem.Text = "Export"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(118, 6)
         '
         'QuitToolStripMenuItem
         '
         Me.QuitToolStripMenuItem.Image = Global.GotScraper.My.Resources.Resources.Exit_16x
         Me.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
-        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
         Me.QuitToolStripMenuItem.Text = "Quit"
         '
         'ToolStripDropDownButtonStrumenti
@@ -6281,6 +6283,34 @@ Partial Class FormFLM
         Me.LabelFeelLayoutManager.TabIndex = 43
         Me.LabelFeelLayoutManager.Text = "Feel Layout Manager"
         '
+        'ButtonValoreCursoreSX
+        '
+        Me.ButtonValoreCursoreSX.AutoSize = True
+        Me.ButtonValoreCursoreSX.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ButtonValoreCursoreSX.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonValoreCursoreSX.FlatAppearance.BorderSize = 0
+        Me.ButtonValoreCursoreSX.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonValoreCursoreSX.Image = Global.GotScraper.My.Resources.Resources.Backwards_16x
+        Me.ButtonValoreCursoreSX.Location = New System.Drawing.Point(387, 596)
+        Me.ButtonValoreCursoreSX.Name = "ButtonValoreCursoreSX"
+        Me.ButtonValoreCursoreSX.Size = New System.Drawing.Size(22, 22)
+        Me.ButtonValoreCursoreSX.TabIndex = 44
+        Me.ButtonValoreCursoreSX.UseVisualStyleBackColor = False
+        '
+        'ButtonValoreCursoreDX
+        '
+        Me.ButtonValoreCursoreDX.AutoSize = True
+        Me.ButtonValoreCursoreDX.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ButtonValoreCursoreDX.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonValoreCursoreDX.FlatAppearance.BorderSize = 0
+        Me.ButtonValoreCursoreDX.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonValoreCursoreDX.Image = Global.GotScraper.My.Resources.Resources.Forwards_16x
+        Me.ButtonValoreCursoreDX.Location = New System.Drawing.Point(438, 596)
+        Me.ButtonValoreCursoreDX.Name = "ButtonValoreCursoreDX"
+        Me.ButtonValoreCursoreDX.Size = New System.Drawing.Size(22, 22)
+        Me.ButtonValoreCursoreDX.TabIndex = 45
+        Me.ButtonValoreCursoreDX.UseVisualStyleBackColor = False
+        '
         'FormFLM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -6289,6 +6319,8 @@ Partial Class FormFLM
         Me.BackgroundImage = Global.GotScraper.My.Resources.Resources.Layout1Marquee
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 761)
+        Me.Controls.Add(Me.ButtonValoreCursoreDX)
+        Me.Controls.Add(Me.ButtonValoreCursoreSX)
         Me.Controls.Add(Me.LabelFeelLayoutManager)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.ButtonAbout)
@@ -6913,4 +6945,6 @@ Partial Class FormFLM
     Friend WithEvents ToolStripSeparator9 As ToolStripSeparator
     Friend WithEvents FEELWebSiteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LabelFeelLayoutManager As Label
+    Friend WithEvents ButtonValoreCursoreSX As Button
+    Friend WithEvents ButtonValoreCursoreDX As Button
 End Class
