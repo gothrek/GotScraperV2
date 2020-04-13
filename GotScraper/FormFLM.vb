@@ -65,8 +65,7 @@
         fileErrorLog = My.Computer.FileSystem.OpenTextFileWriter(Today.Year & Today.Month & Today.Day & "ErrorLog.txt", False)
         fileErrorLog.Close()
 
-        If My.Computer.FileSystem.FileExists("FLM.ini") Then
-            'Il file esiste, verrà caricato
+        If My.Computer.FileSystem.FileExists("FLM.ini") Then 'Il file esiste, verrà caricato
             Dim file As String
             Dim inizioStringa As Integer = 0
             Dim fineStringa As Integer = 0
