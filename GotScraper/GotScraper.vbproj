@@ -327,6 +327,10 @@
     <Content Include="bin\Release\Note di release.txt" />
     <Content Include="bin\Release\Risoluzioni.txt" />
     <Content Include="FLM.ico" />
+    <None Include="Resources\Add_grey_16x.png" />
+    <None Include="Resources\Add_16x.png" />
+    <None Include="Resources\Remove_16x.png" />
+    <None Include="Resources\Remove_color_16x.png" />
     <None Include="Resources\Backwards_disabled_16x.png" />
     <None Include="Resources\Forwards_disabled_16x.png" />
     <None Include="Resources\Forwards_16x.png" />

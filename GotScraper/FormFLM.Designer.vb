@@ -560,6 +560,8 @@ Partial Class FormFLM
         Me.LabelFeelLayoutManager = New System.Windows.Forms.Label()
         Me.ButtonValoreCursoreSX = New System.Windows.Forms.Button()
         Me.ButtonValoreCursoreDX = New System.Windows.Forms.Button()
+        Me.TextBoxMusic_change_delay = New System.Windows.Forms.TextBox()
+        Me.LabelMusic_change_delay = New System.Windows.Forms.Label()
         Me.GroupBoxProprietà.SuspendLayout()
         Me.TabControlProprietà.SuspendLayout()
         Me.TabPageProprietà.SuspendLayout()
@@ -876,6 +878,8 @@ Partial Class FormFLM
         '
         'TabPageMusic
         '
+        Me.TabPageMusic.Controls.Add(Me.TextBoxMusic_change_delay)
+        Me.TabPageMusic.Controls.Add(Me.LabelMusic_change_delay)
         Me.TabPageMusic.Controls.Add(Me.CheckBoxMusicLoop)
         Me.TabPageMusic.Controls.Add(Me.ButtonMusicPlay)
         Me.TabPageMusic.Controls.Add(Me.TextBoxMusic_path)
@@ -898,7 +902,7 @@ Partial Class FormFLM
         '
         Me.CheckBoxMusicLoop.AutoSize = True
         Me.CheckBoxMusicLoop.ForeColor = System.Drawing.Color.Red
-        Me.CheckBoxMusicLoop.Location = New System.Drawing.Point(134, 96)
+        Me.CheckBoxMusicLoop.Location = New System.Drawing.Point(124, 154)
         Me.CheckBoxMusicLoop.Name = "CheckBoxMusicLoop"
         Me.CheckBoxMusicLoop.Size = New System.Drawing.Size(80, 17)
         Me.CheckBoxMusicLoop.TabIndex = 22
@@ -907,7 +911,7 @@ Partial Class FormFLM
         '
         'ButtonMusicPlay
         '
-        Me.ButtonMusicPlay.Location = New System.Drawing.Point(53, 92)
+        Me.ButtonMusicPlay.Location = New System.Drawing.Point(43, 150)
         Me.ButtonMusicPlay.Name = "ButtonMusicPlay"
         Me.ButtonMusicPlay.Size = New System.Drawing.Size(75, 23)
         Me.ButtonMusicPlay.TabIndex = 21
@@ -5687,7 +5691,7 @@ Partial Class FormFLM
         Me.LabelPannello.AutoSize = True
         Me.LabelPannello.BackColor = System.Drawing.Color.Transparent
         Me.LabelPannello.ForeColor = System.Drawing.Color.Red
-        Me.LabelPannello.Location = New System.Drawing.Point(468, 599)
+        Me.LabelPannello.Location = New System.Drawing.Point(505, 599)
         Me.LabelPannello.Name = "LabelPannello"
         Me.LabelPannello.Size = New System.Drawing.Size(66, 13)
         Me.LabelPannello.TabIndex = 28
@@ -6017,10 +6021,11 @@ Partial Class FormFLM
         '
         Me.TextBoxValoreCursore.BackColor = System.Drawing.Color.Black
         Me.TextBoxValoreCursore.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBoxValoreCursore.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxValoreCursore.ForeColor = System.Drawing.Color.Red
-        Me.TextBoxValoreCursore.Location = New System.Drawing.Point(417, 599)
+        Me.TextBoxValoreCursore.Location = New System.Drawing.Point(454, 599)
         Me.TextBoxValoreCursore.Name = "TextBoxValoreCursore"
-        Me.TextBoxValoreCursore.Size = New System.Drawing.Size(18, 13)
+        Me.TextBoxValoreCursore.Size = New System.Drawing.Size(18, 15)
         Me.TextBoxValoreCursore.TabIndex = 39
         Me.TextBoxValoreCursore.Text = "1"
         '
@@ -6028,10 +6033,11 @@ Partial Class FormFLM
         '
         Me.LabelValoreCursore.AutoSize = True
         Me.LabelValoreCursore.BackColor = System.Drawing.Color.Transparent
+        Me.LabelValoreCursore.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelValoreCursore.ForeColor = System.Drawing.Color.Red
         Me.LabelValoreCursore.Location = New System.Drawing.Point(312, 599)
         Me.LabelValoreCursore.Name = "LabelValoreCursore"
-        Me.LabelValoreCursore.Size = New System.Drawing.Size(75, 13)
+        Me.LabelValoreCursore.Size = New System.Drawing.Size(96, 16)
         Me.LabelValoreCursore.TabIndex = 9
         Me.LabelValoreCursore.Text = "Valore cursore"
         '
@@ -6290,8 +6296,8 @@ Partial Class FormFLM
         Me.ButtonValoreCursoreSX.BackColor = System.Drawing.Color.Transparent
         Me.ButtonValoreCursoreSX.FlatAppearance.BorderSize = 0
         Me.ButtonValoreCursoreSX.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonValoreCursoreSX.Image = Global.GotScraper.My.Resources.Resources.Backwards_16x
-        Me.ButtonValoreCursoreSX.Location = New System.Drawing.Point(387, 596)
+        Me.ButtonValoreCursoreSX.Image = Global.GotScraper.My.Resources.Resources.Remove_color_16x
+        Me.ButtonValoreCursoreSX.Location = New System.Drawing.Point(424, 596)
         Me.ButtonValoreCursoreSX.Name = "ButtonValoreCursoreSX"
         Me.ButtonValoreCursoreSX.Size = New System.Drawing.Size(22, 22)
         Me.ButtonValoreCursoreSX.TabIndex = 44
@@ -6304,12 +6310,30 @@ Partial Class FormFLM
         Me.ButtonValoreCursoreDX.BackColor = System.Drawing.Color.Transparent
         Me.ButtonValoreCursoreDX.FlatAppearance.BorderSize = 0
         Me.ButtonValoreCursoreDX.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonValoreCursoreDX.Image = Global.GotScraper.My.Resources.Resources.Forwards_16x
-        Me.ButtonValoreCursoreDX.Location = New System.Drawing.Point(438, 596)
+        Me.ButtonValoreCursoreDX.Image = Global.GotScraper.My.Resources.Resources.Add_16x
+        Me.ButtonValoreCursoreDX.Location = New System.Drawing.Point(475, 596)
         Me.ButtonValoreCursoreDX.Name = "ButtonValoreCursoreDX"
         Me.ButtonValoreCursoreDX.Size = New System.Drawing.Size(22, 22)
         Me.ButtonValoreCursoreDX.TabIndex = 45
         Me.ButtonValoreCursoreDX.UseVisualStyleBackColor = False
+        '
+        'TextBoxMusic_change_delay
+        '
+        Me.TextBoxMusic_change_delay.Location = New System.Drawing.Point(164, 58)
+        Me.TextBoxMusic_change_delay.Name = "TextBoxMusic_change_delay"
+        Me.TextBoxMusic_change_delay.Size = New System.Drawing.Size(72, 20)
+        Me.TextBoxMusic_change_delay.TabIndex = 24
+        Me.TextBoxMusic_change_delay.Text = "0"
+        Me.TextBoxMusic_change_delay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'LabelMusic_change_delay
+        '
+        Me.LabelMusic_change_delay.AutoSize = True
+        Me.LabelMusic_change_delay.Location = New System.Drawing.Point(3, 61)
+        Me.LabelMusic_change_delay.Name = "LabelMusic_change_delay"
+        Me.LabelMusic_change_delay.Size = New System.Drawing.Size(108, 13)
+        Me.LabelMusic_change_delay.TabIndex = 23
+        Me.LabelMusic_change_delay.Text = "Music_change_delay"
         '
         'FormFLM
         '
@@ -6947,4 +6971,6 @@ Partial Class FormFLM
     Friend WithEvents LabelFeelLayoutManager As Label
     Friend WithEvents ButtonValoreCursoreSX As Button
     Friend WithEvents ButtonValoreCursoreDX As Button
+    Friend WithEvents TextBoxMusic_change_delay As TextBox
+    Friend WithEvents LabelMusic_change_delay As Label
 End Class

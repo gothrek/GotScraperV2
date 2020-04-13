@@ -31,7 +31,7 @@
     Public flmLayout As Integer = 1
 
     Public dtOptionsLayout As DataTable
-    Dim dtRisoluzioni As DataTable
+    Dim dtRisoluzioni As DataTable = New DataTable
 
     Dim colorDialog1 As New CutoutPro.Winforms.ArgbColorDialog
 
@@ -353,6 +353,7 @@
         dtOptionsLayout.Columns.Add("sound_fx_volume", Type.GetType("System.String"))
 
         dtOptionsLayout.Columns.Add("music_path", Type.GetType("System.String"))
+        dtOptionsLayout.Columns.Add("music_change_delay", Type.GetType("System.String"))
         dtOptionsLayout.Columns.Add("music_volume", Type.GetType("System.String"))
 
         dtOptionsLayout.Columns.Add("screen_res_x", Type.GetType("System.String"))
@@ -681,10 +682,10 @@
                     TextBoxValoreCursore.BackColor = Color.Black
                     ButtonValoreCursoreSX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
                     ButtonValoreCursoreSX.BackColor = Color.Black
-                    ButtonValoreCursoreSX.Image = My.Resources.Backwards_16x
+                    ButtonValoreCursoreSX.Image = My.Resources.Remove_color_16x
                     ButtonValoreCursoreDX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width + ButtonValoreCursoreSX.Size.Width + TextBoxValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
                     ButtonValoreCursoreDX.BackColor = Color.Black
-                    ButtonValoreCursoreDX.Image = My.Resources.Forwards_16x
+                    ButtonValoreCursoreDX.Image = My.Resources.Add_16x
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
 
@@ -744,10 +745,10 @@
                     TextBoxValoreCursore.BackColor = Color.Black
                     ButtonValoreCursoreSX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
                     ButtonValoreCursoreSX.BackColor = Color.Black
-                    ButtonValoreCursoreSX.Image = My.Resources.Backwards_16x
+                    ButtonValoreCursoreSX.Image = My.Resources.Remove_color_16x
                     ButtonValoreCursoreDX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width + ButtonValoreCursoreSX.Size.Width + TextBoxValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
                     ButtonValoreCursoreDX.BackColor = Color.Black
-                    ButtonValoreCursoreDX.Image = My.Resources.Forwards_16x
+                    ButtonValoreCursoreDX.Image = My.Resources.Add_16x
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
 
@@ -805,10 +806,10 @@
                     TextBoxValoreCursore.BackColor = Color.FromArgb(255, 30, 30, 30)
                     ButtonValoreCursoreSX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
                     ButtonValoreCursoreSX.BackColor = Color.FromArgb(255, 30, 30, 30)
-                    ButtonValoreCursoreSX.Image = My.Resources.Backwards_disabled_16x
+                    ButtonValoreCursoreSX.Image = My.Resources.Remove_16x
                     ButtonValoreCursoreDX.Location = New Point(PanelMainMaster.Location.X + LabelValoreCursore.Size.Width + ButtonValoreCursoreSX.Size.Width + TextBoxValoreCursore.Size.Width, PanelMainMaster.Location.Y + PanelMainMaster.Height)
                     ButtonValoreCursoreDX.BackColor = Color.FromArgb(255, 30, 30, 30)
-                    ButtonValoreCursoreDX.Image = My.Resources.Forwards_disabled_16x
+                    ButtonValoreCursoreDX.Image = My.Resources.Add_grey_16x
 
                     LabelPercorso.Location = New Point(PanelMainMaster.Location.X, Me.Size.Height - 31 - 39)
 
@@ -960,7 +961,6 @@
 
     Private Sub ButtonCarica_Click(sender As Object, e As EventArgs) Handles ButtonCarica.Click,
                                                                                 LoadToolStripMenuItem.Click
-
         Dim cartella As String = ""
         Dim folder As DirectoryInfo
         Dim file As System.IO.StreamReader
@@ -1052,6 +1052,12 @@
 
             Try
                 TextBoxMusic_path.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("music_path")
+                LabelMusic_path.ForeColor = Color.Black
+            Catch ex As Exception
+                LabelMusic_path.ForeColor = Color.Green
+            End Try
+            Try
+                TextBoxMusic_change_delay.Text = dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("music_change_delay")
                 LabelMusic_path.ForeColor = Color.Black
             Catch ex As Exception
                 LabelMusic_path.ForeColor = Color.Green
@@ -2390,6 +2396,7 @@
         dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("sound_fx_volume") = TextBoxSound_fx_volume.Text
 
         dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("music_path") = TextBoxMusic_path.Text
+        dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("music_change_delay") = TextBoxMusic_change_delay.Text
         dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("music_volume") = TextBoxMusic_volume.Text
 
         dtOptionsLayout.Rows(dtOptionsLayout.Rows.Count - 1).Item("screen_res_x") = TextBoxScreen_res_x.Text
@@ -2632,6 +2639,7 @@
                     Case Else
                         usoComboBox.SelectedIndex = 0
                 End Select
+                'usoComboBox.SelectedIndex = Int(usoTextBox.Text)
             Catch ex As Exception
 
             End Try
@@ -3102,7 +3110,7 @@
                                                                         TextBoxActors_repeat_delay_ms.Enter, TextBoxActors_frame_duration_ms.Enter,
                                                                         TextBoxBezel_repeat_delay_ms.Enter, TextBoxBezel_frame_duration_ms.Enter,
                                                                         TextBoxRomlist_y_pos.Enter, TextBoxRomlist_x_pos.Enter,
-                                                                        TextBoxBackground_y_pos.Enter, TextBoxBackground_x_pos.Enter
+                                                                        TextBoxBackground_y_pos.Enter, TextBoxBackground_x_pos.Enter, TextBoxMusic_change_delay.Enter
 
         valorePrecedente = sender.Text
     End Sub
@@ -3112,7 +3120,7 @@
                                                                                 TextBoxRomlist_item_height.TextChanged,
                                                                                 TextBoxMenu_item_height.TextChanged,
                                                                                 TextBoxActors_repeat_delay_ms.TextChanged, TextBoxActors_frame_duration_ms.TextChanged,
-                                                                                TextBoxBezel_repeat_delay_ms.TextChanged, TextBoxBezel_frame_duration_ms.TextChanged
+                                                                                TextBoxBezel_repeat_delay_ms.TextChanged, TextBoxBezel_frame_duration_ms.TextChanged, TextBoxMusic_change_delay.TextChanged
 
         Try
             Int(sender.Text)
@@ -3550,7 +3558,8 @@
 
             Try
                 Dim usoOggetto As String = sender.name.ToString.Substring(7, sender.name.ToString.IndexOf("_") - 7)
-                Dim oggettoPanel As Object = PanelMain.Controls.Item("Panel" & usoOggetto)
+                Dim oggettoPanel As Object = New Object
+                oggettoPanel = PanelMain.Controls.Item("Panel" & usoOggetto)
 
                 oggettoPanel.BackColor = sender.backcolor
                 oggettoPanel.Refresh()
@@ -3682,10 +3691,33 @@
         Dim oggettoTextBox As Object = TabControlProprietà.TabPages.Item(sender.parent.name).Controls.Item("TextBox" & usoOggetto)
 
         oggettoTextBox.Text = textAlign
+
+        'Select Case textAlign
+        '    Case 0
+        '        oggettoTextBox.Text = 0
+        '    Case 1
+        '        oggettoTextBox.Text = 2
+        '    Case 2
+        '        oggettoTextBox.Text = 1
+        '    Case Else
+        '        oggettoTextBox.Text = 0
+        'End Select
+        'oggettoTextBox.Text = textAlign
+
         Try
-            oggettoTextBox.TextAlign = Int(sender.selecteditem.substring(sender.selecteditem.length - 1, 1))
+            Select Case textAlign
+                Case 0
+                    oggettoTextBox.TextAlign = 0
+                Case 1
+                    oggettoTextBox.TextAlign = 2
+                Case 2
+                    oggettoTextBox.TextAlign = 1
+                Case Else
+                    oggettoTextBox.TextAlign = 0
+            End Select
+            'oggettoTextBox.TextAlign = textAlign ' Int(sender.selecteditem.substring(sender.selecteditem.length - 1, 1))
         Catch ex As Exception
-            oggettoTextBox.TextAlign = 0
+
         End Try
     End Sub
 
@@ -3933,42 +3965,44 @@
         Dim i As Integer = 0
         Dim esci As Boolean = False
 
-        Try
-            Do
-                If TextBoxScreen_res_y.Text = dtRisoluzioni.Rows(i).Item("y") Then
-                    esci = True
+        If dtRisoluzioni.Rows.Count > 0 Then
+            Try
+                Do
+                    If TextBoxScreen_res_y.Text = dtRisoluzioni.Rows(i).Item("y") Then
+                        esci = True
+                    End If
+
+                    i += 1
+
+                Loop Until esci Or (i = dtRisoluzioni.Rows.Count)
+
+                If esci Then
+                    TextBoxScreen_res_x.BackColor = Color.Green
+                Else
+                    TextBoxScreen_res_y.BackColor = Color.Red
                 End If
 
-                i += 1
+            Catch ex As Exception
 
-            Loop Until esci Or (i = dtRisoluzioni.Rows.Count)
+            End Try
 
-            If esci Then
-                TextBoxScreen_res_x.BackColor = Color.Green
-            Else
-                TextBoxScreen_res_y.BackColor = Color.Red
-            End If
+            Try
+                Int(TextBoxScreen_res_y.Text)
+            Catch ex As Exception
+                TextBoxScreen_res_y.Text = ComboBoxRisoluzione.SelectedItem.row.item(2)
+            End Try
 
-        Catch ex As Exception
+            LabelScreenRisoluzione.Text = "Main " & TextBoxScreen_res_x.Text & " x " & TextBoxScreen_res_y.Text
 
-        End Try
+            Try
+                PanelMain.Size = New Size(Int(TextBoxScreen_res_x.Text), Int(TextBoxScreen_res_y.Text))
+            Catch ex As Exception
 
-        Try
-            Int(TextBoxScreen_res_y.Text)
-        Catch ex As Exception
-            TextBoxScreen_res_y.Text = ComboBoxRisoluzione.SelectedItem.row.item(2)
-        End Try
+            End Try
 
-        LabelScreenRisoluzione.Text = "Main " & TextBoxScreen_res_x.Text & " x " & TextBoxScreen_res_y.Text
-
-        Try
-            PanelMain.Size = New Size(Int(TextBoxScreen_res_x.Text), Int(TextBoxScreen_res_y.Text))
-        Catch ex As Exception
-
-        End Try
-
-        TextBoxBackground_height.Text = TextBoxScreen_res_y.Text
-        FormFLM_Resize()
+            TextBoxBackground_height.Text = TextBoxScreen_res_y.Text
+            FormFLM_Resize()
+        End If
     End Sub
 
     Private Sub TextBoxScreen_saver_backcolor_DoubleClick(sender As Object, e As EventArgs) Handles TextBoxScreen_saver_backcolor.DoubleClick, TextBoxScreen_saver_backcolor.Click

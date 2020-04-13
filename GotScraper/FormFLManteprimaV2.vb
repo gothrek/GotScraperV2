@@ -1,4 +1,6 @@
-﻿Public Class FormFLManteprimaV2
+﻿Imports System.Runtime.InteropServices
+
+Public Class FormFLManteprimaV2
     Dim dt As DataTable
     Dim arrayObj(FormFLM.ListBoxObj.Items.Count) As String
 
